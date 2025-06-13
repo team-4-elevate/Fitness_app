@@ -488,28 +488,65 @@ class AppTheme {
     IconData? prefixIcon,
     IconData? suffixIcon,
     VoidCallback? onSuffixIconPressed,
+    bool isDense = true,
   }) {
     return InputDecoration(
       hintText: hintText,
-      prefixIcon:
-          prefixIcon != null
-              ? Icon(
-                prefixIcon,
+      isDense: isDense,
+      hintStyle: TextStyle(
+        color: Colors.white.withOpacity(0.5),
+        fontSize: R.textSM,
+      ),
+      filled: true,
+      fillColor: Colors.white.withOpacity(0.1),
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: 20.r,
+        vertical: 16.r,
+      ),
+      prefixIcon: prefixIcon != null
+          ? Icon(
+              prefixIcon,
+              color: Colors.white.withOpacity(0.7),
+              size: R.iconBase, // ✅ Responsive icon size
+            )
+          : null,
+      suffixIcon: suffixIcon != null
+          ? IconButton(
+              icon: Icon(
+                suffixIcon,
                 color: Colors.white.withOpacity(0.7),
                 size: R.iconBase, // ✅ Responsive icon size
-              )
-              : null,
-      suffixIcon:
-          suffixIcon != null
-              ? IconButton(
-                icon: Icon(
-                  suffixIcon,
-                  color: Colors.white.withOpacity(0.7),
-                  size: R.iconBase, // ✅ Responsive icon size
-                ),
-                onPressed: onSuffixIconPressed,
-              )
-              : null,
+              ),
+              onPressed: onSuffixIconPressed,
+            )
+          : null,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(
+          color: Colors.white.withOpacity(0.2),
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(
+          color: Colors.white.withOpacity(0.2),
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(
+          color: AppColors.primaryOrange,
+          width: 1.5.r,
+        ),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(color: AppColors.error),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(color: AppColors.error),
+      ),
     );
   }
 
