@@ -26,9 +26,10 @@ class CustomAuthScreensView extends StatelessWidget {
             child: Container(color: Colors.black.withOpacity(0.3)),
           ),
           SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                 const SizedBox(height: 40),
                 Center(
                   child: SizedBox(
@@ -87,6 +88,7 @@ class CustomAuthScreensView extends StatelessWidget {
                 ),
               ],
             ),
+          ),
           ),
         ],
       ),

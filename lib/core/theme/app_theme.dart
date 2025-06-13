@@ -1,3 +1,4 @@
+// core/theme/app_theme.dart
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/responsive/responsive.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
@@ -135,15 +136,13 @@ class AppTheme {
         foregroundColor: AppColors.white,
         shadowColor: AppColors.primaryOrange.withOpacity(0.3),
         elevation: 0,
+
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             R.borderButtonValue,
           ), // ✅ Responsive border
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: R.paddingLGValue, // ✅ Responsive padding
-          vertical: R.paddingMDValue, // ✅ Responsive padding
-        ),
+
         textStyle: TextStyle(
           fontSize: R.textMD, // ✅ Responsive font size
           fontWeight: FontWeight.w600,
@@ -237,7 +236,7 @@ class AppTheme {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
-        borderSide: BorderSide(color: AppColors.error, width: 1.r),
+        borderSide: BorderSide(color: AppColors.error, width: 2.r),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
@@ -499,45 +498,37 @@ class AppTheme {
       ),
       filled: true,
       fillColor: Colors.white.withOpacity(0.1),
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: 20.r,
-        vertical: 16.r,
-      ),
-      prefixIcon: prefixIcon != null
-          ? Icon(
-              prefixIcon,
-              color: Colors.white.withOpacity(0.7),
-              size: R.iconBase, // ✅ Responsive icon size
-            )
-          : null,
-      suffixIcon: suffixIcon != null
-          ? IconButton(
-              icon: Icon(
-                suffixIcon,
+      contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 16.r),
+      prefixIcon:
+          prefixIcon != null
+              ? Icon(
+                prefixIcon,
                 color: Colors.white.withOpacity(0.7),
                 size: R.iconBase, // ✅ Responsive icon size
-              ),
-              onPressed: onSuffixIconPressed,
-            )
-          : null,
+              )
+              : null,
+      suffixIcon:
+          suffixIcon != null
+              ? IconButton(
+                icon: Icon(
+                  suffixIcon,
+                  color: Colors.white.withOpacity(0.7),
+                  size: R.iconBase, // ✅ Responsive icon size
+                ),
+                onPressed: onSuffixIconPressed,
+              )
+              : null,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50.r),
-        borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.2),
-        ),
+        borderSide: BorderSide(color: Colors.white.withOpacity(0.2)),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50.r),
-        borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.2),
-        ),
+        borderSide: BorderSide(color: Colors.white.withOpacity(0.2)),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50.r),
-        borderSide: BorderSide(
-          color: AppColors.primaryOrange,
-          width: 1.5.r,
-        ),
+        borderSide: BorderSide(color: AppColors.primaryOrange, width: 1.5.r),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50.r),

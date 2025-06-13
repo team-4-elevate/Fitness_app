@@ -1,3 +1,4 @@
+// core/api/dio_client.dart
 import 'package:dio/dio.dart';
 import 'package:fitness_app/core/Constant/api_constants.dart';
 import 'package:fitness_app/core/api/api_client.dart';
@@ -163,7 +164,7 @@ class DioApiClient implements ApiClient {
       }
     } catch (e) {
       // Handle token error - navigate to login if needed
-      if (appCurrentRoute != AppRoutes.loginPage && appCurrentRoute != AppRoutes.signUpPage) {
+      if (appCurrentRoute != AppRoutes.loginPage && appCurrentRoute != AppRoutes.registerPage) {
         await localStorage.saveRememberMe(false);
         _appNavigator.pushNamedAndRemoveUntil(
           AppRoutes.loginPage,
