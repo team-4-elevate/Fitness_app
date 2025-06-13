@@ -1,3 +1,4 @@
+// features/auth/presentation/auth_common_widgets/custom_auth_view.dart
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import '../../domain/arguments/auth_pages_ui_arguments.dart';
@@ -13,11 +14,13 @@ class CustomAuthScreensView extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-            image: AssetImage('assets/icons/super_fit_logo.png'),
-            fit: BoxFit.cover,
-          ))),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/img.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           BackdropFilter(
             filter: ui.ImageFilter.blur(sigmaX: 8, sigmaY: 8),
             child: Container(color: Colors.black.withOpacity(0.3)),
@@ -45,9 +48,10 @@ class CustomAuthScreensView extends StatelessWidget {
                         style: TextStyle(
                           fontSize: args.firstTitleArguments!.isBold ? 20 : 18,
                           color: Colors.white,
-                          fontWeight: args.firstTitleArguments!.isBold
-                              ? FontWeight.w800
-                              : FontWeight.w400,
+                          fontWeight:
+                              args.firstTitleArguments!.isBold
+                                  ? FontWeight.w800
+                                  : FontWeight.w400,
                         ),
                       ),
                       const SizedBox(height: 6),
@@ -56,9 +60,10 @@ class CustomAuthScreensView extends StatelessWidget {
                         style: TextStyle(
                           fontSize: args.secondTitleArguments!.isBold ? 20 : 18,
                           color: Colors.white,
-                          fontWeight: args.secondTitleArguments!.isBold
-                              ? FontWeight.w800
-                              : FontWeight.w400,
+                          fontWeight:
+                              args.secondTitleArguments!.isBold
+                                  ? FontWeight.w800
+                                  : FontWeight.w400,
                         ),
                       ),
                     ],
@@ -69,7 +74,10 @@ class CustomAuthScreensView extends StatelessWidget {
                   child: BackdropFilter(
                     filter: ui.ImageFilter.blur(sigmaX: 16, sigmaY: 16),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 32,vertical: 24),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 24,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.black.withOpacity(0.2),
                       ),

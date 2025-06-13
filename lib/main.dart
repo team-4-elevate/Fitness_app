@@ -1,3 +1,4 @@
+// main.dart
 import 'dart:isolate';
 import 'dart:ui';
 
@@ -6,6 +7,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/navigation_services.dart';
+import 'package:fitness_app/features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
 import 'package:fitness_app/features/home/home.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
@@ -60,7 +62,8 @@ class MyApp extends StatelessWidget {
               },
               // routes: {'/home': (context) => const Home()},
 
-              home: const Home(),
+              //home: const Home(),
+              home: ForgetPasswordPage(),
             ),
           );
         },
