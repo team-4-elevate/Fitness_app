@@ -1,0 +1,87 @@
+{
+  "@@locale": "en",
+  "appTitle": "Fitness App",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "hello": "Hello",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "welcome": "Welcome to Fitness App",
+  "@welcome": {
+    "description": "Welcome message for users"
+  },
+  "networkError": "No internet connection. Please check your network and try again.",
+  "@networkError": {
+    "description": "Error message when there's no network connection"
+  },
+  "serverError": "Server error. Please try again later.",
+  "@serverError": {
+    "description": "Error message for server errors"
+  },
+  "unknownError": "An unexpected error occurred. Please try again.",
+  "@unknownError": {
+    "description": "Error message for unknown errors"
+  },
+  "timeout": "Connection timeout. Please try again.",
+  "@timeout": {
+    "description": "Error message for timeouts"
+  },
+  "unauthorized": "Login failed. Please try again.",
+  "@unauthorized": {
+    "description": "Error message for unauthorized access"
+  },
+  "forbidden": "You do not have permission to access.",
+  "@forbidden": {
+    "description": "Error message for forbidden access"
+  },
+  "notFound": "Requested data was not found.",
+  "@notFound": {
+    "description": "Error message for not found resources"
+  },
+  "validationError": "The provided data is invalid.",
+  "@validationError": {
+    "description": "Error message for validation errors"
+  },
+  "badRequest": "Invalid request.",
+  "@badRequest": {
+    "description": "Error message for bad requests"
+  },
+  "requestCancelled": "Request was cancelled.",
+  "@requestCancelled": {
+    "description": "Error message for cancelled requests"
+  },
+  "connectionError": "Connection error. Please check your network.",
+  "@connectionError": {
+    "description": "Error message for connection errors"
+  },
+  "socketException": "Connection problem. Please check your internet.",
+  "@socketException": {
+    "description": "Error message for socket exceptions"
+  },
+  "formatException": "Could not read the received data.",
+  "@formatException": {
+    "description": "Error message for format exceptions"
+  },
+  "errorWithMessage": "Error occurred: {message}",
+  "@errorWithMessage": {
+    "description": "Error message with a parameter",
+    "placeholders": {
+      "message": {
+        "type": "String",
+        "description": "The error message"
+      }
+    }
+  },
+  "errorWithStatusCode": "Error occurred (code: {status}).",
+  "@errorWithStatusCode": {
+    "description": "Error message with status code",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "The status code"
+      }
+    }
+  }
+}
