@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import '../../domain/arguments/auth_pages_ui_arguments.dart';
+import '../auth_common_widgets/social_buttons.dart';
+import 'package:fitness_app/core/utils/app_extensions.dart';
 
 class CustomAuthScreensView extends StatelessWidget {
   final AuthPagesUiArguments args;
@@ -30,65 +32,104 @@ class CustomAuthScreensView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                const SizedBox(height: 40),
-                Center(
-                  child: SizedBox(
-                    height: 50,
-                    width: 70,
-                    child: Image.asset('assets/images/fit 1.png'),
-                  ),
-                ),
-                const SizedBox(height: 80),
-                SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        args.firstTitleArguments!.text,
-                        style: TextStyle(
-                          fontSize: args.firstTitleArguments!.isBold ? 20 : 18,
-                          color: Colors.white,
-                          fontWeight:
-                              args.firstTitleArguments!.isBold
-                                  ? FontWeight.w800
-                                  : FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        args.secondTitleArguments!.text,
-                        style: TextStyle(
-                          fontSize: args.secondTitleArguments!.isBold ? 20 : 18,
-                          color: Colors.white,
-                          fontWeight:
-                              args.secondTitleArguments!.isBold
-                                  ? FontWeight.w800
-                                  : FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: BackdropFilter(
-                    filter: ui.ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 24,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.2),
-                      ),
-                      child: args.content,
+                  const SizedBox(height: 30),
+                  Center(
+                    child: SizedBox(
+                      height: 50,
+                      width: 70,
+                      child: Image.asset('assets/images/fit 1.png'),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(height: 40.r),
+                  SingleChildScrollView(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          args.firstTitleArguments!.text,
+                          style: TextStyle(
+                            fontSize:
+                                args.firstTitleArguments!.isBold ? 20 : 18,
+                            color: Colors.white,
+                            fontWeight:
+                                args.firstTitleArguments!.isBold
+                                    ? FontWeight.w800
+                                    : FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(height: 6.r),
+                        Text(
+                          args.secondTitleArguments!.text,
+                          style: TextStyle(
+                            fontSize:
+                                args.secondTitleArguments!.isBold ? 20 : 18,
+                            color: Colors.white,
+                            fontWeight:
+                                args.secondTitleArguments!.isBold
+                                    ? FontWeight.w800
+                                    : FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: BackdropFilter(
+                      filter: ui.ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 24,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.2),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Main content
+                            args.content,
+
+                            // Social login buttons
+                            if (args.showSocialLogin) ...[
+                              SizedBox(height: 24.r),
+                              const SocialButtons(),
+                            ],
+
+                            /// Primary action button
+                            if (args.primaryButtonText != null) ...[
+                              SizedBox(height: 24.r),
+                              SizedBox(
+                                height: 38.r,
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: args.primaryButtonAction,
+                                  child: Text(
+                                    args.primaryButtonText!,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(fontWeight: FontWeight.w800),
+                                  ),
+                                ),
+                              ),
+                            ],
+
+                            /// Footer content 
+                            if (args.footerContent != null) ...[
+                              SizedBox(height: 16.r),
+                              args.footerContent!,
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
           ),
         ],
       ),

@@ -125,8 +125,27 @@ class _RegisterViewState extends State<RegisterView> {
             text: 'Create An Account',
           ),
 
-          isRegister: false,
+          isRegister: true,
+          registerStep: 1,
+          showSocialLogin: true,
+          primaryButtonText: "Register",
+          primaryButtonAction: () {
+            // Validate all fields
+            final isValid = _formKey.currentState?.validate() ?? false;
 
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _updateAllErrorStates();
+            });
+
+            if (isValid) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Registration successful'),
+                ),
+              );
+            }
+          },
+          
           content: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -277,42 +296,6 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
 
                   SizedBox(height: 24.r),
-
-                  //------------------------------------------------------social register
-                  const SocialButtons(),
-                  SizedBox(height: 24.r),
-
-                  //------------------------------------------------------register button
-                  SizedBox(
-                    height: 38.r,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      child: Text(
-                        "Register",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-
-                      onPressed: () {
-                        // Validate all fields
-                        final isValid =
-                            _formKey.currentState?.validate() ?? false;
-
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          _updateAllErrorStates();
-                        });
-
-                        if (isValid) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Registration successful'),
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
                 ],
               ),
             ),

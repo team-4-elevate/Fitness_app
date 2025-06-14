@@ -16,7 +16,7 @@ class SocialButtons extends StatelessWidget {
           children: [
             SizedBox(height: 2.r),
             Container(
-              height: .2.r,
+              height: 1.r,
               width: 80.r,
               decoration: BoxDecoration(
                 color: AppColors.backgroundLight,
@@ -31,7 +31,7 @@ class SocialButtons extends StatelessWidget {
               ),
             ),
             Container(
-              height: .2.r,
+              height: 1.r,
               width: 80.r,
               decoration: BoxDecoration(
                 color: AppColors.backgroundLight,
@@ -48,28 +48,16 @@ class SocialButtons extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Facebook
-            _SocialButton(
-              iconPath: 'assets/icons/facebook.svg',
-              onTap: () {
-              },
-            ),
+            /// Facebook
+            _SocialButton(iconPath: 'assets/icons/facebook.svg', onTap: () {}),
 
-            // Google
+            /// Google
             SizedBox(width: 16.r),
-            _SocialButton(
-              iconPath: 'assets/icons/google.svg',
-              onTap: () {
-              },
-            ),
+            _SocialButton(iconPath: 'assets/icons/google.svg', onTap: () {}),
 
-            // Apple
+            /// Apple
             SizedBox(width: 16.r),
-            _SocialButton(
-              iconPath: 'assets/icons/apple.svg',
-              onTap: () {
-              },
-            ),
+            _SocialButton(iconPath: 'assets/icons/apple.svg', onTap: () {}),
           ],
         ),
       ],
