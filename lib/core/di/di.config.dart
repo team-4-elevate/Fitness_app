@@ -27,13 +27,13 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.singleton<_i241.SharedPreferencesService>(
-      () => _i241.SharedPreferencesService(),
-    );
+    gh.singleton<_i565.NavigationService>(() => _i565.NavigationService());
     gh.singleton<_i668.AppNavigatorObserver>(
       () => _i668.AppNavigatorObserver(),
     );
-    gh.singleton<_i565.NavigationService>(() => _i565.NavigationService());
+    gh.singleton<_i241.SharedPreferencesService>(
+      () => _i241.SharedPreferencesService(),
+    );
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
     gh.singleton<_i277.ApiClient>(
       () => _i861.DioApiClient(

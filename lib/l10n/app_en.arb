@@ -83,5 +83,45 @@
         "description": "The status code"
       }
     }
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Button to skip onboarding"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Button to go to next onboarding page"
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Button to go to previous onboarding page"
+  },
+  "doIt": "Do IT",
+  "@doIt": {
+    "description": "Button to proceed after onboarding"
+  },
+  "onBoardingTitle1": "The Price Of Excellence\n is Discipline",
+  "@onBoardingTitle1": {
+    "description": "Title for onboarding screen 1"
+  },
+  "onBoardingDesc1": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa",
+  "@onBoardingDesc1": {
+    "description": "Description for onboarding screen 1"
+  },
+  "onBoardingTitle2": "Fitness Has Never Been So\n Much Fun",
+  "@onBoardingTitle2": {
+    "description": "Title for onboarding screen 2"
+  },
+  "onBoardingDesc2": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa",
+  "@onBoardingDesc2": {
+    "description": "Description for onboarding screen 2"
+  },
+  "onBoardingTitle3": "NO MORE EXCUSES\n Do It Now",
+  "@onBoardingTitle3": {
+    "description": "Title for onboarding screen 3"
+  },
+  "onBoardingDesc3": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa",
+  "@onBoardingDesc3": {
+    "description": "Description for onboarding screen 3"
   }
 }

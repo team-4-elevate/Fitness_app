@@ -269,7 +269,7 @@ class AppTheme {
     ),
 
     // =================== Dialog Theme - Responsive ===================
-    dialogTheme: DialogTheme(
+    dialogTheme: DialogThemeData(
       backgroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
@@ -298,7 +298,7 @@ class AppTheme {
     ),
 
     // =================== Card Theme - Responsive ===================
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shadowColor: AppColors.black.withOpacity(0.1),

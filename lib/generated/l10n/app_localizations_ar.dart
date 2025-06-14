@@ -18,7 +18,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحبا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.';
+  String get networkError =>
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقاً.';
@@ -51,7 +52,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionError => 'خطأ في الاتصال بالشبكة.';
 
   @override
-  String get socketException => 'مشكلة في الاتصال بالخادم. يرجى التحقق من الإنترنت.';
+  String get socketException =>
+      'مشكلة في الاتصال بالخادم. يرجى التحقق من الإنترنت.';
 
   @override
   String get formatException => 'تعذر قراءة البيانات المستلمة.';
@@ -65,4 +67,37 @@ class AppLocalizationsAr extends AppLocalizations {
   String errorWithStatusCode(String status) {
     return 'حدث خطأ (كود: $status).';
   }
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get doIt => 'Do IT';
+
+  @override
+  String get onBoardingTitle1 => 'The Price Of Excellence\n is Discipline';
+
+  @override
+  String get onBoardingDesc1 =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+
+  @override
+  String get onBoardingTitle2 => 'Fitness Has Never Been So\n Much Fun';
+
+  @override
+  String get onBoardingDesc2 =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+
+  @override
+  String get onBoardingTitle3 => 'NO MORE EXCUSES\n Do It Now';
+
+  @override
+  String get onBoardingDesc3 =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 }
