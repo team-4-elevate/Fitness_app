@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/home/home.dart';
+import 'package:fitness_app/features/login/presentation/pages/login_page.dart';
 import 'package:fitness_app/features/onboarding/presentation/widgets/custom_elevated_btn.dart';
 import 'package:fitness_app/features/onboarding/presentation/widgets/custom_outlined_btn.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class PageViewItem extends StatelessWidget {
               end: 10,
               child: TextButton(
                 onPressed: () {
-                  context.pushAndRemoveUntil(Home());
+                  context.pushAndRemoveUntil(const LoginPage());
                 },
                 child: Text(
                   context.l10n.skip,
@@ -179,10 +179,7 @@ class PageViewItem extends StatelessWidget {
                               width: 70,
                               child: CustomElevatedBtn(
                                 onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    '/login',
-                                  );
+                                  context.pushAndRemoveUntil(const LoginPage());
                                 },
                                 text: context.l10n.doIt,
                               ),
