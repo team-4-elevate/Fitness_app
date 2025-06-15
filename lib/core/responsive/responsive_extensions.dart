@@ -63,4 +63,3 @@ class _ResponsiveWrapperState extends State<ResponsiveWrapper>
     );
   }
 }
-

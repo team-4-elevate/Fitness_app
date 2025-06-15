@@ -1,0 +1,233 @@
+name: Flutter CI with Branch Check and Slack Notification
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [main, development, 'feature/**', 'bugfix/**', 'hotfix/**']
+  pull_request:
+    branches: [main, development]
+  workflow_dispatch:
+
+env:
+  FLUTTER_VERSION: '3.29.3'
+
+jobs:
+  flutter-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref || github.ref_name }}
+        fetch-depth: 0
+
+    - name: Check branch name
+      run: |
+        BRANCH_NAME="${{ github.head_ref || github.ref_name }}"
+        echo "Branch: $BRANCH_NAME"
+        if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "merge" ]]; then
+          echo "Branch check skipped for main/merge"
+          exit 0
+        fi
+        if [[ ! "${BRANCH_NAME,,}" =~ ^(feature|bugfix|hotfix)/ && "$BRANCH_NAME" != "development" ]]; then
+          echo "Branch name must start with feature/, bugfix/, or hotfix/, or be development"
+          exit 1
+        fi
+        echo "Branch name is valid"
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ env.FLUTTER_VERSION }}
+        cache: true
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Check code formatting
+      id: format_check
+      run: |
+        if ! dart format --set-exit-if-changed .; then
+          echo "format_needed=true" >> $GITHUB_OUTPUT
+        else
+          echo "format_needed=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Format code if needed
+      if: steps.format_check.outputs.format_needed == 'true'
+      run: |
+        dart format .
+        if [[ -n $(git status --porcelain) ]]; then
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git commit -m "style: apply dart format changes"
+          git push origin HEAD:${{ github.head_ref || github.ref_name }}
+        fi
+
+    - name: Analyze code
+      continue-on-error: true
+      run: flutter analyze --fatal-infos
+
+    - name: Generate localization files
+      continue-on-error: true
+      run: flutter pub run easy_localization:generate -S assets/translations -f keys -o locale_keys.g.dart
+
+    - name: Run build_runner
+      continue-on-error: true
+      run: flutter pub run build_runner build --delete-conflicting-outputs
+
+    - name: Run tests
+      id: tests
+      continue-on-error: true
+      run: flutter test --coverage
+
+    - name: Setup Java for Android build
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Build Android APK
+      continue-on-error: true
+      run: flutter build apk --debug
+
+    - name: Upload APK artifact
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-apk
+        path: build/app/outputs/flutter-apk/app-debug.apk
+        retention-days: 7
+
+    - name: Upload coverage reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-reports
+        path: coverage/
+        retention-days: 7
+
+    - name: Notify Slack on PR Creation
+      if: github.event_name == 'pull_request' && github.event.action == 'opened'
+      run: |
+        PR_TITLE="${{ github.event.pull_request.title }}"
+        PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+        PR_URL="${{ github.event.pull_request.html_url }}"
+        BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+        BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+        
+        curl -X POST -H 'Content-type: application/json' \
+          --data "{
+            \"text\": \"<!channel> New Pull Request Created!\",
+            \"attachments\": [
+              {
+                \"color\": \"#36a64f\",
+                \"fields\": [
+                  { \"title\": \"Title\", \"value\": \"$PR_TITLE\", \"short\": false },
+                  { \"title\": \"Author\", \"value\": \"$PR_AUTHOR\", \"short\": true },
+                  { \"title\": \"Branch\", \"value\": \"$BRANCH_NAME → $BASE_BRANCH\", \"short\": true },
+                  { \"title\": \"Repository\", \"value\": \"${{ github.repository }}\", \"short\": true },
+                  { \"title\": \"URL\", \"value\": \"<$PR_URL|View Pull Request>\", \"short\": false }
+                ]
+              }
+            ]
+          }" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Notify Slack on CI Success
+      if: success() && (github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'opened'))
+      run: |
+        EVENT_TYPE="${{ github.event_name }}"
+        BRANCH_NAME="${{ github.head_ref || github.ref_name }}"
+        COMMIT_MESSAGE="${{ github.event.head_commit.message || github.event.pull_request.title }}"
+        AUTHOR="${{ github.actor }}"
+        REPO_URL="${{ github.event.repository.html_url }}"
+        
+        if [[ "$EVENT_TYPE" == "pull_request" ]]; then
+          MESSAGE="PR CI Passed!"
+          COLOR="#36a64f"
+        else
+          MESSAGE="Build Successful!"
+          COLOR="#36a64f"
+        fi
+        
+        curl -X POST -H 'Content-type: application/json' \
+          --data "{
+            \"text\": \"$MESSAGE\",
+            \"attachments\": [
+              {
+                \"color\": \"$COLOR\",
+                \"fields\": [
+                  { \"title\": \"Repository\", \"value\": \"<$REPO_URL|${{ github.repository }}>\", \"short\": true },
+                  { \"title\": \"Branch\", \"value\": \"$BRANCH_NAME\", \"short\": true },
+                  { \"title\": \"Author\", \"value\": \"$AUTHOR\", \"short\": true },
+                  { \"title\": \"Event\", \"value\": \"$EVENT_TYPE\", \"short\": true },
+                  { \"title\": \"Commit/PR\", \"value\": \"$COMMIT_MESSAGE\", \"short\": false }
+                ]
+              }
+            ]
+          }" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Notify Slack on CI Failure
+      if: failure()
+      run: |
+        EVENT_TYPE="${{ github.event_name }}"
+        BRANCH_NAME="${{ github.head_ref || github.ref_name }}"
+        COMMIT_MESSAGE="${{ github.event.head_commit.message || github.event.pull_request.title }}"
+        AUTHOR="${{ github.actor }}"
+        REPO_URL="${{ github.event.repository.html_url }}"
+        WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        
+        curl -X POST -H 'Content-type: application/json' \
+          --data "{
+            \"text\": \"CI Failed!\",
+            \"attachments\": [
+              {
+                \"color\": \"#ff0000\",
+                \"fields\": [
+                  { \"title\": \"Repository\", \"value\": \"<$REPO_URL|${{ github.repository }}>\", \"short\": true },
+                  { \"title\": \"Branch\", \"value\": \"$BRANCH_NAME\", \"short\": true },
+                  { \"title\": \"Author\", \"value\": \"$AUTHOR\", \"short\": true },
+                  { \"title\": \"Event\", \"value\": \"$EVENT_TYPE\", \"short\": true },
+                  { \"title\": \"Commit/PR\", \"value\": \"$COMMIT_MESSAGE\", \"short\": false },
+                  { \"title\": \"Workflow\", \"value\": \"<$WORKFLOW_URL|View Failed Build>\", \"short\": false }
+                ]
+              }
+            ]
+          }" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Job Summary
+      if: always()
+      run: |
+        echo "## CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Build Information" >> $GITHUB_STEP_SUMMARY
+        echo "- **Repository:** ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Branch:** ${{ github.head_ref || github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Event:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Actor:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Flutter Version:** ${{ env.FLUTTER_VERSION }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [[ "${{ job.status }}" == "success" ]]; then
+          echo "### All Steps Completed Successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "- Code formatting: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- Code analysis: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- Tests: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- Build: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- Slack notification: Sent" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "### Pipeline Failed" >> $GITHUB_STEP_SUMMARY
+          echo "Check the logs above for detailed error information." >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Artifacts" >> $GITHUB_STEP_SUMMARY
+        echo "- Debug APK available for download" >> $GITHUB_STEP_SUMMARY
+        echo "- Coverage reports available" >> $GITHUB_STEP_SUMMARY

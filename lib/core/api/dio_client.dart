@@ -18,14 +18,14 @@ class DioApiClient implements ApiClient {
   final NavigationService _appNavigator;
 
   DioApiClient(this.localStorage, this._appNavigator)
-      : _dio = Dio(
-          BaseOptions(
-            baseUrl: ApiConstants.baseUrl,
-            connectTimeout: const Duration(seconds: 10),
-            receiveTimeout: const Duration(seconds: 10),
-            responseType: ResponseType.json,
-          ),
-        ) {
+    : _dio = Dio(
+        BaseOptions(
+          baseUrl: ApiConstants.baseUrl,
+          connectTimeout: const Duration(seconds: 10),
+          receiveTimeout: const Duration(seconds: 10),
+          responseType: ResponseType.json,
+        ),
+      ) {
     _dio.interceptors.add(PrettyDioLogger());
   }
 
@@ -118,27 +118,27 @@ class DioApiClient implements ApiClient {
     if (T.toString() == 'Map<String, dynamic>' || T == dynamic) {
       return responseData as T;
     }
-    
+
     // If T is List<Map<String, dynamic>>, return as is
     if (T.toString() == 'List<Map<String, dynamic>>') {
       return responseData as T;
     }
-    
+
     // If T is String and responseData is String
     if (T == String && responseData is String) {
       return responseData as T;
     }
-    
+
     // If T is List and responseData is List
     if (T.toString().startsWith('List<') && responseData is List) {
       return responseData as T;
     }
-    
+
     // For primitive types (int, double, bool)
     if (T == int || T == double || T == bool) {
       return responseData as T;
     }
-    
+
     // If none of the above, try direct casting
     try {
       return responseData as T;
@@ -146,7 +146,7 @@ class DioApiClient implements ApiClient {
       throw Exception(
         'Cannot convert response data to type $T. '
         'Response type: ${responseData.runtimeType}. '
-        'Response: $responseData'
+        'Response: $responseData',
       );
     }
   }
@@ -163,7 +163,8 @@ class DioApiClient implements ApiClient {
       }
     } catch (e) {
       // Handle token error - navigate to login if needed
-      if (appCurrentRoute != AppRoutes.loginPage && appCurrentRoute != AppRoutes.signUpPage) {
+      if (appCurrentRoute != AppRoutes.loginPage &&
+          appCurrentRoute != AppRoutes.signUpPage) {
         await localStorage.saveRememberMe(false);
         _appNavigator.pushNamedAndRemoveUntil(
           AppRoutes.loginPage,
@@ -174,5 +175,3 @@ class DioApiClient implements ApiClient {
     }
   }
 }
-
-

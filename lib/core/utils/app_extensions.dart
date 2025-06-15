@@ -77,8 +77,6 @@ extension BuildContextExtensions on BuildContext {
   TextDirection get textDirection =>
       isRTL ? TextDirection.RTL : TextDirection.LTR;
 
-
-
   // =================== Navigation ===================
   // Standard navigation with context
   void pushNamedWithArguments(String routeName, {Object? arguments}) {
@@ -285,7 +283,6 @@ extension BuildContextExtensions on BuildContext {
       initialEntryMode: initialEntryMode,
     );
   }
-
 }
 
 /// =================== WIDGET EXTENSIONS ===================
@@ -1145,4 +1142,3 @@ extension ScrollControllerExtensions on ScrollController {
     });
   }
 }
-
