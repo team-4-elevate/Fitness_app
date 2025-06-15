@@ -13,7 +13,7 @@ class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   NavigatorState? get navigator => navigatorKey.currentState;
-  NavigatorState get currentRouteName => navigatorKey.currentState! ;
+  NavigatorState get currentRouteName => navigatorKey.currentState!;
 
   Future<T?> push<T>(Route<T> route) {
     return navigator!.push(route);

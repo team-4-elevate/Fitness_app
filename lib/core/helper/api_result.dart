@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-sealed class ApiResult<T> extends Equatable{
+sealed class ApiResult<T> extends Equatable {
   const ApiResult();
 
   R when<R>({
@@ -46,11 +46,9 @@ final class ApiSuccess<T> extends ApiResult<T> {
 
   @override
   String toString() => 'ApiSuccess(data: $data)';
-  
+
   @override
-  List<Object?> get props => [
-    data,
-  ];
+  List<Object?> get props => [data];
 }
 
 final class ApiFailure<T> extends ApiResult<T> {
@@ -59,9 +57,7 @@ final class ApiFailure<T> extends ApiResult<T> {
 
   @override
   String toString() => 'ApiFailure(message: $message)';
-  
+
   @override
-  List<Object?> get props => [
-    message,
-  ];
+  List<Object?> get props => [message];
 }

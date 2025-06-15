@@ -117,7 +117,7 @@ class CustomAuthScreensView extends StatelessWidget {
                               ),
                             ],
 
-                            /// Footer content 
+                            /// Footer content
                             if (args.footerContent != null) ...[
                               SizedBox(height: 16.r),
                               args.footerContent!,

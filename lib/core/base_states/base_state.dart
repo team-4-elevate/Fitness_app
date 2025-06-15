@@ -20,7 +20,7 @@ final class LoadingState<T> extends BaseState<T> {
 
 final class SuccessState<T> extends BaseState<T> {
   const SuccessState(this.data);
-  final T data; 
+  final T data;
 
   @override
   List<Object?> get props => [data];
@@ -34,13 +34,11 @@ final class ErrorState<T> extends BaseState<T> {
   List<Object?> get props => [error];
 }
 
-
-
 // extension BaseStateExtensions<T> on BaseState<T> {
 //   /// Check if state is initial
 //   bool get isInitial => this is InitialState<T>;
 
-//   /// Check if state is loading  
+//   /// Check if state is loading
 //   bool get isLoading => this is LoadingState<T>;
 
 //   /// Check if state is success
