@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-
 // this is Better than the regular BaseState class
-sealed class AppStates<T> extends Equatable{
+sealed class AppStates<T> extends Equatable {
   const AppStates();
   R when<R>({
     required R Function() initial,
@@ -74,10 +73,9 @@ class InitialState<T> extends AppStates<T> {
 
   @override
   String toString() => 'AppStates<$T>.initial()';
-  
+
   @override
   List<Object?> get props => [];
-
 }
 
 class LoadingState<T> extends AppStates<T> {
@@ -95,13 +93,13 @@ class LoadingState<T> extends AppStates<T> {
   AppStates<T> copyWith() {
     return const LoadingState();
   }
-  
+
   @override
   List<Object?> get props => [];
 }
 
 class SuccessState<T> extends AppStates<T> {
-  final T?data;
+  final T? data;
   const SuccessState([this.data]);
 
   @override
@@ -117,11 +115,9 @@ class SuccessState<T> extends AppStates<T> {
   SuccessState<T> copyWith({T? data}) {
     return SuccessState<T>(data ?? this.data);
   }
-  
+
   @override
-  List<Object?> get props => [
-    data,
-  ];
+  List<Object?> get props => [data];
 }
 
 class ErrorState<T> extends AppStates<T> {
@@ -140,11 +136,9 @@ class ErrorState<T> extends AppStates<T> {
   ErrorState<T> copyWith({String? error}) {
     return ErrorState<T>(error ?? this.error);
   }
-  
+
   @override
-  List<Object?> get props => [
-    error,
-  ];
+  List<Object?> get props => [error];
 }
 
 AppStates<T> initialState<T>() => InitialState<T>();

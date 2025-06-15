@@ -1,7 +1,7 @@
 // features/auth/presentation/register/widget/gender_step.dart
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/auth/domain/models/register_details.dart';
-import 'package:fitness_app/features/auth/presentation/register/register_details_view.dart';
+import 'package:fitness_app/features/auth/presentation/register/models/register_details.dart';
+import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:flutter/material.dart';
 
 class GenderStep extends StatelessWidget {
@@ -60,10 +60,16 @@ class GenderStep extends StatelessWidget {
             width: 100.r,
             height: 100.r,
             decoration: BoxDecoration(
-              color: isSelected ? Colors.deepOrange : Colors.black.withOpacity(0.3),
+              color:
+                  isSelected
+                      ? Colors.deepOrange
+                      : Colors.black.withOpacity(0.3),
               shape: BoxShape.circle,
               border: Border.all(
-                color: isSelected ? Colors.deepOrange : Colors.white.withOpacity(0.5),
+                color:
+                    isSelected
+                        ? Colors.deepOrange
+                        : Colors.white.withOpacity(0.5),
                 width: 2.r,
               ),
             ),

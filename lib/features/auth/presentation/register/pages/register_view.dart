@@ -7,7 +7,7 @@ import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custo
 import 'package:fitness_app/features/auth/presentation/register/widget/password_strength_indicator.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/social_buttons.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/auth/presentation/register/register_details_view.dart';
+import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

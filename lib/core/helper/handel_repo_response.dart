@@ -67,7 +67,6 @@ extension ApiResultExtensions<T> on ApiResult<T> {
 
   T getDataOr(T defaultValue) => dataOrNull ?? defaultValue;
 
-
   ApiResult<T> thenDo(void Function(T data) action) {
     if (isSuccess) {
       action((this as ApiSuccess<T>).data);
@@ -126,7 +125,6 @@ extension ApiResultListExtensions<T> on ApiResult<List<T>> {
       return this;
     }
   }
-
 }
 
 ApiSuccess<T> success<T>(T data) => ApiSuccess<T>(data);

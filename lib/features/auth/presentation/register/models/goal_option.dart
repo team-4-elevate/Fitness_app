@@ -1,14 +1,11 @@
+// features/auth/data/model/goal_option.dart
 // Goal option model class to represent each goal option
 class GoalOption {
   final String id;
   final String label;
-  
-  const GoalOption({
-    required this.id,
-    required this.label,
-  });
-  
-  // Factory to create a list of all available goals
+
+  const GoalOption({required this.id, required this.label});
+
   static List<GoalOption> getGoalOptions() {
     return [
       const GoalOption(id: 'gain_weight', label: 'Gain Weight'),

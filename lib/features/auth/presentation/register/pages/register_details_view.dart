@@ -1,9 +1,9 @@
-// features/auth/presentation/register/register_details_view.dart
+// features/auth/presentation/register/pages/register_details_view.dart
 import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_arguments.dart';
-import 'package:fitness_app/features/auth/domain/models/activity_level_option.dart';
-import 'package:fitness_app/features/auth/domain/models/goal_option.dart';
-import 'package:fitness_app/features/auth/domain/models/register_details.dart';
-import 'package:fitness_app/features/auth/domain/models/registration_steps.dart';
+import 'package:fitness_app/features/auth/presentation/register/models/activity_level_option.dart';
+import 'package:fitness_app/features/auth/presentation/register/models/goal_option.dart';
+import 'package:fitness_app/features/auth/presentation/register/models/register_details.dart';
+import 'package:fitness_app/features/auth/presentation/register/models/registration_steps.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/gender_step.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/number_picker_step.dart';
