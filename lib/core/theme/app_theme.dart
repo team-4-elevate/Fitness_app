@@ -36,7 +36,6 @@ class AppTheme {
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       titleTextStyle: TextStyle(
-        
         fontSize: R.textXL, // ✅ Using responsive font size
         fontWeight: FontWeight.w600,
         color: AppColors.white,
@@ -191,7 +190,8 @@ class AppTheme {
         ),
         textStyle: TextStyle(
           fontSize: R.textMD,
-          fontFamily: AppFontStyle.customAppFont.fontFamily,    // ✅ Responsive font size
+          fontFamily:
+              AppFontStyle.customAppFont.fontFamily, // ✅ Responsive font size
           fontWeight: FontWeight.w600,
         ),
         minimumSize: Size(
