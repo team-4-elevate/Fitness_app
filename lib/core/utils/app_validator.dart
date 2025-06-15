@@ -57,6 +57,33 @@ class AppValidators {
     }
   }
 
+  // Returns both an error message and password strength level (1-5)
+  static (String?, int) validatePasswordWithStrength(String? password) {
+    String? errorMessage = validatePassword(password);
+    int strength = calculatePasswordStrength(password);
+    return (errorMessage, strength);
+  }
+
+  // Calculate password strength on a scale from 0-5
+  static int calculatePasswordStrength(String? password) {
+    if (password == null || password.isEmpty) return 0;
+    
+    int strength = 0;
+    
+    // Length check
+    if (password.length >= 8) strength++;
+    if (password.length >= 10) strength++;
+    
+    // Character type checks
+    if (RegExp(r'[a-z]').hasMatch(password)) strength++;
+    if (RegExp(r'[A-Z]').hasMatch(password)) strength++;
+    if (RegExp(r'[0-9]').hasMatch(password)) strength++;
+    if (RegExp(r'[^a-zA-Z0-9]').hasMatch(password)) strength++; // Special characters
+    
+    // Cap at 5
+    return strength > 5 ? 5 : strength;
+  }
+
   static String? validateUserName(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Username is required.';

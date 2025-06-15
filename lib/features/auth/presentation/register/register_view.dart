@@ -1,10 +1,13 @@
 // features/auth/presentation/register/register_view.dart
+import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/utils/app_validator.dart';
 import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_arguments.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
+import 'package:fitness_app/features/auth/presentation/register/widget/password_strength_indicator.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/social_buttons.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/features/auth/presentation/register/register_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,6 +24,7 @@ class _RegisterViewState extends State<RegisterView> {
   bool _hasLastNameError = false;
   bool _hasEmailError = false;
   bool _hasPasswordError = false;
+  int _passwordStrength = 0;
 
   // Controllers to track current values
   final _firstNameController = TextEditingController();
@@ -85,11 +89,14 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   void _updatePasswordErrorState() {
-    final error = AppValidators.validatePassword(_passwordController.text);
+    final (error, strength) = AppValidators.validatePasswordWithStrength(
+      _passwordController.text,
+    );
     final hasError = error != null;
-    if (hasError != _hasPasswordError) {
+    if (hasError != _hasPasswordError || strength != _passwordStrength) {
       setState(() {
         _hasPasswordError = hasError;
+        _passwordStrength = strength;
       });
     }
   }
@@ -130,7 +137,6 @@ class _RegisterViewState extends State<RegisterView> {
           showSocialLogin: true,
           primaryButtonText: "Register",
           primaryButtonAction: () {
-            // Validate all fields
             final isValid = _formKey.currentState?.validate() ?? false;
 
             WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -138,14 +144,17 @@ class _RegisterViewState extends State<RegisterView> {
             });
 
             if (isValid) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Registration successful'),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const RegisterDetailsView();
+                  },
                 ),
               );
             }
           },
-          
+
           content: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -256,15 +265,14 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: _passwordController,
                       obscureText: _obscurePassword,
                       keyboardType: TextInputType.visiblePassword,
-                      validator: AppValidators.validatePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (_passwordStrength <= 0) {
+                          return "Password is Required";
+                        }
+                      },
+
                       decoration: InputDecoration(
-                        errorText:
-                            _hasPasswordError
-                                ? AppValidators.validatePassword(
-                                  _passwordController.text,
-                                )
-                                : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: Icon(Icons.lock_outline_sharp),
@@ -295,7 +303,16 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
 
-                  SizedBox(height: 24.r),
+                  SizedBox(height: 10.r),
+
+                  if (_passwordController.text.isNotEmpty) ...[
+                    SizedBox(height: 8.r),
+                    PasswordStrengthIndicator(strength: _passwordStrength),
+                  ],
+
+                  if (_passwordController.text.isNotEmpty) ...[
+                    SizedBox(height: 24.r),
+                  ],
                 ],
               ),
             ),

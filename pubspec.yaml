@@ -60,6 +60,7 @@ dependencies:
   blur:
   flutter_svg:
   pinput:
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
