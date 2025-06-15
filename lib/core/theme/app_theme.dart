@@ -222,7 +222,7 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white.withOpacity(0.1),
-      constraints: BoxConstraints(maxHeight: R.space32, minHeight: R.space32),
+      constraints: BoxConstraints(maxHeight: R.space38, minHeight: R.space38),
       contentPadding: EdgeInsets.symmetric(
         horizontal: R.paddingSMValue, // ✅ Responsive padding
         vertical: 0, // ✅ Responsive padding
