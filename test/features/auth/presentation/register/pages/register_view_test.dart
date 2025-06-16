@@ -38,6 +38,8 @@ void main() {
   setUp(() {
     mockRegisterBloc = MockRegisterBloc();
     mockNavigatorObserver = MockNavigatorObserver();
+    reset(mockRegisterBloc);
+    reset(mockNavigatorObserver);
     when(mockRegisterBloc.state).thenReturn(InitialState());
   });
 
@@ -128,11 +130,15 @@ void main() {
     //------------------------------- Test for valid form submission
     testWidgets('should navigate to details page when form is valid',
         (WidgetTester tester) async {
-      //// Arrange
+      clearInteractions(mockNavigatorObserver);
+      
+      when(mockRegisterBloc.stream).thenAnswer((_) =>
+          Stream.value(SuccessState<RegisterResponse>(dummyResponse)));
+
+      // Arrange
       await tester.pumpWidget(createRegisterView());
       await tester.pumpAndSettle();
-      
-      //// Act 
+      // Act
       await tester.enterText(
           find.widgetWithText(TextFormField, 'First Name'), 'John');
       await tester.enterText(
@@ -143,14 +149,16 @@ void main() {
           find.widgetWithText(TextFormField, 'Password'), 'Test@123');
       await tester.pumpAndSettle();
       
-      //Register button
+      clearInteractions(mockNavigatorObserver);
+      
+      // Find and tap the register button
       final registerButton = find.widgetWithText(ElevatedButton, 'Register');
       await tester.ensureVisible(registerButton);
       await tester.pumpAndSettle();
-
       await tester.tap(registerButton, warnIfMissed: false);
       await tester.pumpAndSettle();
       
+      // Verify navigation occurred after form submission
       verify(mockNavigatorObserver.didPush(any, any)).called(1);
     });
     
