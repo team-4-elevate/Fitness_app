@@ -4,8 +4,6 @@ import 'package:fitness_app/features/app_sections/HomePage.dart';
 import 'package:fitness_app/features/app_sections/ProfilePage.dart';
 import 'package:flutter/material.dart';
 
-
-
 class MainNavigationScreen extends StatefulWidget {
   @override
   _MainNavigationScreenState createState() => _MainNavigationScreenState();
@@ -36,10 +34,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         color: Colors.grey[900]?.withOpacity(0.95),
         borderRadius: BorderRadius.circular(40),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.4),
-            blurRadius: 10,
-          )
+          BoxShadow(color: Colors.black.withOpacity(0.4), blurRadius: 10),
         ],
       ),
       child: Row(

@@ -9,15 +9,10 @@ import 'package:fitness_app/features/app_sections/ProfilePage.dart';
 void main() {
   group('MainNavigationScreen Tests', () {
     testWidgets('Initial page is HomePage', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: MainNavigationScreen(),
-        ),
-      );
+      await tester.pumpWidget(MaterialApp(home: MainNavigationScreen()));
 
       expect(find.byType(HomePage), findsOneWidget);
       expect(find.byType(HomePage), findsNothing);
-
     });
 
     testWidgets('Navigate to ChatAipage', (WidgetTester tester) async {
@@ -26,7 +21,6 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(ChatAipage), findsOneWidget);
       expect(find.byType(ChatAipage), findsNothing);
-
     });
 
     testWidgets('Navigate to GymPage', (WidgetTester tester) async {
@@ -35,7 +29,6 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(GymPage), findsOneWidget);
       expect(find.byType(GymPage), findsNothing);
-
     });
 
     testWidgets('Navigate to ProfilePage', (WidgetTester tester) async {
@@ -44,7 +37,6 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(ProfilePage), findsOneWidget);
       expect(find.byType(ProfilePage), findsNothing);
-
     });
   });
 }

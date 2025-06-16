@@ -10,6 +10,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Profile Page",style: TextStyle(color: Colors.white, fontSize: 24)),);
+    return Center(
+      child: Text(
+        "Profile Page",
+        style: TextStyle(color: Colors.white, fontSize: 24),
+      ),
+    );
   }
 }

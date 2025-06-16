@@ -10,6 +10,11 @@ class GymPage extends StatefulWidget {
 class _GymPageState extends State<GymPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Gym Page",style: TextStyle(color: Colors.white, fontSize: 24)),);
+    return Center(
+      child: Text(
+        "Gym Page",
+        style: TextStyle(color: Colors.white, fontSize: 24),
+      ),
+    );
   }
 }
