@@ -1,19 +1,25 @@
 // features/auth/presentation/register/pages/register_details_view.dart
+import 'package:fitness_app/core/base_states/base_state.dart';
+import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_arguments.dart';
+import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/models/activity_level_option.dart';
 import 'package:fitness_app/features/auth/presentation/register/models/goal_option.dart';
-import 'package:fitness_app/features/auth/presentation/register/models/register_details.dart';
+import 'package:fitness_app/features/auth/domain/entities/register_details.dart';
 import 'package:fitness_app/features/auth/presentation/register/models/registration_steps.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/gender_step.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/number_picker_step.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/selection_option_step.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum Gender { male, female }
 
 class RegisterDetailsView extends StatefulWidget {
-  const RegisterDetailsView({super.key});
+  final RegisterDetailsData? initialData;
+
+  const RegisterDetailsView({super.key, this.initialData});
 
   @override
   State<RegisterDetailsView> createState() => _RegisterDetailsViewState();
@@ -26,11 +32,10 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
   @override
   void initState() {
     super.initState();
-    _userData =
-        RegisterDetailsData()
-          ..age = 25
-          ..weight = 90.0
-          ..height = 167.0;
+    _userData = widget.initialData ?? RegisterDetailsData();
+    _userData.age ??= 25;
+    _userData.weight ??= 90;
+    _userData.height ??= 167;
   }
 
   @override
@@ -49,7 +54,11 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
   }
 
   void _submitData() {
-    debugPrint('User data: $_userData');
+    if (_userData.password != null) {
+      _userData.rePassword = _userData.password;
+    }
+
+    context.read<RegisterBloc>().add(RegisterSubmitted(_userData));
   }
 
   void _goToPreviousStep() {
@@ -58,39 +67,74 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
         _currentStep--;
       });
     } else {
-      // Return to register screen
       Navigator.of(context).pop();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomAuthScreensView(
-      args: AuthPagesUiArguments(
-        firstTitleArguments: AuthPageTitleArguments(
-          isBold: true,
-          text: RegistrationSteps.getTitleForStep(_currentStep),
-        ),
-        secondTitleArguments: AuthPageTitleArguments(
-          isBold: false,
-          text: RegistrationSteps.getSubtitleForStep(_currentStep),
-        ),
-        isRegister: true,
-        registerStep: _currentStep,
-        showSocialLogin: false,
-        primaryButtonText: _currentStep < 6 ? 'Next' : 'Finish',
-        primaryButtonAction: () {
-          bool isValid = _validateCurrentStep();
-          if (isValid) {
-            _goToNextStep();
+    return BlocListener<RegisterBloc, RegisterStateType>(
+      listener: (context, state) {
+        if (state is LoadingState) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder:
+                (context) => const Center(child: CircularProgressIndicator()),
+          );
+        } else if (state is SuccessState) {
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
           }
-        },
-        content: _buildStepContent(),
+          
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Registration successful!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            AppRoutes.homePage,
+            (route) => false, 
+          );
+         
+        } else if (state is ErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text((state as ErrorState).error),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
+      child: CustomAuthScreensView(
+        args: AuthPagesUiArguments(
+          firstTitleArguments: AuthPageTitleArguments(
+            isBold: true,
+            text: RegistrationSteps.getTitleForStep(_currentStep),
+          ),
+          secondTitleArguments: AuthPageTitleArguments(
+            isBold: false,
+            text: RegistrationSteps.getSubtitleForStep(_currentStep),
+          ),
+          isRegister: true,
+          registerStep: _currentStep,
+          showSocialLogin: false,
+          primaryButtonText: _currentStep < 6 ? 'Next' : 'Finish',
+          primaryButtonAction: () {
+            bool isValid = _validateCurrentStep();
+            if (isValid) {
+              _goToNextStep();
+            }
+          },
+          content: _buildStepContent(),
+        ),
+        currentStep: _currentStep,
+        totalSteps: 6,
+        isDetailsStep: true,
+        onBackPressed: _goToPreviousStep,
       ),
-      currentStep: _currentStep,
-      totalSteps: 6,
-      isDetailsStep: true,
-      onBackPressed: _goToPreviousStep,
     );
   }
 
@@ -153,7 +197,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           itemWidth: 35.0,
           onChanged: (value) {
             setState(() {
-              _userData.weight = value.toDouble();
+              _userData.weight = value.toInt();
             });
           },
         );
@@ -169,7 +213,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           itemWidth: 60.0,
           onChanged: (value) {
             setState(() {
-              _userData.height = value.toDouble();
+              _userData.height = value.toInt();
             });
           },
         );

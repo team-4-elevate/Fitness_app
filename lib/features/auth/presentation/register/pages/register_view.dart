@@ -1,14 +1,16 @@
-// features/auth/presentation/register/register_view.dart
+// features/auth/presentation/register/pages/register_view.dart
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/utils/app_validator.dart';
 import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_arguments.dart';
+import 'package:fitness_app/features/auth/domain/entities/register_details.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
+import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/password_strength_indicator.dart';
-import 'package:fitness_app/features/auth/presentation/auth_common_widgets/social_buttons.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RegisterView extends StatefulWidget {
@@ -26,13 +28,13 @@ class _RegisterViewState extends State<RegisterView> {
   bool _hasPasswordError = false;
   int _passwordStrength = 0;
 
-  // Controllers to track current values
+  //--------------------------------------------form controllers
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  //form key
+  //------------------------------------------form key
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -116,6 +118,40 @@ class _RegisterViewState extends State<RegisterView> {
     });
   }
 
+  bool _validateForm() {
+    _updateAllErrorStates();
+
+    return !_hasFirstNameError &&
+        !_hasLastNameError &&
+        !_hasEmailError &&
+        !_hasPasswordError &&
+        _firstNameController.text.isNotEmpty &&
+        _lastNameController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty;
+  }
+
+  void _navigateToDetailsPage() {
+    if (_validateForm()) {
+      final userData = RegisterDetailsData(
+        firstName: _firstNameController.text,
+        lastName: _lastNameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      final registerBloc = BlocProvider.of<RegisterBloc>(context);
+      
+      Navigator.of(context).pushNamed(
+        AppRoutes.registerDetailsView,
+        arguments: {
+          'registerBloc': registerBloc,
+          'userData': userData,
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -136,24 +172,7 @@ class _RegisterViewState extends State<RegisterView> {
           registerStep: 1,
           showSocialLogin: true,
           primaryButtonText: "Register",
-          primaryButtonAction: () {
-            final isValid = _formKey.currentState?.validate() ?? false;
-
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              _updateAllErrorStates();
-            });
-
-            if (isValid) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const RegisterDetailsView();
-                  },
-                ),
-              );
-            }
-          },
+          primaryButtonAction: _navigateToDetailsPage,
 
           content: Form(
             key: _formKey,
@@ -266,13 +285,13 @@ class _RegisterViewState extends State<RegisterView> {
                       obscureText: _obscurePassword,
                       keyboardType: TextInputType.visiblePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) {
-                        if (_passwordStrength <= 0) {
-                          return "Password is Required";
-                        }
-                      },
+                      validator: (value) => 
+                          value == null || value.isEmpty ? "Password is Required" : null,
 
                       decoration: InputDecoration(
+                        errorText: _passwordController.text.isEmpty && _hasPasswordError
+                            ? "Password is Required"
+                            : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: Icon(Icons.lock_outline_sharp),

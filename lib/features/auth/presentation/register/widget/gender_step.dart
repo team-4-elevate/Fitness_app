@@ -1,6 +1,6 @@
 // features/auth/presentation/register/widget/gender_step.dart
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/auth/presentation/register/models/register_details.dart';
+import 'package:fitness_app/features/auth/domain/entities/register_details.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:flutter/material.dart';
 

@@ -7,11 +7,11 @@ class ActivityLevelOption {
 
   static List<ActivityLevelOption> getActivityLevelOptions() {
     return [
-      const ActivityLevelOption(id: 'rookie', label: 'Rookie'),
-      const ActivityLevelOption(id: 'beginner', label: 'Beginner'),
-      const ActivityLevelOption(id: 'intermediate', label: 'Intermediate'),
-      const ActivityLevelOption(id: 'advance', label: 'Advance'),
-      const ActivityLevelOption(id: 'true_beast', label: 'True Beast'),
+      const ActivityLevelOption(id: 'level1', label: 'Rookie'),
+      const ActivityLevelOption(id: 'level2', label: 'Beginner'),
+      const ActivityLevelOption(id: 'level3', label: 'Intermediate'),
+      const ActivityLevelOption(id: 'level4', label: 'Advance'),
+      const ActivityLevelOption(id: 'level5', label: 'True Beast'),
     ];
   }
 }

@@ -1,10 +1,5 @@
+// features/auth/presentation/register/bloc/register_state.dart
 part of 'register_bloc.dart';
 
-sealed class RegisterState extends Equatable {
-  const RegisterState();
 
-  @override
-  List<Object> get props => [];
-}
-
-final class RegisterInitial extends RegisterState {}
+typedef RegisterStateType = BaseState<RegisterResponse>;

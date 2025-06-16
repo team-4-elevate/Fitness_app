@@ -18,8 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome to Fitness App';
 
   @override
-  String get networkError =>
-      'No internet connection. Please check your network and try again.';
+  String get networkError => 'No internet connection. Please check your network and try again.';
 
   @override
   String get serverError => 'Server error. Please try again later.';
@@ -52,8 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'Connection error. Please check your network.';
 
   @override
-  String get socketException =>
-      'Connection problem. Please check your internet.';
+  String get socketException => 'Connection problem. Please check your internet.';
 
   @override
   String get formatException => 'Could not read the received data.';
