@@ -13,7 +13,7 @@ class DioApiClient implements ApiClient {
   final Dio _dio;
   final AppSecureStorage localStorage;
 
-  DioApiClient(this.localStorage,)
+  DioApiClient(this.localStorage)
     : _dio = Dio(
         BaseOptions(
           baseUrl: ApiConstants.baseUrl,
@@ -107,7 +107,8 @@ class DioApiClient implements ApiClient {
       return _handleResponse<T>(response.data);
     });
   }
-    T _handleResponse<T>(dynamic responseData) {
+
+  T _handleResponse<T>(dynamic responseData) {
     if (T.toString() == 'Map<String, dynamic>' || T == dynamic) {
       return responseData as T;
     }
