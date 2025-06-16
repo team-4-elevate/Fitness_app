@@ -41,6 +41,9 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.singleton<_i1052.AppNavigatorObserver>(
+      () => _i1052.AppNavigatorObserver(),
+    );
     gh.singleton<_i241.SharedPreferencesService>(
       () => _i241.SharedPreferencesService(),
     );
@@ -48,9 +51,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i668.AppNavigatorObserver(),
     );
     gh.singleton<_i565.NavigationService>(() => _i565.NavigationService());
-    gh.singleton<_i1052.AppNavigatorObserver>(
-      () => _i1052.AppNavigatorObserver(),
-    );
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
     gh.factory<_i111.AuthLocalDataSourceContract>(
       () => _i812.AuthLocalDataSourceImpl(gh<_i304.AppSecureStorage>()),
