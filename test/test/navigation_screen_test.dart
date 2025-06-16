@@ -1,37 +1,50 @@
-import 'package:fitness_app/features/app_sections/ChatAipage.dart';
-import 'package:fitness_app/features/app_sections/HomePage.dart';
+import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fitness_app/main.dart';
-
+import 'package:fitness_app/features/app_sections/ChatAipage.dart';
+import 'package:fitness_app/features/app_sections/GymPage.dart';
+import 'package:fitness_app/features/app_sections/HomePage.dart';
+import 'package:fitness_app/features/app_sections/ProfilePage.dart';
 
 void main() {
-  testWidgets('Initial page is HomePage and navigation works', (WidgetTester tester) async {
-    // 1. شغل التطبيق
-    await tester.pumpWidget(MyApp());
+  group('MainNavigationScreen Tests', () {
+    testWidgets('Initial page is HomePage', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: MainNavigationScreen(),
+        ),
+      );
 
-    // 2. اتأكد إن الصفحة اللي ظاهرة أول ما التطبيق يشتغل هي HomePage
-    expect(find.byType(HomePage), findsOneWidget);
+      expect(find.byType(HomePage), findsOneWidget);
+      expect(find.byType(HomePage), findsNothing);
 
-    // 3. اضغط على أيقونة "Chat" (التانية)
-    final chatIcon = find.byWidgetPredicate(
-      (widget) =>
-          widget is Image &&
-          widget.image is AssetImage &&
-          (widget.image as AssetImage).assetName.contains('chat_ai'),
-    );
-    expect(chatIcon, findsOneWidget);
+    });
 
-    await tester.tap(chatIcon);
-    await tester.pumpAndSettle();
+    testWidgets('Navigate to ChatAipage', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: MainNavigationScreen()));
+      await tester.tap(find.byKey(Key('nav_icon_chatai')));
+      await tester.pumpAndSettle();
+      expect(find.byType(ChatAipage), findsOneWidget);
+      expect(find.byType(ChatAipage), findsNothing);
 
-    // 4. اتأكد إن الصفحة اتغيرت لـ ChatAipage
-    expect(find.byType(ChatAipage), findsOneWidget);
-    expect(find.text("Chat"), findsOneWidget);
-    expect(find.text("Home"), findsNothing);
-    expect(find.text("Gym"), findsNothing);
-    expect(find.text("Profile"), findsNothing);
-    
+    });
 
+    testWidgets('Navigate to GymPage', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: MainNavigationScreen()));
+      await tester.tap(find.byKey(Key('nav_icon_gym')));
+      await tester.pumpAndSettle();
+      expect(find.byType(GymPage), findsOneWidget);
+      expect(find.byType(GymPage), findsNothing);
+
+    });
+
+    testWidgets('Navigate to ProfilePage', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: MainNavigationScreen()));
+      await tester.tap(find.byKey(Key('nav_icon_profile')));
+      await tester.pumpAndSettle();
+      expect(find.byType(ProfilePage), findsOneWidget);
+      expect(find.byType(ProfilePage), findsNothing);
+
+    });
   });
 }
