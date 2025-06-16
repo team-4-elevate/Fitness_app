@@ -5,7 +5,6 @@ import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // =================== Light Theme ===================
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -29,43 +28,43 @@ class AppTheme {
 
     scaffoldBackgroundColor: AppColors.backgroundDark,
 
-    // =================== App Bar Theme - Responsive ===================
+    // =================== App Bar Theme ===================
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       foregroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       titleTextStyle: TextStyle(
-        fontSize: R.textXL, // ✅ Using responsive font size
+        fontSize: R.textXL, 
         fontWeight: FontWeight.w600,
         color: AppColors.white,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
       iconTheme: IconThemeData(
         color: AppColors.white,
-        size: R.iconLG, // ✅ Using responsive icon size
+        size: R.iconLG, 
       ),
     ),
 
-    // =================== Text Theme - Responsive ===================
+    // =================== Text Theme===================
     textTheme: TextTheme(
       // Headings - Responsive
       headlineLarge: TextStyle(
-        fontSize: R.text4XL, // ✅ 32.sp responsive
+        fontSize: R.text4XL, // 32.sp
         fontWeight: FontWeight.bold,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.2,
       ),
       headlineMedium: TextStyle(
-        fontSize: R.text3XL, // ✅ 28.sp responsive
+        fontSize: R.text3XL, // 28.sp 
         fontWeight: FontWeight.bold,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.2,
       ),
       headlineSmall: TextStyle(
-        fontSize: R.text2XL, // ✅ 24.sp responsive
+        fontSize: R.text2XL, // 24.sp 
         fontWeight: FontWeight.w600,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
@@ -74,21 +73,21 @@ class AppTheme {
 
       // Titles - Responsive
       titleLarge: TextStyle(
-        fontSize: R.textXL, // ✅ 20.sp responsive
+        fontSize: R.textXL, //  20.sp 
         fontWeight: FontWeight.w600,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.3,
       ),
       titleMedium: TextStyle(
-        fontSize: R.textLG, // ✅ 18.sp responsive
+        fontSize: R.textLG, // 18.sp
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.4,
       ),
       titleSmall: TextStyle(
-        fontSize: R.textMD, // ✅ 16.sp responsive
+        fontSize: R.textMD, // 16.sp 
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
@@ -97,21 +96,21 @@ class AppTheme {
 
       // Body Text - Responsive
       bodyLarge: TextStyle(
-        fontSize: R.textMD, // ✅ 16.sp responsive
+        fontSize: R.textMD, // 16.sp
         fontWeight: FontWeight.normal,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.5,
       ),
       bodyMedium: TextStyle(
-        fontSize: R.textBase, // ✅ 14.sp responsive
+        fontSize: R.textBase, //  14.sp 
         fontWeight: FontWeight.normal,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.5,
       ),
       bodySmall: TextStyle(
-        fontSize: R.textSM, // ✅ 12.sp responsive
+        fontSize: R.textSM, //  12.sp 
         fontWeight: FontWeight.normal,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
@@ -120,21 +119,21 @@ class AppTheme {
 
       // Labels - Responsive
       labelLarge: TextStyle(
-        fontSize: R.textBase, // ✅ 14.sp responsive
+        fontSize: R.textBase, // 14.sp
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.4,
       ),
       labelMedium: TextStyle(
-        fontSize: R.textSM, // ✅ 12.sp responsive
+        fontSize: R.textSM, // 12.sp 
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
         height: 1.3,
       ),
       labelSmall: TextStyle(
-        fontSize: R.textXS, // ✅ 10.sp responsive
+        fontSize: R.textXS, // 10.sp 
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
@@ -142,7 +141,7 @@ class AppTheme {
       ),
     ),
 
-    // =================== Elevated Button Theme - Responsive ===================
+    // =================== Elevated Button Theme===================
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryOrange,
@@ -152,14 +151,14 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             R.borderButtonValue,
-          ), // ✅ Responsive border
+          ),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: R.paddingSMValue, // ✅ Responsive padding
-          vertical: R.paddingSMValue, // ✅ Responsive padding
+          horizontal: R.paddingSMValue, 
+          vertical: R.paddingSMValue, 
         ),
         textStyle: TextStyle(
-          fontSize: R.textMD, // ✅ Responsive font size
+          fontSize: R.textMD, 
           fontWeight: FontWeight.w600,
           fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
           color: AppColors.white,
@@ -167,72 +166,70 @@ class AppTheme {
         minimumSize: Size(
           double.infinity,
           R.adaptiveButtonHeight,
-        ), // ✅ Responsive height
+        ),
       ),
     ),
 
-    // =================== Outlined Button Theme - Responsive ===================
+    // =================== Outlined Button Theme===================
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.white,
         side: BorderSide(
           color: AppColors.white,
           width: 1.5.r,
-        ), // ✅ Responsive border width
+        ), 
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             R.borderButtonValue,
-          ), // ✅ Responsive border
+          ), 
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: R.paddingSMValue, // ✅ Responsive padding
-          vertical: R.paddingSMValue, // ✅ Responsive padding
+          horizontal: R.paddingSMValue, 
+          vertical: R.paddingSMValue, 
         ),
         textStyle: TextStyle(
           fontSize: R.textMD,
           fontFamily:
-              AppFontStyle.customAppFont.fontFamily, // ✅ Responsive font size
+              AppFontStyle.customAppFont.fontFamily, 
           fontWeight: FontWeight.w600,
         ),
         minimumSize: Size(
           double.infinity,
           R.adaptiveButtonHeight,
-        ), // ✅ Responsive height
+        ), 
       ),
     ),
 
-    // =================== Text Button Theme - Responsive ===================
+    // =================== Text Button Theme ===================
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppColors.primaryOrange,
         textStyle: TextStyle(
-          fontSize: R.textSM, // ✅ Responsive font size
+          fontSize: R.textSM, 
           fontWeight: FontWeight.w600,
           fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
           decoration: TextDecoration.underline,
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: R.paddingSMValue, // ✅ Responsive padding
-          vertical: R.paddingXSValue, // ✅ Responsive padding
+          horizontal: R.paddingSMValue, 
+          vertical: R.paddingXSValue, 
         ),
       ),
     ),
 
-    // =================== Input Decoration Theme - Responsive ===================
+    // =================== Input Decoration Theme===================
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white.withOpacity(0.1),
       constraints: BoxConstraints(maxHeight: R.space38, minHeight: R.space38),
       contentPadding: EdgeInsets.symmetric(
-        horizontal: R.paddingSMValue, // ✅ Responsive padding
-        vertical: 0, // ✅ Responsive padding
+        horizontal: R.paddingSMValue,
+        vertical: 0, 
       ),
-
-      // Border styles - Responsive
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(
           R.borderInputValue,
-        ), // ✅ Responsive border
+        ),
         borderSide: BorderSide(
           color: Colors.white.withOpacity(0.3),
           width: 1.r, // ✅ Responsive border width
@@ -241,17 +238,17 @@ class AppTheme {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(
           R.borderInputValue,
-        ), // ✅ Responsive border
+        ), 
         borderSide: BorderSide(
           color: Colors.white.withOpacity(0.3),
-          width: 1.r, // ✅ Responsive border width
+          width: 1.r, 
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
         borderSide: BorderSide(
           color: AppColors.primaryOrange,
-          width: 2.r, // ✅ Responsive border width
+          width: 2.r, 
         ),
       ),
       errorBorder: OutlineInputBorder(
@@ -262,26 +259,26 @@ class AppTheme {
         borderRadius: BorderRadius.circular(R.borderInputValue),
         borderSide: BorderSide(
           color: AppColors.error,
-          width: 2.r, // ✅ Responsive border width
+          width: 2.r, 
         ),
       ),
 
       // Text styles - Responsive
       hintStyle: TextStyle(
         color: Colors.white.withOpacity(0.6),
-        fontSize: R.textBase, // ✅ Responsive font size
+        fontSize: R.textBase,
         fontWeight: FontWeight.normal,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
       labelStyle: TextStyle(
         color: Colors.white.withOpacity(0.8),
-        fontSize: R.textBase, // ✅ Responsive font size
+        fontSize: R.textBase,
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
       errorStyle: TextStyle(
         color: AppColors.error,
-        fontSize: R.textSM, // ✅ Responsive font size
+        fontSize: R.textSM, 
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
@@ -291,21 +288,21 @@ class AppTheme {
       suffixIconColor: Colors.white.withOpacity(0.7),
     ),
 
-    // =================== Dialog Theme - Responsive ===================
+    // =================== Dialog Theme ===================
     dialogTheme: DialogTheme(
       backgroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(R.borderLG), // ✅ Responsive border
+        borderRadius: BorderRadius.circular(R.borderLG),
       ),
       titleTextStyle: TextStyle(
-        fontSize: R.textXL, // ✅ Responsive font size
+        fontSize: R.textXL,
         fontWeight: FontWeight.w600,
         color: AppColors.black,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
       contentTextStyle: TextStyle(
-        fontSize: R.textMD, // ✅ Responsive font size
+        fontSize: R.textMD, 
         color: AppColors.textSecondary,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
@@ -317,7 +314,7 @@ class AppTheme {
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(R.borderXL), // ✅ Responsive border
+          top: Radius.circular(R.borderXL), 
         ),
       ),
     ),
@@ -340,7 +337,7 @@ class AppTheme {
       circularTrackColor: AppColors.lightOrange,
     ),
 
-    // =================== Checkbox Theme - Responsive ===================
+    // =================== Checkbox Theme ===================
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
@@ -352,9 +349,9 @@ class AppTheme {
       side: BorderSide(
         color: AppColors.white,
         width: 2.r,
-      ), // ✅ Responsive border
+      ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(R.borderSM), // ✅ Responsive border
+        borderRadius: BorderRadius.circular(R.borderSM),
       ),
     ),
 
@@ -377,220 +374,15 @@ class AppTheme {
     // =================== Icon Theme - Responsive ===================
     iconTheme: IconThemeData(
       color: AppColors.white,
-      size: R.iconBase, // ✅ Responsive icon size
+      size: R.iconBase,
     ),
 
     // =================== Divider Theme - Responsive ===================
     dividerTheme: DividerThemeData(
       color: Colors.white.withOpacity(0.2),
-      thickness: 1.r, // ✅ Responsive thickness
-      space: 1.r, // ✅ Responsive space
+      thickness: 1.r, 
+      space: 1.r, 
     ),
   );
 
-  // =================== Dark Theme ===================
-  static ThemeData darkTheme = ThemeData(
-    useMaterial3: true,
-    brightness: Brightness.dark,
-
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.primaryOrange,
-      brightness: Brightness.dark,
-      primary: AppColors.primaryOrange,
-      secondary: AppColors.primaryBlue,
-      surface: AppColors.backgroundDark,
-      background: AppColors.backgroundDark,
-      error: AppColors.error,
-      onPrimary: AppColors.white,
-      onSecondary: AppColors.white,
-      onSurface: AppColors.white,
-      onBackground: AppColors.white,
-      onError: AppColors.white,
-    ),
-
-    scaffoldBackgroundColor: AppColors.backgroundDark,
-    primaryColor: AppColors.primaryOrange,
-
-    // Copy themes from light theme with dark adaptations
-    appBarTheme: lightTheme.appBarTheme.copyWith(
-      backgroundColor: AppColors.backgroundDark,
-    ),
-
-    textTheme: lightTheme.textTheme,
-    elevatedButtonTheme: lightTheme.elevatedButtonTheme,
-    outlinedButtonTheme: lightTheme.outlinedButtonTheme,
-    textButtonTheme: lightTheme.textButtonTheme,
-    inputDecorationTheme: lightTheme.inputDecorationTheme,
-    cardTheme: lightTheme.cardTheme.copyWith(color: AppColors.surfaceDark),
-    dialogTheme: lightTheme.dialogTheme.copyWith(
-      backgroundColor: AppColors.surfaceDark,
-    ),
-    checkboxTheme: lightTheme.checkboxTheme,
-    switchTheme: lightTheme.switchTheme,
-    iconTheme: lightTheme.iconTheme,
-    dividerTheme: lightTheme.dividerTheme,
-  );
-
-  // =================== Helper Methods - Responsive ===================
-
-  /// Get theme based on brightness
-  static ThemeData getTheme(bool isDark) {
-    return isDark ? darkTheme : lightTheme;
-  }
-
-  /// Get primary button style - Responsive
-  static ButtonStyle getPrimaryButtonStyle() {
-    return ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primaryOrange,
-      foregroundColor: AppColors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          R.borderButtonValue,
-        ), // ✅ Responsive
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: R.paddingLGValue, // ✅ Responsive
-        vertical: R.paddingMDValue, // ✅ Responsive
-      ),
-      minimumSize: Size(
-        double.infinity,
-        R.adaptiveButtonHeight,
-      ), // ✅ Responsive
-      textStyle: TextStyle(
-        fontSize: R.textMD, // ✅ Responsive
-        fontWeight: FontWeight.w600,
-      ),
-    );
-  }
-
-  /// Get secondary button style - Responsive
-  static ButtonStyle getSecondaryButtonStyle() {
-    return OutlinedButton.styleFrom(
-      foregroundColor: AppColors.white,
-      side: BorderSide(color: AppColors.white, width: 1.5.r), // ✅ Responsive
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          R.borderButtonValue,
-        ), // ✅ Responsive
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: R.paddingLGValue, // ✅ Responsive
-        vertical: R.paddingMDValue, // ✅ Responsive
-      ),
-      minimumSize: Size(
-        double.infinity,
-        R.adaptiveButtonHeight,
-      ), // ✅ Responsive
-      textStyle: TextStyle(
-        fontSize: R.textMD, // ✅ Responsive
-        fontWeight: FontWeight.w600,
-      ),
-    );
-  }
-
-  /// Get social button style - Responsive
-  static ButtonStyle getSocialButtonStyle({Color? backgroundColor}) {
-    return ElevatedButton.styleFrom(
-      backgroundColor: backgroundColor ?? Colors.white.withOpacity(0.1),
-      foregroundColor: AppColors.white,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(R.borderBase), // ✅ Responsive
-        side: BorderSide(
-          color: Colors.white.withOpacity(0.2),
-          width: 1.r, // ✅ Responsive
-        ),
-      ),
-      padding: EdgeInsets.all(R.paddingMDValue), // ✅ Responsive
-      minimumSize: Size(60.w, 60.h), // ✅ Responsive
-    );
-  }
-
-  /// Get input decoration for forms - Responsive
-  static InputDecoration getInputDecoration({
-    required String hintText,
-    IconData? prefixIcon,
-    IconData? suffixIcon,
-    VoidCallback? onSuffixIconPressed,
-  }) {
-    return InputDecoration(
-      hintText: hintText,
-      prefixIcon:
-          prefixIcon != null
-              ? Icon(
-                prefixIcon,
-                color: Colors.white.withOpacity(0.7),
-                size: R.iconBase, // ✅ Responsive icon size
-              )
-              : null,
-      suffixIcon:
-          suffixIcon != null
-              ? IconButton(
-                icon: Icon(
-                  suffixIcon,
-                  color: Colors.white.withOpacity(0.7),
-                  size: R.iconBase, // ✅ Responsive icon size
-                ),
-                onPressed: onSuffixIconPressed,
-              )
-              : null,
-    );
-  }
-
-  // =================== Adaptive Theme Methods ===================
-
-  /// Get adaptive text style based on device
-  static TextStyle getAdaptiveTextStyle({
-    required double baseFontSize,
-    FontWeight? fontWeight,
-    Color? color,
-  }) {
-    return TextStyle(
-      fontSize: baseFontSize.sp,
-      fontWeight: fontWeight ?? FontWeight.normal,
-      color: color ?? AppColors.white,
-      fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
-    );
-  }
-
-  /// Get adaptive padding based on device
-  static EdgeInsets getAdaptivePadding({
-    double all = 0,
-    double horizontal = 0,
-    double vertical = 0,
-  }) {
-    if (all > 0) {
-      return EdgeInsets.all(all.r); // ✅ Responsive
-    }
-    return EdgeInsets.symmetric(
-      horizontal: horizontal.r, // ✅ Responsive
-      vertical: vertical.r, // ✅ Responsive
-    );
-  }
-
-  /// Get adaptive border radius
-  static BorderRadius getAdaptiveBorderRadius(double radius) {
-    return BorderRadius.circular(radius.r); // ✅ Responsive
-  }
-
-  /// Get adaptive button height based on device
-  static double getAdaptiveButtonHeight() {
-    return R.adaptiveButtonHeight; // ✅ Uses responsive logic
-  }
-
-  /// Get adaptive icon size based on context
-  static double getAdaptiveIconSize(String size) {
-    switch (size) {
-      case 'small':
-        return R.iconSM;
-      case 'base':
-        return R.iconBase;
-      case 'large':
-        return R.iconLG;
-      case 'xl':
-        return R.iconXL;
-      default:
-        return R.iconBase;
-    }
-  }
 }

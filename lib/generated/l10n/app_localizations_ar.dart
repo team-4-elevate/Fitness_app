@@ -18,8 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحبا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError =>
-      'لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.';
+  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقاً.';
@@ -52,8 +51,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionError => 'خطأ في الاتصال بالشبكة.';
 
   @override
-  String get socketException =>
-      'مشكلة في الاتصال بالخادم. يرجى التحقق من الإنترنت.';
+  String get socketException => 'مشكلة في الاتصال بالخادم. يرجى التحقق من الإنترنت.';
 
   @override
   String get formatException => 'تعذر قراءة البيانات المستلمة.';
