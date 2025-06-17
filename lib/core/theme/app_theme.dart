@@ -204,24 +204,19 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white.withOpacity(0.1),
-      constraints: BoxConstraints(maxHeight: R.space38, minHeight: R.space38),
       contentPadding: EdgeInsets.symmetric(
-        horizontal: R.paddingSMValue,
-        vertical: 0,
+        horizontal: R.paddingMDValue,
+        vertical: R.paddingSMValue,
       ),
+
+      // Border styles - Responsive
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
-        borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.3),
-          width: 1.r, // ✅ Responsive border width
-        ),
+        borderSide: BorderSide(color: Colors.white, width: 1.r),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
-        borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.3),
-          width: 1.r,
-        ),
+        borderSide: BorderSide(color: Colors.white, width: 1.r),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
@@ -251,7 +246,7 @@ class AppTheme {
       ),
       errorStyle: TextStyle(
         color: AppColors.error,
-        fontSize: R.textSM,
+        fontSize: R.textBase,
         fontWeight: FontWeight.w500,
         fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
@@ -260,7 +255,6 @@ class AppTheme {
       prefixIconColor: Colors.white.withOpacity(0.7),
       suffixIconColor: Colors.white.withOpacity(0.7),
     ),
-
     // =================== Dialog Theme ===================
     dialogTheme: DialogTheme(
       backgroundColor: AppColors.white,

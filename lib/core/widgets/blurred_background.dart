@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fitness_app/core/Constant/app_constants.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
@@ -12,7 +13,7 @@ class BlurredBackground extends StatelessWidget {
   const BlurredBackground({
     super.key,
     required this.child,
-    this.backgroundImage = 'assets/images/bg_image.png',
+    this.backgroundImage = AppConstants.authCustomBG,
     this.blurSigma = 0,
     this.isScrollable = false,
   });
@@ -35,7 +36,6 @@ class BlurredBackground extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
         child: Container(
-          decoration: BoxDecoration(color: AppColors.blurBackground),
           child: isScrollable ? child.scrollable : child,
         ),
       ),

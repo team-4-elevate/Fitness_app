@@ -7,10 +7,12 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/navigation_services.dart';
-import 'package:fitness_app/features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'core/services/api_localization_service.dart';
@@ -62,7 +64,9 @@ class MyApp extends StatelessWidget {
               // routes: {'/home': (context) => const Home()},
 
               //home: const Home(),
-              home: ForgetPasswordPage(),
+              home: BlocProvider(
+                create: (context) => getIt<LoginViewModel>(),
+                child: const LoginView()),
             ),
           );
         },
