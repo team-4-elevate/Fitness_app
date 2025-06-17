@@ -9,6 +9,7 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
+    fontFamily: 'BalooThambi2',
 
     // Color Scheme
     colorScheme: ColorScheme.fromSeed(
@@ -145,7 +146,7 @@ class AppTheme {
 
         textStyle: TextStyle(
           fontSize: R.textMD, // ✅ Responsive font size
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w800,
           color: AppColors.white,
         ),
         minimumSize: Size(
@@ -174,7 +175,7 @@ class AppTheme {
         ),
         textStyle: TextStyle(
           fontSize: R.textMD, // ✅ Responsive font size
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w800,
         ),
         minimumSize: Size(
           double.infinity,
@@ -424,8 +425,8 @@ class AppTheme {
         ), // ✅ Responsive
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: R.paddingLGValue, // ✅ Responsive
-        vertical: R.paddingMDValue, // ✅ Responsive
+        horizontal: R.paddingMDValue, // ✅ Responsive
+        vertical: R.paddingSMValue, // ✅ Responsive
       ),
       minimumSize: Size(
         double.infinity,
@@ -442,15 +443,18 @@ class AppTheme {
   static ButtonStyle getSecondaryButtonStyle() {
     return OutlinedButton.styleFrom(
       foregroundColor: AppColors.white,
-      side: BorderSide(color: AppColors.white, width: 1.5.r), // ✅ Responsive
+      side: BorderSide(
+        color: AppColors.secondaryOrange,
+        width: 1.r,
+      ), // ✅ Responsive
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           R.borderButtonValue,
         ), // ✅ Responsive
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: R.paddingLGValue, // ✅ Responsive
-        vertical: R.paddingMDValue, // ✅ Responsive
+        horizontal: R.paddingMDValue, // ✅ Responsive
+        vertical: R.paddingSMValue, // ✅ Responsive
       ),
       minimumSize: Size(
         double.infinity,

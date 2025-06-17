@@ -46,21 +46,21 @@ class Assets {
   /// assets/images/logo.png
   static const String imagesLogo = "assets/images/logo.png";
 
-  /// Assets for imagesO151
-  /// assets/images/O15_1.png
-  static const String imagesO151 = "assets/images/O15_1.png";
-
-  /// Assets for imagesO152
-  /// assets/images/O15_2.png
-  static const String imagesO152 = "assets/images/O15_2.png";
-
-  /// Assets for imagesO153
-  /// assets/images/O15_3.png
-  static const String imagesO153 = "assets/images/O15_3.png";
-
   /// Assets for imagesOnboardingRectangle
   /// assets/images/onboarding_rectangle.png
   static const String imagesOnboardingRectangle = "assets/images/onboarding_rectangle.png";
+
+  /// Assets for imagesOnboardingVector1
+  /// assets/images/onboarding_vector_1.png
+  static const String imagesOnboardingVector1 = "assets/images/onboarding_vector_1.png";
+
+  /// Assets for imagesOnboardingVector2
+  /// assets/images/onboarding_vector_2.png
+  static const String imagesOnboardingVector2 = "assets/images/onboarding_vector_2.png";
+
+  /// Assets for imagesOnboardingVector3
+  /// assets/images/onboarding_vector_3.png
+  static const String imagesOnboardingVector3 = "assets/images/onboarding_vector_3.png";
 
   /// Assets for splashAndroid12splash
   /// assets/splash/android12splash.png

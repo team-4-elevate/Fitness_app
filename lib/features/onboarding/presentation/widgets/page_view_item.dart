@@ -1,8 +1,6 @@
-import 'dart:ui';
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/login/presentation/pages/login_page.dart';
-import 'package:fitness_app/features/onboarding/presentation/widgets/custom_elevated_btn.dart';
-import 'package:fitness_app/features/onboarding/presentation/widgets/custom_outlined_btn.dart';
+import 'package:fitness_app/features/onboarding/presentation/widgets/on_boarding_buttons.dart';
+import 'package:fitness_app/features/onboarding/presentation/widgets/skip_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -24,172 +22,68 @@ class PageViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        index != 2
-            ? PositionedDirectional(
-              top: 50,
-              end: 10,
-              child: TextButton(
-                onPressed: () {
-                  context.pushAndRemoveUntil(const LoginPage());
-                },
-                child: Text(
-                  context.l10n.skip,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    decoration: TextDecoration.none,
-                  ),
-                ),
-              ),
-            )
-            : SizedBox(),
-        Positioned(
-          top: 100,
-          left: 0,
-          right: 0,
+        index != 2 ? SkipWidget() : SizedBox(height: 72.h),
+        Expanded(
           child: Image.asset(
+            key: ValueKey('on_boarding_image_$index'),
             imagePath,
-            fit: BoxFit.contain,
-            alignment: Alignment.center,
+            fit: BoxFit.fill,
           ),
         ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(50)),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-              child: Container(
-                // height: 300,
-                constraints: BoxConstraints(minHeight: 250),
-                alignment: Alignment.center,
-
-                color: Colors.black.withValues(alpha: 0.3),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 24,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      description,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    SmoothPageIndicator(
-                      controller: pageController,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                        spacing: 8.0,
-                        radius: 20.0,
-                        dotWidth: 8.0,
-                        dotHeight: 8.0,
-                        strokeWidth: 1.5,
-                        dotColor: Colors.grey,
-                        activeDotColor: Color(0xffFF4100),
-                      ),
-                      onDotClicked: (index) {
-                        pageController.animateToPage(
-                          index,
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        );
-                      },
-                    ),
-                    SizedBox(height: 20),
-
-                    index == 0
-                        ? SizedBox(
-                          width: double.infinity,
-                          child: CustomElevatedBtn(
-                            onPressed: () {
-                              pageController.nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                            text: context.l10n.next,
-                          ),
-                        )
-                        : index == 1
-                        ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 70,
-
-                              child: CustomOutlinedBtn(
-                                onPressed: () {
-                                  pageController.previousPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut,
-                                  );
-                                },
-                                text: context.l10n.back,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 70,
-                              child: CustomElevatedBtn(
-                                onPressed: () {
-                                  pageController.nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut,
-                                  );
-                                },
-                                text: context.l10n.next,
-                              ),
-                            ),
-                          ],
-                        )
-                        : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: 70,
-                              child: CustomOutlinedBtn(
-                                onPressed: () {
-                                  pageController.previousPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut,
-                                  );
-                                },
-                                text: context.l10n.back,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 70,
-                              child: CustomElevatedBtn(
-                                onPressed: () {
-                                  context.pushAndRemoveUntil(const LoginPage());
-                                },
-                                text: context.l10n.doIt,
-                              ),
-                            ),
-                          ],
-                        ),
-                  ],
+        Container(
+          height: 272.h,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: Colors.black.withValues(alpha: 0.4),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                key: Key('on_boarding_title_$index'),
+                title,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
               ),
-            ),
+              const SizedBox(height: 12),
+              Text(
+                key: Key('on_boarding_desc_$index'),
+                description,
+                textAlign: TextAlign.center,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
+              ),
+              const SizedBox(height: 20),
+              SmoothPageIndicator(
+                controller: pageController,
+                count: 3,
+                effect: const ExpandingDotsEffect(
+                  spacing: 8.0,
+                  radius: 20.0,
+                  dotWidth: 8.0,
+                  dotHeight: 8.0,
+                  strokeWidth: 1.5,
+                  dotColor: Colors.grey,
+                  activeDotColor: Color(0xffFF4100),
+                ),
+                onDotClicked: (index) {
+                  pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              OnboardingButtons(index: index, pageController: pageController),
+            ],
           ),
         ),
       ],
