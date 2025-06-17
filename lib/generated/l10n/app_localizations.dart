@@ -202,6 +202,234 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error occurred (code: {status}).'**
   String errorWithStatusCode(String status);
+
+  /// Message displayed when registration is successful
+  ///
+  /// In en, this message translates to:
+  /// **'Registration successful!'**
+  String get registerSuccess;
+
+  /// Button text for the next step
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// Button text for the final step
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get finish;
+
+  /// Title for gender selection step
+  ///
+  /// In en, this message translates to:
+  /// **'TELL US ABOUT YOURSELF!'**
+  String get registrationTitle1;
+
+  /// Subtitle for gender selection step
+  ///
+  /// In en, this message translates to:
+  /// **'We Need To Know Your Gender'**
+  String get registrationSubtitle1;
+
+  /// Title for age selection step
+  ///
+  /// In en, this message translates to:
+  /// **'HOW OLD ARE YOU?'**
+  String get registrationTitle2;
+
+  /// Subtitle for age selection step
+  ///
+  /// In en, this message translates to:
+  /// **'This Helps Us Create Your Personalized Plan'**
+  String get registrationSubtitle2;
+
+  /// Title for weight selection step
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR WEIGHT?'**
+  String get registrationTitle3;
+
+  /// Subtitle for weight selection step
+  ///
+  /// In en, this message translates to:
+  /// **'We Use This For Calorie Calculations'**
+  String get registrationSubtitle3;
+
+  /// Title for height selection step
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR HEIGHT?'**
+  String get registrationTitle4;
+
+  /// Subtitle for height selection step
+  ///
+  /// In en, this message translates to:
+  /// **'This Helps Us Calculate Your BMI'**
+  String get registrationSubtitle4;
+
+  /// Title for goal selection step
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR GOAL?'**
+  String get registrationTitle5;
+
+  /// Subtitle for goal selection step
+  ///
+  /// In en, this message translates to:
+  /// **'Tell Us What You Want To Achieve'**
+  String get registrationSubtitle5;
+
+  /// Title for activity level selection step
+  ///
+  /// In en, this message translates to:
+  /// **'HOW ACTIVE ARE YOU?'**
+  String get registrationTitle6;
+
+  /// Subtitle for activity level selection step
+  ///
+  /// In en, this message translates to:
+  /// **'Your Activity Level Helps Us Set Targets'**
+  String get registrationSubtitle6;
+
+  /// Label for age selection
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get year;
+
+  /// Label for weight selection
+  ///
+  /// In en, this message translates to:
+  /// **'Kg'**
+  String get kg;
+
+  /// Label for height selection
+  ///
+  /// In en, this message translates to:
+  /// **'Cm'**
+  String get cm;
+
+  /// Label for male gender option
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// Label for female gender option
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// Goal option to gain weight
+  ///
+  /// In en, this message translates to:
+  /// **'Gain Weight'**
+  String get goalGainWeight;
+
+  /// Goal option to lose weight
+  ///
+  /// In en, this message translates to:
+  /// **'Lose Weight'**
+  String get goalLoseWeight;
+
+  /// Goal option to get fitter
+  ///
+  /// In en, this message translates to:
+  /// **'Get Fitter'**
+  String get goalGetFitter;
+
+  /// Goal option to gain flexibility
+  ///
+  /// In en, this message translates to:
+  /// **'Gain More Flexibility'**
+  String get goalGainFlexibility;
+
+  /// Goal option to learn basics
+  ///
+  /// In en, this message translates to:
+  /// **'Learn The Basics'**
+  String get goalLearnBasics;
+
+  /// Activity level option for rookie
+  ///
+  /// In en, this message translates to:
+  /// **'Rookie'**
+  String get activityRookie;
+
+  /// Activity level option for beginner
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get activityBeginner;
+
+  /// Activity level option for intermediate
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get activityIntermediate;
+
+  /// Activity level option for advanced
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get activityAdvanced;
+
+  /// Activity level option for true beast
+  ///
+  /// In en, this message translates to:
+  /// **'True Beast'**
+  String get activityTrueBeast;
+
+  /// Label for first name input field
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get firstName;
+
+  /// Label for last name input field
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lastName;
+
+  /// Label for email input field
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// Label for password input field
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// Error message when password field is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Password is Required'**
+  String get passwordRequired;
+
+  /// Greeting text on register page
+  ///
+  /// In en, this message translates to:
+  /// **'Hi there'**
+  String get registerGreeting;
+
+  /// Title for register page
+  ///
+  /// In en, this message translates to:
+  /// **'Create An Account'**
+  String get createAccount;
+
+  /// Register button text
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

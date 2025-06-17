@@ -1,7 +1,8 @@
 // features/auth/presentation/register/widget/gender_step.dart
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/auth/domain/entities/register_details.dart';
+import 'package:fitness_app/features/auth/data/model/register_details.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
+import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class GenderStep extends StatelessWidget {
@@ -25,17 +26,17 @@ class GenderStep extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildGenderOption(
-                label: 'Male',
+                label: AppLocalizations.of(context).male,
                 icon: Icons.male,
                 isSelected: userData.gender == Gender.male,
-                onTap: () => onGenderSelected('Male'),
+                onTap: () => onGenderSelected(AppLocalizations.of(context).male),
               ),
               SizedBox(height: 40.r),
               _buildGenderOption(
-                label: 'Female',
+                label: AppLocalizations.of(context).female,
                 icon: Icons.female,
                 isSelected: userData.gender == Gender.female,
-                onTap: () => onGenderSelected('Female'),
+                onTap: () => onGenderSelected(AppLocalizations.of(context).female),
               ),
             ],
           ),

@@ -1,3 +1,4 @@
+// core/utils/app_validator.dart
 class AppValidators {
   /// Validates email format
   static String? validateEmail(String? email) {
@@ -60,12 +61,12 @@ class AppValidators {
   // Returns both an error message and password strength level (1-5)
   static (String?, int) validatePasswordWithStrength(String? password) {
     String? errorMessage = validatePassword(password);
-    int strength = calculatePasswordStrength(password);
+    int strength = evaluatePasswordStrength(password);
     return (errorMessage, strength);
   }
 
-  // Calculate password strength on a scale from 0-5
-  static int calculatePasswordStrength(String? password) {
+  // Calculate password strength on a scale from 0-5/* 
+  static int evaluatePasswordStrength(String? password) {
     if (password == null || password.isEmpty) return 0;
 
     int strength = 0;
@@ -83,7 +84,7 @@ class AppValidators {
 
     // Cap at 5
     return strength > 5 ? 5 : strength;
-  }
+  } 
 
   static String? validateUserName(String? value) {
     if (value == null || value.trim().isEmpty) {

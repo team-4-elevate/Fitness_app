@@ -1,4 +1,5 @@
-// features/auth/presentation/auth_common_widgets/password_strength_indicator.dart
+// features/auth/presentation/register/widget/password_strength_indicator.dart
+import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 
@@ -11,7 +12,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
   Color _getStrengthColor(int strength) {
     switch (strength) {
       case 1:
-        return Colors.red;
+        return AppColors.red;
       case 2:
         return Colors.orange;
       case 3:

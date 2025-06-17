@@ -8,7 +8,7 @@ import 'dart:async' as _i3;
 import 'package:fitness_app/core/helper/api_result.dart' as _i4;
 import 'package:fitness_app/features/auth/data/model/register/register_response/register_response.dart'
     as _i5;
-import 'package:fitness_app/features/auth/domain/entities/register_details.dart'
+import 'package:fitness_app/features/auth/data/model/register_details.dart'
     as _i6;
 import 'package:fitness_app/features/auth/domain/usecases/register_usecase.dart'
     as _i2;

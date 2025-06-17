@@ -64,7 +64,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
     );
-    gh.factory<_i170.AuthRepo>(() => _i984.AuthRepoImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i170.AuthRepo>(
+      () => _i984.AuthRepoImpl(gh<_i1029.AuthRemoteDataSourceContract>()),
+    );
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()),
     );

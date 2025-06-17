@@ -1,6 +1,6 @@
 // core/routes/app_routes_generator.dart
 import 'package:fitness_app/core/routes/app_routes.dart';
-import 'package:fitness_app/features/auth/domain/entities/register_details.dart';
+import 'package:fitness_app/features/auth/data/model/register_details.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';

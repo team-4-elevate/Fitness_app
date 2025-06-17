@@ -1,16 +1,18 @@
 // features/auth/presentation/register/pages/register_details_view.dart
 import 'package:fitness_app/core/base_states/base_state.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
+import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_arguments.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
-import 'package:fitness_app/features/auth/presentation/register/models/activity_level_option.dart';
-import 'package:fitness_app/features/auth/presentation/register/models/goal_option.dart';
-import 'package:fitness_app/features/auth/domain/entities/register_details.dart';
-import 'package:fitness_app/features/auth/presentation/register/models/registration_steps.dart';
+import 'package:fitness_app/features/auth/domain/entities/activity_level_option.dart';
+import 'package:fitness_app/features/auth/domain/entities/goal_option.dart';
+import 'package:fitness_app/features/auth/data/model/register_details.dart';
+import 'package:fitness_app/features/auth/domain/entities/registration_steps.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/gender_step.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/number_picker_step.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/selection_option_step.dart';
+import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -73,6 +75,8 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
+    
     return BlocListener<RegisterBloc, RegisterStateType>(
       listener: (context, state) {
         if (state is LoadingState) {
@@ -88,9 +92,9 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           }
           
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Registration successful!'),
-              backgroundColor: Colors.green,
+            SnackBar(
+              content: Text(localizations.registerSuccess),
+              backgroundColor: AppColors.green,
             ),
           );
           
@@ -100,10 +104,14 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           );
          
         } else if (state is ErrorState) {
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context); 
+          }
+          
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text((state as ErrorState).error),
-              backgroundColor: Colors.red,
+              backgroundColor: AppColors.red,
             ),
           );
         }
@@ -112,16 +120,16 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
         args: AuthPagesUiArguments(
           firstTitleArguments: AuthPageTitleArguments(
             isBold: true,
-            text: RegistrationSteps.getTitleForStep(_currentStep),
+            text: RegistrationSteps.getTitleForStep(_currentStep, AppLocalizations.of(context)),
           ),
           secondTitleArguments: AuthPageTitleArguments(
             isBold: false,
-            text: RegistrationSteps.getSubtitleForStep(_currentStep),
+            text: RegistrationSteps.getSubtitleForStep(_currentStep, AppLocalizations.of(context)),
           ),
           isRegister: true,
           registerStep: _currentStep,
           showSocialLogin: false,
-          primaryButtonText: _currentStep < 6 ? 'Next' : 'Finish',
+          primaryButtonText: _currentStep < 6 ? AppLocalizations.of(context).next : AppLocalizations.of(context).finish,
           primaryButtonAction: () {
             bool isValid = _validateCurrentStep();
             if (isValid) {
@@ -165,7 +173,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           userData: _userData,
           onGenderSelected: (gender) {
             setState(() {
-              _userData.gender = gender == 'Male' ? Gender.male : Gender.female;
+              _userData.gender = gender == AppLocalizations.of(context).male ? Gender.male : Gender.female;
             });
           },
         );
@@ -173,7 +181,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
       ///----------------------------------------age step----------------------------------------
       case 2:
         return NumberPickerStep(
-          label: 'Year',
+          label: AppLocalizations.of(context).year,
           value: _userData.age ?? 25,
           minValue: 5,
           maxValue: 100,
@@ -189,7 +197,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
       ///----------------------------------------weight step----------------------------------------
       case 3:
         return NumberPickerStep(
-          label: 'Kg',
+          label: AppLocalizations.of(context).kg,
           value: _userData.weight?.round() ?? 90,
           minValue: 20,
           maxValue: 350,
@@ -205,7 +213,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
       ///----------------------------------------height step----------------------------------------
       case 4:
         return NumberPickerStep(
-          label: 'Cm',
+          label: AppLocalizations.of(context).cm,
           value: _userData.height?.round() ?? 167,
           minValue: 140,
           maxValue: 200,
@@ -220,7 +228,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
 
       ///----------------------------------------goal step----------------------------------------
       case 5:
-        final goalOptions = GoalOption.getGoalOptions();
+        final goalOptions = GoalOption.getGoalOptions(localization: AppLocalizations.of(context));
         return SelectionOptionStep(
           options:
               goalOptions
@@ -238,7 +246,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
 
       ///----------------------------------------activity level step----------------------------------------
       case 6:
-        final activityOptions = ActivityLevelOption.getActivityLevelOptions();
+        final activityOptions = ActivityLevelOption.getActivityLevelOptions(localization: AppLocalizations.of(context));
         return SelectionOptionStep(
           options:
               activityOptions

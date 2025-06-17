@@ -3,12 +3,12 @@ import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/utils/app_validator.dart';
 import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_arguments.dart';
-import 'package:fitness_app/features/auth/domain/entities/register_details.dart';
+import 'package:fitness_app/features/auth/data/model/register_details.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/password_strength_indicator.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
+import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -161,7 +161,7 @@ class _RegisterViewState extends State<RegisterView> {
         args: AuthPagesUiArguments(
           firstTitleArguments: const AuthPageTitleArguments(
             isBold: false,
-            text: 'Hi there',
+            text: 'Hi there', 
           ),
           secondTitleArguments: const AuthPageTitleArguments(
             isBold: true,
@@ -171,7 +171,7 @@ class _RegisterViewState extends State<RegisterView> {
           isRegister: true,
           registerStep: 1,
           showSocialLogin: true,
-          primaryButtonText: "Register",
+          primaryButtonText: 'Register', 
           primaryButtonAction: _navigateToDetailsPage,
 
           content: Form(
@@ -212,7 +212,7 @@ class _RegisterViewState extends State<RegisterView> {
                             width: 24.r,
                           ),
                         ),
-                        hintText: 'First Name',
+                        hintText: AppLocalizations.of(context).firstName,
                       ),
                     ),
                   ),
@@ -242,7 +242,7 @@ class _RegisterViewState extends State<RegisterView> {
                             width: 24.r,
                           ),
                         ),
-                        hintText: 'Last Name',
+                        hintText: AppLocalizations.of(context).lastName,
                       ),
                     ),
                   ),
@@ -269,7 +269,7 @@ class _RegisterViewState extends State<RegisterView> {
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: Icon(Icons.email_outlined),
                         ),
-                        hintText: 'Email',
+                        hintText: AppLocalizations.of(context).email,
                       ),
                     ),
                   ),
@@ -286,17 +286,17 @@ class _RegisterViewState extends State<RegisterView> {
                       keyboardType: TextInputType.visiblePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (value) => 
-                          value == null || value.isEmpty ? "Password is Required" : null,
+                          value == null || value.isEmpty ? AppLocalizations.of(context).passwordRequired : null,
 
                       decoration: InputDecoration(
                         errorText: _passwordController.text.isEmpty && _hasPasswordError
-                            ? "Password is Required"
+                            ? AppLocalizations.of(context).passwordRequired
                             : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: Icon(Icons.lock_outline_sharp),
                         ),
-                        hintText: 'Password',
+                        hintText: AppLocalizations.of(context).password,
                         suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
