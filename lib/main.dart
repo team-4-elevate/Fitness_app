@@ -26,10 +26,10 @@ void main() async {
 
   await ApiLocalizationService().init();
   await LocalizationManager().initialize();
-  configureDependencies();
-  await _configureFirebase().then((_) async {
+  await configureDependencies().then((_) async {
     isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
   });
+  await _configureFirebase();
 
   runApp(const MyApp());
 }
