@@ -1,3 +1,4 @@
+// core/api/dio_client.dart
 import 'package:dio/dio.dart';
 import 'package:fitness_app/core/Constant/api_constants.dart';
 import 'package:fitness_app/core/api/api_client.dart';
@@ -13,7 +14,7 @@ class DioApiClient implements ApiClient {
   final Dio _dio;
   final AppSecureStorage localStorage;
 
-  DioApiClient(this.localStorage)
+  DioApiClient(this.localStorage, this._appNavigator)
     : _dio = Dio(
         BaseOptions(
           baseUrl: ApiConstants.baseUrl,
@@ -113,20 +114,27 @@ class DioApiClient implements ApiClient {
       return responseData as T;
     }
 
+    // If T is List<Map<String, dynamic>>, return as is
     if (T.toString() == 'List<Map<String, dynamic>>') {
       return responseData as T;
     }
 
+    // If T is String and responseData is String
     if (T == String && responseData is String) {
       return responseData as T;
     }
+
+    // If T is List and responseData is List
     if (T.toString().startsWith('List<') && responseData is List) {
       return responseData as T;
     }
 
+    // For primitive types (int, double, bool)
     if (T == int || T == double || T == bool) {
       return responseData as T;
     }
+
+    // If none of the above, try direct casting
     try {
       return responseData as T;
     } catch (e) {
@@ -149,6 +157,15 @@ class DioApiClient implements ApiClient {
         throw ServerFailure(errorMessage: 'User token is null');
       }
     } catch (e) {
+      // Handle token error - navigate to login if needed
+      if (appCurrentRoute != AppRoutes.loginPage &&
+          appCurrentRoute != AppRoutes.registerPage) {
+        await localStorage.saveRememberMe(false);
+        _appNavigator.pushNamedAndRemoveUntil(
+          AppRoutes.loginPage,
+          (route) => false,
+        );
+      }
       throw ServerFailure(errorMessage: 'Token error: ${e.toString()}');
     }
   }
