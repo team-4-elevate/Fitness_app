@@ -56,10 +56,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i812.AuthLocalDataSourceImpl(gh<_i304.AppSecureStorage>()),
     );
     gh.singleton<_i277.ApiClient>(
-      () => _i861.DioApiClient(
-        gh<_i304.AppSecureStorage>(),
-        gh<_i565.NavigationService>(),
-      ),
+      () => _i861.DioApiClient(gh<_i304.AppSecureStorage>()),
     );
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),

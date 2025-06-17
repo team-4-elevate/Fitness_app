@@ -79,7 +79,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
     
     return BlocListener<RegisterBloc, RegisterStateType>(
       listener: (context, state) {
-        if (state is LoadingState) {
+        if (state is BaseLoadingState) {
           showDialog(
             context: context,
             barrierDismissible: false,
@@ -103,14 +103,14 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
             (route) => false, 
           );
          
-        } else if (state is ErrorState) {
+        } else if (state is BaseErrorState) {
           if (Navigator.canPop(context)) {
             Navigator.pop(context); 
           }
           
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text((state as ErrorState).error),
+              content: Text((state as BaseErrorState).error),
               backgroundColor: AppColors.red,
             ),
           );

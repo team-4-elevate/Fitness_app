@@ -40,7 +40,7 @@ void main() {
   });
 
   test('initial state should be InitialState', () {
-    expect(registerBloc.state, isA<InitialState>());
+    expect(registerBloc.state, isA<BaseInitialState>());
   });
 
   group('RegisterSubmitted', () {
@@ -72,7 +72,7 @@ void main() {
       },
       act: (bloc) => bloc.add(RegisterSubmitted(userData)),
       expect: () => [
-        isA<LoadingState>(),
+        isA<BaseLoadingState>(),
         isA<SuccessState>(),
       ],
     );
@@ -86,8 +86,8 @@ void main() {
       },
       act: (bloc) => bloc.add(RegisterSubmitted(userData)),
       expect: () => [
-        isA<LoadingState>(),
-        isA<ErrorState>(),
+        isA<BaseLoadingState>(),
+        isA<BaseErrorState>(),
       ],
     );
   });

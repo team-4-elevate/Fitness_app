@@ -14,7 +14,7 @@ part 'register_state.dart';
 class RegisterBloc extends Bloc<RegisterEvent, RegisterStateType> {
   final RegisterUseCase _registerUseCase;
   
-  RegisterBloc(this._registerUseCase) : super(const InitialState()) {
+  RegisterBloc(this._registerUseCase) : super(const BaseInitialState()) {
     on<RegisterSubmitted>(_onRegisterSubmitted);
   }
 
@@ -22,13 +22,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterStateType> {
     RegisterSubmitted event,
     Emitter<RegisterStateType> emit,
   ) async {
-    emit(const LoadingState());
+    emit(const BaseLoadingState());
     
     final result = await _registerUseCase(event.data);
     
     result.when(
       success: (data) => emit(SuccessState(data)),
-      failure: (error) => emit(ErrorState(error)),
+      failure: (error) => emit(BaseErrorState(error)),
     );
   }
 }

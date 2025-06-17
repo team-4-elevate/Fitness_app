@@ -30,8 +30,8 @@ void main() {
   
   debugPrintLayouts = false;
   //  dummy values for mockito
-  provideDummy<BaseState<RegisterResponse>>(InitialState<RegisterResponse>());
-  provideDummy<RegisterStateType>(const InitialState<RegisterResponse>());
+  provideDummy<BaseState<RegisterResponse>>(BaseInitialState<RegisterResponse>());
+  provideDummy<RegisterStateType>(const BaseInitialState<RegisterResponse>());
   late MockRegisterBloc mockRegisterBloc;
   late MockNavigatorObserver mockNavigatorObserver;
 
@@ -40,7 +40,7 @@ void main() {
     mockNavigatorObserver = MockNavigatorObserver();
     reset(mockRegisterBloc);
     reset(mockNavigatorObserver);
-    when(mockRegisterBloc.state).thenReturn(InitialState());
+    when(mockRegisterBloc.state).thenReturn(BaseInitialState());
   });
 
   Widget createRegisterView() {
