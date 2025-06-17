@@ -60,6 +60,7 @@ dependencies:
   blur:
   flutter_svg:
   pinput:
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
