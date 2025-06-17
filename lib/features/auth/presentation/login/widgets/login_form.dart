@@ -37,7 +37,7 @@ class LoginForm extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: context.l10n.login_emailLabel,
                     hintText: context.l10n.login_emailHint,
-                    errorText: state.emailError, 
+                    errorText: state.emailError,
                   ),
                 ),
                 R.spaceH16,
@@ -55,8 +55,7 @@ class LoginForm extends StatelessWidget {
                       decoration: InputDecoration(
                         labelText: context.l10n.login_passwordLabel,
                         hintText: context.l10n.login_passwordHint,
-                        errorText:
-                            state.passwordError,
+                        errorText: state.passwordError,
                         suffixIcon: Icon(
                           viewModel.isPasswordVisible.value
                               ? Icons.visibility_off_rounded
@@ -139,9 +138,9 @@ class LoginForm extends StatelessWidget {
                               LoginIntent.loginButtonPressed,
                             );
                           }
-                          : null, 
+                          : null,
                   child: Text(
-                     context.l10n.login_title,
+                    context.l10n.login_title,
                     style: AppFontStyle.customAppFont.copyWith(fontSize: 18.sp),
                   ),
                 ),
@@ -156,7 +155,7 @@ class LoginForm extends StatelessWidget {
                       ),
                     ),
                     Text(
-                       context.l10n.login_register,
+                      context.l10n.login_register,
                       style: AppFontStyle.customAppFont.copyWith(
                         fontSize: 14.sp,
                         color: AppColors.primaryOrange,

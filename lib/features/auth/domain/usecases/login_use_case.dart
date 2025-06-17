@@ -9,7 +9,7 @@ class LoginUseCase {
   final AuthRepo _repo;
   LoginUseCase(this._repo);
 
-  Future<ApiResult<LoginResponse>> call(LoginRequest loginRequest) async{
+  Future<ApiResult<LoginResponse>> call(LoginRequest loginRequest) async {
     return await _repo.login(loginRequest);
   }
 }

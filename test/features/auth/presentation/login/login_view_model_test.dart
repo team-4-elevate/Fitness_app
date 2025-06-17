@@ -493,7 +493,7 @@ void main() {
 
         loginViewModel.loginIntent(LoginIntent.validateEmail);
         expect(loginViewModel.emailError, isNull);
-        expect(loginViewModel.isFormValid, isTrue); 
+        expect(loginViewModel.isFormValid, isTrue);
 
         loginViewModel.loginIntent(LoginIntent.validatePassword);
         expect(loginViewModel.passwordError, isNull);

@@ -35,9 +35,7 @@ class BlurredBackground extends StatelessWidget {
       ),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
-        child: Container(
-          child: isScrollable ? child.scrollable : child,
-        ),
+        child: Container(child: isScrollable ? child.scrollable : child),
       ),
     );
   }

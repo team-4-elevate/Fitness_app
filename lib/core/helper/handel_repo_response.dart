@@ -114,7 +114,7 @@ extension ApiResultExtensions<T> on ApiResult<T> {
       }
       return this;
     } catch (e) {
-      return this; 
+      return this;
     }
   }
 
@@ -133,9 +133,7 @@ extension ApiResultExtensions<T> on ApiResult<T> {
     try {
       return Future.value(this);
     } catch (e) {
-      return Future.value(
-        ApiFailure(e.toString()),
-      );
+      return Future.value(ApiFailure(e.toString()));
     }
   }
 
@@ -152,7 +150,7 @@ extension ApiResultExtensions<T> on ApiResult<T> {
         return ApiFailure<R>((this as ApiFailure<T>).message);
       }
     } catch (e) {
-      return ApiFailure<R>( e.toString());
+      return ApiFailure<R>(e.toString());
     }
   }
 
@@ -175,7 +173,7 @@ extension ApiResultExtensions<T> on ApiResult<T> {
       }
       return this;
     } catch (e) {
-      return this; 
+      return this;
     }
   }
 }

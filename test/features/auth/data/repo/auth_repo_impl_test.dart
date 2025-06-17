@@ -278,10 +278,10 @@ void main() {
         final partialUser = User(
           id: '12345',
           firstName: 'John',
-          lastName: null, 
+          lastName: null,
           email: email,
-          gender: null, 
-          age: null, 
+          gender: null,
+          age: null,
         );
 
         final partialResponse = LoginResponse(

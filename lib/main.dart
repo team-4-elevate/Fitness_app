@@ -66,7 +66,8 @@ class MyApp extends StatelessWidget {
               //home: const Home(),
               home: BlocProvider(
                 create: (context) => getIt<LoginViewModel>(),
-                child: const LoginView()),
+                child: const LoginView(),
+              ),
             ),
           );
         },

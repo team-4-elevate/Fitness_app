@@ -222,8 +222,8 @@ void main() {
 
       test('should handle response with invalid data types', () async {
         final responseWithInvalidTypes = {
-          'message': '123', 
-          'token': 'invalid_token_string', 
+          'message': '123',
+          'token': 'invalid_token_string',
           'user': null,
         };
 
@@ -261,8 +261,8 @@ void main() {
             requiresToken: anyNamed('requiresToken'),
           ),
         ).thenAnswer((_) async => ApiSuccess(mockApiResponse));
- 
-         await authRemoteDataSource.login(loginRequest);
+
+        await authRemoteDataSource.login(loginRequest);
 
         verify(
           mockApiClient.post(

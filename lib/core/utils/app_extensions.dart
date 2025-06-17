@@ -160,8 +160,8 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
-    Future<void> showLoadingIndicator() async {
-     await showDialog(
+  Future<void> showLoadingIndicator() async {
+    await showDialog(
       barrierDismissible: false,
       context: this,
       builder: (context) {

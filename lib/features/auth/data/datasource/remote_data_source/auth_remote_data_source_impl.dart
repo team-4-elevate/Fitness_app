@@ -19,6 +19,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
     );
     return response.map((data) {
       return LoginResponse.fromJson(data);
-    },);
+    });
   }
 }
