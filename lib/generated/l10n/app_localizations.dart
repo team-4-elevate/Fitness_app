@@ -62,8 +62,7 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,18 +82,17 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en'),
+    Locale('en')
   ];
 
   /// The title of the application
@@ -205,10 +202,123 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error occurred (code: {status}).'**
   String errorWithStatusCode(String status);
+
+  /// No description provided for @login_heyThere.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey There'**
+  String get login_heyThere;
+
+  /// No description provided for @login_welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'WELCOME BACK'**
+  String get login_welcomeBack;
+
+  /// No description provided for @login_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login_title;
+
+  /// No description provided for @login_emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get login_emailLabel;
+
+  /// No description provided for @login_emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get login_emailHint;
+
+  /// No description provided for @login_passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get login_passwordLabel;
+
+  /// No description provided for @login_passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get login_passwordHint;
+
+  /// No description provided for @login_forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get login_forgotPassword;
+
+  /// No description provided for @login_orDivider.
+  ///
+  /// In en, this message translates to:
+  /// **'OR'**
+  String get login_orDivider;
+
+  /// No description provided for @login_noAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get login_noAccount;
+
+  /// No description provided for @login_register.
+  ///
+  /// In en, this message translates to:
+  /// **' Register'**
+  String get login_register;
+
+  /// No description provided for @login_socialTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Social Login'**
+  String get login_socialTitle;
+
+  /// No description provided for @login_socialMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Social login is not implemented yet.'**
+  String get login_socialMessage;
+
+  /// No description provided for @login_socialButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok Got it'**
+  String get login_socialButton;
+
+  /// No description provided for @login_successTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Successful'**
+  String get login_successTitle;
+
+  /// Login success message with user name
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back, {user}!'**
+  String login_successMessage(String user);
+
+  /// No description provided for @login_failedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Failed'**
+  String get login_failedTitle;
+
+  /// Login failure message with error details
+  ///
+  /// In en, this message translates to:
+  /// **'{error}'**
+  String login_failedMessage(String error);
+
+  /// No description provided for @login_failedButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok Got it'**
+  String get login_failedButton;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -217,26 +327,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar':
-      return AppLocalizationsAr();
-    case 'en':
-      return AppLocalizationsEn();
+    case 'ar': return AppLocalizationsAr();
+    case 'en': return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
+    'that was used.'
   );
 }

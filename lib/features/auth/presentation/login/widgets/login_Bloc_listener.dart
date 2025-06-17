@@ -2,6 +2,7 @@ import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/widgets/animated_dialogs.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_intent.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_state.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
 import 'package:fitness_app/features/home/home.dart';
@@ -18,24 +19,28 @@ class LoginBlocListener extends StatelessWidget {
       listener: (context, state) async {
         final viewModel = context.read<LoginViewModel>();
         if (state.showSocialLoginMessage) {
-          await context.showFailureNotification(
-            title: 'Social Login',
-            message: 'Social login is not implemented yet.',
+          await context.showFailureAction(
+            buttonText: context.l10n.login_socialButton,
+            onButtonPressed: () {
+              context.pop();
+            },
+            title: context.l10n.login_socialTitle,
+            message: context.l10n.login_socialMessage,
             customization: DialogCustomization(messageColor: AppColors.black),
           );
-          viewModel.resetStates();
           return;
         }
 
         if (state.navigateToResetPassword) {
           Navigator.pushNamed(context, AppRoutes.resetPasswordPage);
-          viewModel.resetStates();
+          viewModel.loginIntent(LoginIntent.resetStates);
           return;
         }
 
         if (state.navigateToSignUp) {
           Navigator.pushNamed(context, AppRoutes.signUpPage);
-          viewModel.resetStates();
+          viewModel.loginIntent(LoginIntent.resetStates);
+
           return;
         }
         await state.loginState?.whenOrNull(
@@ -45,8 +50,10 @@ class LoginBlocListener extends StatelessWidget {
           success: (data) async {
             context.pop();
             await context.showSuccessNotification(
-              title: 'Login Successful',
-              message: 'Welcome back, ${data?.user?.firstName ?? "User"}!',
+              title: context.l10n.login_successTitle,
+              message: context.l10n.login_successMessage(
+                data?.user?.firstName ?? '',
+              ),
               onAnimationComplete: () {
                 Navigator.pushAndRemoveUntil(
                   context,
@@ -59,12 +66,12 @@ class LoginBlocListener extends StatelessWidget {
           error: (error) async {
             context.pop();
             await context.showFailureAction(
-              title: 'Login Failed',
-              message: error ?? 'An unexpected error occurred.',
-              buttonText: 'Ok Got it',
+              title: context.l10n.login_failedTitle,
+              message: error ?? '',
+              buttonText: context.l10n.login_failedButton,
               onButtonPressed: () {
                 context.pop();
-                viewModel.resetStates();
+                viewModel.loginIntent(LoginIntent.resetStates);
               },
             );
           },

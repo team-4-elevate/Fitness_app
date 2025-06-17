@@ -1,4 +1,5 @@
 import 'package:fitness_app/core/helper/handle_cubit_states.dart';
+import 'package:fitness_app/core/utils/app_validator.dart';
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart';
 import 'package:fitness_app/features/auth/domain/usecases/login_use_case.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_intent.dart';
@@ -19,10 +20,14 @@ class LoginViewModel extends Cubit<LoginState> {
 
   ValueNotifier<bool> isPasswordVisible = ValueNotifier<bool>(true);
 
+  String? emailError;
+  String? passwordError;
+  bool isFormValid = false;
+
   void loginIntent(LoginIntent intent) {
     switch (intent) {
       case LoginIntent.loginButtonPressed:
-        if (formKey.currentState?.validate() ?? false) {
+        if (_validateForm()) {
           _doLogin();
         }
         break;
@@ -42,7 +47,91 @@ class LoginViewModel extends Cubit<LoginState> {
       case LoginIntent.changePasswordVisibility:
         _changePasswordVisibility();
         break;
+
+      case LoginIntent.validateEmail:
+        _validateEmailOnly();
+        break;
+
+      case LoginIntent.validatePassword:
+        _validatePasswordOnly();
+        break;
+
+      case LoginIntent.clearValidationErrors:
+        _clearValidationErrors();
+        break;
+
+      case LoginIntent.resetStates:
+        _resetStates();
+        break;
     }
+  }
+
+  void _validateEmailOnly() {
+    final email = emailController.text.trim();
+    emailError = AppValidators.validateEmail(email);
+    _updateValidationState();
+  }
+
+  void _validatePasswordOnly() {
+    passwordError = AppValidators.validatePassword(passwordController.text);
+    _updateValidationState();
+  }
+
+  bool _validateForm() {
+    final email = emailController.text.trim();
+    final password = passwordController.text;
+
+    emailError = AppValidators.validateEmail(email);
+    passwordError = AppValidators.validatePassword(password);
+
+    isFormValid = emailError == null && passwordError == null;
+
+    emit(
+      state.copyWith(
+        emailError: emailError,
+        passwordError: passwordError,
+        isFormValid: isFormValid,
+        clearEmailError: emailError == null,
+        clearPasswordError: passwordError == null,
+      ),
+    );
+
+    return isFormValid;
+  }
+
+  void _updateValidationState() {
+    isFormValid = emailError == null && passwordError == null;
+    emit(
+      state.copyWith(
+        emailError: emailError,
+        passwordError: passwordError,
+        isFormValid: isFormValid,
+        clearEmailError: emailError == null,
+        clearPasswordError: passwordError == null,
+      ),
+    );
+  }
+
+  void _clearValidationErrors() {
+    emailError = null;
+    passwordError = null;
+    isFormValid = false;
+    emit(
+      state.copyWith(
+        isFormValid: false,
+        clearEmailError: true,
+        clearPasswordError: true,
+      ),
+    );
+  }
+
+  void _resetStates() {
+    emailController.clear();
+    passwordController.clear();
+    emailError = null;
+    passwordError = null;
+    isFormValid = false;
+    emit(const LoginState());
   }
 
   Future<void> _doLogin() async {
@@ -50,7 +139,7 @@ class LoginViewModel extends Cubit<LoginState> {
       request:
           () => _loginUseCase.call(
             LoginRequest(
-              email: emailController.text,
+              email: emailController.text.trim(),
               password: passwordController.text,
             ),
           ),
@@ -62,10 +151,6 @@ class LoginViewModel extends Cubit<LoginState> {
 
   void _changePasswordVisibility() {
     isPasswordVisible.value = !isPasswordVisible.value;
-  }
-
-  void resetStates() {
-    emit(const LoginState());
   }
 
   @override

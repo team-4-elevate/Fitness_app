@@ -8,6 +8,9 @@ class LoginState extends Equatable {
   final bool navigateToSignUp;
   final bool navigateToHome;
   final bool showSocialLoginMessage;
+  final String? emailError;
+  final String? passwordError;
+  final bool isFormValid;
 
   const LoginState({
     this.loginState,
@@ -15,6 +18,9 @@ class LoginState extends Equatable {
     this.navigateToSignUp = false,
     this.navigateToHome = false,
     this.showSocialLoginMessage = false,
+    this.emailError,
+    this.passwordError,
+    this.isFormValid = false,
   });
 
   LoginState copyWith({
@@ -23,13 +29,24 @@ class LoginState extends Equatable {
     bool? navigateToSignUp,
     bool? navigateToHome,
     bool? showSocialLoginMessage,
+    String? emailError,
+    String? passwordError,
+    bool? isFormValid,
+    bool clearEmailError = false,
+    bool clearPasswordError = false,
   }) {
     return LoginState(
       loginState: loginState ?? this.loginState,
-      navigateToResetPassword: navigateToResetPassword ?? false,
-      navigateToSignUp: navigateToSignUp ?? false,
-      navigateToHome: navigateToHome ?? false,
-      showSocialLoginMessage: showSocialLoginMessage ?? false,
+      navigateToResetPassword:
+          navigateToResetPassword ?? this.navigateToResetPassword,
+      navigateToSignUp: navigateToSignUp ?? this.navigateToSignUp,
+      navigateToHome: navigateToHome ?? this.navigateToHome,
+      showSocialLoginMessage:
+          showSocialLoginMessage ?? this.showSocialLoginMessage,
+      emailError: clearEmailError ? null : (emailError ?? this.emailError),
+      passwordError:
+          clearPasswordError ? null : (passwordError ?? this.passwordError),
+      isFormValid: isFormValid ?? this.isFormValid,
     );
   }
 
@@ -40,5 +57,8 @@ class LoginState extends Equatable {
     navigateToSignUp,
     navigateToHome,
     showSocialLoginMessage,
+    emailError,
+    passwordError,
+    isFormValid,
   ];
 }

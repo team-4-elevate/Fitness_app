@@ -16,7 +16,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<ApiResult<LoginResponse>> login(LoginRequest loginRequest) async {
     try {
       var response = await _authRemoteDataSource.login(loginRequest);
-      return handleRepoResponse(response).thenDo((data) async {
+      return handleRepoResponse(response).thenDoAsync((data) async {
         await _secureStorage.saveToken(data.token ?? '');
       });
     } catch (e) {

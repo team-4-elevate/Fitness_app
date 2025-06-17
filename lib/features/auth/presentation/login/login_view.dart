@@ -1,5 +1,3 @@
-// ignore_for_file: inference_failure_on_function_invocation
-
 import 'package:fitness_app/core/Constant/app_constants.dart';
 import 'package:fitness_app/core/responsive/responsive_design.dart';
 import 'package:fitness_app/core/theme/app_font_style.dart';
@@ -31,7 +29,7 @@ class LoginView extends StatelessWidget {
               ).center.paddingOnly(top: 40.h),
               R.spaceH24,
               Text(
-                'Hey There',
+                context.l10n.login_heyThere,
                 style: AppFontStyle.customAppFont.copyWith(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w600,
@@ -39,7 +37,7 @@ class LoginView extends StatelessWidget {
               ).paddingOnly(left: R.paddingSMValue),
               R.spaceH4,
               Text(
-                'WELCOME BACK',
+                context.l10n.login_welcomeBack,
                 style: AppFontStyle.customAppFont.copyWith(fontSize: 20.sp),
               ).paddingOnly(left: R.paddingSMValue),
               R.spaceH24,

@@ -4,4 +4,8 @@ enum LoginIntent {
   forgotPasswordButtonPressed,
   registerButtonPressed,
   changePasswordVisibility,
+  validateEmail,
+  validatePassword,
+  clearValidationErrors,
+  resetStates,
 }

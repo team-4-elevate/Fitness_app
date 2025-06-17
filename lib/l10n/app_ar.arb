@@ -1,21 +1,129 @@
 {
   "@@locale": "ar",
   "appTitle": "تطبيق اللياقة البدنية",
-  "hello": "مرحبا",
-  "welcome": "مرحبا بك في تطبيق اللياقة البدنية",
-  "networkError": "لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.",
+  "@appTitle": {
+    "description": "عنوان التطبيق"
+  },
+  "hello": "مرحباً",
+  "@hello": {
+    "description": "تحية بسيطة"
+  },
+  "welcome": "مرحباً بك في تطبيق اللياقة البدنية",
+  "@welcome": {
+    "description": "رسالة ترحيب للمستخدمين"
+  },
+  "networkError": "لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.",
+  "@networkError": {
+    "description": "رسالة خطأ عند عدم وجود اتصال بالإنترنت"
+  },
   "serverError": "خطأ في الخادم. يرجى المحاولة لاحقاً.",
+  "@serverError": {
+    "description": "رسالة خطأ عند حدوث خطأ في الخادم"
+  },
   "unknownError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
-  "timeout": "انتهت مدة الانتظار. يرجى المحاولة مرة أخرى.",
+  "@unknownError": {
+    "description": "رسالة خطأ عند حدوث خطأ غير معروف"
+  },
+  "timeout": "انتهت مهلة الاتصال. يرجى المحاولة مرة أخرى.",
+  "@timeout": {
+    "description": "رسالة خطأ لانتهاء المهلة"
+  },
   "unauthorized": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.",
+  "@unauthorized": {
+    "description": "رسالة خطأ عند فشل المصادقة"
+  },
   "forbidden": "لا تملك صلاحية الوصول.",
+  "@forbidden": {
+    "description": "رسالة خطأ عند عدم وجود صلاحية"
+  },
   "notFound": "لم يتم العثور على البيانات المطلوبة.",
+  "@notFound": {
+    "description": "رسالة خطأ عند عدم وجود المورد"
+  },
   "validationError": "البيانات المدخلة غير صحيحة.",
-  "badRequest": "طلب غير صحيح.",
+  "@validationError": {
+    "description": "رسالة خطأ لبيانات غير صالحة"
+  },
+  "badRequest": "طلب غير صالح.",
+  "@badRequest": {
+    "description": "رسالة خطأ لطلب غير صحيح"
+  },
   "requestCancelled": "تم إلغاء الطلب.",
-  "connectionError": "خطأ في الاتصال بالشبكة.",
-  "socketException": "مشكلة في الاتصال بالخادم. يرجى التحقق من الإنترنت.",
+  "@requestCancelled": {
+    "description": "رسالة خطأ لإلغاء الطلب"
+  },
+  "connectionError": "خطأ في الاتصال. يرجى التحقق من الشبكة.",
+  "@connectionError": {
+    "description": "رسالة خطأ في الاتصال"
+  },
+  "socketException": "مشكلة في الاتصال. يرجى التحقق من الإنترنت.",
+  "@socketException": {
+    "description": "رسالة خطأ في المقبس"
+  },
   "formatException": "تعذر قراءة البيانات المستلمة.",
+  "@formatException": {
+    "description": "رسالة خطأ في تنسيق البيانات"
+  },
   "errorWithMessage": "حدث خطأ: {message}",
-  "errorWithStatusCode": "حدث خطأ (كود: {status})."
+  "@errorWithMessage": {
+    "description": "رسالة خطأ تحتوي على رسالة مخصصة",
+    "placeholders": {
+      "message": {
+        "type": "String",
+        "description": "نص رسالة الخطأ"
+      }
+    }
+  },
+  "errorWithStatusCode": "حدث خطأ (الكود: {status}).",
+  "@errorWithStatusCode": {
+    "description": "رسالة خطأ تحتوي على كود الحالة",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "رمز الحالة"
+      }
+    }
+  },
+
+  "login_heyThere": "مرحباً",
+  "login_welcomeBack": "مرحباً بعودتك",
+  "login_title": "تسجيل الدخول",
+  "login_emailLabel": "البريد الإلكتروني",
+  "login_emailHint": "أدخل بريدك الإلكتروني",
+  "login_passwordLabel": "كلمة المرور",
+  "login_passwordHint": "أدخل كلمة المرور",
+  "login_forgotPassword": "هل نسيت كلمة المرور؟",
+  "login_orDivider": "أو",
+  "login_noAccount": "ليس لديك حساب؟",
+  "login_register": " سجل الآن",
+
+  "login_socialTitle": "تسجيل الدخول الاجتماعي",
+  "login_socialMessage": "تسجيل الدخول عبر الشبكات الاجتماعية غير متاح حالياً.",
+  "login_socialButton": "حسناً، فهمت",
+
+  "login_successTitle": "تم تسجيل الدخول",
+  "login_successMessage": "مرحباً بعودتك، {user}!",
+  "@login_successMessage": {
+    "description": "رسالة نجاح تسجيل الدخول مع اسم المستخدم",
+    "placeholders": {
+      "user": {
+        "type": "String",
+        "description": "اسم المستخدم"
+      }
+    }
+  },
+
+  "login_failedTitle": "فشل تسجيل الدخول",
+  "login_failedMessage": "{error}",
+  "@login_failedMessage": {
+    "description": "رسالة فشل تسجيل الدخول مع تفاصيل الخطأ",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "نص الخطأ المعروض"
+      }
+    }
+  },
+
+  "login_failedButton": "حسناً، فهمت"
 }
