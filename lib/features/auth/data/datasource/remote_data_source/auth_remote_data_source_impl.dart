@@ -24,7 +24,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
         data: request.toJson(),
         requiresToken: false,
       );
-      
+
       return response.map((data) => RegisterResponse.fromJson(data));
     } catch (e) {
       debugPrint('Registration error: $e');

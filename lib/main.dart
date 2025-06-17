@@ -27,11 +27,10 @@ void main() async {
 
   await ApiLocalizationService().init();
   await LocalizationManager().initialize();
-   configureDependencies();
+  configureDependencies();
   await _configureFirebase();
 
   Bloc.observer = AppBlocObserver();
-
 
   runApp(const MyApp());
 }

@@ -9,8 +9,6 @@ import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-
 class AppRoutesGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -21,21 +19,18 @@ class AppRoutesGenerator {
         final args = settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
           settings: settings,
-          builder: (context) => BlocProvider<RegisterBloc>.value(
-            value: args?['registerBloc'],
-            child: RegisterDetailsView(
-              initialData: args?['userData'],
-            ),
-          ),
+          builder:
+              (context) => BlocProvider<RegisterBloc>.value(
+                value: args?['registerBloc'],
+                child: RegisterDetailsView(initialData: args?['userData']),
+              ),
         );
 
-
-
-        //--------------------------------------------home page--------------------
+      //--------------------------------------------home page--------------------
       case AppRoutes.homePage:
         return MaterialPageRoute(builder: (_) => const Home());
-        
-        //////--------------------------------------------login--------------------
+
+      //////--------------------------------------------login--------------------
       default:
         return MaterialPageRoute(
           builder:

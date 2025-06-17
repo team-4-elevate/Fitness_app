@@ -6,12 +6,11 @@ import 'package:fitness_app/features/auth/data/model/register_details.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class RegisterUseCase  {
+class RegisterUseCase {
   final AuthRepo _authRepo;
 
   RegisterUseCase(this._authRepo);
 
-  
   Future<ApiResult<RegisterResponse>> call(RegisterDetailsData params) async {
     return await _authRepo.register(params);
   }

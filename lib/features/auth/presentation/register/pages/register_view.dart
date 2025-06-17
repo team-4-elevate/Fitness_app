@@ -141,13 +141,10 @@ class _RegisterViewState extends State<RegisterView> {
       );
 
       final registerBloc = BlocProvider.of<RegisterBloc>(context);
-      
+
       Navigator.of(context).pushNamed(
         AppRoutes.registerDetailsView,
-        arguments: {
-          'registerBloc': registerBloc,
-          'userData': userData,
-        },
+        arguments: {'registerBloc': registerBloc, 'userData': userData},
       );
     }
   }
@@ -161,7 +158,7 @@ class _RegisterViewState extends State<RegisterView> {
         args: AuthPagesUiArguments(
           firstTitleArguments: const AuthPageTitleArguments(
             isBold: false,
-            text: 'Hi there', 
+            text: 'Hi there',
           ),
           secondTitleArguments: const AuthPageTitleArguments(
             isBold: true,
@@ -171,7 +168,7 @@ class _RegisterViewState extends State<RegisterView> {
           isRegister: true,
           registerStep: 1,
           showSocialLogin: true,
-          primaryButtonText: 'Register', 
+          primaryButtonText: 'Register',
           primaryButtonAction: _navigateToDetailsPage,
 
           content: Form(
@@ -285,13 +282,20 @@ class _RegisterViewState extends State<RegisterView> {
                       obscureText: _obscurePassword,
                       keyboardType: TextInputType.visiblePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) => 
-                          value == null || value.isEmpty ? AppLocalizations.of(context).passwordRequired : null,
+                      validator:
+                          (value) =>
+                              value == null || value.isEmpty
+                                  ? AppLocalizations.of(
+                                    context,
+                                  ).passwordRequired
+                                  : null,
 
                       decoration: InputDecoration(
-                        errorText: _passwordController.text.isEmpty && _hasPasswordError
-                            ? AppLocalizations.of(context).passwordRequired
-                            : null,
+                        errorText:
+                            _passwordController.text.isEmpty &&
+                                    _hasPasswordError
+                                ? AppLocalizations.of(context).passwordRequired
+                                : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: Icon(Icons.lock_outline_sharp),

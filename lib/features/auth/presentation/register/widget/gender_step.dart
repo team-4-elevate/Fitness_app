@@ -29,14 +29,16 @@ class GenderStep extends StatelessWidget {
                 label: AppLocalizations.of(context).male,
                 icon: Icons.male,
                 isSelected: userData.gender == Gender.male,
-                onTap: () => onGenderSelected(AppLocalizations.of(context).male),
+                onTap:
+                    () => onGenderSelected(AppLocalizations.of(context).male),
               ),
               SizedBox(height: 40.r),
               _buildGenderOption(
                 label: AppLocalizations.of(context).female,
                 icon: Icons.female,
                 isSelected: userData.gender == Gender.female,
-                onTap: () => onGenderSelected(AppLocalizations.of(context).female),
+                onTap:
+                    () => onGenderSelected(AppLocalizations.of(context).female),
               ),
             ],
           ),

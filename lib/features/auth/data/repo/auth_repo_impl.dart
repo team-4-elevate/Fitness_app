@@ -11,17 +11,15 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSourceContract _remoteDataSource;
-  
-  AuthRepoImpl(this._remoteDataSource);
-  
 
+  AuthRepoImpl(this._remoteDataSource);
 
   //-------------------------register-------------------------
   @override
   Future<ApiResult<RegisterResponse>> register(RegisterDetailsData data) async {
     try {
       final request = data.toRegisterRequest();
-      
+
       return await _remoteDataSource.register(request);
     } catch (e) {
       debugPrint('Registration repository error: $e');

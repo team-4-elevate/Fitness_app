@@ -7,12 +7,17 @@ class GoalOption {
 
   const GoalOption({required this.id, required this.label});
 
-  static List<GoalOption> getGoalOptions({required AppLocalizations localization}) {
+  static List<GoalOption> getGoalOptions({
+    required AppLocalizations localization,
+  }) {
     return [
       GoalOption(id: 'gain_weight', label: localization.goalGainWeight),
       GoalOption(id: 'lose_weight', label: localization.goalLoseWeight),
       GoalOption(id: 'get_fitter', label: localization.goalGetFitter),
-      GoalOption(id: 'gain_flexibility', label: localization.goalGainFlexibility),
+      GoalOption(
+        id: 'gain_flexibility',
+        label: localization.goalGainFlexibility,
+      ),
       GoalOption(id: 'learn_basics', label: localization.goalLearnBasics),
     ];
   }

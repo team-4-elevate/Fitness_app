@@ -76,7 +76,7 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
-    
+
     return BlocListener<RegisterBloc, RegisterStateType>(
       listener: (context, state) {
         if (state is BaseLoadingState) {
@@ -90,24 +90,22 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           if (Navigator.canPop(context)) {
             Navigator.pop(context);
           }
-          
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(localizations.registerSuccess),
               backgroundColor: AppColors.green,
             ),
           );
-          
-          Navigator.of(context).pushNamedAndRemoveUntil(
-            AppRoutes.homePage,
-            (route) => false, 
-          );
-         
+
+          Navigator.of(
+            context,
+          ).pushNamedAndRemoveUntil(AppRoutes.homePage, (route) => false);
         } else if (state is BaseErrorState) {
           if (Navigator.canPop(context)) {
-            Navigator.pop(context); 
+            Navigator.pop(context);
           }
-          
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text((state as BaseErrorState).error),
@@ -120,16 +118,25 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
         args: AuthPagesUiArguments(
           firstTitleArguments: AuthPageTitleArguments(
             isBold: true,
-            text: RegistrationSteps.getTitleForStep(_currentStep, AppLocalizations.of(context)),
+            text: RegistrationSteps.getTitleForStep(
+              _currentStep,
+              AppLocalizations.of(context),
+            ),
           ),
           secondTitleArguments: AuthPageTitleArguments(
             isBold: false,
-            text: RegistrationSteps.getSubtitleForStep(_currentStep, AppLocalizations.of(context)),
+            text: RegistrationSteps.getSubtitleForStep(
+              _currentStep,
+              AppLocalizations.of(context),
+            ),
           ),
           isRegister: true,
           registerStep: _currentStep,
           showSocialLogin: false,
-          primaryButtonText: _currentStep < 6 ? AppLocalizations.of(context).next : AppLocalizations.of(context).finish,
+          primaryButtonText:
+              _currentStep < 6
+                  ? AppLocalizations.of(context).next
+                  : AppLocalizations.of(context).finish,
           primaryButtonAction: () {
             bool isValid = _validateCurrentStep();
             if (isValid) {
@@ -173,7 +180,10 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           userData: _userData,
           onGenderSelected: (gender) {
             setState(() {
-              _userData.gender = gender == AppLocalizations.of(context).male ? Gender.male : Gender.female;
+              _userData.gender =
+                  gender == AppLocalizations.of(context).male
+                      ? Gender.male
+                      : Gender.female;
             });
           },
         );
@@ -228,7 +238,9 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
 
       ///----------------------------------------goal step----------------------------------------
       case 5:
-        final goalOptions = GoalOption.getGoalOptions(localization: AppLocalizations.of(context));
+        final goalOptions = GoalOption.getGoalOptions(
+          localization: AppLocalizations.of(context),
+        );
         return SelectionOptionStep(
           options:
               goalOptions
@@ -246,7 +258,9 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
 
       ///----------------------------------------activity level step----------------------------------------
       case 6:
-        final activityOptions = ActivityLevelOption.getActivityLevelOptions(localization: AppLocalizations.of(context));
+        final activityOptions = ActivityLevelOption.getActivityLevelOptions(
+          localization: AppLocalizations.of(context),
+        );
         return SelectionOptionStep(
           options:
               activityOptions

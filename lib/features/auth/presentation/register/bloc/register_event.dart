@@ -10,7 +10,7 @@ sealed class RegisterEvent extends Equatable {
 
 class RegisterSubmitted extends RegisterEvent {
   final RegisterDetailsData data;
-  
+
   const RegisterSubmitted(this.data);
 
   @override

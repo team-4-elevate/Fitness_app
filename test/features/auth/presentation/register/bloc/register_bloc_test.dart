@@ -15,7 +15,6 @@ import 'package:fitness_app/core/helper/api_result.dart';
 import 'register_bloc_test.mocks.dart';
 
 @GenerateMocks([RegisterUseCase])
-
 // Provide dummy value for ApiResult<RegisterResponse> to help Mockito
 RegisterResponse dummyResponse = RegisterResponse(
   message: 'Dummy response',
@@ -25,7 +24,9 @@ RegisterResponse dummyResponse = RegisterResponse(
 
 void main() {
   // Setup dummy values for mockito
-  provideDummy<ApiResult<RegisterResponse>>(ApiSuccess<RegisterResponse>(dummyResponse));
+  provideDummy<ApiResult<RegisterResponse>>(
+    ApiSuccess<RegisterResponse>(dummyResponse),
+  );
 
   late RegisterBloc registerBloc;
   late MockRegisterUseCase mockRegisterUseCase;
@@ -64,31 +65,27 @@ void main() {
         final successResponse = RegisterResponse(
           message: 'Registration successful',
           token: 'test_token_12345',
-          user: null, 
+          user: null,
         );
-        when(mockRegisterUseCase(any))
-            .thenAnswer((_) async => ApiSuccess(successResponse));
+        when(
+          mockRegisterUseCase(any),
+        ).thenAnswer((_) async => ApiSuccess(successResponse));
         return registerBloc;
       },
       act: (bloc) => bloc.add(RegisterSubmitted(userData)),
-      expect: () => [
-        isA<BaseLoadingState>(),
-        isA<SuccessState>(),
-      ],
+      expect: () => [isA<BaseLoadingState>(), isA<SuccessState>()],
     );
 
     blocTest<RegisterBloc, RegisterStateType>(
       'should emit LoadingState, ErrorState when registration fails',
       build: () {
-        when(mockRegisterUseCase(any))
-            .thenAnswer((_) async => ApiFailure('Registration failed'));
+        when(
+          mockRegisterUseCase(any),
+        ).thenAnswer((_) async => ApiFailure('Registration failed'));
         return registerBloc;
       },
       act: (bloc) => bloc.add(RegisterSubmitted(userData)),
-      expect: () => [
-        isA<BaseLoadingState>(),
-        isA<BaseErrorState>(),
-      ],
+      expect: () => [isA<BaseLoadingState>(), isA<BaseErrorState>()],
     );
   });
 }

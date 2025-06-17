@@ -5,7 +5,6 @@ import 'package:fitness_app/features/auth/data/model/register/register_response/
 import 'package:fitness_app/features/auth/data/model/register_details.dart';
 
 abstract class AuthRepo {
-
   //-------------------------register-------------------------
   Future<ApiResult<RegisterResponse>> register(RegisterDetailsData data);
 }

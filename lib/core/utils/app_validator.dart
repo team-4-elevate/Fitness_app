@@ -65,7 +65,7 @@ class AppValidators {
     return (errorMessage, strength);
   }
 
-  // Calculate password strength on a scale from 0-5/* 
+  // Calculate password strength on a scale from 0-5/*
   static int evaluatePasswordStrength(String? password) {
     if (password == null || password.isEmpty) return 0;
 
@@ -84,7 +84,7 @@ class AppValidators {
 
     // Cap at 5
     return strength > 5 ? 5 : strength;
-  } 
+  }
 
   static String? validateUserName(String? value) {
     if (value == null || value.trim().isEmpty) {
