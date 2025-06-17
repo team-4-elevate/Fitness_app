@@ -1,3 +1,4 @@
+import 'package:fitness_app/core/responsive/responsive_design.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/onboarding/presentation/widgets/on_boarding_buttons.dart';
 import 'package:fitness_app/features/onboarding/presentation/widgets/skip_widget.dart';
@@ -34,7 +35,7 @@ class PageViewItem extends StatelessWidget {
         ),
         Container(
           height: 272.h,
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(R.paddingMDValue),
           decoration: BoxDecoration(
             color: Colors.black.withValues(alpha: 0.4),
             borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
@@ -51,7 +52,7 @@ class PageViewItem extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Text(
                 key: Key('on_boarding_desc_$index'),
                 description,
@@ -60,7 +61,7 @@ class PageViewItem extends StatelessWidget {
                   context,
                 ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 16.h),
               SmoothPageIndicator(
                 controller: pageController,
                 count: 3,
@@ -81,7 +82,7 @@ class PageViewItem extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               OnboardingButtons(index: index, pageController: pageController),
             ],
           ),

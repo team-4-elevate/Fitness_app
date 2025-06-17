@@ -37,7 +37,7 @@ class OnboardingButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: 100,
+              width: 100.w,
               child: OutlinedButton(
                 key: const Key('second_page_back_button'),
                 style: AppTheme.getSecondaryButtonStyle(),
@@ -51,7 +51,7 @@ class OnboardingButtons extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 100,
+              width: 100.w,
               child: ElevatedButton(
                 key: const Key('second_page_next_button'),
 
@@ -72,7 +72,7 @@ class OnboardingButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: 100,
+              width: 100.w,
               child: OutlinedButton(
                 key: const Key('third_page_back_button'),
                 style: AppTheme.getSecondaryButtonStyle(),
@@ -86,7 +86,7 @@ class OnboardingButtons extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 100,
+              width: 100.w,
               child: ElevatedButton(
                 key: const Key('third_page_do_it_button'),
                 style: AppTheme.getPrimaryButtonStyle(),
