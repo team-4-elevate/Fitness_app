@@ -203,91 +203,91 @@ abstract class AppLocalizations {
   /// **'Error occurred (code: {status}).'**
   String errorWithStatusCode(String status);
 
-  /// No description provided for @login_heyThere.
+  /// Greeting text on login page
   ///
   /// In en, this message translates to:
   /// **'Hey There'**
   String get login_heyThere;
 
-  /// No description provided for @login_welcomeBack.
+  /// Welcome back message on login page
   ///
   /// In en, this message translates to:
   /// **'WELCOME BACK'**
   String get login_welcomeBack;
 
-  /// No description provided for @login_title.
+  /// Title for the login page
   ///
   /// In en, this message translates to:
   /// **'Login'**
   String get login_title;
 
-  /// No description provided for @login_emailLabel.
+  /// Label for the email input field on the login page
   ///
   /// In en, this message translates to:
   /// **'Email'**
   String get login_emailLabel;
 
-  /// No description provided for @login_emailHint.
+  /// Hint text for the email input field on the login page
   ///
   /// In en, this message translates to:
   /// **'Enter your email'**
   String get login_emailHint;
 
-  /// No description provided for @login_passwordLabel.
+  /// Label for the password input field on the login page
   ///
   /// In en, this message translates to:
   /// **'Password'**
   String get login_passwordLabel;
 
-  /// No description provided for @login_passwordHint.
+  /// Hint text for the password input field on the login page
   ///
   /// In en, this message translates to:
   /// **'Enter your password'**
   String get login_passwordHint;
 
-  /// No description provided for @login_forgotPassword.
+  /// Text for the forgot password link on the login page
   ///
   /// In en, this message translates to:
   /// **'Forgot Password?'**
   String get login_forgotPassword;
 
-  /// No description provided for @login_orDivider.
+  /// Divider text between login options
   ///
   /// In en, this message translates to:
   /// **'OR'**
   String get login_orDivider;
 
-  /// No description provided for @login_noAccount.
+  /// Text for no account message on login page
   ///
   /// In en, this message translates to:
   /// **'Don\'t have an account?'**
   String get login_noAccount;
 
-  /// No description provided for @login_register.
+  /// Text for register link on login page
   ///
   /// In en, this message translates to:
   /// **' Register'**
   String get login_register;
 
-  /// No description provided for @login_socialTitle.
+  /// Title for the social login section
   ///
   /// In en, this message translates to:
   /// **'Social Login'**
   String get login_socialTitle;
 
-  /// No description provided for @login_socialMessage.
+  /// Message indicating that social login is not yet implemented
   ///
   /// In en, this message translates to:
   /// **'Social login is not implemented yet.'**
   String get login_socialMessage;
 
-  /// No description provided for @login_socialButton.
+  /// Button text for acknowledging social login message
   ///
   /// In en, this message translates to:
   /// **'Ok Got it'**
   String get login_socialButton;
 
-  /// No description provided for @login_successTitle.
+  /// Title for login success dialog
   ///
   /// In en, this message translates to:
   /// **'Login Successful'**
@@ -299,7 +299,7 @@ abstract class AppLocalizations {
   /// **'Welcome back, {user}!'**
   String login_successMessage(String user);
 
-  /// No description provided for @login_failedTitle.
+  /// Title for login failure dialog
   ///
   /// In en, this message translates to:
   /// **'Login Failed'**
@@ -311,7 +311,7 @@ abstract class AppLocalizations {
   /// **'{error}'**
   String login_failedMessage(String error);
 
-  /// No description provided for @login_failedButton.
+  /// Button text for acknowledging login failure
   ///
   /// In en, this message translates to:
   /// **'Ok Got it'**
@@ -544,6 +544,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Register'**
   String get register;
+
+  /// Text asking if user already has an account on register page
+  ///
+  /// In en, this message translates to:
+  /// **'Already Have An Account?'**
+  String get alreadyHaveAnAccount;
+
+  /// Login text for buttons and links
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

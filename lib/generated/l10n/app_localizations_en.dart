@@ -240,4 +240,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get register => 'Register';
+
+  @override
+  String get alreadyHaveAnAccount => 'Already Have An Account?';
+
+  @override
+  String get login => 'Login';
 }

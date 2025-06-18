@@ -22,7 +22,9 @@ import '../../features/auth/data/datasource/remote_data_source/auth_remote_data_
     as _i189;
 import '../../features/auth/data/repo/auth_repo_impl.dart' as _i984;
 import '../../features/auth/domain/repo/auth_repo.dart' as _i170;
+import '../../features/auth/domain/usecases/login_use_case.dart' as _i37;
 import '../../features/auth/domain/usecases/register_usecase.dart' as _i941;
+import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
 import '../api/api_client.dart' as _i277;
@@ -62,13 +64,22 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
     );
     gh.factory<_i170.AuthRepo>(
-      () => _i984.AuthRepoImpl(gh<_i1029.AuthRemoteDataSourceContract>()),
+      () => _i984.AuthRepoImpl(
+        gh<_i1029.AuthRemoteDataSourceContract>(),
+        gh<_i304.AppSecureStorage>(),
+      ),
     );
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
+    );
+    gh.factory<_i37.LoginUseCase>(
+      () => _i37.LoginUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i225.LoginViewModel>(
+      () => _i225.LoginViewModel(gh<_i37.LoginUseCase>()),
     );
     return this;
   }

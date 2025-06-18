@@ -152,7 +152,7 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-       canPop: false,
+      canPop: false,
       child: CustomAuthScreensView(
         //-----------------------------------------------------title arguments
         args: AuthPagesUiArguments(
@@ -170,6 +170,29 @@ class _RegisterViewState extends State<RegisterView> {
           showSocialLogin: true,
           primaryButtonText: 'Register',
           primaryButtonAction: _navigateToDetailsPage,
+          footerContent: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                AppLocalizations.of(context).alreadyHaveAnAccount,
+                style: TextStyle(color: Colors.white, fontSize: 14.r),
+              ),
+              SizedBox(width: 4.r),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.loginPage);
+                },
+                child: Text(
+                  AppLocalizations.of(context).login,
+                  style: TextStyle(
+                    color: AppColors.primaryOrange,
+                    fontSize: 14.r,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
 
           content: Form(
             key: _formKey,

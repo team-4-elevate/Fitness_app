@@ -62,6 +62,7 @@ dependencies:
   pinput:
   google_fonts: ^6.2.1
   numberpicker: ^2.1.2
+  icons_plus: ^5.0.0
 
 dev_dependencies:
   flutter_test:
