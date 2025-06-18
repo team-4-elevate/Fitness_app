@@ -99,7 +99,6 @@ extension ApiResultExtensions<T> on ApiResult<T> {
     }
   }
 
-
   T getDataOr(T defaultValue) {
     try {
       return dataOrNull ?? defaultValue;

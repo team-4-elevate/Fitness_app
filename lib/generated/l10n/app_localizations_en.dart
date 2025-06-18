@@ -18,7 +18,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome to Fitness App';
 
   @override
-  String get networkError => 'No internet connection. Please check your network and try again.';
+  String get networkError =>
+      'No internet connection. Please check your network and try again.';
 
   @override
   String get serverError => 'Server error. Please try again later.';
@@ -51,7 +52,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'Connection error. Please check your network.';
 
   @override
-  String get socketException => 'Connection problem. Please check your internet.';
+  String get socketException =>
+      'Connection problem. Please check your internet.';
 
   @override
   String get formatException => 'Could not read the received data.';
@@ -146,7 +148,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle2 => 'HOW OLD ARE YOU?';
 
   @override
-  String get registrationSubtitle2 => 'This Helps Us Create Your Personalized Plan';
+  String get registrationSubtitle2 =>
+      'This Helps Us Create Your Personalized Plan';
 
   @override
   String get registrationTitle3 => 'WHAT IS YOUR WEIGHT?';
@@ -170,7 +173,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle6 => 'HOW ACTIVE ARE YOU?';
 
   @override
-  String get registrationSubtitle6 => 'Your Activity Level Helps Us Set Targets';
+  String get registrationSubtitle6 =>
+      'Your Activity Level Helps Us Set Targets';
 
   @override
   String get year => 'Year';
