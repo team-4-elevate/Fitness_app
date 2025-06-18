@@ -23,9 +23,13 @@ class AppRoutesGenerator {
               ),
         );
       case AppRoutes.registerPage:
-        return MaterialPageRoute(builder: (_) => BlocProvider<RegisterBloc>(
-          create: (context) => getIt<RegisterBloc>(),
-          child: const RegisterView()));
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider<RegisterBloc>(
+                create: (context) => getIt<RegisterBloc>(),
+                child: const RegisterView(),
+              ),
+        );
       case AppRoutes.registerDetailsView:
         final args = settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(

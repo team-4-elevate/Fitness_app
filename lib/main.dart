@@ -68,11 +68,11 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-                            // routes: {'/home': (context) => const Home()},
+              // routes: {'/home': (context) => const Home()},
               // home: BlocProvider(
               //   create: (context) => getIt<LoginViewModel>(),
               //   child: const LoginView(),
-                home: BlocProvider(
+              home: BlocProvider(
                 create: (_) => getIt<RegisterBloc>(),
                 child: const RegisterView(),
               ),

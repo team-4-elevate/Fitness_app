@@ -24,7 +24,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
     });
   }
 
-   @override
+  @override
   Future<ApiResult<RegisterResponse>> register(RegisterRequest request) async {
     try {
       final response = await _apiClient.post(

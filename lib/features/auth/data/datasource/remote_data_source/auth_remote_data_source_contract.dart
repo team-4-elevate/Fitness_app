@@ -6,6 +6,5 @@ import 'package:fitness_app/features/auth/data/model/register/register_response/
 
 abstract interface class AuthRemoteDataSourceContract {
   Future<ApiResult<LoginResponse>> login(LoginRequest loginRequest);
- Future<ApiResult<RegisterResponse>> register(RegisterRequest request);
-
+  Future<ApiResult<RegisterResponse>> register(RegisterRequest request);
 }
