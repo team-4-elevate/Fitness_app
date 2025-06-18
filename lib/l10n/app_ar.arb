@@ -333,5 +333,17 @@
   "login": "تسجيل الدخول",
   "@login": {
     "description": "نص تسجيل الدخول للأزرار والروابط"
-  }
+  },
+  "confirmPassword": "يرجى تأكيد كلمة المرور",
+  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+  "enterFourDigitCode": "يرجى إدخال رمز مكون من 4 أرقام",
+  "confirm": "تأكيد",
+  "enterYourOtp": "أدخل رمز التحقق",
+  "checkYourEmail": "تحقق من بريدك الإلكتروني",
+  "otpCode": "رمز التحقق",
+  "forgetPassword": "نسيان كلمة المرور",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "sendOtp": "إرسال رمز التحقق",
+  "Didn't Receive Verification Code?": "لم تستلم رمز التحقق؟",
+  "Resend": "اعادة الارسال"
 }

@@ -45,7 +45,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   Widget build(BuildContext context) {
     return CustomAuthScreensView(
       args: AuthPagesUiArguments(
-        firstTitleArguments: const AuthPageTitleArguments(
+        firstTitleArguments: AuthPageTitleArguments(
           isBold: false,
           text: 'Enter your Email',
         ),
@@ -84,7 +84,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 prefixIcon: const Icon(size: 20, Icons.email_outlined),
-                hintText: 'Email',
+                hintText: context.l10n.email,
               ),
               validator: AppValidators.validateEmail,
             ),

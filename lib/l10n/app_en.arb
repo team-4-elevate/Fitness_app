@@ -360,5 +360,17 @@
   "login": "Login",
   "@login": {
     "description": "Login text for buttons and links"
-  }
+  },
+  "confirmPassword": "Please confirm your password",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "enterFourDigitCode": "Please enter 4 digit code",
+  "confirm": "Confirm",
+  "enterYourOtp": "Enter Your OTP",
+  "checkYourEmail": "Check Your Email",
+  "otpCode": "OTP CODE",
+  "forgetPassword": "Forget Password",
+  "enterYourEmail": "Enter your Email",
+  "sendOtp": "Send OTP",
+  "Didn't Receive Verification Code?": "Didn't Receive Verification Code?",
+  "Resend": "Resend"
 }
