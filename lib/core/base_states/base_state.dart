@@ -1,18 +1,19 @@
+// core/base_states/base_state.dart
 import 'package:equatable/equatable.dart';
 
 sealed class BaseState<T> extends Equatable {
   const BaseState();
 }
 
-final class InitialState<T> extends BaseState<T> {
-  const InitialState();
+final class BaseInitialState<T> extends BaseState<T> {
+  const BaseInitialState();
 
   @override
   List<Object?> get props => [];
 }
 
-final class LoadingState<T> extends BaseState<T> {
-  const LoadingState();
+final class BaseLoadingState<T> extends BaseState<T> {
+  const BaseLoadingState();
 
   @override
   List<Object?> get props => [];
@@ -26,8 +27,8 @@ final class SuccessState<T> extends BaseState<T> {
   List<Object?> get props => [data];
 }
 
-final class ErrorState<T> extends BaseState<T> {
-  const ErrorState(this.error);
+final class BaseErrorState<T> extends BaseState<T> {
+  const BaseErrorState(this.error);
   final String error;
 
   @override

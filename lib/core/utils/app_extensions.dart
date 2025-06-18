@@ -9,6 +9,7 @@ import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/responsive/responsive_manager.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'dart:developer' as dev;
 
 /// =================== BUILD CONTEXT EXTENSIONS ===================
 extension BuildContextExtensions on BuildContext {
@@ -142,6 +143,7 @@ extension BuildContextExtensions on BuildContext {
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? padding,
   }) {
+    print('snackabr + $message');
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -160,8 +162,28 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
+  Future<void> showLoadingIndicator() async {
+    await showDialog(
+      barrierDismissible: false,
+      context: this,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+
   void showErrorSnackBar(String message) {
     showSnackBar(message, backgroundColor: AppColors.error);
+  }
+
+  void showLoading() {
+    showCustomDialog(child: Center(child: CircularProgressIndicator()));
+  }
+
+  void hideLoading() {
+    if (Navigator.of(this).canPop() && mounted) {
+      Navigator.of(this).pop();
+    }
   }
 
   void showSuccessSnackBar(String message) {

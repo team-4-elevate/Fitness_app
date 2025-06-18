@@ -1,3 +1,4 @@
+// core/app_local_storage/app_secure_storage_impl.dart
 import 'package:fitness_app/core/Constant/app_keys.dart';
 import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -136,7 +137,7 @@ class AppSecureStorageImpl implements AppSecureStorage {
   }
 
   @override
-  Future<void> saveUserData(String key, String value) async {
+  Future<void> saveUserData(String key, dynamic value) async {
     dev.log('Saving user data: $key', name: 'AppLocalStorage');
     try {
       await _secureStorage.write(key: AppKeys.userData + key, value: value);

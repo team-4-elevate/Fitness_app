@@ -1,21 +1,337 @@
 {
   "@@locale": "ar",
   "appTitle": "تطبيق اللياقة البدنية",
-  "hello": "مرحبا",
-  "welcome": "مرحبا بك في تطبيق اللياقة البدنية",
-  "networkError": "لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.",
-  "serverError": "خطأ في الخادم. يرجى المحاولة لاحقاً.",
+  "@appTitle": {
+    "description": "عنوان التطبيق"
+  },
+  "hello": "مرحبًا",
+  "@hello": {
+    "description": "تحية بسيطة"
+  },
+  "welcome": "مرحبًا بك في تطبيق اللياقة البدنية",
+  "@welcome": {
+    "description": "رسالة ترحيب للمستخدمين"
+  },
+  "networkError": "لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.",
+  "@networkError": {
+    "description": "رسالة خطأ عند عدم وجود اتصال بالشبكة"
+  },
+  "serverError": "خطأ في الخادم. يرجى المحاولة لاحقًا.",
+  "@serverError": {
+    "description": "رسالة خطأ لأخطاء الخادم"
+  },
   "unknownError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
-  "timeout": "انتهت مدة الانتظار. يرجى المحاولة مرة أخرى.",
+  "@unknownError": {
+    "description": "رسالة خطأ للأخطاء غير المعروفة"
+  },
+  "timeout": "انتهت مهلة الاتصال. يرجى المحاولة مرة أخرى.",
+  "@timeout": {
+    "description": "رسالة خطأ لانتهاء المهلة"
+  },
   "unauthorized": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.",
-  "forbidden": "لا تملك صلاحية الوصول.",
+  "@unauthorized": {
+    "description": "رسالة خطأ عند فشل تسجيل الدخول"
+  },
+  "forbidden": "ليس لديك إذن للوصول.",
+  "@forbidden": {
+    "description": "رسالة خطأ عند عدم وجود إذن"
+  },
   "notFound": "لم يتم العثور على البيانات المطلوبة.",
-  "validationError": "البيانات المدخلة غير صحيحة.",
-  "badRequest": "طلب غير صحيح.",
+  "@notFound": {
+    "description": "رسالة خطأ عند عدم العثور على البيانات"
+  },
+  "validationError": "البيانات المقدمة غير صالحة.",
+  "@validationError": {
+    "description": "رسالة خطأ لبيانات غير صالحة"
+  },
+  "badRequest": "طلب غير صالح.",
+  "@badRequest": {
+    "description": "رسالة خطأ لطلب غير صالح"
+  },
   "requestCancelled": "تم إلغاء الطلب.",
-  "connectionError": "خطأ في الاتصال بالشبكة.",
-  "socketException": "مشكلة في الاتصال بالخادم. يرجى التحقق من الإنترنت.",
+  "@requestCancelled": {
+    "description": "رسالة خطأ عند إلغاء الطلب"
+  },
+  "connectionError": "خطأ في الاتصال. يرجى التحقق من الشبكة.",
+  "@connectionError": {
+    "description": "رسالة خطأ لمشاكل الاتصال"
+  },
+  "socketException": "مشكلة في الاتصال. يرجى التحقق من الإنترنت.",
+  "@socketException": {
+    "description": "رسالة خطأ لمشاكل الاتصال"
+  },
   "formatException": "تعذر قراءة البيانات المستلمة.",
+  "@formatException": {
+    "description": "رسالة خطأ لمشاكل تنسيق البيانات"
+  },
   "errorWithMessage": "حدث خطأ: {message}",
-  "errorWithStatusCode": "حدث خطأ (كود: {status})."
+  "@errorWithMessage": {
+    "description": "رسالة خطأ مع متغير",
+    "placeholders": {
+      "message": {
+        "type": "String",
+        "description": "رسالة الخطأ"
+      }
+    }
+  },
+  "errorWithStatusCode": "حدث خطأ (الرمز: {status}).",
+  "@errorWithStatusCode": {
+    "description": "رسالة خطأ مع رمز الحالة",
+    "placeholders": {
+      "status": {
+        "type": "String",
+        "description": "رمز الحالة"
+      }
+    }
+  },
+  "login_heyThere": "مرحبًا بك",
+  "@login_heyThere": {
+    "description": "نص ترحيبي في صفحة تسجيل الدخول"
+  },
+  "login_welcomeBack": "مرحبًا بعودتك",
+  "@login_welcomeBack": {
+    "description": "رسالة ترحيب في صفحة تسجيل الدخول"
+  },
+  "login_title": "تسجيل الدخول",
+  "@login_title": {
+    "description": "عنوان صفحة تسجيل الدخول"
+  },
+  "login_emailLabel": "البريد الإلكتروني",
+  "@login_emailLabel": {
+    "description": "تسمية حقل البريد الإلكتروني"
+  },
+  "login_emailHint": "أدخل بريدك الإلكتروني",
+  "@login_emailHint": {
+    "description": "نص تلميحي لحقل البريد الإلكتروني"
+  },
+  "login_passwordLabel": "كلمة المرور",
+  "@login_passwordLabel": {
+    "description": "تسمية حقل كلمة المرور"
+  },
+  "login_passwordHint": "أدخل كلمة المرور",
+  "@login_passwordHint": {
+    "description": "نص تلميحي لحقل كلمة المرور"
+  },
+  "login_forgotPassword": "هل نسيت كلمة المرور؟",
+  "@login_forgotPassword": {
+    "description": "رابط نسيت كلمة المرور"
+  },
+  "login_orDivider": "أو",
+  "@login_orDivider": {
+    "description": "نص فاصل بين خيارات تسجيل الدخول"
+  },
+  "login_noAccount": "ليس لديك حساب؟",
+  "@login_noAccount": {
+    "description": "نص عدم وجود حساب"
+  },
+  "login_register": " سجل",
+  "@login_register": {
+    "description": "رابط التسجيل"
+  },
+  "login_socialTitle": "تسجيل الدخول الاجتماعي",
+  "@login_socialTitle": {
+    "description": "عنوان قسم تسجيل الدخول الاجتماعي"
+  },
+  "login_socialMessage": "تسجيل الدخول الاجتماعي غير متوفر بعد.",
+  "@login_socialMessage": {
+    "description": "رسالة عدم توفر تسجيل الدخول الاجتماعي"
+  },
+  "login_socialButton": "حسنًا فهمت",
+  "@login_socialButton": {
+    "description": "زر تأكيد رسالة تسجيل الدخول الاجتماعي"
+  },
+  "login_successTitle": "تم تسجيل الدخول بنجاح",
+  "@login_successTitle": {
+    "description": "عنوان نجاح تسجيل الدخول"
+  },
+  "login_successMessage": "مرحبًا بعودتك، {user}!",
+  "@login_successMessage": {
+    "description": "رسالة نجاح تسجيل الدخول مع اسم المستخدم",
+    "placeholders": {
+      "user": {
+        "type": "String",
+        "description": "اسم المستخدم الأول"
+      }
+    }
+  },
+  "login_failedTitle": "فشل تسجيل الدخول",
+  "@login_failedTitle": {
+    "description": "عنوان فشل تسجيل الدخول"
+  },
+  "login_failedMessage": "{error}",
+  "@login_failedMessage": {
+    "description": "رسالة فشل تسجيل الدخول مع تفاصيل الخطأ",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "رسالة الخطأ"
+      }
+    }
+  },
+  "login_failedButton": "حسنًا فهمت",
+  "@login_failedButton": {
+    "description": "زر تأكيد فشل تسجيل الدخول"
+  },
+  "registerSuccess": "تم التسجيل بنجاح!",
+  "@registerSuccess": {
+    "description": "رسالة نجاح التسجيل"
+  },
+  "next": "التالي",
+  "@next": {
+    "description": "زر الخطوة التالية"
+  },
+  "finish": "إنهاء",
+  "@finish": {
+    "description": "زر الخطوة النهائية"
+  },
+  "registrationTitle1": "أخبرنا عن نفسك!",
+  "@registrationTitle1": {
+    "description": "عنوان اختيار الجنس"
+  },
+  "registrationSubtitle1": "نحتاج لمعرفة جنسك",
+  "@registrationSubtitle1": {
+    "description": "العنوان الفرعي لاختيار الجنس"
+  },
+  "registrationTitle2": "كم عمرك؟",
+  "@registrationTitle2": {
+    "description": "عنوان اختيار العمر"
+  },
+  "registrationSubtitle2": "يساعدنا هذا في إنشاء خطتك الشخصية",
+  "@registrationSubtitle2": {
+    "description": "العنوان الفرعي لاختيار العمر"
+  },
+  "registrationTitle3": "ما هو وزنك؟",
+  "@registrationTitle3": {
+    "description": "عنوان اختيار الوزن"
+  },
+  "registrationSubtitle3": "نستخدم هذا لحساب السعرات الحرارية",
+  "@registrationSubtitle3": {
+    "description": "العنوان الفرعي لاختيار الوزن"
+  },
+  "registrationTitle4": "ما هو طولك؟",
+  "@registrationTitle4": {
+    "description": "عنوان اختيار الطول"
+  },
+  "registrationSubtitle4": "يساعدنا هذا في حساب مؤشر كتلة الجسم",
+  "@registrationSubtitle4": {
+    "description": "العنوان الفرعي لاختيار الطول"
+  },
+  "registrationTitle5": "ما هو هدفك؟",
+  "@registrationTitle5": {
+    "description": "عنوان اختيار الهدف"
+  },
+  "registrationSubtitle5": "أخبرنا بما تريد تحقيقه",
+  "@registrationSubtitle5": {
+    "description": "العنوان الفرعي لاختيار الهدف"
+  },
+  "registrationTitle6": "ما مدى نشاطك؟",
+  "@registrationTitle6": {
+    "description": "عنوان اختيار مستوى النشاط"
+  },
+  "registrationSubtitle6": "مستوى نشاطك يساعدنا في تحديد الأهداف",
+  "@registrationSubtitle6": {
+    "description": "العنوان الفرعي لاختيار مستوى النشاط"
+  },
+  "year": "سنة",
+  "@year": {
+    "description": "تسمية اختيار العمر"
+  },
+  "kg": "كجم",
+  "@kg": {
+    "description": "تسمية اختيار الوزن"
+  },
+  "cm": "سم",
+  "@cm": {
+    "description": "تسمية اختيار الطول"
+  },
+  "male": "ذكر",
+  "@male": {
+    "description": "خيار الجنس ذكر"
+  },
+  "female": "أنثى",
+  "@female": {
+    "description": "خيار الجنس أنثى"
+  },
+  "goalGainWeight": "زيادة الوزن",
+  "@goalGainWeight": {
+    "description": "خيار الهدف زيادة الوزن"
+  },
+  "goalLoseWeight": "فقدان الوزن",
+  "@goalLoseWeight": {
+    "description": "خيار الهدف فقدان الوزن"
+  },
+  "goalGetFitter": "أن أصبح أكثر لياقة",
+  "@goalGetFitter": {
+    "description": "خيار الهدف أن أصبح أكثر لياقة"
+  },
+  "goalGainFlexibility": "زيادة المرونة",
+  "@goalGainFlexibility": {
+    "description": "خيار الهدف زيادة المرونة"
+  },
+  "goalLearnBasics": "تعلم الأساسيات",
+  "@goalLearnBasics": {
+    "description": "خيار الهدف تعلم الأساسيات"
+  },
+  "activityRookie": "مبتدئ",
+  "@activityRookie": {
+    "description": "خيار مستوى النشاط مبتدئ"
+  },
+  "activityBeginner": "مبتدئ",
+  "@activityBeginner": {
+    "description": "خيار مستوى النشاط مبتدئ"
+  },
+  "activityIntermediate": "متوسط",
+  "@activityIntermediate": {
+    "description": "خيار مستوى النشاط متوسط"
+  },
+  "activityAdvanced": "متقدم",
+  "@activityAdvanced": {
+    "description": "خيار مستوى النشاط متقدم"
+  },
+  "activityTrueBeast": "محترف",
+  "@activityTrueBeast": {
+    "description": "خيار مستوى النشاط محترف"
+  },
+  "firstName": "الاسم الأول",
+  "@firstName": {
+    "description": "تسمية حقل الاسم الأول"
+  },
+  "lastName": "اسم العائلة",
+  "@lastName": {
+    "description": "تسمية حقل اسم العائلة"
+  },
+  "email": "البريد الإلكتروني",
+  "@email": {
+    "description": "تسمية حقل البريد الإلكتروني"
+  },
+  "password": "كلمة المرور",
+  "@password": {
+    "description": "تسمية حقل كلمة المرور"
+  },
+  "passwordRequired": "كلمة المرور مطلوبة",
+  "@passwordRequired": {
+    "description": "رسالة خطأ عند ترك كلمة المرور فارغة"
+  },
+  "registerGreeting": "مرحبًا بك",
+  "@registerGreeting": {
+    "description": "نص ترحيبي في صفحة التسجيل"
+  },
+  "createAccount": "إنشاء حساب",
+  "@createAccount": {
+    "description": "عنوان صفحة التسجيل"
+  },
+  "register": "تسجيل",
+  "@register": {
+    "description": "زر التسجيل"
+  },
+
+  "alreadyHaveAnAccount": "هل لديك حساب بالفعل؟",
+  "@alreadyHaveAnAccount": {
+    "description": "نص السؤال عما إذا كان لدى المستخدم حساب بالفعل في صفحة التسجيل"
+  },
+
+  "login": "تسجيل الدخول",
+  "@login": {
+    "description": "نص تسجيل الدخول للأزرار والروابط"
+  }
 }

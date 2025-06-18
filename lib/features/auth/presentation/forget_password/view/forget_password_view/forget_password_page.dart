@@ -1,141 +1,106 @@
+import 'dart:developer';
+import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
+import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../../core/routes/app_routes.dart';
+import '../../../../../../core/utils/app_validator.dart';
 import '../../../../domain/arguments/auth_pages_ui_arguments.dart';
 import '../../../auth_common_widgets/custom_auth_view.dart';
-import '../otp_code_view/otp_code_page.dart';
+import '../../bloc/forget_password_event.dart';
+import '../../bloc/forget_password_bloc.dart';
+import '../../bloc/forget_password_state.dart';
 
-class ForgetPasswordPage extends StatelessWidget {
+class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({super.key});
 
   @override
+  State<ForgetPasswordPage> createState() => _ForgetPasswordPageState();
+}
+
+class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
+  late final GlobalKey<FormState> _formKey;
+  late final TextEditingController _emailController;
+  late final ForgetPasswordBloc _bloc;
+  @override
+  void initState() {
+    _formKey = GlobalKey<FormState>();
+    _emailController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _bloc = context.read<ForgetPasswordBloc>();
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final formKey = GlobalKey<FormState>();
-    final emailController = TextEditingController();
     return CustomAuthScreensView(
       args: AuthPagesUiArguments(
         firstTitleArguments: const AuthPageTitleArguments(
-          isBold: true,
-          text: 'Forget Password',
-        ),
-        secondTitleArguments: const AuthPageTitleArguments(
           isBold: false,
           text: 'Enter your Email',
         ),
+        secondTitleArguments: const AuthPageTitleArguments(
+          isBold: true,
+          text: 'Forget Password',
+        ),
         isRegister: false,
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Form(
-              key: formKey,
-              child: SizedBox(
-                height: 36,
-                child: Center(
-                  child: TextFormField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(color: Colors.white, fontSize: 12),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.email_outlined,
-                        color: Colors.white70,
-                      ),
-                      isDense: true,
-                      hintText: 'Email',
-                      hintStyle: const TextStyle(
-                        color: Colors.white54,
-                        fontSize: 12,
-                      ),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.1),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                        borderSide: BorderSide(
-                          color: Colors.white.withOpacity(0.3),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                        borderSide: BorderSide(
-                          color: Colors.white.withOpacity(0.3),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                        borderSide: const BorderSide(
-                          color: Colors.orange,
-                          width: 2,
-                        ),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 0,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      // Basic email validation
-                      if (!RegExp(
-                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                      ).hasMatch(value)) {
-                        return 'Please enter a valid email';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
+        primaryButtonText: 'Send OTP',
+        primaryButtonAction: () {
+          log('message primary acation called ${(DateTime.now()).toString()}');
+          _bloc.add(
+            ForgetPasswordSubmitEvent(_emailController.text.trim(), _formKey),
+          );
+        },
+        content: BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
+          listenWhen: (p, c) {
+            _handleLoading(p, c, context);
+            return c.forgetPasswordStatus.isSuccess ||
+                c.forgetPasswordStatus.isError;
+          },
+          listener:
+              (context, state) =>
+                  state.forgetPasswordStatus.isSuccess
+                      ? Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.forgetPassOtpPage, arguments: _bloc)
+                      : context.showSnackBar(state.errorMessage),
+          child: Form(
+            key: _formKey,
+            child: TextFormField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(size: 20, Icons.email_outlined),
+                hintText: 'Email',
               ),
+              validator: AppValidators.validateEmail,
             ),
-
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              height: 36,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const OtpCodePage();
-                      },
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  padding: EdgeInsets.zero,
-                ),
-                child: Ink(
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFFF6B35), Color(0xFFFF8E53)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: const Text(
-                      'Sent OTP',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
+  }
+
+  void _handleLoading(
+    ForgetPasswordState p,
+    ForgetPasswordState c,
+    BuildContext context,
+  ) {
+    if (c.forgetPasswordStatus.isLoading && !p.forgetPasswordStatus.isLoading) {
+      context.showLoading();
+    }
+    if (!c.forgetPasswordStatus.isLoading && p.forgetPasswordStatus.isLoading) {
+      context.hideLoading();
+    }
   }
 }

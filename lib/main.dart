@@ -4,16 +4,25 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:fitness_app/core/app_bloc_observer.dart';
 import 'package:fitness_app/core/di/di.dart';
+import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/navigation_services.dart';
+import 'package:fitness_app/features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
 import 'package:fitness_app/features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
-import 'package:fitness_app/features/home/home.dart';
+import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
+import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'core/routes/app_routes.dart';
+import 'core/routes/app_routes_generator.dart';
 import 'core/services/api_localization_service.dart';
 import 'core/services/localization_manager.dart';
 import 'core/responsive/responsive.dart';
@@ -25,6 +34,8 @@ void main() async {
   await LocalizationManager().initialize();
   configureDependencies();
   await _configureFirebase();
+
+  Bloc.observer = AppBlocObserver();
 
   runApp(const MyApp());
 }
@@ -54,16 +65,20 @@ class MyApp extends StatelessWidget {
               locale: localizationManager.currentLocale,
 
               theme: AppTheme.lightTheme,
-              // Builder to set up localization service with context
+              onGenerateRoute: AppRoutesGenerator.generateRoute,
               builder: (context, child) {
                 final localizations = AppLocalizations.of(context);
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
               // routes: {'/home': (context) => const Home()},
-
-              //home: const Home(),
-              home: ForgetPasswordPage(),
+              // home: BlocProvider(
+              //   create: (context) => getIt<LoginViewModel>(),
+              //   child: const LoginView(),
+              home: BlocProvider(
+                create: (_) => getIt<RegisterBloc>(),
+                child: const RegisterView(),
+              ),
             ),
           );
         },
