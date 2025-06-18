@@ -1,10 +1,12 @@
 // features/auth/data/datasource/local_data_source/auth_local_data_source_impl.dart
 
+import 'dart:developer';
+
 import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
 import 'package:fitness_app/features/auth/data/datasource/local_data_source/auth_local_data_source_contract.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../../core/logger/app_logger.dart';
+// import '../../../../../core/logger/app_logger.dart';
 
 @Injectable(as: AuthLocalDataSourceContract)
 class AuthLocalDataSourceImpl implements AuthLocalDataSourceContract {
@@ -33,7 +35,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSourceContract {
     try {
       return await _localStorageClient.getUserData('token');
     } catch (e) {
-      Log.e('Error checking saved token: $e');
+      log('Error checking saved token: $e');
       return null;
     }
   }

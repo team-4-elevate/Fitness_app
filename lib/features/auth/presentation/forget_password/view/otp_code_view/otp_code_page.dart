@@ -1,140 +1,105 @@
+import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
+import 'package:fitness_app/core/routes/app_routes.dart';
+import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:fitness_app/features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
+import 'package:fitness_app/features/auth/presentation/forget_password/view/otp_code_view/widgets/otp_text_footer_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../domain/arguments/auth_pages_ui_arguments.dart';
 import '../../../auth_common_widgets/custom_auth_view.dart';
+import '../../bloc/forget_password_event.dart';
+import '../../bloc/forget_password_state.dart';
 
-class OtpCodePage extends StatelessWidget {
-  const OtpCodePage({super.key});
+class ForgetPassOtpCodePage extends StatefulWidget {
+  final ForgetPasswordBloc bloc;
+
+  const ForgetPassOtpCodePage({super.key, required this.bloc});
+
+  @override
+  State<ForgetPassOtpCodePage> createState() => _ForgetPassOtpCodePage();
+}
+
+class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
+  late final TextEditingController _pinController;
+  late final ForgetPasswordBloc _bloc;
+
+  @override
+  void initState() {
+    _pinController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _bloc = widget.bloc;
+    super.didChangeDependencies();
+  }
+
+  @override
+  void dispose() {
+    _pinController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.red);
-    // final formKey = GlobalKey<FormState>();
-    // final emailController = TextEditingController();
-    // return CustomAuthScreensView(
-    //   args: AuthPagesUiArguments(
-    //     firstTitleArguments: const AuthPageTitleArguments(
-    //       isBold: true,
-    //       text: 'Otp Code',
-    //     ),
-    //     secondTitleArguments: const AuthPageTitleArguments(
-    //       isBold: false,
-    //       text: 'Enter Your OTP Check your email',
-    //     ),
-    //     isRegister: false,
-    //     content: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         Form(
-    //           key: formKey,
-    //           child: SizedBox(
-    //             height: 36,
-    //             child: Center(
-    //               child: TextFormField(
-    //                 controller: emailController,
-    //                 keyboardType: TextInputType.emailAddress,
-    //                 style: const TextStyle(color: Colors.white, fontSize: 12),
-    //                 decoration: InputDecoration(
-    //                   prefixIcon: const Icon(
-    //                     Icons.email_outlined,
-    //                     color: Colors.white70,
-    //                   ),
-    //                   isDense: true,
-    //                   hintText: 'Email',
-    //                   hintStyle: const TextStyle(
-    //                     color: Colors.white54,
-    //                     fontSize: 12,
-    //                   ),
-    //                   filled: true,
-    //                   fillColor: Colors.white.withOpacity(0.1),
-    //                   border: OutlineInputBorder(
-    //                     borderRadius: BorderRadius.circular(50),
-    //                     borderSide: BorderSide(
-    //                       color: Colors.white.withOpacity(0.3),
-    //                     ),
-    //                   ),
-    //                   enabledBorder: OutlineInputBorder(
-    //                     borderRadius: BorderRadius.circular(50),
-    //                     borderSide: BorderSide(
-    //                       color: Colors.white.withOpacity(0.3),
-    //                     ),
-    //                   ),
-    //                   focusedBorder: OutlineInputBorder(
-    //                     borderRadius: BorderRadius.circular(50),
-    //                     borderSide: const BorderSide(
-    //                       color: Colors.orange,
-    //                       width: 2,
-    //                     ),
-    //                   ),
-    //                   contentPadding: const EdgeInsets.symmetric(
-    //                     horizontal: 20,
-    //                     vertical: 0,
-    //                   ),
-    //                 ),
-    //                 validator: (value) {
-    //                   if (value == null || value.isEmpty) {
-    //                     return 'Please enter your email';
-    //                   }
-    //                   // Basic email validation
-    //                   if (!RegExp(
-    //                     r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-    //                   ).hasMatch(value)) {
-    //                     return 'Please enter a valid email';
-    //                   }
-    //                   return null;
-    //                 },
-    //               ),
-    //             ),
-    //           ),
-    //         ),
+    return CustomAuthScreensView(
+      args: AuthPagesUiArguments(
+        firstTitleArguments: const AuthPageTitleArguments(
+          isBold: true,
+          text: 'OTP CODE',
+        ),
+        secondTitleArguments: const AuthPageTitleArguments(
+          isBold: false,
+          text: 'Enter Your OTP Check Your Email',
+        ),
+        isRegister: false,
+        primaryButtonText: 'Confirm',
+        footerContent: OtpFooterTextWidget(
+          onResendCode: () => _bloc.add(VerifyResetCodeEvent('2222')),
+        ),
+        primaryButtonAction: () {
+
+          _bloc.add(VerifyResetCodeEvent(_pinController.text));
+        },
+        content: BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
+          listenWhen: (p, c) {
+            _handleLoading(p, c, context);
+            return c.verifyResetCodeStatus.isSuccess ||
+                c.verifyResetCodeStatus.isError;
+          },
+          listener:
+              (context, state) =>
+                  state.verifyResetCodeStatus.isError
+                      ? context.showSnackBar(state.errorMessage)
+                      : Navigator.of(context).pushNamed(
+                        AppRoutes.createNewPasswordPage,
+                        arguments: _bloc,
+                      ),
+          child: Container(height: 100, width: 100, color: Colors.red),
+          // child: OtpTextField(pinController: _pinController),
+        ),
+      ),
+    );
+  }
+
+  void _handleLoading(
+    ForgetPasswordState p,
+    ForgetPasswordState c,
+    BuildContext context,
+  ) {
+    // if (!c.verifyResetCodeStatus.isLoading &&
+    //     p.verifyResetCodeStatus.isLoading) {
+    //   log('hide loading');
     //
-    //         const SizedBox(height: 24),
-    //         SizedBox(
-    //           width: double.infinity,
-    //           height: 36,
-    //           child: ElevatedButton(
-    //             onPressed: () {
-    //               // Navigator.push(
-    //               //   context,
-    //               //   MaterialPageRoute(
-    //               //     builder: (context) {
-    //               //       return const CreateNewPasswordPage();
-    //               //     },
-    //               //   ),
-    //               // );
-    //             },
-    //             style: ElevatedButton.styleFrom(
-    //               backgroundColor: Colors.transparent,
-    //               shadowColor: Colors.transparent,
-    //               shape: RoundedRectangleBorder(
-    //                 borderRadius: BorderRadius.circular(28),
-    //               ),
-    //               padding: EdgeInsets.zero,
-    //             ),
-    //             child: Ink(
-    //               decoration: BoxDecoration(
-    //                 gradient: const LinearGradient(
-    //                   colors: [Color(0xFFFF6B35), Color(0xFFFF8E53)],
-    //                   begin: Alignment.centerLeft,
-    //                   end: Alignment.centerRight,
-    //                 ),
-    //                 borderRadius: BorderRadius.circular(28),
-    //               ),
-    //               child: Container(
-    //                 alignment: Alignment.center,
-    //                 child: const Text(
-    //                   'Sent OTP',
-    //                   style: TextStyle(
-    //                     fontSize: 18,
-    //                     fontWeight: FontWeight.w600,
-    //                     color: Colors.white,
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
+    //   context.hideLoading();
+    //   // return;k
+    // }
+    if (c.verifyResetCodeStatus.isLoading && !p.verifyResetCodeStatus.isLoading) {
+      context.showLoading();
+    }
+    if (!c.verifyResetCodeStatus.isLoading && p.verifyResetCodeStatus.isLoading) {
+      context.hideLoading();
+    }
   }
 }

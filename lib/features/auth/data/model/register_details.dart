@@ -1,5 +1,4 @@
 // features/auth/data/mapper/register_details.dart
-import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/data/model/register/register_request.dart';
 
 class RegisterDetailsData {
@@ -44,4 +43,8 @@ class RegisterDetailsData {
       activityLevel: activityLevel,
     );
   }
+}
+enum Gender {
+  male,
+  female,
 }
