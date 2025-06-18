@@ -99,7 +99,6 @@ extension ApiResultExtensions<T> on ApiResult<T> {
     }
   }
 
- feature/App-Sections
 
   T getDataOr(T defaultValue) {
     try {
@@ -109,7 +108,6 @@ extension ApiResultExtensions<T> on ApiResult<T> {
     }
   }
 
- development
   ApiResult<T> thenDo(void Function(T data) action) {
     try {
       if (isSuccess) {
