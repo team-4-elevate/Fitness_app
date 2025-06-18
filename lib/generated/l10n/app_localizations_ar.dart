@@ -19,7 +19,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get networkError =>
+ feature/App-Sections
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.';
+
       'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+ development
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقًا.';
@@ -52,7 +56,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionError => 'خطأ في الاتصال. يرجى التحقق من الشبكة.';
 
   @override
+ feature/App-Sections
+  String get socketException =>
+      'مشكلة في الاتصال بالخادم. يرجى التحقق من الإنترنت.';
+
   String get socketException => 'مشكلة في الاتصال. يرجى التحقق من الإنترنت.';
+ development
 
   @override
   String get formatException => 'تعذر قراءة البيانات المستلمة.';
