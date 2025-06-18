@@ -6,7 +6,7 @@ import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_argumen
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/domain/entities/activity_level_option.dart';
 import 'package:fitness_app/features/auth/domain/entities/goal_option.dart';
-import 'package:fitness_app/features/auth/data/model/register_details.dart';
+import 'package:fitness_app/features/auth/data/model/register_details.dart'as v;
 import 'package:fitness_app/features/auth/domain/entities/registration_steps.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/gender_step.dart';
@@ -19,7 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 enum Gender { male, female }
 
 class RegisterDetailsView extends StatefulWidget {
-  final RegisterDetailsData? initialData;
+  final v.RegisterDetailsData? initialData;
 
   const RegisterDetailsView({super.key, this.initialData});
 
@@ -29,12 +29,12 @@ class RegisterDetailsView extends StatefulWidget {
 
 class _RegisterDetailsViewState extends State<RegisterDetailsView> {
   int _currentStep = 1;
-  late RegisterDetailsData _userData;
+  late v.RegisterDetailsData _userData;
 
   @override
   void initState() {
     super.initState();
-    _userData = widget.initialData ?? RegisterDetailsData();
+    _userData = widget.initialData ?? v.RegisterDetailsData();
     _userData.age ??= 25;
     _userData.weight ??= 90;
     _userData.height ??= 167;
@@ -182,8 +182,8 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
             setState(() {
               _userData.gender =
                   gender == AppLocalizations.of(context).male
-                      ? Gender.male
-                      : Gender.female;
+                      ? v.Gender.male
+                      : v.Gender.female;
             });
           },
         );
