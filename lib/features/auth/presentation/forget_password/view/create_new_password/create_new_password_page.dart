@@ -5,6 +5,7 @@ import 'package:fitness_app/features/auth/presentation/forget_password/bloc/forg
 import 'package:fitness_app/features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../../core/routes/app_routes.dart';
 import '../../../../domain/arguments/auth_pages_ui_arguments.dart';
 import '../../../auth_common_widgets/custom_auth_view.dart';
 import '../../bloc/forget_password_state.dart';
@@ -77,7 +78,10 @@ class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
             final status = state.resetPasswordStatus;
             status.isError
                 ? context.showSnackBar(state.errorMessage)
-                : context.showSnackBar('Password reset successfully');
+                : Navigator.of(context).pushNamedAndRemoveUntil(
+                  AppRoutes.homePage,
+                  (route) => false,
+                );
           },
           child: Form(
             key: _formKey,

@@ -9,9 +9,9 @@ class ResetPasswordUseCase {
   final AuthRepo _repo;
   ResetPasswordUseCase(this._repo);
 
-  Future<ApiResult<ResetpasswordResponse>> call(
+  Future<void> call(
     ResetpasswordRequest request,
   ) async {
-    return await _repo.resetPassword(request);
+    await _repo.resetPassword(request);
   }
 }

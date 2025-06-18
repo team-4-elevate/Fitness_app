@@ -7,17 +7,31 @@ import 'dart:async' as _i3;
 
 import 'package:fitness_app/core/api/api_client.dart' as _i2;
 import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart'
-    as _i9;
+    as _i15;
 import 'package:fitness_app/core/helper/api_result.dart' as _i4;
 import 'package:fitness_app/features/auth/data/datasource/remote_data_source/auth_remote_data_source_contract.dart'
     as _i6;
+import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_request.dart'
+    as _i11;
+import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart'
+    as _i14;
+import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_response.dart'
+    as _i13;
+import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_request.dart'
+    as _i12;
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart'
     as _i8;
 import 'package:fitness_app/features/auth/data/model/login_models/login_response/login_response.dart'
     as _i7;
-import 'package:fitness_app/features/auth/domain/repo/auth_repo.dart' as _i10;
+import 'package:fitness_app/features/auth/data/model/register/register_request.dart'
+    as _i10;
+import 'package:fitness_app/features/auth/data/model/register/register_response/register_response.dart'
+    as _i9;
+import 'package:fitness_app/features/auth/data/model/register_details.dart'
+    as _i17;
+import 'package:fitness_app/features/auth/domain/repo/auth_repo.dart' as _i16;
 import 'package:fitness_app/features/auth/domain/usecases/login_use_case.dart'
-    as _i11;
+    as _i18;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
 
@@ -231,12 +245,61 @@ class MockAuthRemoteDataSourceContract extends _i1.Mock
             ),
           )
           as _i3.Future<_i4.ApiResult<_i7.LoginResponse>>);
+
+  @override
+  _i3.Future<_i4.ApiResult<_i9.RegisterResponse>> register(
+    _i10.RegisterRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#register, [request]),
+            returnValue: _i3.Future<_i4.ApiResult<_i9.RegisterResponse>>.value(
+              _i5.dummyValue<_i4.ApiResult<_i9.RegisterResponse>>(
+                this,
+                Invocation.method(#register, [request]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.ApiResult<_i9.RegisterResponse>>);
+
+  @override
+  _i3.Future<void> forgotPassword(_i11.ForgetpasswordRequest? request) =>
+      (super.noSuchMethod(
+            Invocation.method(#forgotPassword, [request]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> verifyOtp(_i12.VerifyOtpRequest? request) =>
+      (super.noSuchMethod(
+            Invocation.method(#verifyOtp, [request]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  _i3.Future<_i4.ApiResult<_i13.ResetpasswordResponse>> resetPassword(
+    _i14.ResetpasswordRequest? request,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetPassword, [request]),
+            returnValue:
+                _i3.Future<_i4.ApiResult<_i13.ResetpasswordResponse>>.value(
+                  _i5.dummyValue<_i4.ApiResult<_i13.ResetpasswordResponse>>(
+                    this,
+                    Invocation.method(#resetPassword, [request]),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.ApiResult<_i13.ResetpasswordResponse>>);
 }
 
 /// A class which mocks [AppSecureStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppSecureStorage extends _i1.Mock implements _i9.AppSecureStorage {
+class MockAppSecureStorage extends _i1.Mock implements _i15.AppSecureStorage {
   MockAppSecureStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -365,7 +428,7 @@ class MockAppSecureStorage extends _i1.Mock implements _i9.AppSecureStorage {
 /// A class which mocks [AuthRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepo extends _i1.Mock implements _i10.AuthRepo {
+class MockAuthRepo extends _i1.Mock implements _i16.AuthRepo {
   MockAuthRepo() {
     _i1.throwOnMissingStub(this);
   }
@@ -384,12 +447,54 @@ class MockAuthRepo extends _i1.Mock implements _i10.AuthRepo {
             ),
           )
           as _i3.Future<_i4.ApiResult<_i7.LoginResponse>>);
+
+  @override
+  _i3.Future<_i4.ApiResult<_i9.RegisterResponse>> register(
+    _i17.RegisterDetailsData? data,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#register, [data]),
+            returnValue: _i3.Future<_i4.ApiResult<_i9.RegisterResponse>>.value(
+              _i5.dummyValue<_i4.ApiResult<_i9.RegisterResponse>>(
+                this,
+                Invocation.method(#register, [data]),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.ApiResult<_i9.RegisterResponse>>);
+
+  @override
+  _i3.Future<void> forgotPassword(_i11.ForgetpasswordRequest? request) =>
+      (super.noSuchMethod(
+            Invocation.method(#forgotPassword, [request]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> verifyOtp(_i12.VerifyOtpRequest? request) =>
+      (super.noSuchMethod(
+            Invocation.method(#verifyOtp, [request]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> resetPassword(_i14.ResetpasswordRequest? request) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetPassword, [request]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 }
 
 /// A class which mocks [LoginUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginUseCase extends _i1.Mock implements _i11.LoginUseCase {
+class MockLoginUseCase extends _i1.Mock implements _i18.LoginUseCase {
   MockLoginUseCase() {
     _i1.throwOnMissingStub(this);
   }

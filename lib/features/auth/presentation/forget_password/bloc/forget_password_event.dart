@@ -7,9 +7,9 @@ sealed class ForgetPasswordEvent extends Equatable {
 
 class ForgetPasswordSubmitEvent extends ForgetPasswordEvent {
   final String email;
-  final GlobalKey<FormState> formKey;
+  final GlobalKey<FormState>? formKey;
 
-  const ForgetPasswordSubmitEvent(this.email, this.formKey);
+  const ForgetPasswordSubmitEvent(this.email, {this.formKey});
 
   @override
   List<Object> get props => [email];

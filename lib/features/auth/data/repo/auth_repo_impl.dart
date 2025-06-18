@@ -44,25 +44,13 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<ApiResult<ForgetpasswordResponse>> forgotPassword(
-    ForgetpasswordRequest request,
-  ) async {
-    try {
-      return await _authRemoteDataSource.forgotPassword(request);
-    } catch (e) {
-      return ApiFailure('Failed to initiate password reset: $e');
-    }
+  Future<void> forgotPassword(ForgetpasswordRequest request) async {
+    await _authRemoteDataSource.forgotPassword(request);
   }
 
   @override
-  Future<ApiResult<VerifyOtpResponse>> verifyOtp(
-    VerifyOtpRequest request,
-  ) async {
-    try {
-      return await _authRemoteDataSource.verifyOtp(request);
-    } catch (e) {
-      return ApiFailure('Failed to verify OTP: $e');
-    }
+  Future<void> verifyOtp(VerifyOtpRequest request) async {
+    await _authRemoteDataSource.verifyOtp(request);
   }
 
   @override

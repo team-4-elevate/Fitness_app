@@ -2,6 +2,7 @@ import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
+import 'package:fitness_app/features/auth/presentation/forget_password/view/otp_code_view/widgets/otp_text_field.dart';
 import 'package:fitness_app/features/auth/presentation/forget_password/view/otp_code_view/widgets/otp_text_footer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,9 +57,13 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
         isRegister: false,
         primaryButtonText: 'Confirm',
         footerContent: OtpFooterTextWidget(
-          onResendCode: () => _bloc.add(VerifyResetCodeEvent('2222')),
+          onResendCode: () => _bloc.add(ForgetPasswordSubmitEvent(_bloc.state.userEmail,)),
         ),
         primaryButtonAction: () {
+              if(_pinController.text.length != 6){
+            context.showSnackBar('please enter 4 digit code');
+            return;
+          }
           _bloc.add(VerifyResetCodeEvent(_pinController.text));
         },
         content: BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
@@ -68,15 +73,15 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
                 c.verifyResetCodeStatus.isError;
           },
           listener:
-              (context, state) =>
-                  state.verifyResetCodeStatus.isError
+              (context, state) {
+                state.verifyResetCodeStatus.isError
                       ? context.showSnackBar(state.errorMessage)
                       : Navigator.of(context).pushNamed(
                         AppRoutes.createNewPasswordPage,
                         arguments: _bloc,
-                      ),
-          child: Container(height: 100, width: 100, color: Colors.red),
-          // child: OtpTextField(pinController: _pinController),
+                      );
+              },
+          child: OtpTextField(pinController: _pinController),
         ),
       ),
     );
@@ -87,13 +92,6 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
     ForgetPasswordState c,
     BuildContext context,
   ) {
-    // if (!c.verifyResetCodeStatus.isLoading &&
-    //     p.verifyResetCodeStatus.isLoading) {
-    //   log('hide loading');
-    //
-    //   context.hideLoading();
-    //   // return;k
-    // }
     if (c.verifyResetCodeStatus.isLoading &&
         !p.verifyResetCodeStatus.isLoading) {
       context.showLoading();

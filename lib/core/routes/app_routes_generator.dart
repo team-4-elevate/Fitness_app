@@ -54,21 +54,31 @@ class AppRoutesGenerator {
       case AppRoutes.forgotPass:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => const ForgetPasswordPage(),
+          builder:
+              (_) => BlocProvider(
+                create: (_) => getIt<ForgetPasswordBloc>(),
+                child: const ForgetPasswordPage(),
+              ),
         );
       case AppRoutes.forgetPassOtpPage:
         final args = settings.arguments as ForgetPasswordBloc;
         return MaterialPageRoute(
           settings: settings,
           builder: (_) {
-            return ForgetPassOtpCodePage(bloc: args);
+            return BlocProvider.value(
+              value: args,
+              child: ForgetPassOtpCodePage(bloc: args),
+            );
           },
         );
       case AppRoutes.createNewPasswordPage:
         final args = settings.arguments as ForgetPasswordBloc;
         return MaterialPageRoute(
           builder: (_) {
-            return CreateNewPasswordPage(bloc: args);
+            return BlocProvider.value(
+              value: args,
+              child: CreateNewPasswordPage(bloc: args),
+            );
           },
         );
       default:

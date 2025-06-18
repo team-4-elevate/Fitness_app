@@ -12,10 +12,10 @@ class OtpTextField extends StatelessWidget {
     return Pinput(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       controller: pinController,
-      length: 4,
+      length: 6,
       defaultPinTheme: PinTheme(
-        width: 56,
-        height: 56,
+        width: 32,
+        height: 32,
         textStyle: Theme.of(
           context,
         ).textTheme.headlineLarge!.copyWith(color: AppColors.primaryOrange),
@@ -32,8 +32,8 @@ class OtpTextField extends StatelessWidget {
         ),
       ),
       focusedPinTheme: PinTheme(
-        width: 56,
-        height: 56,
+        width: 32,
+        height: 32,
         textStyle: Theme.of(
           context,
         ).textTheme.headlineLarge!.copyWith(color: AppColors.primaryOrange),
@@ -44,8 +44,8 @@ class OtpTextField extends StatelessWidget {
         ),
       ),
       submittedPinTheme: PinTheme(
-        width: 56,
-        height: 56,
+        width: 32,
+        height: 32,
         textStyle: Theme.of(
           context,
         ).textTheme.headlineLarge!.copyWith(color: AppColors.primaryOrange),

@@ -1,12 +1,13 @@
 import 'dart:developer';
+import 'package:equatable/equatable.dart';
+
 import '../../../../../core/app_manger/bloc_handler_mixin.dart';
 
-class ForgetPasswordState {
+class ForgetPasswordState extends Equatable{
   final Status forgetPasswordStatus;
 
   final Status resetPasswordStatus;
   final Status verifyResetCodeStatus;
-  final Status resendOtpStatus;
   final String userEmail;
   final bool? shouldVerify;
   final String errorMessage;
@@ -14,7 +15,6 @@ class ForgetPasswordState {
     this.forgetPasswordStatus = Status.initial,
     this.verifyResetCodeStatus = Status.initial,
     this.resetPasswordStatus = Status.initial,
-    this.resendOtpStatus = Status.initial,
     this.userEmail = '',
     this.errorMessage = '',
     this.shouldVerify = false,
@@ -24,7 +24,6 @@ class ForgetPasswordState {
     Status? forgetPasswordStatus,
     Status? verifyOtpStatus,
     Status? resetPasswordStatus,
-    Status? resendOtpStatus,
     String? errorMessage,
     bool? shouldVerify,
     String? userEmail,
@@ -39,7 +38,6 @@ class ForgetPasswordState {
       forgetPasswordStatus: forgetPasswordStatus ?? this.forgetPasswordStatus,
       verifyResetCodeStatus: verifyOtpStatus ?? this.verifyResetCodeStatus,
       resetPasswordStatus: resetPasswordStatus ?? this.resetPasswordStatus,
-      resendOtpStatus: resendOtpStatus ?? this.resendOtpStatus,
     );
   }
 
@@ -51,6 +49,5 @@ class ForgetPasswordState {
     forgetPasswordStatus,
     verifyResetCodeStatus,
     resetPasswordStatus,
-    resendOtpStatus,
   ];
 }

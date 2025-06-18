@@ -58,7 +58,10 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         primaryButtonAction: () {
           log('message primary acation called ${(DateTime.now()).toString()}');
           _bloc.add(
-            ForgetPasswordSubmitEvent(_emailController.text.trim(), _formKey),
+            ForgetPasswordSubmitEvent(
+              _emailController.text.trim(),
+              formKey: _formKey,
+            ),
           );
         },
         content: BlocListener<ForgetPasswordBloc, ForgetPasswordState>(

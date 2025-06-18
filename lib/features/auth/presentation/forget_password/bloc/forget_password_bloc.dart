@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_request.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart';
@@ -16,12 +18,10 @@ class ForgetPasswordBloc
   final ForgotPasswordUseCase _forgetPasswordUseCase;
   final VerifyOtpUseCase _verifyResetCodeUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
-  // final ResendOtpUseCase _resendOtpUseCase;
   ForgetPasswordBloc(
     this._forgetPasswordUseCase,
     this._verifyResetCodeUseCase,
     this._resetPasswordUseCase,
-    // this._resendOtpUseCase,
   ) : super(ForgetPasswordState()) {
     _mapEvents();
   }
@@ -32,6 +32,7 @@ class ForgetPasswordBloc
     try {
       emit(state.copyWith(forgetPasswordStatus: Status.loading));
       await _forgetPasswordUseCase(ForgetpasswordRequest(email: event.email));
+      log('not catch ');
       emit(
         state.copyWith(
           forgetPasswordStatus: Status.success,
@@ -39,6 +40,7 @@ class ForgetPasswordBloc
         ),
       );
     } catch (e) {
+      log('catch');
       emit(
         state.copyWith(
           forgetPasswordStatus: Status.error,
@@ -56,12 +58,13 @@ class ForgetPasswordBloc
       emit(
         state.copyWith(
           verifyOtpStatus: Status.loading,
-          shouldVerify: event.code.length == 4 ? true : false,
         ),
       );
       await _verifyResetCodeUseCase(VerifyOtpRequest(resetCode: event.code));
+      log('ssss');
       emit(state.copyWith(verifyOtpStatus: Status.success));
     } catch (e) {
+      log('error');
       emit(
         state.copyWith(
           verifyOtpStatus: Status.error,
@@ -102,11 +105,11 @@ class ForgetPasswordBloc
       await _forgetPasswordUseCase(
         ForgetpasswordRequest(email: state.userEmail),
       );
-      emit(state.copyWith(resendOtpStatus: Status.success));
+      emit(state.copyWith(forgetPasswordStatus: Status.success));
     } catch (e) {
       emit(
         state.copyWith(
-          resendOtpStatus: Status.error,
+          forgetPasswordStatus: Status.error,
           errorMessage: e.toString(),
         ),
       );

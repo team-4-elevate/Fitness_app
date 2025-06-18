@@ -15,10 +15,10 @@ abstract interface class AuthRemoteDataSourceContract {
   Future<ApiResult<LoginResponse>> login(LoginRequest loginRequest);
   Future<ApiResult<RegisterResponse>> register(RegisterRequest request);
 
-  Future<ApiResult<ForgetpasswordResponse>> forgotPassword(
+  Future<void> forgotPassword(
     ForgetpasswordRequest request,
   );
-  Future<ApiResult<VerifyOtpResponse>> verifyOtp(VerifyOtpRequest request);
+  Future<void> verifyOtp(VerifyOtpRequest request);
   Future<ApiResult<ResetpasswordResponse>> resetPassword(
     ResetpasswordRequest request,
   );

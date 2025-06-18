@@ -9,7 +9,7 @@ class VerifyOtpUseCase {
   final AuthRepo _repo;
   VerifyOtpUseCase(this._repo);
 
-  Future<ApiResult<VerifyOtpResponse>> call(VerifyOtpRequest request) async {
-    return await _repo.verifyOtp(request);
+  Future<void> call(VerifyOtpRequest request) async {
+    await _repo.verifyOtp(request);
   }
 }
