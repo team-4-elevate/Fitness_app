@@ -19,6 +19,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+  String get networkError =>
+ feature/App-Sections
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من شبكتك والمحاولة مرة أخرى.';
+
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+ development
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقًا.';

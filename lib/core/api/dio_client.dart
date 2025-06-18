@@ -14,7 +14,10 @@ class DioApiClient implements ApiClient {
   final Dio _dio;
   final AppSecureStorage localStorage;
 
+ feature/App-Sections
+  DioApiClient(this.localStorage, this._appNavigator)
   DioApiClient(this.localStorage)
+ development
     : _dio = Dio(
         BaseOptions(
           baseUrl: ApiConstants.baseUrl,
@@ -114,20 +117,41 @@ class DioApiClient implements ApiClient {
       return responseData as T;
     }
 
+ feature/App-Sections
+    // If T is List<Map<String, dynamic>>, return as is
+ development
     if (T.toString() == 'List<Map<String, dynamic>>') {
       return responseData as T;
     }
 
+ feature/App-Sections
+    // If T is String and responseData is String
     if (T == String && responseData is String) {
       return responseData as T;
     }
+
+    // If T is List and responseData is List
+
+    if (T == String && responseData is String) {
+      return responseData as T;
+    }
+ development
     if (T.toString().startsWith('List<') && responseData is List) {
       return responseData as T;
     }
 
+ feature/App-Sections
+    // For primitive types (int, double, bool)
     if (T == int || T == double || T == bool) {
       return responseData as T;
     }
+
+    // If none of the above, try direct casting
+
+    if (T == int || T == double || T == bool) {
+      return responseData as T;
+    }
+ development
     try {
       return responseData as T;
     } catch (e) {
@@ -150,6 +174,17 @@ class DioApiClient implements ApiClient {
         throw ServerFailure(errorMessage: 'User token is null');
       }
     } catch (e) {
+ feature/App-Sections
+      // Handle token error - navigate to login if needed
+      if (appCurrentRoute != AppRoutes.loginPage &&
+          appCurrentRoute != AppRoutes.signUpPage) {
+        await localStorage.saveRememberMe(false);
+        _appNavigator.pushNamedAndRemoveUntil(
+          AppRoutes.loginPage,
+          (route) => false,
+        );
+      }
+ development
       throw ServerFailure(errorMessage: 'Token error: ${e.toString()}');
     }
   }
