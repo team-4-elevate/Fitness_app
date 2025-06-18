@@ -57,10 +57,11 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
         isRegister: false,
         primaryButtonText: 'Confirm',
         footerContent: OtpFooterTextWidget(
-          onResendCode: () => _bloc.add(ForgetPasswordSubmitEvent(_bloc.state.userEmail,)),
+          onResendCode:
+              () => _bloc.add(ForgetPasswordSubmitEvent(_bloc.state.userEmail)),
         ),
         primaryButtonAction: () {
-              if(_pinController.text.length != 6){
+          if (_pinController.text.length != 6) {
             context.showSnackBar('please enter 4 digit code');
             return;
           }
@@ -72,15 +73,13 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
             return c.verifyResetCodeStatus.isSuccess ||
                 c.verifyResetCodeStatus.isError;
           },
-          listener:
-              (context, state) {
-                state.verifyResetCodeStatus.isError
-                      ? context.showSnackBar(state.errorMessage)
-                      : Navigator.of(context).pushNamed(
-                        AppRoutes.createNewPasswordPage,
-                        arguments: _bloc,
-                      );
-              },
+          listener: (context, state) {
+            state.verifyResetCodeStatus.isError
+                ? context.showSnackBar(state.errorMessage)
+                : Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.createNewPasswordPage, arguments: _bloc);
+          },
           child: OtpTextField(pinController: _pinController),
         ),
       ),

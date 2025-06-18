@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../../core/app_manger/bloc_handler_mixin.dart';
 
-class ForgetPasswordState extends Equatable{
+class ForgetPasswordState extends Equatable {
   final Status forgetPasswordStatus;
 
   final Status resetPasswordStatus;
