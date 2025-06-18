@@ -18,8 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome to Fitness App';
 
   @override
-  String get networkError =>
-      'No internet connection. Please check your network and try again.';
+  String get networkError => 'No internet connection. Please check your network and try again.';
 
   @override
   String get serverError => 'Server error. Please try again later.';
@@ -52,8 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'Connection error. Please check your network.';
 
   @override
-  String get socketException =>
-      'Connection problem. Please check your internet.';
+  String get socketException => 'Connection problem. Please check your internet.';
 
   @override
   String get formatException => 'Could not read the received data.';
@@ -67,6 +65,67 @@ class AppLocalizationsEn extends AppLocalizations {
   String errorWithStatusCode(String status) {
     return 'Error occurred (code: $status).';
   }
+
+  @override
+  String get login_heyThere => 'Hey There';
+
+  @override
+  String get login_welcomeBack => 'WELCOME BACK';
+
+  @override
+  String get login_title => 'Login';
+
+  @override
+  String get login_emailLabel => 'Email';
+
+  @override
+  String get login_emailHint => 'Enter your email';
+
+  @override
+  String get login_passwordLabel => 'Password';
+
+  @override
+  String get login_passwordHint => 'Enter your password';
+
+  @override
+  String get login_forgotPassword => 'Forgot Password?';
+
+  @override
+  String get login_orDivider => 'OR';
+
+  @override
+  String get login_noAccount => 'Don\'t have an account?';
+
+  @override
+  String get login_register => ' Register';
+
+  @override
+  String get login_socialTitle => 'Social Login';
+
+  @override
+  String get login_socialMessage => 'Social login is not implemented yet.';
+
+  @override
+  String get login_socialButton => 'Ok Got it';
+
+  @override
+  String get login_successTitle => 'Login Successful';
+
+  @override
+  String login_successMessage(String user) {
+    return 'Welcome back, $user!';
+  }
+
+  @override
+  String get login_failedTitle => 'Login Failed';
+
+  @override
+  String login_failedMessage(String error) {
+    return '$error';
+  }
+
+  @override
+  String get login_failedButton => 'Ok Got it';
 
   @override
   String get registerSuccess => 'Registration successful!';
@@ -87,8 +146,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle2 => 'HOW OLD ARE YOU?';
 
   @override
-  String get registrationSubtitle2 =>
-      'This Helps Us Create Your Personalized Plan';
+  String get registrationSubtitle2 => 'This Helps Us Create Your Personalized Plan';
 
   @override
   String get registrationTitle3 => 'WHAT IS YOUR WEIGHT?';
@@ -112,8 +170,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle6 => 'HOW ACTIVE ARE YOU?';
 
   @override
-  String get registrationSubtitle6 =>
-      'Your Activity Level Helps Us Set Targets';
+  String get registrationSubtitle6 => 'Your Activity Level Helps Us Set Targets';
 
   @override
   String get year => 'Year';

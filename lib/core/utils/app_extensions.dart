@@ -160,6 +160,16 @@ extension BuildContextExtensions on BuildContext {
     );
   }
 
+  Future<void> showLoadingIndicator() async {
+    await showDialog(
+      barrierDismissible: false,
+      context: this,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+
   void showErrorSnackBar(String message) {
     showSnackBar(message, backgroundColor: AppColors.error);
   }

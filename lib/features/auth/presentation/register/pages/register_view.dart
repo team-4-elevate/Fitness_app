@@ -152,7 +152,7 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false,
+       canPop: false,
       child: CustomAuthScreensView(
         //-----------------------------------------------------title arguments
         args: AuthPagesUiArguments(

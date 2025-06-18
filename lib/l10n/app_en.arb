@@ -84,6 +84,47 @@
       }
     }
   },
+  "login_heyThere": "Hey There",
+  "login_welcomeBack": "WELCOME BACK",
+  "login_title": "Login",
+  "login_emailLabel": "Email",
+  "login_emailHint": "Enter your email",
+  "login_passwordLabel": "Password",
+  "login_passwordHint": "Enter your password",
+  "login_forgotPassword": "Forgot Password?",
+  "login_orDivider": "OR",
+  "login_noAccount": "Don't have an account?",
+  "login_register": " Register",
+
+  "login_socialTitle": "Social Login",
+  "login_socialMessage": "Social login is not implemented yet.",
+  "login_socialButton": "Ok Got it",
+
+  "login_successTitle": "Login Successful",
+  "login_successMessage": "Welcome back, {user}!",
+  "@login_successMessage": {
+    "description": "Login success message with user name",
+    "placeholders": {
+      "user": {
+        "type": "String",
+        "description": "The user's first name"
+      }
+    }
+  },
+
+  "login_failedTitle": "Login Failed",
+  "login_failedMessage": "{error}",
+  "@login_failedMessage": {
+    "description": "Login failure message with error details",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "description": "The error message to display"
+      }
+    }
+  },
+
+  "login_failedButton": "Ok Got it"
   
   "registerSuccess": "Registration successful!",
   "@registerSuccess": {

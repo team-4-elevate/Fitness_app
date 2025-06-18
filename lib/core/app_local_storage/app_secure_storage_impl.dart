@@ -137,7 +137,7 @@ class AppSecureStorageImpl implements AppSecureStorage {
   }
 
   @override
-  Future<void> saveUserData(String key, String value) async {
+  Future<void> saveUserData(String key, dynamic value) async {
     dev.log('Saving user data: $key', name: 'AppLocalStorage');
     try {
       await _secureStorage.write(key: AppKeys.userData + key, value: value);

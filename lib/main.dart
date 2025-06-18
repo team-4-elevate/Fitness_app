@@ -9,6 +9,8 @@ import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/navigation_services.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
 import 'package:fitness_app/features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
@@ -66,7 +68,11 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-              home: BlocProvider(
+                            // routes: {'/home': (context) => const Home()},
+              // home: BlocProvider(
+              //   create: (context) => getIt<LoginViewModel>(),
+              //   child: const LoginView(),
+                home: BlocProvider(
                 create: (_) => getIt<RegisterBloc>(),
                 child: const RegisterView(),
               ),

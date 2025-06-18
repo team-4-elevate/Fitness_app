@@ -1,28 +1,37 @@
-// features/auth/data/repo/auth_repo_impl.dart
-
-import 'package:fitness_app/features/auth/data/datasource/remote_data_source/auth_remote_data_source_contract.dart';
+import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
 import 'package:fitness_app/core/helper/api_result.dart';
-import 'package:fitness_app/features/auth/data/model/register/register_response/register_response.dart';
+import 'package:fitness_app/core/helper/handel_repo_response.dart';
+import 'package:fitness_app/features/auth/data/datasource/remote_data_source/auth_remote_data_source_contract.dart';
+import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart';
+import 'package:fitness_app/features/auth/data/model/login_models/login_response/login_response.dart';
 import 'package:fitness_app/features/auth/domain/repo/auth_repo.dart';
+import 'package:fitness_app/features/auth/data/model/register/register_response/register_response.dart';
 import 'package:fitness_app/features/auth/data/model/register_details.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {
-  final AuthRemoteDataSourceContract _remoteDataSource;
+  final AuthRemoteDataSourceContract _authRemoteDataSource;
+  final AppSecureStorage _secureStorage;
+  AuthRepoImpl(this._authRemoteDataSource, this._secureStorage);
+  @override
+  Future<ApiResult<LoginResponse>> login(LoginRequest loginRequest) async {
+    try {
+      var response = await _authRemoteDataSource.login(loginRequest);
+      return handleRepoResponse(response).thenDoAsync((data) async {
+        await _secureStorage.saveToken(data.token ?? '');
+      });
+    } catch (e) {
+      return ApiFailure(e.toString());
+    }
+  }
 
-  AuthRepoImpl(this._remoteDataSource);
-
-  //-------------------------register-------------------------
   @override
   Future<ApiResult<RegisterResponse>> register(RegisterDetailsData data) async {
     try {
       final request = data.toRegisterRequest();
-
-      return await _remoteDataSource.register(request);
+      return await _authRemoteDataSource.register(request);
     } catch (e) {
-      debugPrint('Registration repository error: $e');
       return ApiFailure('Failed to register: $e');
     }
   }
