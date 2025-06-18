@@ -22,8 +22,13 @@ import '../../features/auth/data/datasource/remote_data_source/auth_remote_data_
     as _i189;
 import '../../features/auth/data/repo/auth_repo_impl.dart' as _i984;
 import '../../features/auth/domain/repo/auth_repo.dart' as _i170;
+import '../../features/auth/domain/usecases/forgot_password_use_case.dart'
+    as _i18;
 import '../../features/auth/domain/usecases/login_use_case.dart' as _i37;
 import '../../features/auth/domain/usecases/register_usecase.dart' as _i941;
+import '../../features/auth/domain/usecases/reset_password_use_case.dart'
+    as _i825;
+import '../../features/auth/domain/usecases/verify_otp_use_case.dart' as _i509;
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
@@ -77,6 +82,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i37.LoginUseCase>(
       () => _i37.LoginUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i18.ForgotPasswordUseCase>(
+      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i509.VerifyOtpUseCase>(
+      () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i825.ResetPasswordUseCase>(
+      () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i225.LoginViewModel>(
       () => _i225.LoginViewModel(gh<_i37.LoginUseCase>()),

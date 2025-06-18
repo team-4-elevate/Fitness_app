@@ -1,7 +1,14 @@
+// features/auth/data/repo/auth_repo_impl.dart
 import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
 import 'package:fitness_app/core/helper/api_result.dart';
 import 'package:fitness_app/core/helper/handel_repo_response.dart';
 import 'package:fitness_app/features/auth/data/datasource/remote_data_source/auth_remote_data_source_contract.dart';
+import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_request.dart';
+import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_response.dart';
+import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart';
+import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_response.dart';
+import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_request.dart';
+import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_response.dart';
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart';
 import 'package:fitness_app/features/auth/data/model/login_models/login_response/login_response.dart';
 import 'package:fitness_app/features/auth/domain/repo/auth_repo.dart';
@@ -33,6 +40,38 @@ class AuthRepoImpl implements AuthRepo {
       return await _authRemoteDataSource.register(request);
     } catch (e) {
       return ApiFailure('Failed to register: $e');
+    }
+  }
+
+  @override
+  Future<ApiResult<ForgetpasswordResponse>> forgotPassword(ForgetpasswordRequest request) async {
+    try {
+      return await _authRemoteDataSource.forgotPassword(request);
+    } catch (e) {
+      return ApiFailure('Failed to initiate password reset: $e');
+    }
+  }
+
+  @override
+  Future<ApiResult<VerifyOtpResponse>> verifyOtp(VerifyOtpRequest request) async {
+    try {
+      return await _authRemoteDataSource.verifyOtp(request);
+    } catch (e) {
+      return ApiFailure('Failed to verify OTP: $e');
+    }
+  }
+
+  @override
+  Future<ApiResult<ResetpasswordResponse>> resetPassword(ResetpasswordRequest request) async {
+    try {
+      var response = await _authRemoteDataSource.resetPassword(request);
+      return handleRepoResponse(response).thenDoAsync((data) async {
+        if (data.token != null && data.token!.isNotEmpty) {
+          await _secureStorage.saveToken(data.token!);
+        }
+      });
+    } catch (e) {
+      return ApiFailure('Failed to reset password: $e');
     }
   }
 }
