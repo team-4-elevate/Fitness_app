@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 import '../../../../../core/app_manger/bloc_handler_mixin.dart';
 
@@ -36,7 +35,7 @@ class ForgetPasswordState {
     return ForgetPasswordState(
       userEmail: userEmail ?? this.userEmail,
       errorMessage: errorMessage ?? '',
-      shouldVerify: shouldVerify ,
+      shouldVerify: shouldVerify,
       forgetPasswordStatus: forgetPasswordStatus ?? this.forgetPasswordStatus,
       verifyResetCodeStatus: verifyOtpStatus ?? this.verifyResetCodeStatus,
       resetPasswordStatus: resetPasswordStatus ?? this.resetPasswordStatus,
@@ -45,14 +44,13 @@ class ForgetPasswordState {
   }
 
   @override
-  List get props =>
-      [
-        userEmail,
-        errorMessage,
-        shouldVerify,
-        forgetPasswordStatus,
-        verifyResetCodeStatus,
-        resetPasswordStatus,
-        resendOtpStatus,
-      ];
+  List get props => [
+    userEmail,
+    errorMessage,
+    shouldVerify,
+    forgetPasswordStatus,
+    verifyResetCodeStatus,
+    resetPasswordStatus,
+    resendOtpStatus,
+  ];
 }

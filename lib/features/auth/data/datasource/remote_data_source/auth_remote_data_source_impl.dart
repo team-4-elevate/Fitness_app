@@ -44,16 +44,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
       return ApiFailure('Failed to register: $e');
     }
   }
-  
+
   @override
-  Future<ApiResult<ForgetpasswordResponse>> forgotPassword(ForgetpasswordRequest request) async {
+  Future<ApiResult<ForgetpasswordResponse>> forgotPassword(
+    ForgetpasswordRequest request,
+  ) async {
     try {
       final response = await _apiClient.post(
         ApiConstants.forgotPasswordEndpoint,
         data: request.toJson(),
         requiresToken: false,
       );
-      
+
       return response.map((data) => ForgetpasswordResponse.fromJson(data));
     } catch (e) {
       return ApiFailure('Failed to initiate forgot password: $e');
@@ -61,14 +63,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
   }
 
   @override
-  Future<ApiResult<VerifyOtpResponse>> verifyOtp(VerifyOtpRequest request) async {
+  Future<ApiResult<VerifyOtpResponse>> verifyOtp(
+    VerifyOtpRequest request,
+  ) async {
     try {
       final response = await _apiClient.post(
         ApiConstants.verifyOtpEndpoint,
         data: request.toJson(),
         requiresToken: false,
       );
-      
+
       return response.map((data) => VerifyOtpResponse.fromJson(data));
     } catch (e) {
       return ApiFailure('Failed to verify OTP: $e');
@@ -76,14 +80,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
   }
 
   @override
-  Future<ApiResult<ResetpasswordResponse>> resetPassword(ResetpasswordRequest request) async {
+  Future<ApiResult<ResetpasswordResponse>> resetPassword(
+    ResetpasswordRequest request,
+  ) async {
     try {
       final response = await _apiClient.put(
         ApiConstants.resetPasswordEndpoint,
         data: request.toJson(),
         requiresToken: false,
       );
-      
+
       return response.map((data) => ResetpasswordResponse.fromJson(data));
     } catch (e) {
       return ApiFailure('Failed to reset password: $e');

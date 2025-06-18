@@ -11,7 +11,8 @@ import 'forget_password_event.dart';
 import 'forget_password_state.dart';
 
 @singleton
-class ForgetPasswordBloc extends Bloc<ForgetPasswordEvent, ForgetPasswordState> {
+class ForgetPasswordBloc
+    extends Bloc<ForgetPasswordEvent, ForgetPasswordState> {
   final ForgotPasswordUseCase _forgetPasswordUseCase;
   final VerifyOtpUseCase _verifyResetCodeUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
@@ -76,7 +77,12 @@ class ForgetPasswordBloc extends Bloc<ForgetPasswordEvent, ForgetPasswordState> 
   ) async {
     emit(state.copyWith(resetPasswordStatus: Status.loading));
     try {
-      await _resetPasswordUseCase(ResetpasswordRequest(email: state.userEmail, newPassword: event.newPassword));
+      await _resetPasswordUseCase(
+        ResetpasswordRequest(
+          email: state.userEmail,
+          newPassword: event.newPassword,
+        ),
+      );
       emit(state.copyWith(resetPasswordStatus: Status.success));
     } catch (e) {
       emit(
@@ -93,7 +99,9 @@ class ForgetPasswordBloc extends Bloc<ForgetPasswordEvent, ForgetPasswordState> 
     Emitter<ForgetPasswordState> emit,
   ) async {
     try {
-      await _forgetPasswordUseCase(ForgetpasswordRequest(email: state.userEmail));
+      await _forgetPasswordUseCase(
+        ForgetpasswordRequest(email: state.userEmail),
+      );
       emit(state.copyWith(resendOtpStatus: Status.success));
     } catch (e) {
       emit(

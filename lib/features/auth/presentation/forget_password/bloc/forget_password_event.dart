@@ -27,9 +27,7 @@ class VerifyResetCodeEvent extends ForgetPasswordEvent {
 class ResetPasswordEvent extends ForgetPasswordEvent {
   final String newPassword;
 
-  const ResetPasswordEvent({
-    required this.newPassword,
-  });
+  const ResetPasswordEvent({required this.newPassword});
 
   @override
   List<Object> get props => [newPassword];

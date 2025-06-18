@@ -54,8 +54,7 @@ class AppRoutesGenerator {
       case AppRoutes.forgotPass:
         return MaterialPageRoute(
           settings: settings,
-          builder:
-              (_) => const ForgetPasswordPage(),
+          builder: (_) => const ForgetPasswordPage(),
         );
       case AppRoutes.forgetPassOtpPage:
         final args = settings.arguments as ForgetPasswordBloc;

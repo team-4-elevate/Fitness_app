@@ -59,20 +59,14 @@ mixin BlocHandler<E extends Equatable, S extends AppState> on Bloc<E, S> {
 abstract class AppState extends Equatable {
   final String errorMessage = '';
   const AppState();
-  copyWith({
-    String? errorMessage,
-  });
+  copyWith({String? errorMessage});
 
   @override
   List<Object?> get props => [errorMessage];
 }
 
-enum Status {
-  initial,
-  loading,
-  success,
-  error,
-}
+enum Status { initial, loading, success, error }
+
 extension StatusX on Status {
   bool get isInitial => this == Status.initial;
   bool get isLoading => this == Status.loading;

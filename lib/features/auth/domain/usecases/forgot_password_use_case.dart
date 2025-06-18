@@ -9,7 +9,9 @@ class ForgotPasswordUseCase {
   final AuthRepo _repo;
   ForgotPasswordUseCase(this._repo);
 
-  Future<ApiResult<ForgetpasswordResponse>> call(ForgetpasswordRequest request) async {
+  Future<ApiResult<ForgetpasswordResponse>> call(
+    ForgetpasswordRequest request,
+  ) async {
     return await _repo.forgotPassword(request);
   }
 }

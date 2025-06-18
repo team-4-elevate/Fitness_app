@@ -59,7 +59,6 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
           onResendCode: () => _bloc.add(VerifyResetCodeEvent('2222')),
         ),
         primaryButtonAction: () {
-
           _bloc.add(VerifyResetCodeEvent(_pinController.text));
         },
         content: BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
@@ -95,10 +94,12 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
     //   context.hideLoading();
     //   // return;k
     // }
-    if (c.verifyResetCodeStatus.isLoading && !p.verifyResetCodeStatus.isLoading) {
+    if (c.verifyResetCodeStatus.isLoading &&
+        !p.verifyResetCodeStatus.isLoading) {
       context.showLoading();
     }
-    if (!c.verifyResetCodeStatus.isLoading && p.verifyResetCodeStatus.isLoading) {
+    if (!c.verifyResetCodeStatus.isLoading &&
+        p.verifyResetCodeStatus.isLoading) {
       context.hideLoading();
     }
   }

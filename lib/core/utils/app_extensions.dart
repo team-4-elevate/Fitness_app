@@ -143,7 +143,7 @@ extension BuildContextExtensions on BuildContext {
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? padding,
   }) {
-   print('snackabr + $message');
+    print('snackabr + $message');
     ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -176,15 +176,16 @@ extension BuildContextExtensions on BuildContext {
     showSnackBar(message, backgroundColor: AppColors.error);
   }
 
-
-  void showLoading(){
+  void showLoading() {
     showCustomDialog(child: Center(child: CircularProgressIndicator()));
   }
-  void hideLoading(){
-    if(Navigator.of(this).canPop() && mounted){
+
+  void hideLoading() {
+    if (Navigator.of(this).canPop() && mounted) {
       Navigator.of(this).pop();
     }
   }
+
   void showSuccessSnackBar(String message) {
     showSnackBar(message, backgroundColor: AppColors.green);
   }

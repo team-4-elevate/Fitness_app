@@ -44,7 +44,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<ApiResult<ForgetpasswordResponse>> forgotPassword(ForgetpasswordRequest request) async {
+  Future<ApiResult<ForgetpasswordResponse>> forgotPassword(
+    ForgetpasswordRequest request,
+  ) async {
     try {
       return await _authRemoteDataSource.forgotPassword(request);
     } catch (e) {
@@ -53,7 +55,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<ApiResult<VerifyOtpResponse>> verifyOtp(VerifyOtpRequest request) async {
+  Future<ApiResult<VerifyOtpResponse>> verifyOtp(
+    VerifyOtpRequest request,
+  ) async {
     try {
       return await _authRemoteDataSource.verifyOtp(request);
     } catch (e) {
@@ -62,7 +66,9 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<ApiResult<ResetpasswordResponse>> resetPassword(ResetpasswordRequest request) async {
+  Future<ApiResult<ResetpasswordResponse>> resetPassword(
+    ResetpasswordRequest request,
+  ) async {
     try {
       var response = await _authRemoteDataSource.resetPassword(request);
       return handleRepoResponse(response).thenDoAsync((data) async {
