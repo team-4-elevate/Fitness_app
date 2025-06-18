@@ -5,6 +5,8 @@ import 'package:fitness_app/features/auth/data/datasource/remote_data_source/aut
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart';
 import 'package:fitness_app/features/auth/data/model/login_models/login_response/login_response.dart';
 import 'package:fitness_app/features/auth/domain/repo/auth_repo.dart';
+import 'package:fitness_app/features/auth/data/model/register/register_response/register_response.dart';
+import 'package:fitness_app/features/auth/data/model/register_details.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthRepo)
@@ -21,6 +23,16 @@ class AuthRepoImpl implements AuthRepo {
       });
     } catch (e) {
       return ApiFailure(e.toString());
+    }
+  }
+
+  @override
+  Future<ApiResult<RegisterResponse>> register(RegisterDetailsData data) async {
+    try {
+      final request = data.toRegisterRequest();
+      return await _authRemoteDataSource.register(request);
+    } catch (e) {
+      return ApiFailure('Failed to register: $e');
     }
   }
 }

@@ -32,15 +32,13 @@ class LoginBlocListener extends StatelessWidget {
         }
 
         if (state.navigateToResetPassword) {
-          Navigator.pushNamed(context, AppRoutes.resetPasswordPage);
+          Navigator.pushNamed(context, AppRoutes.forgotPass);
           viewModel.loginIntent(LoginIntent.resetStates);
           return;
         }
 
         if (state.navigateToSignUp) {
-          Navigator.pushNamed(context, AppRoutes.signUpPage);
-          viewModel.loginIntent(LoginIntent.resetStates);
-
+          Navigator.pushReplacementNamed(context, AppRoutes.registerPage);
           return;
         }
         await state.loginState?.whenOrNull(

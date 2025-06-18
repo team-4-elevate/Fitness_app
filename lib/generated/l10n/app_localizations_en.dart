@@ -18,8 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome to Fitness App';
 
   @override
-  String get networkError =>
-      'No internet connection. Please check your network and try again.';
+  String get networkError => 'No internet connection. Please check your network and try again.';
 
   @override
   String get serverError => 'Server error. Please try again later.';
@@ -52,8 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'Connection error. Please check your network.';
 
   @override
-  String get socketException =>
-      'Connection problem. Please check your internet.';
+  String get socketException => 'Connection problem. Please check your internet.';
 
   @override
   String get formatException => 'Could not read the received data.';
@@ -128,4 +126,118 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login_failedButton => 'Ok Got it';
+
+  @override
+  String get registerSuccess => 'Registration successful!';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get finish => 'Finish';
+
+  @override
+  String get registrationTitle1 => 'TELL US ABOUT YOURSELF!';
+
+  @override
+  String get registrationSubtitle1 => 'We Need To Know Your Gender';
+
+  @override
+  String get registrationTitle2 => 'HOW OLD ARE YOU?';
+
+  @override
+  String get registrationSubtitle2 => 'This Helps Us Create Your Personalized Plan';
+
+  @override
+  String get registrationTitle3 => 'WHAT IS YOUR WEIGHT?';
+
+  @override
+  String get registrationSubtitle3 => 'We Use This For Calorie Calculations';
+
+  @override
+  String get registrationTitle4 => 'WHAT IS YOUR HEIGHT?';
+
+  @override
+  String get registrationSubtitle4 => 'This Helps Us Calculate Your BMI';
+
+  @override
+  String get registrationTitle5 => 'WHAT IS YOUR GOAL?';
+
+  @override
+  String get registrationSubtitle5 => 'Tell Us What You Want To Achieve';
+
+  @override
+  String get registrationTitle6 => 'HOW ACTIVE ARE YOU?';
+
+  @override
+  String get registrationSubtitle6 => 'Your Activity Level Helps Us Set Targets';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get kg => 'Kg';
+
+  @override
+  String get cm => 'Cm';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get goalGainWeight => 'Gain Weight';
+
+  @override
+  String get goalLoseWeight => 'Lose Weight';
+
+  @override
+  String get goalGetFitter => 'Get Fitter';
+
+  @override
+  String get goalGainFlexibility => 'Gain More Flexibility';
+
+  @override
+  String get goalLearnBasics => 'Learn The Basics';
+
+  @override
+  String get activityRookie => 'Rookie';
+
+  @override
+  String get activityBeginner => 'Beginner';
+
+  @override
+  String get activityIntermediate => 'Intermediate';
+
+  @override
+  String get activityAdvanced => 'Advanced';
+
+  @override
+  String get activityTrueBeast => 'True Beast';
+
+  @override
+  String get firstName => 'First Name';
+
+  @override
+  String get lastName => 'Last Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get passwordRequired => 'Password is Required';
+
+  @override
+  String get registerGreeting => 'Hi there';
+
+  @override
+  String get createAccount => 'Create An Account';
+
+  @override
+  String get register => 'Register';
 }

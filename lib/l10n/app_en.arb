@@ -84,7 +84,6 @@
       }
     }
   },
-
   "login_heyThere": "Hey There",
   "login_welcomeBack": "WELCOME BACK",
   "login_title": "Login",
@@ -126,4 +125,181 @@
   },
 
   "login_failedButton": "Ok Got it"
+  
+  "registerSuccess": "Registration successful!",
+  "@registerSuccess": {
+    "description": "Message displayed when registration is successful"
+  },
+  
+  "next": "Next",
+  "@next": {
+    "description": "Button text for the next step"
+  },
+  
+  "finish": "Finish",
+  "@finish": {
+    "description": "Button text for the final step"
+  },
+  
+  "registrationTitle1": "TELL US ABOUT YOURSELF!",
+  "@registrationTitle1": {
+    "description": "Title for gender selection step"
+  },
+  "registrationSubtitle1": "We Need To Know Your Gender",
+  "@registrationSubtitle1": {
+    "description": "Subtitle for gender selection step"
+  },
+  
+  "registrationTitle2": "HOW OLD ARE YOU?",
+  "@registrationTitle2": {
+    "description": "Title for age selection step"
+  },
+  "registrationSubtitle2": "This Helps Us Create Your Personalized Plan",
+  "@registrationSubtitle2": {
+    "description": "Subtitle for age selection step"
+  },
+  
+  "registrationTitle3": "WHAT IS YOUR WEIGHT?",
+  "@registrationTitle3": {
+    "description": "Title for weight selection step"
+  },
+  "registrationSubtitle3": "We Use This For Calorie Calculations",
+  "@registrationSubtitle3": {
+    "description": "Subtitle for weight selection step"
+  },
+  
+  "registrationTitle4": "WHAT IS YOUR HEIGHT?",
+  "@registrationTitle4": {
+    "description": "Title for height selection step"
+  },
+  "registrationSubtitle4": "This Helps Us Calculate Your BMI",
+  "@registrationSubtitle4": {
+    "description": "Subtitle for height selection step"
+  },
+  
+  "registrationTitle5": "WHAT IS YOUR GOAL?",
+  "@registrationTitle5": {
+    "description": "Title for goal selection step"
+  },
+  "registrationSubtitle5": "Tell Us What You Want To Achieve",
+  "@registrationSubtitle5": {
+    "description": "Subtitle for goal selection step"
+  },
+  
+  "registrationTitle6": "HOW ACTIVE ARE YOU?",
+  "@registrationTitle6": {
+    "description": "Title for activity level selection step"
+  },
+  "registrationSubtitle6": "Your Activity Level Helps Us Set Targets",
+  "@registrationSubtitle6": {
+    "description": "Subtitle for activity level selection step"
+  },
+  
+  "year": "Year",
+  "@year": {
+    "description": "Label for age selection"
+  },
+  
+  "kg": "Kg",
+  "@kg": {
+    "description": "Label for weight selection"
+  },
+  
+  "cm": "Cm",
+  "@cm": {
+    "description": "Label for height selection"
+  },
+  
+  "male": "Male",
+  "@male": {
+    "description": "Label for male gender option"
+  },
+  
+  "female": "Female",
+  "@female": {
+    "description": "Label for female gender option"
+  },
+  
+  "goalGainWeight": "Gain Weight",
+  "@goalGainWeight": {
+    "description": "Goal option to gain weight"
+  },
+  "goalLoseWeight": "Lose Weight",
+  "@goalLoseWeight": {
+    "description": "Goal option to lose weight"
+  },
+  "goalGetFitter": "Get Fitter",
+  "@goalGetFitter": {
+    "description": "Goal option to get fitter"
+  },
+  "goalGainFlexibility": "Gain More Flexibility",
+  "@goalGainFlexibility": {
+    "description": "Goal option to gain flexibility"
+  },
+  "goalLearnBasics": "Learn The Basics",
+  "@goalLearnBasics": {
+    "description": "Goal option to learn basics"
+  },
+  
+  "activityRookie": "Rookie",
+  "@activityRookie": {
+    "description": "Activity level option for rookie"
+  },
+  "activityBeginner": "Beginner",
+  "@activityBeginner": {
+    "description": "Activity level option for beginner"
+  },
+  "activityIntermediate": "Intermediate",
+  "@activityIntermediate": {
+    "description": "Activity level option for intermediate"
+  },
+  "activityAdvanced": "Advanced",
+  "@activityAdvanced": {
+    "description": "Activity level option for advanced"
+  },
+  "activityTrueBeast": "True Beast",
+  "@activityTrueBeast": {
+    "description": "Activity level option for true beast"
+  },
+
+  "firstName": "First Name",
+  "@firstName": {
+    "description": "Label for first name input field"
+  },
+
+  "lastName": "Last Name",
+  "@lastName": {
+    "description": "Label for last name input field"
+  },
+
+  "email": "Email",
+  "@email": {
+    "description": "Label for email input field"
+  },
+
+  "password": "Password",
+  "@password": {
+    "description": "Label for password input field"
+  },
+
+  "passwordRequired": "Password is Required",
+  "@passwordRequired": {
+    "description": "Error message when password field is empty"
+  },
+
+  "registerGreeting": "Hi there",
+  "@registerGreeting": {
+    "description": "Greeting text on register page"
+  },
+
+  "createAccount": "Create An Account",
+  "@createAccount": {
+    "description": "Title for register page"
+  },
+
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  }
+
 }

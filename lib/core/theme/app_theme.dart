@@ -1,3 +1,4 @@
+// core/theme/app_theme.dart
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/responsive/responsive.dart';
 import 'package:fitness_app/core/theme/app_font_style.dart';
@@ -145,13 +146,11 @@ class AppTheme {
         foregroundColor: AppColors.white,
         shadowColor: AppColors.primaryOrange.withOpacity(0.3),
         elevation: 0,
+
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(R.borderButtonValue),
         ),
-        padding: EdgeInsets.symmetric(
-          horizontal: R.paddingSMValue,
-          vertical: R.paddingSMValue,
-        ),
+
         textStyle: TextStyle(
           fontSize: R.textMD,
           fontWeight: FontWeight.w600,
@@ -224,7 +223,7 @@ class AppTheme {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
-        borderSide: BorderSide(color: AppColors.error, width: 1.r),
+        borderSide: BorderSide(color: AppColors.error, width: 2.r),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
@@ -343,4 +342,238 @@ class AppTheme {
       space: 1.r,
     ),
   );
+
+  // =================== Dark Theme ===================
+  static ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.dark,
+
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppColors.primaryOrange,
+      brightness: Brightness.dark,
+      primary: AppColors.primaryOrange,
+      secondary: AppColors.primaryBlue,
+      surface: AppColors.backgroundDark,
+      background: AppColors.backgroundDark,
+      error: AppColors.error,
+      onPrimary: AppColors.white,
+      onSecondary: AppColors.white,
+      onSurface: AppColors.white,
+      onBackground: AppColors.white,
+      onError: AppColors.white,
+    ),
+
+    scaffoldBackgroundColor: AppColors.backgroundDark,
+    primaryColor: AppColors.primaryOrange,
+
+    // Copy themes from light theme with dark adaptations
+    appBarTheme: lightTheme.appBarTheme.copyWith(
+      backgroundColor: AppColors.backgroundDark,
+    ),
+
+    textTheme: lightTheme.textTheme,
+    elevatedButtonTheme: lightTheme.elevatedButtonTheme,
+    outlinedButtonTheme: lightTheme.outlinedButtonTheme,
+    textButtonTheme: lightTheme.textButtonTheme,
+    inputDecorationTheme: lightTheme.inputDecorationTheme,
+    cardTheme: lightTheme.cardTheme.copyWith(color: AppColors.surfaceDark),
+    dialogTheme: lightTheme.dialogTheme.copyWith(
+      backgroundColor: AppColors.surfaceDark,
+    ),
+    checkboxTheme: lightTheme.checkboxTheme,
+    switchTheme: lightTheme.switchTheme,
+    iconTheme: lightTheme.iconTheme,
+    dividerTheme: lightTheme.dividerTheme,
+  );
+
+  // =================== Helper Methods - Responsive ===================
+
+  /// Get theme based on brightness
+  static ThemeData getTheme(bool isDark) {
+    return isDark ? darkTheme : lightTheme;
+  }
+
+  /// Get primary button style - Responsive
+  static ButtonStyle getPrimaryButtonStyle() {
+    return ElevatedButton.styleFrom(
+      backgroundColor: AppColors.primaryOrange,
+      foregroundColor: AppColors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          R.borderButtonValue,
+        ), // ✅ Responsive
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: R.paddingLGValue, // ✅ Responsive
+        vertical: R.paddingMDValue, // ✅ Responsive
+      ),
+      minimumSize: Size(
+        double.infinity,
+        R.adaptiveButtonHeight,
+      ), // ✅ Responsive
+      textStyle: TextStyle(
+        fontSize: R.textMD, // ✅ Responsive
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  /// Get secondary button style - Responsive
+  static ButtonStyle getSecondaryButtonStyle() {
+    return OutlinedButton.styleFrom(
+      foregroundColor: AppColors.white,
+      side: BorderSide(color: AppColors.white, width: 1.5.r), // ✅ Responsive
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          R.borderButtonValue,
+        ), // ✅ Responsive
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: R.paddingLGValue, // ✅ Responsive
+        vertical: R.paddingMDValue, // ✅ Responsive
+      ),
+      minimumSize: Size(
+        double.infinity,
+        R.adaptiveButtonHeight,
+      ), // ✅ Responsive
+      textStyle: TextStyle(
+        fontSize: R.textMD, // ✅ Responsive
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  /// Get social button style - Responsive
+  static ButtonStyle getSocialButtonStyle({Color? backgroundColor}) {
+    return ElevatedButton.styleFrom(
+      backgroundColor: backgroundColor ?? Colors.white.withOpacity(0.1),
+      foregroundColor: AppColors.white,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(R.borderBase), // ✅ Responsive
+        side: BorderSide(
+          color: Colors.white.withOpacity(0.2),
+          width: 1.r, // ✅ Responsive
+        ),
+      ),
+      padding: EdgeInsets.all(R.paddingMDValue), // ✅ Responsive
+      minimumSize: Size(60.w, 60.h), // ✅ Responsive
+    );
+  }
+
+  /// Get input decoration for forms - Responsive
+  static InputDecoration getInputDecoration({
+    required String hintText,
+    IconData? prefixIcon,
+    IconData? suffixIcon,
+    VoidCallback? onSuffixIconPressed,
+    bool isDense = true,
+  }) {
+    return InputDecoration(
+      hintText: hintText,
+      isDense: isDense,
+      hintStyle: TextStyle(
+        color: Colors.white.withOpacity(0.5),
+        fontSize: R.textSM,
+      ),
+      filled: true,
+      fillColor: Colors.white.withOpacity(0.1),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 16.r),
+      prefixIcon:
+          prefixIcon != null
+              ? Icon(
+                prefixIcon,
+                color: Colors.white.withOpacity(0.7),
+                size: R.iconBase, // ✅ Responsive icon size
+              )
+              : null,
+      suffixIcon:
+          suffixIcon != null
+              ? IconButton(
+                icon: Icon(
+                  suffixIcon,
+                  color: Colors.white.withOpacity(0.7),
+                  size: R.iconBase, // ✅ Responsive icon size
+                ),
+                onPressed: onSuffixIconPressed,
+              )
+              : null,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(color: Colors.white.withOpacity(0.2)),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(color: Colors.white.withOpacity(0.2)),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(color: AppColors.primaryOrange, width: 1.5.r),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(color: AppColors.error),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50.r),
+        borderSide: BorderSide(color: AppColors.error),
+      ),
+    );
+  }
+
+  // =================== Adaptive Theme Methods ===================
+
+  /// Get adaptive text style based on device
+  static TextStyle getAdaptiveTextStyle({
+    required double baseFontSize,
+    FontWeight? fontWeight,
+    Color? color,
+  }) {
+    return TextStyle(
+      fontSize: baseFontSize.sp,
+      fontWeight: fontWeight ?? FontWeight.normal,
+      color: color ?? AppColors.white,
+    );
+  }
+
+  /// Get adaptive padding based on device
+  static EdgeInsets getAdaptivePadding({
+    double all = 0,
+    double horizontal = 0,
+    double vertical = 0,
+  }) {
+    if (all > 0) {
+      return EdgeInsets.all(all.r); // ✅ Responsive
+    }
+    return EdgeInsets.symmetric(
+      horizontal: horizontal.r, // ✅ Responsive
+      vertical: vertical.r, // ✅ Responsive
+    );
+  }
+
+  /// Get adaptive border radius
+  static BorderRadius getAdaptiveBorderRadius(double radius) {
+    return BorderRadius.circular(radius.r); // ✅ Responsive
+  }
+
+  /// Get adaptive button height based on device
+  static double getAdaptiveButtonHeight() {
+    return R.adaptiveButtonHeight; // ✅ Uses responsive logic
+  }
+
+  /// Get adaptive icon size based on context
+  static double getAdaptiveIconSize(String size) {
+    switch (size) {
+      case 'small':
+        return R.iconSM;
+      case 'base':
+        return R.iconBase;
+      case 'large':
+        return R.iconLG;
+      case 'xl':
+        return R.iconXL;
+      default:
+        return R.iconBase;
+    }
+  }
 }

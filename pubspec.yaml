@@ -60,14 +60,17 @@ dependencies:
   blur:
   flutter_svg:
   pinput:
+  google_fonts: ^6.2.1
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
+  build_runner: ^2.3.3
   retrofit_generator: '>=8.0.0 <10.0.0'
   injectable_generator:
   json_serializable:
+  mockito: ^5.4.3 
   
 
 
