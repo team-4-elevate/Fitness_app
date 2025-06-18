@@ -6,7 +6,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:fitness_app/features/auth/domain/usecases/register_usecase.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
-import 'package:fitness_app/features/auth/data/model/register_details.dart' as v;
+import 'package:fitness_app/features/auth/data/model/register_details.dart'
+    as v;
 import 'package:fitness_app/features/auth/data/model/register/register_response/register_response.dart';
 import 'package:fitness_app/features/auth/data/model/register/register_response/user.dart';
 import 'package:fitness_app/core/base_states/base_state.dart';

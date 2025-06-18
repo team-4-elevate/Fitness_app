@@ -6,7 +6,8 @@ import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_argumen
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/domain/entities/activity_level_option.dart';
 import 'package:fitness_app/features/auth/domain/entities/goal_option.dart';
-import 'package:fitness_app/features/auth/data/model/register_details.dart'as v;
+import 'package:fitness_app/features/auth/data/model/register_details.dart'
+    as v;
 import 'package:fitness_app/features/auth/domain/entities/registration_steps.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/widget/gender_step.dart';
