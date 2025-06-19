@@ -250,4 +250,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get doIt => 'Do IT';
+
+  @override
+  String get onBoardingTitle1 => 'The Price Of Excellence\n is Discipline';
+
+  @override
+  String get onBoardingDesc1 =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+
+  @override
+  String get onBoardingTitle2 => 'Fitness Has Never Been So\n Much Fun';
+
+  @override
+  String get onBoardingDesc2 =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+
+  @override
+  String get onBoardingTitle3 => 'NO MORE EXCUSES\n Do It Now';
+
+  @override
+  String get onBoardingDesc3 =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 }

@@ -5,14 +5,12 @@ import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fitness_app/core/app_bloc_observer.dart';
+import 'package:fitness_app/core/app_local_storage/app_local_storage.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
+import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/navigation_services.dart';
-import 'package:fitness_app/features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
-import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
-import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
-import 'package:fitness_app/features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
 import 'package:fitness_app/firebase_options.dart';
@@ -21,18 +19,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'core/routes/app_routes.dart';
-import 'core/routes/app_routes_generator.dart';
 import 'core/services/api_localization_service.dart';
 import 'core/services/localization_manager.dart';
 import 'core/responsive/responsive.dart';
 
+// global variable
+bool isShowOnboarding = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await ApiLocalizationService().init();
   await LocalizationManager().initialize();
-  configureDependencies();
+  await configureDependencies().then((_) async {
+    isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
+  });
   await _configureFirebase();
 
   Bloc.observer = AppBlocObserver();
@@ -42,7 +42,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -79,6 +78,8 @@ class MyApp extends StatelessWidget {
                 create: (_) => getIt<RegisterBloc>(),
                 child: const RegisterView(),
               ),
+              initialRoute:
+                  isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
             ),
           );
         },

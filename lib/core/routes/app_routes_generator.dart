@@ -7,6 +7,8 @@ import 'package:fitness_app/features/auth/presentation/register/bloc/register_bl
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
 import 'package:fitness_app/features/home/home.dart';
+import 'package:fitness_app/features/login/presentation/pages/login_page.dart';
+import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
 import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,8 +17,6 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/forget_password/view/create_new_password/create_new_password_page.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
 import '../../features/auth/presentation/forget_password/view/otp_code_view/otp_code_page.dart';
-import '../di/di.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRoutesGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -81,6 +81,10 @@ class AppRoutesGenerator {
             );
           },
         );
+      case AppRoutes.onboarding:
+        return MaterialPageRoute(builder: (_) => OnBoardingPage());
+
+
       default:
         return MaterialPageRoute(
           builder:
