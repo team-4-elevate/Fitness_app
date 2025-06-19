@@ -6,7 +6,7 @@ class ShowOnboardingUseCase {
   final OnboardingRepo _onboardingRepo;
 
   ShowOnboardingUseCase(this._onboardingRepo);
-  
+
   Future<void> call() async {
     await _onboardingRepo.showOnboarding();
   }
