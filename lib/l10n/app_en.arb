@@ -124,7 +124,7 @@
   "onBoardingDesc3": "Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa",
   "@onBoardingDesc3": {
     "description": "Description for onboarding screen 3"
-
+  },
   "login_heyThere": "Hey There",
   "@login_heyThere": {
     "description": "Greeting text on login page"
