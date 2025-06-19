@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: ^3.7.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -60,15 +60,21 @@ dependencies:
   blur:
   flutter_svg:
   pinput:
+  google_fonts: ^6.2.1
+  numberpicker: ^2.1.2
+  icons_plus: ^5.0.0
   smooth_page_indicator:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
-  retrofit_generator: ">=8.0.0 <10.0.0"
+  retrofit_generator: '>=8.0.0 <10.0.0'
   injectable_generator:
   json_serializable:
+  mockito: ^5.4.3 
+  
+
   flutter_native_splash: ^2.4.6
   flutter_launcher_icons: ^0.14.4
 

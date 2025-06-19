@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class BlurredContainer extends StatelessWidget {
     this.height,
     this.padding,
     this.borderRadius = 50,
-    this.backgroundColor = const Color(0x1A242424),
+    this.backgroundColor = AppColors.blurBackground,
     this.backgroundBlur = 34.6,
     this.boxShadow,
     this.gap = 8,

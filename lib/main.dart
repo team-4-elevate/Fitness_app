@@ -4,15 +4,19 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:fitness_app/core/app_bloc_observer.dart';
 import 'package:fitness_app/core/app_local_storage/app_local_storage.dart';
 import 'package:fitness_app/core/di/di.dart';
-import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
+import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/navigation_services.dart';
+import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
+import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'core/services/api_localization_service.dart';
@@ -30,6 +34,8 @@ void main() async {
     isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
   });
   await _configureFirebase();
+
+  Bloc.observer = AppBlocObserver();
 
   runApp(const MyApp());
 }
@@ -58,13 +64,20 @@ class MyApp extends StatelessWidget {
               locale: localizationManager.currentLocale,
 
               theme: AppTheme.lightTheme,
-              // Builder to set up localization service with context
+              onGenerateRoute: AppRoutesGenerator.generateRoute,
               builder: (context, child) {
                 final localizations = AppLocalizations.of(context);
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-              onGenerateRoute: AppRoutesGenerator.generateRoute,
+              // routes: {'/home': (context) => const Home()},
+              // home: BlocProvider(
+              //   create: (context) => getIt<LoginViewModel>(),
+              //   child: const LoginView(),
+              home: BlocProvider(
+                create: (_) => getIt<RegisterBloc>(),
+                child: const RegisterView(),
+              ),
               initialRoute:
                   isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
             ),

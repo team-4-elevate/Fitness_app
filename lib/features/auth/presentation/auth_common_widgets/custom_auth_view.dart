@@ -1,13 +1,31 @@
 // features/auth/presentation/auth_common_widgets/custom_auth_view.dart
+import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import '../../domain/arguments/auth_pages_ui_arguments.dart';
 import '../auth_common_widgets/social_buttons.dart';
+import '../register/widget/step_indicator.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 
 class CustomAuthScreensView extends StatelessWidget {
   final AuthPagesUiArguments args;
-  const CustomAuthScreensView({super.key, required this.args});
+  final int? currentStep;
+  final int? totalSteps;
+  final String? stepTitle;
+  final String? stepSubtitle;
+  final bool isDetailsStep;
+  final VoidCallback? onBackPressed;
+
+  const CustomAuthScreensView({
+    super.key,
+    required this.args,
+    this.currentStep,
+    this.totalSteps,
+    this.stepTitle,
+    this.stepSubtitle,
+    this.isDetailsStep = false,
+    this.onBackPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +51,47 @@ class CustomAuthScreensView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30),
-                  Center(
-                    child: SizedBox(
-                      height: 50,
-                      width: 70,
-                      child: Image.asset('assets/images/fit 1.png'),
-                    ),
+
+                  // Logo and back button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (isDetailsStep) ...[
+                        GestureDetector(
+                          onTap: onBackPressed,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 16.r),
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              size: 24.r,
+                              color: AppColors.primaryOrange,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                      ],
+                      Center(
+                        child: SizedBox(
+                          height: 50,
+                          width: 70,
+                          child: Image.asset('assets/images/fit 1.png'),
+                        ),
+                      ),
+                      if (isDetailsStep) const Spacer(),
+                    ],
                   ),
-                  SizedBox(height: 40.r),
+                  SizedBox(height: 50.r),
+
+                  // Step indicator when provided
+                  if (currentStep != null && totalSteps != null) ...[
+                    Center(
+                      child: StepIndicator(
+                        currentStep: currentStep!,
+                        totalSteps: totalSteps!,
+                      ),
+                    ),
+                  ],
+
                   SingleChildScrollView(
                     padding: const EdgeInsets.all(16),
                     child: Column(
@@ -117,7 +168,7 @@ class CustomAuthScreensView extends StatelessWidget {
                               ),
                             ],
 
-                            /// Footer content 
+                            /// Footer content
                             if (args.footerContent != null) ...[
                               SizedBox(height: 16.r),
                               args.footerContent!,

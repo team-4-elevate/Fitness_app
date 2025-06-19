@@ -1,15 +1,15 @@
 // core/theme/app_theme.dart
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/responsive/responsive.dart';
+import 'package:fitness_app/core/theme/app_font_style.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // =================== Light Theme ===================
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-    fontFamily: 'BalooThambi2',
+    fontFamily: AppFontStyle.customAppFont.fontFamily,
 
     // Color Scheme
     colorScheme: ColorScheme.fromSeed(
@@ -29,108 +29,117 @@ class AppTheme {
 
     scaffoldBackgroundColor: AppColors.backgroundDark,
 
-    // =================== App Bar Theme - Responsive ===================
+    // =================== App Bar Theme ===================
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       foregroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       titleTextStyle: TextStyle(
-        fontSize: R.textXL, // ✅ Using responsive font size
+        fontSize: R.textXL,
         fontWeight: FontWeight.w600,
         color: AppColors.white,
-        fontFamily: 'SF Pro Display',
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
-      iconTheme: IconThemeData(
-        color: AppColors.white,
-        size: R.iconLG, // ✅ Using responsive icon size
-      ),
+      iconTheme: IconThemeData(color: AppColors.white, size: R.iconLG),
     ),
 
-    // =================== Text Theme - Responsive ===================
+    // =================== Text Theme===================
     textTheme: TextTheme(
       // Headings - Responsive
       headlineLarge: TextStyle(
-        fontSize: R.text4XL, // ✅ 32.sp responsive
+        fontSize: R.text4XL, // 32.sp
         fontWeight: FontWeight.bold,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.2,
       ),
       headlineMedium: TextStyle(
-        fontSize: R.text3XL, // ✅ 28.sp responsive
+        fontSize: R.text3XL, // 28.sp
         fontWeight: FontWeight.bold,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.2,
       ),
       headlineSmall: TextStyle(
-        fontSize: R.text2XL, // ✅ 24.sp responsive
+        fontSize: R.text2XL, // 24.sp
         fontWeight: FontWeight.w600,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.3,
       ),
 
       // Titles - Responsive
       titleLarge: TextStyle(
-        fontSize: R.textXL, // ✅ 20.sp responsive
+        fontSize: R.textXL, //  20.sp
         fontWeight: FontWeight.w600,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.3,
       ),
       titleMedium: TextStyle(
-        fontSize: R.textLG, // ✅ 18.sp responsive
+        fontSize: R.textLG, // 18.sp
         fontWeight: FontWeight.w500,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.4,
       ),
       titleSmall: TextStyle(
-        fontSize: R.textMD, // ✅ 16.sp responsive
+        fontSize: R.textMD, // 16.sp
         fontWeight: FontWeight.w500,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
         height: 1.4,
       ),
 
       // Body Text - Responsive
       bodyLarge: TextStyle(
-        fontSize: R.textMD, // ✅ 16.sp responsive
+        fontSize: R.textMD, // 16.sp
         fontWeight: FontWeight.normal,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.5,
       ),
       bodyMedium: TextStyle(
-        fontSize: R.textBase, // ✅ 14.sp responsive
+        fontSize: R.textBase, //  14.sp
         fontWeight: FontWeight.normal,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.5,
       ),
       bodySmall: TextStyle(
-        fontSize: R.textSM, // ✅ 12.sp responsive
+        fontSize: R.textSM, //  12.sp
         fontWeight: FontWeight.normal,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
         height: 1.4,
       ),
 
       // Labels - Responsive
       labelLarge: TextStyle(
-        fontSize: R.textBase, // ✅ 14.sp responsive
+        fontSize: R.textBase, // 14.sp
         fontWeight: FontWeight.w500,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.white,
         height: 1.4,
       ),
       labelMedium: TextStyle(
-        fontSize: R.textSM, // ✅ 12.sp responsive
+        fontSize: R.textSM, // 12.sp
         fontWeight: FontWeight.w500,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
         height: 1.3,
       ),
       labelSmall: TextStyle(
-        fontSize: R.textXS, // ✅ 10.sp responsive
+        fontSize: R.textXS, // 10.sp
         fontWeight: FontWeight.w500,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
         color: AppColors.textSecondary,
         height: 1.3,
       ),
     ),
 
-    // =================== Elevated Button Theme - Responsive ===================
+    // =================== Elevated Button Theme===================
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryOrange,
@@ -139,101 +148,78 @@ class AppTheme {
         elevation: 0,
 
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            R.borderButtonValue,
-          ), // ✅ Responsive border
+          borderRadius: BorderRadius.circular(R.borderButtonValue),
         ),
 
         textStyle: TextStyle(
-          fontSize: R.textMD, // ✅ Responsive font size
+          fontSize: R.textMD,
+          fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
           fontWeight: FontWeight.w800,
           color: AppColors.white,
         ),
-        minimumSize: Size(
-          double.infinity,
-          R.adaptiveButtonHeight,
-        ), // ✅ Responsive height
+        minimumSize: Size(double.infinity, R.adaptiveButtonHeight),
       ),
     ),
 
-    // =================== Outlined Button Theme - Responsive ===================
+    // =================== Outlined Button Theme===================
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.white,
-        side: BorderSide(
-          color: AppColors.white,
-          width: 1.5.r,
-        ), // ✅ Responsive border width
+        side: BorderSide(color: AppColors.white, width: 1.5.r),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            R.borderButtonValue,
-          ), // ✅ Responsive border
+          borderRadius: BorderRadius.circular(R.borderButtonValue),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: R.paddingLGValue, // ✅ Responsive padding
-          vertical: R.paddingMDValue, // ✅ Responsive padding
+          horizontal: R.paddingSMValue,
+          vertical: R.paddingSMValue,
         ),
         textStyle: TextStyle(
-          fontSize: R.textMD, // ✅ Responsive font size
+          fontSize: R.textMD,
+          fontFamily: AppFontStyle.customAppFont.fontFamily,
           fontWeight: FontWeight.w800,
         ),
-        minimumSize: Size(
-          double.infinity,
-          R.adaptiveButtonHeight,
-        ), // ✅ Responsive height
+        minimumSize: Size(double.infinity, R.adaptiveButtonHeight),
       ),
     ),
 
-    // =================== Text Button Theme - Responsive ===================
+    // =================== Text Button Theme ===================
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppColors.primaryOrange,
         textStyle: TextStyle(
-          fontSize: R.textSM, // ✅ Responsive font size
+          fontSize: R.textSM,
           fontWeight: FontWeight.w600,
+          fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
           decoration: TextDecoration.underline,
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: R.paddingSMValue, // ✅ Responsive padding
-          vertical: R.paddingXSValue, // ✅ Responsive padding
+          horizontal: R.paddingSMValue,
+          vertical: R.paddingXSValue,
         ),
       ),
     ),
 
-    // =================== Input Decoration Theme - Responsive ===================
+    // =================== Input Decoration Theme===================
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white.withOpacity(0.1),
       contentPadding: EdgeInsets.symmetric(
-        horizontal: R.paddingLGValue, // ✅ Responsive padding
-        vertical: R.paddingMDValue, // ✅ Responsive padding
+        horizontal: R.paddingMDValue,
+        vertical: R.paddingSMValue,
       ),
 
       // Border styles - Responsive
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(
-          R.borderInputValue,
-        ), // ✅ Responsive border
-        borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.3),
-          width: 1.r, // ✅ Responsive border width
-        ),
+        borderRadius: BorderRadius.circular(R.borderInputValue),
+        borderSide: BorderSide(color: Colors.white, width: 1.r),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(
-          R.borderInputValue,
-        ), // ✅ Responsive border
-        borderSide: BorderSide(
-          color: Colors.white.withOpacity(0.3),
-          width: 1.r, // ✅ Responsive border width
-        ),
+        borderRadius: BorderRadius.circular(R.borderInputValue),
+        borderSide: BorderSide(color: Colors.white, width: 1.r),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
-        borderSide: BorderSide(
-          color: AppColors.primaryOrange,
-          width: 2.r, // ✅ Responsive border width
-        ),
+        borderSide: BorderSide(color: AppColors.primaryOrange, width: 2.r),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
@@ -241,27 +227,27 @@ class AppTheme {
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(R.borderInputValue),
-        borderSide: BorderSide(
-          color: AppColors.error,
-          width: 2.r, // ✅ Responsive border width
-        ),
+        borderSide: BorderSide(color: AppColors.error, width: 2.r),
       ),
 
       // Text styles - Responsive
       hintStyle: TextStyle(
         color: Colors.white.withOpacity(0.6),
-        fontSize: R.textBase, // ✅ Responsive font size
+        fontSize: R.textBase,
         fontWeight: FontWeight.normal,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
       labelStyle: TextStyle(
         color: Colors.white.withOpacity(0.8),
-        fontSize: R.textBase, // ✅ Responsive font size
+        fontSize: R.textBase,
         fontWeight: FontWeight.w500,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
       errorStyle: TextStyle(
         color: AppColors.error,
-        fontSize: R.textSM, // ✅ Responsive font size
+        fontSize: R.textBase,
         fontWeight: FontWeight.w500,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
 
       // Icon styles - Responsive
@@ -274,16 +260,18 @@ class AppTheme {
       backgroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(R.borderLG), // ✅ Responsive border
+        borderRadius: BorderRadius.circular(R.borderLG),
       ),
       titleTextStyle: TextStyle(
-        fontSize: R.textXL, // ✅ Responsive font size
+        fontSize: R.textXL,
         fontWeight: FontWeight.w600,
         color: AppColors.black,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
       contentTextStyle: TextStyle(
-        fontSize: R.textMD, // ✅ Responsive font size
+        fontSize: R.textMD,
         color: AppColors.textSecondary,
+        fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
       ),
     ),
 
@@ -292,9 +280,7 @@ class AppTheme {
       backgroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(R.borderXL), // ✅ Responsive border
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(R.borderXL)),
       ),
     ),
 
@@ -316,7 +302,7 @@ class AppTheme {
       circularTrackColor: AppColors.lightOrange,
     ),
 
-    // =================== Checkbox Theme - Responsive ===================
+    // =================== Checkbox Theme ===================
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
@@ -325,12 +311,9 @@ class AppTheme {
         return Colors.transparent;
       }),
       checkColor: const WidgetStatePropertyAll(AppColors.white),
-      side: BorderSide(
-        color: AppColors.white,
-        width: 2.r,
-      ), // ✅ Responsive border
+      side: BorderSide(color: AppColors.white, width: 2.r),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(R.borderSM), // ✅ Responsive border
+        borderRadius: BorderRadius.circular(R.borderSM),
       ),
     ),
 
@@ -351,16 +334,13 @@ class AppTheme {
     ),
 
     // =================== Icon Theme - Responsive ===================
-    iconTheme: IconThemeData(
-      color: AppColors.white,
-      size: R.iconBase, // ✅ Responsive icon size
-    ),
+    iconTheme: IconThemeData(color: AppColors.white, size: R.iconBase),
 
     // =================== Divider Theme - Responsive ===================
     dividerTheme: DividerThemeData(
       color: Colors.white.withOpacity(0.2),
-      thickness: 1.r, // ✅ Responsive thickness
-      space: 1.r, // ✅ Responsive space
+      thickness: 1.r,
+      space: 1.r,
     ),
   );
 
@@ -601,3 +581,4 @@ class AppTheme {
     }
   }
 }
+

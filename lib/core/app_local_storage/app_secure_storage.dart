@@ -1,5 +1,5 @@
 abstract interface class AppSecureStorage {
-  Future<void> saveUserData(String key, String value);
+  Future<void> saveUserData(String key, dynamic value);
   Future<String?> getUserData(String key);
   Future<void> removeUserData(String key);
   Future<void> clearAllData();
