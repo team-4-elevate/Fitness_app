@@ -84,7 +84,6 @@ class AppRoutesGenerator {
       case AppRoutes.onboarding:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
 
-
       default:
         return MaterialPageRoute(
           builder:

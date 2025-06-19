@@ -206,6 +206,66 @@ abstract class AppLocalizations {
   /// **'Error occurred (code: {status}).'**
   String errorWithStatusCode(String status);
 
+  /// Button to skip onboarding
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// Button text for the next step
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// Button to go to previous onboarding page
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// Button to proceed after onboarding
+  ///
+  /// In en, this message translates to:
+  /// **'Do IT'**
+  String get doIt;
+
+  /// Title for onboarding screen 1
+  ///
+  /// In en, this message translates to:
+  /// **'The Price Of Excellence\n is Discipline'**
+  String get onBoardingTitle1;
+
+  /// Description for onboarding screen 1
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa'**
+  String get onBoardingDesc1;
+
+  /// Title for onboarding screen 2
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness Has Never Been So\n Much Fun'**
+  String get onBoardingTitle2;
+
+  /// Description for onboarding screen 2
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa'**
+  String get onBoardingDesc2;
+
+  /// Title for onboarding screen 3
+  ///
+  /// In en, this message translates to:
+  /// **'NO MORE EXCUSES\n Do It Now'**
+  String get onBoardingTitle3;
+
+  /// Description for onboarding screen 3
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa'**
+  String get onBoardingDesc3;
+
   /// Greeting text on login page
   ///
   /// In en, this message translates to:
@@ -325,12 +385,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Registration successful!'**
   String get registerSuccess;
-
-  /// Button text for the next step
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get next;
 
   /// Button text for the final step
   ///
