@@ -12,7 +12,6 @@ import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
-import 'package:fitness_app/core/utils/navigation_services.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -76,47 +75,37 @@ class _FitnessAppState extends State<FitnessApp> {
 
   @override
   Widget build(BuildContext context) {
-     final appBloc = getIt<AppBloc>();
-    return BlocProvider.value(
-      value: getIt<AppBloc>(),
-      child: BlocListener<AppBloc, AppState>(
-        listenWhen: (previous, current) => previous.appLocale != current.appLocale,
-        listener: (context, state) {
-          getIt<LocalizationManager>().setLocale(Locale(state.appLocale));
-          setState(() {}); 
+    return ChangeNotifierProvider(
+      create: (_) => LocalizationManager(),
+      child: Consumer<LocalizationManager>(
+        builder: (context, localizationManager, child) {
+          return ResponsiveWrapper(
+            child: MaterialApp(
+              title: 'Fitness App',
+
+              // navigatorKey: getIt<NavigationService>().navigatorKey,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              debugShowCheckedModeBanner: false,
+              supportedLocales: localizationManager.supportedLocales,
+              locale: localizationManager.currentLocale,
+
+              theme: AppTheme.lightTheme,
+              onGenerateRoute: AppRoutesGenerator.generateRoute,
+              builder: (context, child) {
+                final localizations = AppLocalizations.of(context);
+                ApiLocalizationService().setLocalizations(localizations);
+                return child!;
+              },
+              initialRoute:
+                  isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
+            ),
+          );
         },
-        child: BlocBuilder<AppBloc, AppState>(
-          buildWhen: (previous, current) => 
-            previous.isLoggedIn != current.isLoggedIn || 
-            previous.isShowOnboarding != current.isShowOnboarding,
-          builder: (context, state) {
-            return ResponsiveWrapper(
-              child: MaterialApp(
-                title: 'Fitness App',
-                navigatorKey: getIt<NavigationService>().navigatorKey,
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                debugShowCheckedModeBanner: false,
-                supportedLocales: getIt<LocalizationManager>().supportedLocales,
-                locale: getIt<LocalizationManager>().currentLocale,
-                theme: AppTheme.lightTheme,
-                onGenerateRoute: AppRoutesGenerator.generateRoute,
-                builder: (context, child) {
-                  final localizations = AppLocalizations.of(context);
-                  ApiLocalizationService().setLocalizations(localizations);
-                  return child!;
-                },
-                initialRoute: !state.isShowOnboarding
-                    ? AppRoutes.onboarding
-                    : (appBloc.state.isLoggedIn ? AppRoutes.layoutScreen : AppRoutes.loginPage),
-              ),
-            );
-            },
-          ),
       ),
     );
   }

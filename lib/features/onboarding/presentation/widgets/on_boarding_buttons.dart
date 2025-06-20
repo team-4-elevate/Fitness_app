@@ -1,7 +1,7 @@
 // features/onboarding/presentation/widgets/on_boarding_buttons.dart
+import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
 import 'package:fitness_app/features/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,7 +93,9 @@ class OnboardingButtons extends StatelessWidget {
                 style: AppTheme.getPrimaryButtonStyle(),
                 onPressed: () {
                   context.read<OnboardingBloc>().add(ShowOnboardingCompleted());
-                  context.pushAndRemoveUntil(const LoginView());
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.loginPage);
                 },
                 child: Text(l10n.doIt),
               ),
