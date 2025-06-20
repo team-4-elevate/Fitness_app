@@ -7,7 +7,6 @@ import 'package:fitness_app/features/auth/presentation/register/bloc/register_bl
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
 import 'package:fitness_app/features/home/home.dart';
-import 'package:fitness_app/features/login/presentation/pages/login_page.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
 import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
