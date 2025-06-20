@@ -65,19 +65,21 @@ class _FitnessAppState extends State<FitnessApp> {
 
   @override
   Widget build(BuildContext context) {
-     final appBloc = getIt<AppBloc>();
+    final appBloc = getIt<AppBloc>();
     return BlocProvider.value(
       value: getIt<AppBloc>(),
       child: BlocListener<AppBloc, AppState>(
-        listenWhen: (previous, current) => previous.appLocale != current.appLocale,
+        listenWhen:
+            (previous, current) => previous.appLocale != current.appLocale,
         listener: (context, state) {
           getIt<LocalizationManager>().setLocale(Locale(state.appLocale));
-          setState(() {}); 
+          setState(() {});
         },
         child: BlocBuilder<AppBloc, AppState>(
-          buildWhen: (previous, current) => 
-            previous.isLoggedIn != current.isLoggedIn || 
-            previous.isShowOnboarding != current.isShowOnboarding,
+          buildWhen:
+              (previous, current) =>
+                  previous.isLoggedIn != current.isLoggedIn ||
+                  previous.isShowOnboarding != current.isShowOnboarding,
           builder: (context, state) {
             return ResponsiveWrapper(
               child: MaterialApp(
@@ -98,13 +100,16 @@ class _FitnessAppState extends State<FitnessApp> {
                   ApiLocalizationService().setLocalizations(localizations);
                   return child!;
                 },
-                initialRoute: !state.isShowOnboarding
-                    ? AppRoutes.onboarding
-                    : (appBloc.state.isLoggedIn ? AppRoutes.layoutScreen : AppRoutes.loginPage),
+                initialRoute:
+                    !state.isShowOnboarding
+                        ? AppRoutes.onboarding
+                        : (appBloc.state.isLoggedIn
+                            ? AppRoutes.layoutScreen
+                            : AppRoutes.loginPage),
               ),
             );
-            },
-          ),
+          },
+        ),
       ),
     );
   }
