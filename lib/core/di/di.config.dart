@@ -44,11 +44,13 @@ import '../../features/onboarding/presentation/bloc/onboarding_bloc.dart'
     as _i792;
 import '../api/api_client.dart' as _i277;
 import '../api/dio_client.dart' as _i861;
+import '../app_data/app_bloc.dart' as _i399;
 import '../app_local_storage/app_local_storage.dart' as _i849;
 import '../app_local_storage/app_local_storage_imp.dart' as _i458;
 import '../app_local_storage/app_secure_storage.dart' as _i304;
 import '../app_local_storage/app_secure_storage_impl.dart' as _i988;
 import '../routes/navigation_obsevation.dart' as _i1052;
+import '../services/localization_manager.dart' as _i2;
 import '../services/shared_prefs.dart' as _i241;
 import '../utils/app_navigator_observer.dart' as _i668;
 import '../utils/navigation_services.dart' as _i565;
@@ -69,6 +71,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i1052.AppNavigatorObserver>(
       () => _i1052.AppNavigatorObserver(),
     );
+    gh.singleton<_i2.LocalizationManager>(() => _i2.LocalizationManager());
     gh.singleton<_i241.SharedPreferencesService>(
       () => _i241.SharedPreferencesService(),
     );
@@ -82,6 +85,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
     gh.factory<_i111.AuthLocalDataSourceContract>(
       () => _i812.AuthLocalDataSourceImpl(gh<_i304.AppSecureStorage>()),
+    );
+    gh.lazySingleton<_i399.AppBloc>(
+      () => _i399.AppBloc(
+        gh<_i111.AuthLocalDataSourceContract>(),
+        gh<_i304.AppSecureStorage>(),
+      ),
     );
     gh.factory<_i768.OnboardingRepo>(
       () => _i371.OnboardingRepoImp(gh<_i849.AppLocalStorage>()),

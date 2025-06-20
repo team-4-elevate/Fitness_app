@@ -8,6 +8,7 @@ import 'package:fitness_app/features/auth/presentation/register/pages/register_d
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
 import 'package:fitness_app/features/home/home.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
+import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,6 +50,9 @@ class AppRoutesGenerator {
 
       case AppRoutes.homePage:
         return MaterialPageRoute(builder: (_) => const Home());
+        
+      case AppRoutes.layoutScreen:
+        return MaterialPageRoute(builder: (_) => MainNavigationScreen());
 
       case AppRoutes.forgotPass:
         return MaterialPageRoute(
