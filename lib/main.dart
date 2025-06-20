@@ -24,7 +24,7 @@ import 'core/responsive/responsive.dart';
 bool isShowOnboarding = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await ApiLocalizationService().init();
   await LocalizationManager().initialize();
   await configureDependencies().then((_) async {
@@ -33,7 +33,7 @@ void main() async {
   await _configureFirebase();
 
   Bloc.observer = AppBlocObserver();
-  
+
   runApp(const MyApp());
 }
 
