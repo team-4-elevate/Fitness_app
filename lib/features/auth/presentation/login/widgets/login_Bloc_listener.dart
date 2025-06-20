@@ -49,15 +49,14 @@ class LoginBlocListener extends StatelessWidget {
           },
           success: (data) async {
             context.pop();
-            
+
             if (data?.user != null) {
               final appBloc = context.read<AppBloc>();
-              appBloc.add(UserLoggedInEvent(
-                user: data!.user!,
-                token: data.token,
-              ));
+              appBloc.add(
+                UserLoggedInEvent(user: data!.user!, token: data.token),
+              );
             }
-            
+
             await context.showSuccessNotification(
               title: context.l10n.login_successTitle,
               message: context.l10n.login_successMessage(
@@ -80,7 +79,9 @@ class LoginBlocListener extends StatelessWidget {
               buttonText: context.l10n.login_failedButton,
               onButtonPressed: () {
                 context.pop();
-                context.read<LoginViewModel>().loginIntent(LoginIntent.resetStates);
+                context.read<LoginViewModel>().loginIntent(
+                  LoginIntent.resetStates,
+                );
               },
             );
           },

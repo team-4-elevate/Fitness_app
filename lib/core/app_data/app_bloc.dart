@@ -13,11 +13,12 @@ import 'package:injectable/injectable.dart';
 class AppBloc extends Bloc<AppEvent, AppState> {
   final AuthLocalDataSourceContract _authLocalDataSource;
   final AppSecureStorage _appSecureStorage;
-  
+
   User? _cachedUserProfileData;
   DateTime? _lastProfileFetchTime;
-  
-  AppBloc(this._authLocalDataSource, this._appSecureStorage) : super(const AppState()) {
+
+  AppBloc(this._authLocalDataSource, this._appSecureStorage)
+    : super(const AppState()) {
     on<CheckUserLoginStatusEvent>(_onCheckUserLoginStatus);
     on<UserLoggedInEvent>(_onUserLoggedIn);
     on<UserLoggedOutEvent>(_onUserLoggedOut);
@@ -29,9 +30,9 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   User? get cachedUserProfileData => _cachedUserProfileData;
-  
+
   bool hasProfileData() => _cachedUserProfileData != null;
-  
+
   bool isProfileDataFresh() {
     if (_lastProfileFetchTime == null) return false;
     return DateTime.now().difference(_lastProfileFetchTime!).inMinutes < 30;
@@ -53,17 +54,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   ) async {
     _cachedUserProfileData = event.user;
     _lastProfileFetchTime = DateTime.now();
-    
+
     if (event.token?.isNotEmpty ?? false) {
       await _authLocalDataSource.cacheToken(event.token!);
     }
-    
+
     await _authLocalDataSource.cacheRememberMe(true);
-    
-    emit(state.copyWith(
-      isLoggedIn: true,
-      hasProfileData: true,
-    ));
+
+    emit(state.copyWith(isLoggedIn: true, hasProfileData: true));
   }
 
   Future<void> _onUserLoggedOut(
@@ -72,20 +70,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   ) async {
     _cachedUserProfileData = null;
     _lastProfileFetchTime = null;
-    
+
     await _authLocalDataSource.deleteToken();
     await _authLocalDataSource.deleteRememberMe();
-    
-    emit(state.copyWith(
-      isLoggedIn: false,
-      hasProfileData: false,
-    ));
+
+    emit(state.copyWith(isLoggedIn: false, hasProfileData: false));
   }
 
-  void _onSaveUserProfile(
-    SaveUserProfileEvent event,
-    Emitter<AppState> emit,
-  ) {
+  void _onSaveUserProfile(SaveUserProfileEvent event, Emitter<AppState> emit) {
     _cachedUserProfileData = event.profileData;
     _lastProfileFetchTime = DateTime.now();
     emit(state.copyWith(hasProfileData: true));
@@ -118,14 +110,14 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     } else {
       newLocale = state.appLocale == 'en' ? 'ar' : 'en';
     }
-    
+
     await _appSecureStorage.setLanguage(newLocale);
-    
+
     if (newLocale != state.appLocale) {
       emit(state.copyWith(appLocale: newLocale));
     }
   }
-  
+
   Future<void> _onCheckOnboardingStatus(
     CheckOnboardingStatusEvent event,
     Emitter<AppState> emit,
