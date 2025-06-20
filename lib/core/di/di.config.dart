@@ -53,7 +53,6 @@ import '../routes/navigation_obsevation.dart' as _i1052;
 import '../services/localization_manager.dart' as _i2;
 import '../services/shared_prefs.dart' as _i241;
 import '../utils/app_navigator_observer.dart' as _i668;
-import '../utils/navigation_services.dart' as _i565;
 import 'register_module.dart' as _i291;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -78,7 +77,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i668.AppNavigatorObserver>(
       () => _i668.AppNavigatorObserver(),
     );
-    gh.lazySingleton<_i565.NavigationService>(() => _i565.NavigationService());
     gh.factory<_i849.AppLocalStorage>(
       () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()),
     );
