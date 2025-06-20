@@ -20,6 +20,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/services/api_localization_service.dart';
 import 'core/services/localization_manager.dart';
 import 'core/responsive/responsive.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -27,27 +28,27 @@ void main() async {
   final localizationManager = LocalizationManager();
   await localizationManager.initialize();
   await configureDependencies();
-  
+
   // Manually register the LocalizationManager singleton
   if (!getIt.isRegistered<LocalizationManager>()) {
     getIt.registerSingleton<LocalizationManager>(localizationManager);
   }
   await _configureFirebase();
-  
+
   Bloc.observer = AppBlocObserver();
-  
+
   // Initialize app state before running the app
   final appBloc = getIt<AppBloc>();
-  
+
   // Check login status first and wait for it
   appBloc.add(CheckUserLoginStatusEvent());
   // Wait for the login check to complete
   await Future.delayed(const Duration(milliseconds: 300));
-  
+
   // Add other events
   appBloc.add(GetAppLocaleEvent());
   appBloc.add(CheckOnboardingStatusEvent());
-  
+
   runApp(const FitnessApp());
 }
 
@@ -62,8 +63,8 @@ class _FitnessAppState extends State<FitnessApp> {
   @override
   void initState() {
     super.initState();
-    
-/*     WidgetsBinding.instance.addPostFrameCallback((_) {
+
+    /*     WidgetsBinding.instance.addPostFrameCallback((_) {
       final appBloc = getIt<AppBloc>();
       final navigationService = getIt<NavigationService>();
       
@@ -75,42 +76,51 @@ class _FitnessAppState extends State<FitnessApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => LocalizationManager(),
-      child: Consumer<LocalizationManager>(
-        builder: (context, localizationManager, child) {
-          return ResponsiveWrapper(
-            child: MaterialApp(
-              title: 'Fitness App',
-
-              // navigatorKey: getIt<NavigationService>().navigatorKey,
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              debugShowCheckedModeBanner: false,
-              supportedLocales: localizationManager.supportedLocales,
-              locale: localizationManager.currentLocale,
-
-              theme: AppTheme.lightTheme,
-              onGenerateRoute: AppRoutesGenerator.generateRoute,
-              builder: (context, child) {
-                final localizations = AppLocalizations.of(context);
-                ApiLocalizationService().setLocalizations(localizations);
-                return child!;
-              },
-              initialRoute:
-                  isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
-            ),
-          );
+     final appBloc = getIt<AppBloc>();
+    return BlocProvider.value(
+      value: getIt<AppBloc>(),
+      child: BlocListener<AppBloc, AppState>(
+        listenWhen: (previous, current) => previous.appLocale != current.appLocale,
+        listener: (context, state) {
+          getIt<LocalizationManager>().setLocale(Locale(state.appLocale));
+          setState(() {}); 
         },
+        child: BlocBuilder<AppBloc, AppState>(
+          buildWhen: (previous, current) => 
+            previous.isLoggedIn != current.isLoggedIn || 
+            previous.isShowOnboarding != current.isShowOnboarding,
+          builder: (context, state) {
+            return ResponsiveWrapper(
+              child: MaterialApp(
+                title: 'Fitness App',
+                navigatorKey: getIt<NavigationService>().navigatorKey,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                debugShowCheckedModeBanner: false,
+                supportedLocales: getIt<LocalizationManager>().supportedLocales,
+                locale: getIt<LocalizationManager>().currentLocale,
+                theme: AppTheme.lightTheme,
+                onGenerateRoute: AppRoutesGenerator.generateRoute,
+                builder: (context, child) {
+                  final localizations = AppLocalizations.of(context);
+                  ApiLocalizationService().setLocalizations(localizations);
+                  return child!;
+                },
+                initialRoute: !state.isShowOnboarding
+                    ? AppRoutes.onboarding
+                    : (appBloc.state.isLoggedIn ? AppRoutes.layoutScreen : AppRoutes.loginPage),
+              ),
+            );
+            },
+          ),
       ),
     );
   }
 }
-
 
 Future<void> _configureFirebase() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
