@@ -89,10 +89,6 @@
   "@skip": {
     "description": "Button to skip onboarding"
   },
-  "next": "Next",
-  "@next": {
-    "description": "Button to go to next onboarding page"
-  },
   "back": "Back",
   "@back": {
     "description": "Button to go to previous onboarding page"

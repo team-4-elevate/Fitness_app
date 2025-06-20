@@ -18,8 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحبًا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError =>
-      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقًا.';
@@ -68,37 +67,31 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get skip => 'Skip';
+  String get skip => 'تخطي';
 
   @override
-  String get next => 'التالي';
+  String get back => 'رجوع';
 
   @override
-  String get back => 'Back';
+  String get doIt => 'لنبدأ';
 
   @override
-  String get doIt => 'Do IT';
+  String get onBoardingTitle1 => 'مرحبًا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get onBoardingTitle1 => 'The Price Of Excellence\n is Discipline';
+  String get onBoardingDesc1 => 'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
 
   @override
-  String get onBoardingDesc1 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingTitle2 => 'تخصيص تجربتك';
 
   @override
-  String get onBoardingTitle2 => 'Fitness Has Never Been So\n Much Fun';
+  String get onBoardingDesc2 => 'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
 
   @override
-  String get onBoardingDesc2 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingTitle3 => 'ابدأ رحلتك';
 
   @override
-  String get onBoardingTitle3 => 'NO MORE EXCUSES\n Do It Now';
-
-  @override
-  String get onBoardingDesc3 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingDesc3 => 'دعنا نبدأ رحلتك نحو حياة أكثر صحة ولياقة.';
 
   @override
   String get login_heyThere => 'مرحبًا بك';
@@ -163,6 +156,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get registerSuccess => 'تم التسجيل بنجاح!';
+
+  @override
+  String get next => 'التالي';
 
   @override
   String get finish => 'إنهاء';

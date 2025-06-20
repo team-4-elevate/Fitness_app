@@ -1,7 +1,6 @@
 // main.dart
 import 'dart:isolate';
 import 'dart:ui';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fitness_app/core/app_bloc_observer.dart';
@@ -11,8 +10,6 @@ import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
 import 'package:fitness_app/core/utils/navigation_services.dart';
-import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
-import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +24,7 @@ import 'core/responsive/responsive.dart';
 bool isShowOnboarding = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  
   await ApiLocalizationService().init();
   await LocalizationManager().initialize();
   await configureDependencies().then((_) async {
@@ -36,7 +33,7 @@ void main() async {
   await _configureFirebase();
 
   Bloc.observer = AppBlocObserver();
-
+  
   runApp(const MyApp());
 }
 
@@ -70,14 +67,6 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-              // routes: {'/home': (context) => const Home()},
-              // home: BlocProvider(
-              //   create: (context) => getIt<LoginViewModel>(),
-              //   child: const LoginView(),
-              home: BlocProvider(
-                create: (_) => getIt<RegisterBloc>(),
-                child: const RegisterView(),
-              ),
               initialRoute:
                   isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
             ),

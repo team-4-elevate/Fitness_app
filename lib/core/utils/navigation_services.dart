@@ -8,7 +8,7 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:injectable/injectable.dart';
 
-@singleton
+@lazySingleton
 class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
