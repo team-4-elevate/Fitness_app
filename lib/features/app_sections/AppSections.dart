@@ -18,12 +18,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   void initState() {
     super.initState();
-    _pages = const [
-      HomePage(),
-      ChatAipage(),
-      GymPage(),
-      ProfilePage(),
-    ];
+    _pages = const [HomePage(), ChatAipage(), GymPage(), ProfilePage()];
   }
 
   void _onItemTapped(int index) {
@@ -41,10 +36,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         color: Colors.grey[900]?.withOpacity(0.95),
         borderRadius: BorderRadius.circular(40.r),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.4),
-            blurRadius: 10.r,
-          )
+          BoxShadow(color: Colors.black.withOpacity(0.4), blurRadius: 10.r),
         ],
       ),
       child: Row(
