@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
           return ResponsiveWrapper(
             child: MaterialApp(
               title: 'Fitness App',
-              // navigatorKey: getIt<NavigationService>().navigatorKey,
 
+              // navigatorKey: getIt<NavigationService>().navigatorKey,
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
