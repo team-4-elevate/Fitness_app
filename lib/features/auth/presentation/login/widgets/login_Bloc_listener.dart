@@ -57,7 +57,7 @@ class LoginBlocListener extends StatelessWidget {
               onAnimationComplete: () {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (_) =>  MainNavigationScreen()),
+                  MaterialPageRoute(builder: (_) => MainNavigationScreen()),
                   (route) => false,
                 );
               },

@@ -30,7 +30,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   Widget _buildFloatingNavBar() {
     return Container(
-      margin: EdgeInsets.all(32.w), 
+      margin: EdgeInsets.all(32.w),
       padding: EdgeInsets.symmetric(horizontal: 25.w),
       height: 80.h,
       decoration: BoxDecoration(
