@@ -9,7 +9,6 @@ import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
-import 'package:fitness_app/core/utils/navigation_services.dart';
 import 'package:fitness_app/firebase_options.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
           return ResponsiveWrapper(
             child: MaterialApp(
               title: 'Fitness App',
-              navigatorKey: getIt<NavigationService>().navigatorKey,
+              // navigatorKey: getIt<NavigationService>().navigatorKey,
 
               localizationsDelegates: const [
                 AppLocalizations.delegate,
