@@ -11,8 +11,7 @@ abstract class AppEvent extends Equatable {
 
 class CheckUserLoginStatusEvent extends AppEvent {}
 
-
-//------------------------------------------------------user login 
+//------------------------------------------------------user login
 class UserLoggedInEvent extends AppEvent {
   final User user;
   final String? token;
@@ -23,10 +22,8 @@ class UserLoggedInEvent extends AppEvent {
   List<Object?> get props => [user, token];
 }
 
-
 //------------------------------------------------------user logout
 class UserLoggedOutEvent extends AppEvent {}
-
 
 //------------------------------------------------------user profile
 class SaveUserProfileEvent extends AppEvent {
@@ -39,7 +36,6 @@ class SaveUserProfileEvent extends AppEvent {
 }
 
 class ClearProfileDataEvent extends AppEvent {}
-
 
 //------------------------------------------------------app locale
 class ChangeAppLocaleEvent extends AppEvent {
