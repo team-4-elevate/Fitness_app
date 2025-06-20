@@ -7,7 +7,6 @@ import 'package:fitness_app/core/app_bloc_observer.dart';
 import 'package:fitness_app/core/app_data/app_bloc.dart';
 import 'package:fitness_app/core/app_data/app_events.dart';
 import 'package:fitness_app/core/app_data/app_states.dart';
-import 'package:fitness_app/core/app_local_storage/app_local_storage.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
@@ -20,7 +19,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/services/api_localization_service.dart';
 import 'core/services/localization_manager.dart';
 import 'core/responsive/responsive.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -28,27 +26,27 @@ void main() async {
   final localizationManager = LocalizationManager();
   await localizationManager.initialize();
   await configureDependencies();
-
+  
   // Manually register the LocalizationManager singleton
   if (!getIt.isRegistered<LocalizationManager>()) {
     getIt.registerSingleton<LocalizationManager>(localizationManager);
   }
   await _configureFirebase();
-
+  
   Bloc.observer = AppBlocObserver();
-
+  
   // Initialize app state before running the app
   final appBloc = getIt<AppBloc>();
-
+  
   // Check login status first and wait for it
   appBloc.add(CheckUserLoginStatusEvent());
   // Wait for the login check to complete
   await Future.delayed(const Duration(milliseconds: 300));
-
+  
   // Add other events
   appBloc.add(GetAppLocaleEvent());
   appBloc.add(CheckOnboardingStatusEvent());
-
+  
   runApp(const FitnessApp());
 }
 
@@ -63,15 +61,6 @@ class _FitnessAppState extends State<FitnessApp> {
   @override
   void initState() {
     super.initState();
-
-    /*     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final appBloc = getIt<AppBloc>();
-      final navigationService = getIt<NavigationService>();
-      
-      if (appBloc.state.isLoggedIn) {
-        navigationService.pushReplacementNamed(AppRoutes.homePage);
-      }
-    }); */
   }
 
   @override
@@ -93,7 +82,6 @@ class _FitnessAppState extends State<FitnessApp> {
             return ResponsiveWrapper(
               child: MaterialApp(
                 title: 'Fitness App',
-                navigatorKey: getIt<NavigationService>().navigatorKey,
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,
@@ -121,6 +109,7 @@ class _FitnessAppState extends State<FitnessApp> {
     );
   }
 }
+
 
 Future<void> _configureFirebase() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
