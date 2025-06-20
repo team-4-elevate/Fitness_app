@@ -1,6 +1,7 @@
 class AppRoutes {
   AppRoutes._();
   static const String onboarding = '/onboarding';
+  static const String foodPage = '/foodPage';
   static const String loginPage = '/loginPage';
   static const String registerPage = '/registerPage';
   static const String forgotPass = '/forgotPass';

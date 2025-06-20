@@ -62,6 +62,7 @@ class MockApiClient extends _i1.Mock implements _i2.ApiClient {
     String? path, {
     Map<String, dynamic>? queryParameters,
     bool? requiresToken = false,
+    String? secondBaseUrl,
   }) =>
       (super.noSuchMethod(
             Invocation.method(
@@ -70,6 +71,7 @@ class MockApiClient extends _i1.Mock implements _i2.ApiClient {
               {
                 #queryParameters: queryParameters,
                 #requiresToken: requiresToken,
+                #secondBaseUrl: secondBaseUrl,
               },
             ),
             returnValue: _i3.Future<_i4.ApiResult<T>>.value(
@@ -81,6 +83,7 @@ class MockApiClient extends _i1.Mock implements _i2.ApiClient {
                   {
                     #queryParameters: queryParameters,
                     #requiresToken: requiresToken,
+                    #secondBaseUrl: secondBaseUrl,
                   },
                 ),
               ),

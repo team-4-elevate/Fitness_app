@@ -5,6 +5,7 @@ abstract class ApiClient {
     String path, {
     Map<String, dynamic>? queryParameters,
     bool requiresToken = false,
+    String? secondBaseUrl,
   });
 
   Future<ApiResult<T>> post<T>(

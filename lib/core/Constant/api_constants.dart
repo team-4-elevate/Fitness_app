@@ -3,9 +3,11 @@
 class ApiConstants {
   ApiConstants._();
   static const String baseUrl = 'https://fitness.elevateegy.com/api/v1';
+  static const String secondBaseUrl = 'https://www.themealdb.com/api/json/v1';
   static const String loginEndpoint = '/auth/signin';
   static const String forgotPasswordEndpoint = '/auth/forgotPassword';
   static const String verifyOtpEndpoint = '/auth/verifyResetCode';
   static const String resetPasswordEndpoint = '/auth/resetPassword';
   static const String registerEndpoint = '/auth/signup';
+  static const String getMealsEndpoint = '/1/filter.php';
 }

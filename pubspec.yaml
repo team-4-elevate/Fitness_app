@@ -44,7 +44,7 @@ dependencies:
   flutter_secure_storage:
   provider:
   retrofit:
-  json_annotation:
+  json_annotation: ^4.9.0
   injectable:
   logger:
   connectivity_plus:
@@ -64,19 +64,23 @@ dependencies:
   numberpicker: ^2.1.2
   icons_plus: ^5.0.0
   smooth_page_indicator:
+  freezed_annotation: ^3.0.0
+  skeletonizer: ^2.0.1
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
+  build_runner: ^2.5.2
   retrofit_generator: '>=8.0.0 <10.0.0'
   injectable_generator:
-  json_serializable:
+  json_serializable: ^6.9.5
   mockito: ^5.4.3 
-  
-
+  freezed: ^3.0.6
   flutter_native_splash: ^2.4.6
   flutter_launcher_icons: ^0.14.4
+  
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

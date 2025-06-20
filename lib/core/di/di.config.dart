@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/auth/data/datasource/local_data_source/auth_local_data_source_contract.dart'
     as _i111;
@@ -34,8 +35,10 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
-import 'package:shared_preferences/shared_preferences.dart' as _i460;
-
+import '../../features/food/data/repo/food_repo_impl.dart' as _i20;
+import '../../features/food/domain/repository/food_repo.dart' as _i517;
+import '../../features/food/domain/usecase/get_meals_use_case.dart' as _i1034;
+import '../../features/food/presentation/cubit/food_cubit.dart' as _i798;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
     as _i768;
@@ -62,13 +65,6 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.singleton<_i565.NavigationService>(() => _i565.NavigationService());
-    gh.singleton<_i668.AppNavigatorObserver>(
-      () => _i668.AppNavigatorObserver(),
-    );
-    gh.singleton<_i1052.AppNavigatorObserver>(
-      () => _i1052.AppNavigatorObserver(),
-    );
     final registerModule = _$RegisterModule();
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
@@ -77,6 +73,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i565.NavigationService>(() => _i565.NavigationService());
     gh.singleton<_i668.AppNavigatorObserver>(
       () => _i668.AppNavigatorObserver(),
+    );
+    gh.singleton<_i1052.AppNavigatorObserver>(
+      () => _i1052.AppNavigatorObserver(),
     );
     gh.singleton<_i241.SharedPreferencesService>(
       () => _i241.SharedPreferencesService(),
@@ -88,11 +87,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i111.AuthLocalDataSourceContract>(
       () => _i812.AuthLocalDataSourceImpl(gh<_i304.AppSecureStorage>()),
     );
+    gh.factory<_i768.OnboardingRepo>(
+      () => _i371.OnboardingRepoImp(gh<_i849.AppLocalStorage>()),
+    );
     gh.singleton<_i277.ApiClient>(
       () => _i861.DioApiClient(gh<_i304.AppSecureStorage>()),
     );
+    gh.factory<_i517.FoodRepo>(() => _i20.FoodRepoImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i758.ShowOnboardingUseCase>(
+      () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()),
+    );
+    gh.factory<_i792.OnboardingBloc>(
+      () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()),
+    );
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
+    );
+    gh.factory<_i1034.GetMealsUseCase>(
+      () => _i1034.GetMealsUseCase(gh<_i517.FoodRepo>()),
     );
     gh.factory<_i170.AuthRepo>(
       () => _i984.AuthRepoImpl(
@@ -102,6 +114,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i798.FoodCubit>(
+      () => _i798.FoodCubit(gh<_i1034.GetMealsUseCase>()),
     );
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
@@ -127,15 +142,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i225.LoginViewModel>(
       () => _i225.LoginViewModel(gh<_i37.LoginUseCase>()),
-    );
-    gh.factory<_i768.OnboardingRepo>(
-      () => _i371.OnboardingRepoImp(gh<_i849.AppLocalStorage>()),
-    );
-    gh.factory<_i758.ShowOnboardingUseCase>(
-      () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()),
-    );
-    gh.factory<_i792.OnboardingBloc>(
-      () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()),
     );
     return this;
   }

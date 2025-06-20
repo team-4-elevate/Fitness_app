@@ -29,12 +29,14 @@ class DioApiClient implements ApiClient {
   @override
   Future<ApiResult<T>> get<T>(
     String path, {
+    String? secondBaseUrl,
     Map<String, dynamic>? queryParameters,
     bool requiresToken = false,
   }) async {
     return await ErrorHandler.handle<T>(() async {
       await _checkToken(requiresToken);
-      final response = await _dio.get(path, queryParameters: queryParameters);
+      final String url = secondBaseUrl != null ? '$secondBaseUrl$path' : path;
+      final response = await _dio.get(url, queryParameters: queryParameters);
       return _handleResponse<T>(response.data);
     });
   }
