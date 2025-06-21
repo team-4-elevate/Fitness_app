@@ -1,0 +1,164 @@
+// features/home/widgets/shared_section.dart
+import 'package:fitness_app/core/theme/app_colors.dart';
+import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:flutter/material.dart';
+
+enum SectionSize {
+  dailyToRecommendations('Daily To Recommendations', 104, 104),
+  upcomingWorkouts('Upcoming Workouts', 80, 80),
+  recommendationForYou('Recommendation For You', 104, 104);
+
+  final String displayName;
+  final double width;
+  final double height;
+
+  const SectionSize(this.displayName, this.width, this.height);
+}
+
+class SharedSection extends StatefulWidget {
+  String sectionTitle;
+  final bool showSeeAll;
+
+  SharedSection({
+    super.key,
+    required this.sectionTitle,
+    this.showSeeAll = true,
+  });
+
+  // Sample data for recommendations
+  static const List<Map<String, dynamic>> _recommendations = [
+    {'name': 'Jogging', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Push-Up', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Squat', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Lunges', 'image': 'assets/images/cat.jpg'},
+  ];
+
+  SectionSize? sectionSizeFromTitle(String sectionTitle) {
+    return SectionSize.values.firstWhere(
+      (e) => e.displayName.toLowerCase() == sectionTitle.toLowerCase(),
+    );
+  }
+
+  @override
+  State<SharedSection> createState() => _SharedSectionState();
+}
+
+class _SharedSectionState extends State<SharedSection> {
+  @override
+  Widget build(BuildContext context) {
+    final sectionSize = widget.sectionSizeFromTitle(widget.sectionTitle);
+    final width = sectionSize?.width ?? 100.0;
+    final height = sectionSize?.height ?? 100.0;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // ---------------------------title with seeAll button
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 4.r),
+              child: Text(
+                sectionSize?.displayName ?? widget.sectionTitle,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+            if (widget.showSeeAll)
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'See All',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 14.r,
+                  ),
+                ),
+              ),
+          ],
+        ),
+        widget.showSeeAll ? const SizedBox.shrink() : SizedBox(height: 8.r),
+
+        // -------------------------------------------------- content
+        Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
+          height: height.r + 10.r,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+
+            itemCount: SharedSection._recommendations.length,
+            separatorBuilder: (context, index) => SizedBox(width: 12.r),
+            itemBuilder: (context, index) {
+              final recommendation = SharedSection._recommendations[index];
+              return Container(
+                width: width.r,
+                height: height.r,
+
+                margin: EdgeInsets.symmetric(vertical: 5.r),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 8.r,
+                      offset: Offset(0, 4.r),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.r),
+                  child: Stack(
+                    children: [
+                      // Background image
+                      Positioned.fill(
+                        child: Image.asset(
+                          recommendation['image'],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+
+                      // ----------------------------------------------gray container with text
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: Container(
+                          height: height.r * 0.4,
+                          decoration: BoxDecoration(
+                            color: AppColors.surfaceDark.withOpacity(0.7),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(height / 2.r),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Text at bottom
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: height.r * 0.1,
+                        child: Text(
+                          recommendation['name'],
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyMedium?.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
