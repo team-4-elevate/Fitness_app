@@ -397,5 +397,7 @@
   "login": "Login",
   "@login": {
     "description": "Login text for buttons and links"
-  }
+  },
+  "food_Recommendation_title": "Food Recommendation",
+  "food_Recommendation_no_categories":"No categories found"
 }

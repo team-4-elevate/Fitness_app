@@ -369,5 +369,7 @@
   "onBoardingDesc3": "دعنا نبدأ رحلتك نحو حياة أكثر صحة ولياقة.",
   "@onBoardingDesc3": {
     "description": "وصف الشاشة الثالثة في عملية الإعداد الأولي"
-  }
+  },
+  "food_Recommendation_title": "اقتراحات للاكل",
+  "food_Recommendation_no_categories": "لايوجد بيانات"
 }

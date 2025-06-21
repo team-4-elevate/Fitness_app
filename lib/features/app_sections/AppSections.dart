@@ -1,11 +1,17 @@
+import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/app_sections/ChatAipage.dart';
 import 'package:fitness_app/features/app_sections/GymPage.dart';
 import 'package:fitness_app/features/app_sections/HomePage.dart';
 import 'package:fitness_app/features/app_sections/ProfilePage.dart';
+import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_recommendation_viewmodel.dart';
+import 'package:fitness_app/features/food_recommendation/presentation/pages/food_recommendation_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
+
   @override
   _MainNavigationScreenState createState() => _MainNavigationScreenState();
 }
@@ -18,7 +24,15 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   void initState() {
     super.initState();
-    _pages = const [HomePage(), ChatAipage(), GymPage(), ProfilePage()];
+    _pages = [
+      const HomePage(),
+      BlocProvider(
+        create: (context) => getIt<FoodRecommendationViewModel>(),
+        child: const FoodRecommendationScreen(),
+      ),
+      const GymPage(),
+      const ProfilePage(),
+    ];
   }
 
   void _onItemTapped(int index) {
@@ -29,7 +43,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   Widget _buildFloatingNavBar() {
     return Container(
-      margin: EdgeInsets.all(32.w), // ✅ تعديل المارجن
+      margin: EdgeInsets.all(32.w),
       padding: EdgeInsets.symmetric(horizontal: 25.w),
       height: 80.h,
       decoration: BoxDecoration(

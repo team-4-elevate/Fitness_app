@@ -18,8 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome to Fitness App';
 
   @override
-  String get networkError =>
-      'No internet connection. Please check your network and try again.';
+  String get networkError => 'No internet connection. Please check your network and try again.';
 
   @override
   String get serverError => 'Server error. Please try again later.';
@@ -52,8 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'Connection error. Please check your network.';
 
   @override
-  String get socketException =>
-      'Connection problem. Please check your internet.';
+  String get socketException => 'Connection problem. Please check your internet.';
 
   @override
   String get formatException => 'Could not read the received data.';
@@ -81,22 +79,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onBoardingTitle1 => 'The Price Of Excellence\n is Discipline';
 
   @override
-  String get onBoardingDesc1 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingDesc1 => 'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get onBoardingTitle2 => 'Fitness Has Never Been So\n Much Fun';
 
   @override
-  String get onBoardingDesc2 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingDesc2 => 'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get onBoardingTitle3 => 'NO MORE EXCUSES\n Do It Now';
 
   @override
-  String get onBoardingDesc3 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingDesc3 => 'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get login_heyThere => 'Hey There';
@@ -178,8 +173,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle2 => 'HOW OLD ARE YOU?';
 
   @override
-  String get registrationSubtitle2 =>
-      'This Helps Us Create Your Personalized Plan';
+  String get registrationSubtitle2 => 'This Helps Us Create Your Personalized Plan';
 
   @override
   String get registrationTitle3 => 'WHAT IS YOUR WEIGHT?';
@@ -203,8 +197,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle6 => 'HOW ACTIVE ARE YOU?';
 
   @override
-  String get registrationSubtitle6 =>
-      'Your Activity Level Helps Us Set Targets';
+  String get registrationSubtitle6 => 'Your Activity Level Helps Us Set Targets';
 
   @override
   String get year => 'Year';
@@ -280,4 +273,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get food_Recommendation_title => 'Food Recommendation';
+
+  @override
+  String get food_Recommendation_no_categories => 'No categories found';
 }
