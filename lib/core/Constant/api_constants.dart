@@ -8,4 +8,7 @@ class ApiConstants {
   static const String verifyOtpEndpoint = '/auth/verifyResetCode';
   static const String resetPasswordEndpoint = '/auth/resetPassword';
   static const String registerEndpoint = '/auth/signup';
+  static const String levelsEndpoint =
+      '/levels/difficulty-levels/by-prime-mover';
+  static const String primeMoverValue = '67c8499726895f87ce0aa9bc';
 }

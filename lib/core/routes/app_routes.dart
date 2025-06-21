@@ -19,4 +19,5 @@ class AppRoutes {
   static const String examScreen = '/examScreen';
   static const String examScoreScreen = '/examScoreScreen';
   static const String changePasswordScreen = '/changePasswordScreen';
+  static const String popularTrainingScreen = '/popularTrainingScreen';
 }

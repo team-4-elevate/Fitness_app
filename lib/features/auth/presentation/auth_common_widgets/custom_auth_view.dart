@@ -74,7 +74,7 @@ class CustomAuthScreensView extends StatelessWidget {
                         child: SizedBox(
                           height: 50,
                           width: 70,
-                          child: Image.asset('assets/images/fit 1.png'),
+                          child: Image.asset('assets/images/fit1.png'),
                         ),
                       ),
                       if (isDetailsStep) const Spacer(),

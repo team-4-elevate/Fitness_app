@@ -78,8 +78,8 @@ class MyApp extends StatelessWidget {
                 create: (_) => getIt<RegisterBloc>(),
                 child: const RegisterView(),
               ),
-              initialRoute:
-                  isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
+              initialRoute: AppRoutes.popularTrainingScreen,
+              // isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
             ),
           );
         },
