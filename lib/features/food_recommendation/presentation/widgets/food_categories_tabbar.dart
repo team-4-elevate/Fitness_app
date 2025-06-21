@@ -12,7 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FoodCategoriesTabbar extends StatelessWidget {
   final TabController tabController;
   final FoodRecommendationState state;
-  const FoodCategoriesTabbar({super.key, 
+  const FoodCategoriesTabbar({
+    super.key,
     required this.tabController,
     required this.state,
   });
@@ -35,7 +36,7 @@ class FoodCategoriesTabbar extends StatelessWidget {
           success: (data) {
             final categories = data ?? [];
             if (categories.isEmpty) {
-              return  Padding(
+              return Padding(
                 padding: EdgeInsets.symmetric(vertical: 16),
                 child: Center(
                   child: Text(

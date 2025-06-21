@@ -43,6 +43,7 @@ class FoodRecommendationViewModel extends Cubit<FoodRecommendationState> {
       },
     );
   }
+
   Future<void> _handleGetMealsByCategoryIntent(String categoryName) async {
     try {
       final categoryKey = categoryName.toLowerCase();

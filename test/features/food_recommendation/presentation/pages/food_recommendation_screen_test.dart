@@ -153,7 +153,6 @@ void main() {
 
       addTearDown(tester.view.resetPhysicalSize);
     });
-
   });
 
   group('Loading State Tests', () {
@@ -205,7 +204,6 @@ void main() {
 
       addTearDown(tester.view.resetPhysicalSize);
     });
-
   });
 
   group('Error State Tests', () {
@@ -428,6 +426,5 @@ void main() {
 
       addTearDown(tester.view.resetPhysicalSize);
     });
-
   });
 }

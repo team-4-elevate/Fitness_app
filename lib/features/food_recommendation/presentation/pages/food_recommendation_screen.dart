@@ -88,7 +88,7 @@ class _FoodRecommendationMviScreenState extends State<FoodRecommendationScreen>
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               backgroundColor: Colors.transparent,
-              title:  Text(context.l10n.food_Recommendation_title),
+              title: Text(context.l10n.food_Recommendation_title),
               centerTitle: true,
               leadingWidth: 35.r,
               elevation: 0,
@@ -109,7 +109,10 @@ class _FoodRecommendationMviScreenState extends State<FoodRecommendationScreen>
                 Expanded(
                   child:
                       _tabController.length > 0
-                          ?FoodGridViewWidget(state: state, tabController: _tabController)
+                          ? FoodGridViewWidget(
+                            state: state,
+                            tabController: _tabController,
+                          )
                           : const FoodGridLoading(),
                 ),
               ],

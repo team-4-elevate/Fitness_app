@@ -20,7 +20,7 @@ class FoodRecommendRepoImpl implements FoodRecommendRepo {
         failure: (message) {
           return ApiFailure(message);
         },
-      );  
+      );
     } catch (e) {
       return ApiFailure(e.toString());
     }
