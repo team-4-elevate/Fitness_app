@@ -1,7 +1,8 @@
+// features/onboarding/presentation/widgets/skip_widget.dart
 import 'package:fitness_app/core/responsive/responsive_design.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/login/presentation/pages/login_page.dart';
+import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
 import 'package:fitness_app/features/onboarding/presentation/bloc/onboarding_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,7 @@ class SkipWidget extends StatelessWidget {
             key: const Key('skip_button'),
             onPressed: () {
               context.read<OnboardingBloc>().add(ShowOnboardingCompleted());
-              context.pushAndRemoveUntil(const LoginPage());
+              context.pushAndRemoveUntil(const LoginView());
             },
             child: Text(
               context.l10n.skip,

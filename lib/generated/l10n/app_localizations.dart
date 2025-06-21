@@ -212,12 +212,6 @@ abstract class AppLocalizations {
   /// **'Skip'**
   String get skip;
 
-  /// Button text for the next step
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get next;
-
   /// Button to go to previous onboarding page
   ///
   /// In en, this message translates to:
@@ -385,6 +379,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Registration successful!'**
   String get registerSuccess;
+
+  /// Button text for the next step
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
 
   /// Button text for the final step
   ///

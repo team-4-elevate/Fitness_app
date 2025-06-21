@@ -72,9 +72,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skip => 'Skip';
 
   @override
-  String get next => 'Next';
-
-  @override
   String get back => 'Back';
 
   @override
@@ -164,6 +161,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get registerSuccess => 'Registration successful!';
+
+  @override
+  String get next => 'Next';
 
   @override
   String get finish => 'Finish';

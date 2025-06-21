@@ -66,9 +66,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.singleton<_i565.NavigationService>(() => _i565.NavigationService());
-    gh.singleton<_i668.AppNavigatorObserver>(
-      () => _i668.AppNavigatorObserver(),
+    gh.singleton<_i1052.AppNavigatorObserver>(
+      () => _i1052.AppNavigatorObserver(),
     );
     gh.singleton<_i1052.AppNavigatorObserver>(
       () => _i1052.AppNavigatorObserver(),
@@ -76,6 +75,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i241.SharedPreferencesService>(
       () => _i241.SharedPreferencesService(),
     );
+    gh.singleton<_i668.AppNavigatorObserver>(
+      () => _i668.AppNavigatorObserver(),
+    );
+    gh.lazySingleton<_i565.NavigationService>(() => _i565.NavigationService());
     gh.factory<_i849.AppLocalStorage>(
       () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()),
     );
@@ -110,14 +113,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
     );
+    gh.factory<_i18.ForgotPasswordUseCase>(
+      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
+    );
     gh.factory<_i37.LoginUseCase>(
       () => _i37.LoginUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i825.ResetPasswordUseCase>(
       () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()),
-    );
-    gh.factory<_i18.ForgotPasswordUseCase>(
-      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i509.VerifyOtpUseCase>(
       () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()),
