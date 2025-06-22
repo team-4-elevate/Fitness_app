@@ -12,7 +12,6 @@ class CategorySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Category title
         Padding(
           padding: EdgeInsets.only(left: 4.r, bottom: 16.r),
           child: Text(
@@ -31,7 +30,6 @@ class CategorySection extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.r),
             ),
-            // Using constraints to make height responsive to width
             constraints: BoxConstraints(minHeight: 90.r, maxHeight: 110.r),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.r),

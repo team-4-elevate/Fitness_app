@@ -20,10 +20,54 @@ class Home extends StatelessWidget {
 
   // List of daily recommendations
   static const List<Map<String, dynamic>> _dailyRecommendations = [
-    {'name': 'Jogging', 'image': 'assets/images/onboarding_vector_1.png'},
-    {'name': 'Push-Up', 'image': 'assets/images/onboarding_vector_1.png'},
-    {'name': 'Squat', 'image': 'assets/images/onboarding_vector_1.png'},
-    {'name': 'Lunges', 'image': 'assets/images/onboarding_vector_1.png'},
+    {'name': 'Jogging', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Push-Up', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Squat', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Lunges', 'image': 'assets/images/cat.jpg'},
+  ];
+
+  // List of upcoming workouts
+  static const List<Map<String, dynamic>> _upcomingWorkouts = [
+    {'name': 'Morning Run', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Evening Yoga', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Core Workout', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Arm Day', 'image': 'assets/images/cat.jpg'},
+  ];
+
+  // List of recommendations for you
+  static const List<Map<String, dynamic>> _recommendationsForYou = [
+    {'name': 'HIIT Training', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Stretching', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Pilates', 'image': 'assets/images/cat.jpg'},
+    {'name': 'Cardio', 'image': 'assets/images/cat.jpg'},
+  ];
+
+  // List of popular trainings
+  static const List<Map<String, dynamic>> _popularTrainings = [
+    {
+      'name': 'Chest Workout',
+      'image': 'assets/images/cat.jpg',
+      'tasks': '24 Tasks',
+      'level': 'Beginner',
+    },
+    {
+      'name': 'Arm Workout',
+      'image': 'assets/images/cat.jpg',
+      'tasks': '18 Tasks',
+      'level': 'Intermediate',
+    },
+    {
+      'name': 'Leg Day',
+      'image': 'assets/images/cat.jpg',
+      'tasks': '15 Tasks',
+      'level': 'Beginner',
+    },
+    {
+      'name': 'Core Strength',
+      'image': 'assets/images/cat.jpg',
+      'tasks': '30 Tasks',
+      'level': 'Advanced',
+    },
   ];
 
   @override
@@ -64,15 +108,32 @@ class Home extends StatelessWidget {
                     SharedSection(
                       sectionTitle: "Daily To Recommendations",
                       showSeeAll: false,
+                      recommendations: _dailyRecommendations,
                     ),
                     SizedBox(height: 16.r),
 
                     //------------------------------------upcoming workouts
-                    SharedSection(sectionTitle: "Upcoming Workouts"),
+                    SharedSection(
+                      sectionTitle: "Upcoming Workouts",
+                      recommendations: _upcomingWorkouts,
+                    ),
                     SizedBox(height: 16.r),
 
                     //------------------------------------ Recommendations for you
-                    SharedSection(sectionTitle: "Recommendation For You"),
+                    SharedSection(
+                      sectionTitle: "Recommendation For You",
+                      recommendations: _recommendationsForYou,
+                    ),
+                    SizedBox(height: 16.r),
+
+                    //--------------------------------------popular training
+                    SharedSection(
+                      sectionTitle: "popular training",
+                      showSeeAll: false,
+                      isPopularTraining: true,
+                      recommendations: _popularTrainings,
+                    ),
+                    SizedBox(height: 16.r),
 
                     SizedBox(height: 100.r),
                   ],

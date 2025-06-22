@@ -1,7 +1,6 @@
 // features/home/widgets/user_info.dart
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:fitness_app/core/theme/app_theme.dart';
 
 class UserInfo extends StatelessWidget {
   final String userName;

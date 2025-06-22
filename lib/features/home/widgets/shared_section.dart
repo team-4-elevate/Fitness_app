@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 enum SectionSize {
   dailyToRecommendations('Daily To Recommendations', 104, 104),
   upcomingWorkouts('Upcoming Workouts', 80, 80),
-  recommendationForYou('Recommendation For You', 104, 104);
+  recommendationForYou('Recommendation For You', 104, 104),
+  popularTraining('popular training', 200, 176);
 
   final String displayName;
   final double width;
@@ -18,20 +19,16 @@ enum SectionSize {
 class SharedSection extends StatefulWidget {
   String sectionTitle;
   final bool showSeeAll;
+  final bool isPopularTraining;
+  final List<Map<String, dynamic>> recommendations;
 
   SharedSection({
     super.key,
     required this.sectionTitle,
     this.showSeeAll = true,
+    this.isPopularTraining = false,
+    required this.recommendations,
   });
-
-  // Sample data for recommendations
-  static const List<Map<String, dynamic>> _recommendations = [
-    {'name': 'Jogging', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Push-Up', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Squat', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Lunges', 'image': 'assets/images/cat.jpg'},
-  ];
 
   SectionSize? sectionSizeFromTitle(String sectionTitle) {
     return SectionSize.values.firstWhere(
@@ -86,14 +83,13 @@ class _SharedSectionState extends State<SharedSection> {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
 
-            itemCount: SharedSection._recommendations.length,
+            itemCount: widget.recommendations.length,
             separatorBuilder: (context, index) => SizedBox(width: 12.r),
             itemBuilder: (context, index) {
-              final recommendation = SharedSection._recommendations[index];
+              final recommendation = widget.recommendations[index];
               return Container(
                 width: width.r,
                 height: height.r,
-
                 margin: EdgeInsets.symmetric(vertical: 5.r),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
@@ -117,40 +113,104 @@ class _SharedSectionState extends State<SharedSection> {
                         ),
                       ),
 
-                      // ----------------------------------------------gray container with text
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        child: Container(
-                          height: height.r * 0.4,
-                          decoration: BoxDecoration(
-                            color: AppColors.surfaceDark.withOpacity(0.7),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(height / 2.r),
+                      if (!widget.isPopularTraining) ...[
+                        // ----------------------------------------------gray container with text
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: Container(
+                            height: height.r * 0.4,
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceDark.withOpacity(0.7),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(height / 2.r),
+                              ),
                             ),
                           ),
                         ),
-                      ),
 
-                      // Text at bottom
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: height.r * 0.1,
-                        child: Text(
-                          recommendation['name'],
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                        // Text at bottom
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: height.r * 0.1,
+                          child: Text(
+                            recommendation['name'],
+                            style: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
+                      ] else ...[
+                        //-------------------------------- Popular training
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: height.r * 0.4,
+                          child: Text(
+                            'Exercises That\nStrengthen Your Chest',
+                            style: Theme.of(
+                              context,
+                            ).textTheme.titleLarge?.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+
+                        Positioned(
+                          left: 16.r,
+                          bottom: 8.r,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 12.r,
+                              vertical: 6.r,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceDark,
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            child: Text(
+                              recommendation['tasks'],
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(color: Colors.white),
+                            ),
+                          ),
+                        ),
+
+                        Positioned(
+                          right: 16.r,
+                          bottom: 8.r,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 12.r,
+                              vertical: 6.r,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceDark,
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            child: Text(
+                              recommendation['level'],
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(color: AppColors.primaryOrange),
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                 ),
