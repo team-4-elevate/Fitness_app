@@ -1,4 +1,4 @@
-// features/home/widgets/shared_section.dart
+// features/home/presentation/widgets/shared_section.dart
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +21,7 @@ class SharedSection extends StatefulWidget {
   final bool showSeeAll;
   final bool isPopularTraining;
   final List<Map<String, dynamic>> recommendations;
+  final VoidCallback? onSeeAllPressed;
 
   SharedSection({
     super.key,
@@ -28,6 +29,7 @@ class SharedSection extends StatefulWidget {
     this.showSeeAll = true,
     this.isPopularTraining = false,
     required this.recommendations,
+    this.onSeeAllPressed,
   });
 
   SectionSize? sectionSizeFromTitle(String sectionTitle) {
@@ -63,7 +65,7 @@ class _SharedSectionState extends State<SharedSection> {
             ),
             if (widget.showSeeAll)
               TextButton(
-                onPressed: () {},
+                onPressed: widget.onSeeAllPressed,
                 child: Text(
                   'See All',
                   style: TextStyle(
@@ -155,7 +157,7 @@ class _SharedSectionState extends State<SharedSection> {
                           right: 0,
                           bottom: height.r * 0.4,
                           child: Text(
-                            'Exercises That\nStrengthen Your Chest',
+                            'Exercises That\nStrengthen Your ${recommendation['name']}',
                             style: Theme.of(
                               context,
                             ).textTheme.titleLarge?.copyWith(

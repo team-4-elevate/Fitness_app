@@ -3,7 +3,7 @@ import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/app_sections/ChatAipage.dart';
 import 'package:fitness_app/features/app_sections/GymPage.dart';
 import 'package:fitness_app/features/app_sections/ProfilePage.dart';
-import 'package:fitness_app/features/home/home.dart';
+import 'package:fitness_app/features/home/presentation/home.dart';
 import 'package:flutter/material.dart';
 
 class MainNavigationScreen extends StatefulWidget {

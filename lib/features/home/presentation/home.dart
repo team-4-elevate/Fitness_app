@@ -1,7 +1,7 @@
-// features/home/home.dart
+// features/home/presentation/home.dart
 import 'dart:ui' as ui;
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/home/widgets/category_section.dart';
+import 'package:fitness_app/features/home/presentation/widgets/category_section.dart';
 import 'package:flutter/material.dart';
 import 'widgets/user_info.dart';
 import 'widgets/shared_section.dart';
@@ -116,6 +116,9 @@ class Home extends StatelessWidget {
                     SharedSection(
                       sectionTitle: "Upcoming Workouts",
                       recommendations: _upcomingWorkouts,
+                      onSeeAllPressed: () {
+                        debugPrint('See All pressed for Upcoming Workouts');
+                      },
                     ),
                     SizedBox(height: 16.r),
 
@@ -123,6 +126,11 @@ class Home extends StatelessWidget {
                     SharedSection(
                       sectionTitle: "Recommendation For You",
                       recommendations: _recommendationsForYou,
+                      onSeeAllPressed: () {
+                        debugPrint(
+                          'See All pressed for Recommendations For You',
+                        );
+                      },
                     ),
                     SizedBox(height: 16.r),
 
