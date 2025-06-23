@@ -55,11 +55,7 @@ class ForgetPasswordBloc
     Emitter<ForgetPasswordState> emit,
   ) async {
     try {
-      emit(
-        state.copyWith(
-          verifyOtpStatus: Status.loading,
-        ),
-      );
+      emit(state.copyWith(verifyOtpStatus: Status.loading));
       await _verifyResetCodeUseCase(VerifyOtpRequest(resetCode: event.code));
       log('ssss');
       emit(state.copyWith(verifyOtpStatus: Status.success));

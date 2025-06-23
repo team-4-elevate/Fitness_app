@@ -9,9 +9,7 @@ class ForgotPasswordUseCase {
   final AuthRepo _repo;
   ForgotPasswordUseCase(this._repo);
 
-  Future<void> call(
-    ForgetpasswordRequest request,
-  ) async {
+  Future<void> call(ForgetpasswordRequest request) async {
     return await _repo.forgotPassword(request);
   }
 }

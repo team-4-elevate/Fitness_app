@@ -78,10 +78,9 @@ class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
             final status = state.resetPasswordStatus;
             status.isError
                 ? context.showSnackBar(state.errorMessage)
-                : Navigator.of(context).pushNamedAndRemoveUntil(
-                  AppRoutes.homePage,
-                  (route) => false,
-                );
+                : Navigator.of(
+                  context,
+                ).pushNamedAndRemoveUntil(AppRoutes.homePage, (route) => false);
           },
           child: Form(
             key: _formKey,

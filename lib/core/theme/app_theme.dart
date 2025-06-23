@@ -153,8 +153,8 @@ class AppTheme {
 
         textStyle: TextStyle(
           fontSize: R.textMD,
-          fontWeight: FontWeight.w600,
           fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
+          fontWeight: FontWeight.w800,
           color: AppColors.white,
         ),
         minimumSize: Size(double.infinity, R.adaptiveButtonHeight),
@@ -176,7 +176,7 @@ class AppTheme {
         textStyle: TextStyle(
           fontSize: R.textMD,
           fontFamily: AppFontStyle.customAppFont.fontFamily,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w800,
         ),
         minimumSize: Size(double.infinity, R.adaptiveButtonHeight),
       ),
@@ -254,8 +254,9 @@ class AppTheme {
       prefixIconColor: Colors.white.withOpacity(0.7),
       suffixIconColor: Colors.white.withOpacity(0.7),
     ),
-    // =================== Dialog Theme ===================
-    dialogTheme: DialogTheme(
+
+    // =================== Dialog Theme - Responsive ===================
+    dialogTheme: DialogThemeData(
       backgroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
@@ -284,7 +285,7 @@ class AppTheme {
     ),
 
     // =================== Card Theme - Responsive ===================
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shadowColor: AppColors.black.withOpacity(0.1),
@@ -404,8 +405,8 @@ class AppTheme {
         ), // ✅ Responsive
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: R.paddingLGValue, // ✅ Responsive
-        vertical: R.paddingMDValue, // ✅ Responsive
+        horizontal: R.paddingMDValue, // ✅ Responsive
+        vertical: R.paddingSMValue, // ✅ Responsive
       ),
       minimumSize: Size(
         double.infinity,
@@ -422,15 +423,18 @@ class AppTheme {
   static ButtonStyle getSecondaryButtonStyle() {
     return OutlinedButton.styleFrom(
       foregroundColor: AppColors.white,
-      side: BorderSide(color: AppColors.white, width: 1.5.r), // ✅ Responsive
+      side: BorderSide(
+        color: AppColors.secondaryOrange,
+        width: 1.r,
+      ), // ✅ Responsive
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           R.borderButtonValue,
         ), // ✅ Responsive
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: R.paddingLGValue, // ✅ Responsive
-        vertical: R.paddingMDValue, // ✅ Responsive
+        horizontal: R.paddingMDValue, // ✅ Responsive
+        vertical: R.paddingSMValue, // ✅ Responsive
       ),
       minimumSize: Size(
         double.infinity,

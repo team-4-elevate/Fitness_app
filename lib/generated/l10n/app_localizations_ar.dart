@@ -67,6 +67,35 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get skip => 'تخطي';
+
+  @override
+  String get back => 'رجوع';
+
+  @override
+  String get doIt => 'لنبدأ';
+
+  @override
+  String get onBoardingTitle1 => 'مرحبًا بك في تطبيق اللياقة البدنية';
+
+  @override
+  String get onBoardingDesc1 =>
+      'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
+
+  @override
+  String get onBoardingTitle2 => 'تخصيص تجربتك';
+
+  @override
+  String get onBoardingDesc2 =>
+      'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
+
+  @override
+  String get onBoardingTitle3 => 'ابدأ رحلتك';
+
+  @override
+  String get onBoardingDesc3 => 'دعنا نبدأ رحلتك نحو حياة أكثر صحة ولياقة.';
+
+  @override
   String get login_heyThere => 'مرحبًا بك';
 
   @override

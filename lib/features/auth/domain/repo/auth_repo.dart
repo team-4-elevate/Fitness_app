@@ -16,13 +16,9 @@ abstract interface class AuthRepo {
 
   Future<ApiResult<RegisterResponse>> register(RegisterDetailsData data);
 
-  Future<void> forgotPassword(
-    ForgetpasswordRequest request,
-  );
+  Future<void> forgotPassword(ForgetpasswordRequest request);
 
   Future<void> verifyOtp(VerifyOtpRequest request);
 
-  Future<void> resetPassword(
-    ResetpasswordRequest request,
-  );
+  Future<void> resetPassword(ResetpasswordRequest request);
 }

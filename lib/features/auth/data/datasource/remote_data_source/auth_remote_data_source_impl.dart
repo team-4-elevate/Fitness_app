@@ -46,32 +46,27 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
   }
 
   @override
-  Future<void> forgotPassword(
-    ForgetpasswordRequest request,
-  ) async {
-      final res=  await _apiClient.post(
-        ApiConstants.forgotPasswordEndpoint,
-        data: request.toJson(),
-        requiresToken: false,
-      );
-      if(res is ApiFailure){
-        throw res.message;
-      }
+  Future<void> forgotPassword(ForgetpasswordRequest request) async {
+    final res = await _apiClient.post(
+      ApiConstants.forgotPasswordEndpoint,
+      data: request.toJson(),
+      requiresToken: false,
+    );
+    if (res is ApiFailure) {
+      throw res.message;
+    }
   }
 
   @override
-  Future<void> verifyOtp(
-    VerifyOtpRequest request,
-  ) async {
-
-      final response = await _apiClient.post(
-        ApiConstants.verifyOtpEndpoint,
-        data: request.toJson(),
-        requiresToken: false,
-      );
-      if ( response is ApiFailure) {
-        throw response.message;
-      }
+  Future<void> verifyOtp(VerifyOtpRequest request) async {
+    final response = await _apiClient.post(
+      ApiConstants.verifyOtpEndpoint,
+      data: request.toJson(),
+      requiresToken: false,
+    );
+    if (response is ApiFailure) {
+      throw response.message;
+    }
   }
 
   @override

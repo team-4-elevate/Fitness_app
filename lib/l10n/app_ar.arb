@@ -334,6 +334,43 @@
   "@login": {
     "description": "نص تسجيل الدخول للأزرار والروابط"
   },
+  "skip": "تخطي",
+  "@skip": {
+    "description": "زر تخطي في عملية الإعداد الأولي"
+  },
+  "back": "رجوع",
+  "@back": {
+    "description": "زر الرجوع في عملية الإعداد الأولي"
+  },
+  "doIt": "لنبدأ",
+  "@doIt": {
+    "description": "زر البدء في عملية الإعداد الأولي"
+  },
+  "onBoardingTitle1": "مرحبًا بك في تطبيق اللياقة البدنية",
+  "@onBoardingTitle1": {
+    "description": "عنوان الشاشة الأولى في عملية الإعداد الأولي"
+  },
+  "onBoardingDesc1": "هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.",
+  "@onBoardingDesc1": {
+    "description": "وصف الشاشة الأولى في عملية الإعداد الأولي"
+  },
+  "onBoardingTitle2": "تخصيص تجربتك",
+  "@onBoardingTitle2": {
+    "description": "عنوان الشاشة الثانية في عملية الإعداد الأولي"
+  },
+  "onBoardingDesc2": "أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.",
+  "@onBoardingDesc2": {
+    "description": "وصف الشاشة الثانية في عملية الإعداد الأولي"
+  },
+  "onBoardingTitle3": "ابدأ رحلتك",
+  "@onBoardingTitle3": {
+    "description": "عنوان الشاشة الثالثة في عملية الإعداد الأولي"
+  },
+  "onBoardingDesc3": "دعنا نبدأ رحلتك نحو حياة أكثر صحة ولياقة.",
+  "@onBoardingDesc3": {
+    "description": "وصف الشاشة الثالثة في عملية الإعداد الأولي"
+  }
+  },
   "confirmPassword": "يرجى تأكيد كلمة المرور",
   "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
   "enterFourDigitCode": "يرجى إدخال رمز مكون من 4 أرقام",
