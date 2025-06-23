@@ -33,9 +33,19 @@ class SharedSection extends StatefulWidget {
   });
 
   SectionSize? sectionSizeFromTitle(String sectionTitle) {
-    return SectionSize.values.firstWhere(
-      (e) => e.displayName.toLowerCase() == sectionTitle.toLowerCase(),
-    );
+    try {
+      return SectionSize.values.firstWhere(
+        (e) => e.displayName.toLowerCase() == sectionTitle.toLowerCase(),
+      );
+    } catch (e) {
+      for (var size in SectionSize.values) {
+        if (size.displayName.toLowerCase().contains(sectionTitle.toLowerCase()) ||
+            sectionTitle.toLowerCase().contains(size.displayName.toLowerCase())) {
+          return size;
+        }
+      }
+      return SectionSize.recommendationForYou;
+    }
   }
 
   @override
@@ -43,7 +53,6 @@ class SharedSection extends StatefulWidget {
 }
 
 class _SharedSectionState extends State<SharedSection> {
- 
   @override
   Widget build(BuildContext context) {
     final sectionSize = widget.sectionSizeFromTitle(widget.sectionTitle);
@@ -121,7 +130,7 @@ class _SharedSectionState extends State<SharedSection> {
                           child: Container(
                             height: height.r * 0.4,
                             decoration: BoxDecoration(
-                              color: AppColors.surfaceDark.withOpacity(0.7),
+                              color: AppColors.surfaceDark.withOpacity(0.5),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(height / 2.r),
                               ),
@@ -136,13 +145,13 @@ class _SharedSectionState extends State<SharedSection> {
                           bottom: height.r * 0.1,
                           child: Text(
                             recommendation['name'].length > 10
-                              ? '${recommendation['name'].substring(0, 10)}...'
-                              : recommendation['name'],
+                                ? '${recommendation['name'].substring(0, 10)}...'
+                                : recommendation['name'],
                             style: Theme.of(
                               context,
                             ).textTheme.bodyMedium?.copyWith(
                               color: Colors.white,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                             ),
                             textAlign: TextAlign.center,
                             maxLines: 1,
@@ -223,10 +232,8 @@ class _SharedSectionState extends State<SharedSection> {
     );
   }
 
-
-
-//--------------------------------------------------------netwok image
-   bool _isNetworkImage(String path) {
+  //--------------------------------------------------------netwok image
+  bool _isNetworkImage(String path) {
     return path.startsWith('http://') || path.startsWith('https://');
   }
 
@@ -267,5 +274,4 @@ class _SharedSectionState extends State<SharedSection> {
       );
     }
   }
-
 }

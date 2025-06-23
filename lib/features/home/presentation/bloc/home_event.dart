@@ -12,16 +12,23 @@ class LoadHomeData extends HomeEvent {
   const LoadHomeData();
 }
 
-
 class FetchDailyRecommendations extends HomeEvent {
   final String targetMuscleGroupId;
   final String difficultyLevelId;
-  
+
   const FetchDailyRecommendations({
     required this.targetMuscleGroupId,
     required this.difficultyLevelId,
   });
-  
+
   @override
   List<Object> get props => [targetMuscleGroupId, difficultyLevelId];
+}
+
+class FetchUpcomingWorkouts extends HomeEvent {
+  const FetchUpcomingWorkouts();
+}
+
+class FetchFoodRecommendations extends HomeEvent {
+  const FetchFoodRecommendations();
 }

@@ -1,7 +1,5 @@
-// features/home/data/model/daily_recomendation_exercise/exercise.dart
-import 'package:fitness_app/features/home/domain/entities/daily_recommendation_item.dart';
-
-class Exercise {
+// features/home/data/model/upcoming_workouts/upcoming_workouts/exercise.dart
+/* class Exercise {
   String? id;
   String? exercise;
   String? shortYoutubeDemonstration;
@@ -152,52 +150,5 @@ class Exercise {
     'short_youtube_demonstration_link': shortYoutubeDemonstrationLink,
     'in_depth_youtube_explanation_link': inDepthYoutubeExplanationLink,
   };
-
-  //convert YouTube video to image
-  String? _extractYouTubeId(String? url) {
-    if (url == null || url.isEmpty) return null;
-
-    if (url.contains('youtu.be')) {
-      final uri = Uri.tryParse(url);
-      if (uri != null) {
-        final pathSegments = uri.pathSegments;
-        if (pathSegments.isNotEmpty) {
-          return pathSegments.last;
-        }
-      }
-    }
-    RegExp regExp = RegExp(
-      r'(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})',
-    );
-
-    Match? match = regExp.firstMatch(url);
-    return match?.group(1);
-  }
-
-  String _getYouTubeThumbnailUrl(String? youtubeUrl) {
-    final videoId = _extractYouTubeId(youtubeUrl);
-    if (videoId != null) {
-      return 'https://img.youtube.com/vi/$videoId/hqdefault.jpg';
-    }
-    return 'https://via.placeholder.com/150?text=Exercise';
-  }
-
-  //------------------------------------------toDailyRecommendationItem
-  DailyRecommendationItem toDailyRecommendationItem() {
-    final thumbnailUrl = _getYouTubeThumbnailUrl(shortYoutubeDemonstrationLink);
-
-    return DailyRecommendationItem(
-      id: id ?? '',
-      name: exercise ?? 'Unknown Exercise',
-      imageUrl: thumbnailUrl,
-    );
-  }
-
-  static List<DailyRecommendationItem> toDailyRecommendationItems(
-    List<Exercise> exercises,
-  ) {
-    return exercises
-        .map((exercise) => exercise.toDailyRecommendationItem())
-        .toList();
-  }
 }
+ */

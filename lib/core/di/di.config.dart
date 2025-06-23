@@ -41,8 +41,12 @@ import '../../features/home/data/datasource/remote_data_source/home_remote_data_
     as _i395;
 import '../../features/home/data/repo/home_repository_impl.dart' as _i779;
 import '../../features/home/domain/repo/home_repository_contract.dart' as _i207;
-import '../../features/home/domain/usecase/get_daily_recommendations_usecase.dart'
-    as _i844;
+import '../../features/home/domain/usecases/get_daily_recommendations_usecase.dart'
+    as _i1029;
+import '../../features/home/domain/usecases/get_food_recommendations.dart'
+    as _i588;
+import '../../features/home/domain/usecases/get_upcoming_workouts.dart'
+    as _i183;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
@@ -120,23 +124,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i207.HomeRepository>(
       () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()),
     );
+    gh.factory<_i183.GetUpcomingWorkouts>(
+      () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
+    );
+    gh.factory<_i588.GetFoodRecommendations>(
+      () => _i588.GetFoodRecommendations(gh<_i207.HomeRepository>()),
+    );
     gh.factory<_i170.AuthRepo>(
       () => _i984.AuthRepoImpl(
         gh<_i1029.AuthRemoteDataSourceContract>(),
         gh<_i304.AppSecureStorage>(),
       ),
     );
-    gh.factory<_i844.GetDailyRecommendationsUseCase>(
-      () => _i844.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()),
+    gh.factory<_i1029.GetDailyRecommendationsUseCase>(
+      () => _i1029.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()),
     );
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
-    );
-    gh.factory<_i202.HomeBloc>(
-      () => _i202.HomeBloc(gh<_i844.GetDailyRecommendationsUseCase>()),
     );
     gh.factory<_i18.ForgotPasswordUseCase>(
       () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
@@ -155,6 +162,13 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i18.ForgotPasswordUseCase>(),
         gh<_i509.VerifyOtpUseCase>(),
         gh<_i825.ResetPasswordUseCase>(),
+      ),
+    );
+    gh.factory<_i202.HomeBloc>(
+      () => _i202.HomeBloc(
+        gh<_i1029.GetDailyRecommendationsUseCase>(),
+        gh<_i183.GetUpcomingWorkouts>(),
+        gh<_i588.GetFoodRecommendations>(),
       ),
     );
     gh.factory<_i225.LoginViewModel>(

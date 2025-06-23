@@ -1,8 +1,6 @@
 // features/home/presentation/pages/home.dart
-import 'dart:ui' as ui;
 import 'package:fitness_app/core/base_states/base_state.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/home/domain/entities/daily_recommendation_item.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/widgets/category_section.dart';
 import 'package:flutter/material.dart';
@@ -34,29 +32,6 @@ class _HomeState extends State<Home> {
     {'name': 'Trainer', 'icon': 'assets/images/onboarding_vector_1.png'},
   ];
 
-  // List of daily recommendations
-  static const List<Map<String, dynamic>> _dailyRecommendations = [
-    {'name': 'Jogging', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Push-Up', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Squat', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Lunges', 'image': 'assets/images/cat.jpg'},
-  ];
-
-  // List of upcoming workouts
-  static const List<Map<String, dynamic>> _upcomingWorkouts = [
-    {'name': 'Morning Run', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Evening Yoga', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Core Workout', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Arm Day', 'image': 'assets/images/cat.jpg'},
-  ];
-
-  // List of recommendations for you
-  static const List<Map<String, dynamic>> _recommendationsForYou = [
-    {'name': 'HIIT Training', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Stretching', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Pilates', 'image': 'assets/images/cat.jpg'},
-    {'name': 'Cardio', 'image': 'assets/images/cat.jpg'},
-  ];
 
   // List of popular trainings
   static const List<Map<String, dynamic>> _popularTrainings = [
@@ -124,22 +99,26 @@ class _HomeState extends State<Home> {
                     BlocBuilder<HomeBloc, HomeStateType>(
                       builder: (context, state) {
                         return switch (state) {
-                          BaseInitialState() => const SizedBox(), 
+                          BaseInitialState() => const SizedBox(),
                           BaseLoadingState() => const Center(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20),
-                                child: CircularProgressIndicator(),
-                              ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: CircularProgressIndicator(),
                             ),
-                          SuccessState<HomeData>() => (() {
+                          ),
+                          SuccessState<HomeData>() =>
+                            (() {
                               final data = (state).data;
-                              final recommendations = data.dailyRecommendations
-                                  .map((item) => {
-                                        'name': item.name,
-                                        'image': item.imageUrl,
-                                      })
-                                  .toList();
-                                  
+                              final recommendations =
+                                  data.dailyRecommendations
+                                      .map(
+                                        (item) => {
+                                          'name': item.name,
+                                          'image': item.imageUrl,
+                                        },
+                                      )
+                                      .toList();
+
                               return SharedSection(
                                 sectionTitle: "Daily To Recommendations",
                                 showSeeAll: false,
@@ -147,37 +126,119 @@ class _HomeState extends State<Home> {
                               );
                             })(),
                           BaseErrorState() => Center(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 20),
-                                child: Text(
-                                  'Error loading recommendations: ${(state as BaseErrorState).error}',
-                                  style: const TextStyle(color: Colors.red),
-                                ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Text(
+                                'Error loading recommendations: ${(state as BaseErrorState).error}',
+                                style: const TextStyle(color: Colors.red),
                               ),
                             ),
+                          ),
                         };
                       },
                     ),
                     SizedBox(height: 16.r),
 
                     //------------------------------------upcoming workouts
-                    SharedSection(
-                      sectionTitle: "Upcoming Workouts",
-                      recommendations: _upcomingWorkouts,
-                      onSeeAllPressed: () {
-                        debugPrint('See All pressed for Upcoming Workouts');
+                    BlocBuilder<HomeBloc, HomeStateType>(
+                      builder: (context, state) {
+                        return switch (state) {
+                          BaseInitialState() => const SizedBox(),
+                          BaseLoadingState() => const Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                          SuccessState<HomeData>() =>
+                            (() {
+                              final data = (state).data;
+                              final upcomingWorkouts =
+                                  data.upcomingWorkouts
+                                      .map(
+                                        (item) => {
+                                          'name': item.name,
+                                          'image': item.imageUrl,
+                                        },
+                                      )
+                                      .toList();
+
+                              return SharedSection(
+                                sectionTitle: "Upcoming Workouts",
+                                recommendations: upcomingWorkouts,
+                                onSeeAllPressed: () {
+                                  // Refresh upcoming workouts data
+                                  context.read<HomeBloc>().add(
+                                    const FetchUpcomingWorkouts(),
+                                  );
+                                  debugPrint(
+                                    'See All pressed for Upcoming Workouts',
+                                  );
+                                },
+                              );
+                            })(),
+                          BaseErrorState() => Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Text(
+                                'Error loading upcoming workouts: ${(state as BaseErrorState).error}',
+                                style: const TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          ),
+                        };
                       },
                     ),
                     SizedBox(height: 16.r),
 
-                    //------------------------------------ Recommendations for you
-                    SharedSection(
-                      sectionTitle: "Recommendation For You",
-                      recommendations: _recommendationsForYou,
-                      onSeeAllPressed: () {
-                        debugPrint(
-                          'See All pressed for Recommendations For You',
-                        );
+                    //------------------------------------ Food Recommendations for you
+                    BlocBuilder<HomeBloc, HomeStateType>(
+                      builder: (context, state) {
+                        return switch (state) {
+                          BaseInitialState() => const SizedBox(),
+                          BaseLoadingState() => const Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                          SuccessState<HomeData>() =>
+                            (() {
+                              final data = (state).data;
+                              final foodRecommendations =
+                                  data.foodRecommendations
+                                      .map(
+                                        (item) => {
+                                          'name': item.name,
+                                          'image': item.imageUrl,
+                                        },
+                                      )
+                                      .toList();
+
+                              return SharedSection(
+                                sectionTitle: "Recommendations For You",
+                                recommendations: foodRecommendations,
+                                onSeeAllPressed: () {
+                                  // Refresh food recommendations data
+                                  context.read<HomeBloc>().add(
+                                    const FetchFoodRecommendations(),
+                                  );
+                                  debugPrint(
+                                    'See All pressed for Food Recommendations',
+                                  );
+                                },
+                              );
+                            })(),
+                          BaseErrorState() => Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Text(
+                                'Error loading food recommendations: ${(state as BaseErrorState).error}',
+                                style: const TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          ),
+                        };
                       },
                     ),
                     SizedBox(height: 16.r),
