@@ -23,18 +23,15 @@ bool isShowOnboarding = false;
 bool shouldAutoLogin = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies().then((_) async {
-    if( await getIt<AppSecureStorage>().getToken() != null) {
-      shouldAutoLogin = true;
-      return;
-    }
-    isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
-  });
-  await ApiLocalizationService().init();
-  await LocalizationManager().initialize();
-  await _configureFirebase();
-  Bloc.observer = AppBlocObserver();
+  await configureDependencies();
+  await Future.wait([
+    _setAutoLogin(),
+    ApiLocalizationService().init(),
+    LocalizationManager().initialize(),
+    _configureFirebase(),
+  ]);
 
+  Bloc.observer = AppBlocObserver();
   runApp(const MyApp());
 }
 
@@ -66,8 +63,8 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-              initialRoute: _setInitialRoute()
-                   ),
+              initialRoute: _setInitialRoute(),
+            ),
           );
         },
       ),
@@ -75,7 +72,7 @@ class MyApp extends StatelessWidget {
   }
 
   String _setInitialRoute() {
-    if(shouldAutoLogin) return AppRoutes.homeScreen;
+    if (shouldAutoLogin) return AppRoutes.homePage;
     return isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding;
   }
 }
@@ -99,4 +96,12 @@ Future<void> _configureFirebase() async {
       );
     }).sendPort,
   );
+}
+
+Future<void> _setAutoLogin() async {
+  if (await getIt<AppSecureStorage>().getToken() != null) {
+    shouldAutoLogin = true;
+    return;
+  }
+  isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
 }
