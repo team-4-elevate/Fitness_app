@@ -276,4 +276,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sendOtp => 'Send OTP';
+
+  @override
+  String get didntReceiveVerificationCode => 'Didn\'t Receive Verification Code?';
+
+  @override
+  String get resend => 'Resend';
 }

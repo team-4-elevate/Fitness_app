@@ -276,4 +276,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sendOtp => 'إرسال رمز التحقق';
+
+  @override
+  String get didntReceiveVerificationCode => 'لم تستلم رمز التحقق؟';
+
+  @override
+  String get resend => 'اعادة الارسال';
 }

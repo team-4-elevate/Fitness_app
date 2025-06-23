@@ -371,6 +371,6 @@
   "forgetPassword": "Forget Password",
   "enterYourEmail": "Enter your Email",
   "sendOtp": "Send OTP",
-  "Didn't Receive Verification Code?": "Didn't Receive Verification Code?",
-  "Resend": "Resend"
+  "didntReceiveVerificationCode": "Didn't Receive Verification Code?",
+  "resend": "Resend"
 }

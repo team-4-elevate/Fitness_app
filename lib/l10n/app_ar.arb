@@ -344,6 +344,6 @@
   "forgetPassword": "نسيان كلمة المرور",
   "enterYourEmail": "أدخل بريدك الإلكتروني",
   "sendOtp": "إرسال رمز التحقق",
-  "Didn't Receive Verification Code?": "لم تستلم رمز التحقق؟",
-  "Resend": "اعادة الارسال"
+  "didntReceiveVerificationCode": "لم تستلم رمز التحقق؟",
+  "resend": "اعادة الارسال"
 }
