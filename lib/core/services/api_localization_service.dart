@@ -13,7 +13,6 @@ class ApiLocalizationService {
   AppLocalizations? _currentLocalizations;
 
   Future<void> init() async {
-
     _currentLanguage = sharedPrefs.getString('language') ?? 'en';
   }
 
