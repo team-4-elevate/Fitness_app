@@ -14,7 +14,7 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<ApiResult<DailyRecommendationResponse>> getDailyRecommendations({
     required String targetMuscleGroupId,
-    required String difficultyLevelId, 
+    required String difficultyLevelId,
   }) async {
     return await _remoteDataSource.getDailyRecommendations(
       targetMuscleGroupId: targetMuscleGroupId,

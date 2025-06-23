@@ -15,9 +15,10 @@ class DailyRecommendationResponse {
     return DailyRecommendationResponse(
       message: json['message'] as String,
       totalExercises: json['totalExercises'] as int,
-      exercises: (json['exercises'] as List)
-          .map((e) => Exercise.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      exercises:
+          (json['exercises'] as List)
+              .map((e) => Exercise.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
   }
 

@@ -124,22 +124,26 @@ class _HomeState extends State<Home> {
                     BlocBuilder<HomeBloc, HomeStateType>(
                       builder: (context, state) {
                         return switch (state) {
-                          BaseInitialState() => const SizedBox(), 
+                          BaseInitialState() => const SizedBox(),
                           BaseLoadingState() => const Center(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20),
-                                child: CircularProgressIndicator(),
-                              ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              child: CircularProgressIndicator(),
                             ),
-                          SuccessState<HomeData>() => (() {
+                          ),
+                          SuccessState<HomeData>() =>
+                            (() {
                               final data = (state).data;
-                              final recommendations = data.dailyRecommendations
-                                  .map((item) => {
-                                        'name': item.name,
-                                        'image': item.imageUrl,
-                                      })
-                                  .toList();
-                                  
+                              final recommendations =
+                                  data.dailyRecommendations
+                                      .map(
+                                        (item) => {
+                                          'name': item.name,
+                                          'image': item.imageUrl,
+                                        },
+                                      )
+                                      .toList();
+
                               return SharedSection(
                                 sectionTitle: "Daily To Recommendations",
                                 showSeeAll: false,
@@ -147,14 +151,14 @@ class _HomeState extends State<Home> {
                               );
                             })(),
                           BaseErrorState() => Center(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 20),
-                                child: Text(
-                                  'Error loading recommendations: ${(state as BaseErrorState).error}',
-                                  style: const TextStyle(color: Colors.red),
-                                ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Text(
+                                'Error loading recommendations: ${(state as BaseErrorState).error}',
+                                style: const TextStyle(color: Colors.red),
                               ),
                             ),
+                          ),
                         };
                       },
                     ),

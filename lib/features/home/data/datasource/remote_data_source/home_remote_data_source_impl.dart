@@ -19,11 +19,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     final queryParams = {
       'targetMuscleGroupId': targetMuscleGroupId,
       'difficultyLevelId': difficultyLevelId,
-      'limit': '5', 
+      'limit': '5',
     };
 
     final result = await _apiClient.get<Map<String, dynamic>>(
-      '/exercises/random', 
+      '/exercises/random',
       queryParameters: queryParams,
       requiresToken: true,
     );

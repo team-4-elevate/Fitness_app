@@ -30,9 +30,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
 
       //---------------------------------------------------chat ai page
-      const ChatAipage(), 
-      const GymPage(), 
-      const ProfilePage()
+      const ChatAipage(),
+      const GymPage(),
+      const ProfilePage(),
     ];
   }
 

@@ -51,10 +51,11 @@ class AppRoutesGenerator {
 
       case AppRoutes.homePage:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider<HomeBloc>(
-            create: (_) => getIt<HomeBloc>(),
-            child: const Home(),
-          ),
+          builder:
+              (_) => BlocProvider<HomeBloc>(
+                create: (_) => getIt<HomeBloc>(),
+                child: const Home(),
+              ),
         );
 
       case AppRoutes.layoutScreen:

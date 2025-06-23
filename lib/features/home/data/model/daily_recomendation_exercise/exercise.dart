@@ -156,7 +156,7 @@ class Exercise {
   //convert YouTube video to image
   String? _extractYouTubeId(String? url) {
     if (url == null || url.isEmpty) return null;
-    
+
     if (url.contains('youtu.be')) {
       final uri = Uri.tryParse(url);
       if (uri != null) {
@@ -166,14 +166,14 @@ class Exercise {
         }
       }
     }
-        RegExp regExp = RegExp(
+    RegExp regExp = RegExp(
       r'(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})',
     );
-    
+
     Match? match = regExp.firstMatch(url);
     return match?.group(1);
   }
-  
+
   String _getYouTubeThumbnailUrl(String? youtubeUrl) {
     final videoId = _extractYouTubeId(youtubeUrl);
     if (videoId != null) {
@@ -182,18 +182,20 @@ class Exercise {
     return 'https://via.placeholder.com/150?text=Exercise';
   }
 
-
-//------------------------------------------toDailyRecommendationItem
+  //------------------------------------------toDailyRecommendationItem
   DailyRecommendationItem toDailyRecommendationItem() {
     final thumbnailUrl = _getYouTubeThumbnailUrl(shortYoutubeDemonstrationLink);
-    
+
     return DailyRecommendationItem(
       id: id ?? '',
       name: exercise ?? 'Unknown Exercise',
       imageUrl: thumbnailUrl,
     );
   }
-  static List<DailyRecommendationItem> toDailyRecommendationItems(List<Exercise> exercises) {
+
+  static List<DailyRecommendationItem> toDailyRecommendationItems(
+    List<Exercise> exercises,
+  ) {
     return exercises
         .map((exercise) => exercise.toDailyRecommendationItem())
         .toList();

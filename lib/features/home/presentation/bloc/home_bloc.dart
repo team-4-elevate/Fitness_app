@@ -14,46 +14,41 @@ part 'home_state.dart';
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
   final GetDailyRecommendationsUseCase _getDailyRecommendationsUseCase;
-  
-  HomeBloc(
-    this._getDailyRecommendationsUseCase,
-  ) : super(const BaseInitialState()) {
+
+  HomeBloc(this._getDailyRecommendationsUseCase)
+    : super(const BaseInitialState()) {
     on<LoadHomeData>(_onFetchDailyRecommendations);
     on<FetchDailyRecommendations>(_onFetchDailyRecommendations);
   }
-  
 
-
-//-------------------------------------------------------daily to recommendations
+  //-------------------------------------------------------daily to recommendations
   Future<void> _onFetchDailyRecommendations(
-    HomeEvent event, 
-    Emitter<HomeStateType> emit
+    HomeEvent event,
+    Emitter<HomeStateType> emit,
   ) async {
     emit(const BaseLoadingState());
-    
+
     try {
       String targetMuscleGroupId = '67c79f3526895f87ce0aa96b';
       String difficultyLevelId = '67c797e226895f87ce0aa94b';
-      
+
       if (event is FetchDailyRecommendations) {
         targetMuscleGroupId = event.targetMuscleGroupId;
         difficultyLevelId = event.difficultyLevelId;
       }
-      
+
       final result = await _getDailyRecommendationsUseCase.call(
         targetMuscleGroupId: targetMuscleGroupId,
         difficultyLevelId: difficultyLevelId,
       );
-      
+
       result.when(
         success: (data) {
           final recommendations = Exercise.toDailyRecommendationItems(
             data.exercises,
           );
-          
-          final homeData = HomeData(
-            dailyRecommendations: recommendations,
-          );
+
+          final homeData = HomeData(dailyRecommendations: recommendations);
           emit(SuccessState(homeData));
         },
         failure: (message) => emit(BaseErrorState(message)),

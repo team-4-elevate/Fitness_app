@@ -43,7 +43,6 @@ class SharedSection extends StatefulWidget {
 }
 
 class _SharedSectionState extends State<SharedSection> {
- 
   @override
   Widget build(BuildContext context) {
     final sectionSize = widget.sectionSizeFromTitle(widget.sectionTitle);
@@ -136,8 +135,8 @@ class _SharedSectionState extends State<SharedSection> {
                           bottom: height.r * 0.1,
                           child: Text(
                             recommendation['name'].length > 10
-                              ? '${recommendation['name'].substring(0, 10)}...'
-                              : recommendation['name'],
+                                ? '${recommendation['name'].substring(0, 10)}...'
+                                : recommendation['name'],
                             style: Theme.of(
                               context,
                             ).textTheme.bodyMedium?.copyWith(
@@ -223,10 +222,8 @@ class _SharedSectionState extends State<SharedSection> {
     );
   }
 
-
-
-//--------------------------------------------------------netwok image
-   bool _isNetworkImage(String path) {
+  //--------------------------------------------------------netwok image
+  bool _isNetworkImage(String path) {
     return path.startsWith('http://') || path.startsWith('https://');
   }
 
@@ -267,5 +264,4 @@ class _SharedSectionState extends State<SharedSection> {
       );
     }
   }
-
 }
