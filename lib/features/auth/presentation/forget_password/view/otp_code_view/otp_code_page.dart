@@ -51,17 +51,18 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
           isBold: true,
           text: context.l10n.otpCode,
         ),
-        secondTitleArguments:  AuthPageTitleArguments(
+        secondTitleArguments: AuthPageTitleArguments(
           isBold: false,
           text: context.l10n.enterYourOtp,
         ),
         isRegister: false,
         primaryButtonText: context.l10n.confirm,
         footerContent: OtpFooterTextWidget(
-          onResendCode: () => _bloc.add(ForgetPasswordSubmitEvent(_bloc.state.userEmail,)),
+          onResendCode:
+              () => _bloc.add(ForgetPasswordSubmitEvent(_bloc.state.userEmail)),
         ),
         primaryButtonAction: () {
-              if(_pinController.text.length != 6){
+          if (_pinController.text.length != 6) {
             context.showSnackBar(context.l10n.forgetPassword);
             return;
           }
@@ -73,15 +74,13 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
             return c.verifyResetCodeStatus.isSuccess ||
                 c.verifyResetCodeStatus.isError;
           },
-          listener:
-              (context, state) {
-                state.verifyResetCodeStatus.isError
-                      ? context.showSnackBar(state.errorMessage)
-                      : Navigator.of(context).pushNamed(
-                        AppRoutes.createNewPasswordPage,
-                        arguments: _bloc,
-                      );
-              },
+          listener: (context, state) {
+            state.verifyResetCodeStatus.isError
+                ? context.showSnackBar(state.errorMessage)
+                : Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.createNewPasswordPage, arguments: _bloc);
+          },
           child: OtpTextField(pinController: _pinController),
         ),
       ),
