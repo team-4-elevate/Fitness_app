@@ -5,13 +5,13 @@ class HomeData {
   final List<DailyRecommendationItem> dailyRecommendations;
   final List<DailyRecommendationItem> upcomingWorkouts;
   final List<DailyRecommendationItem> foodRecommendations;
-  
+
   const HomeData({
     required this.dailyRecommendations,
     required this.upcomingWorkouts,
     required this.foodRecommendations,
   });
-  
+
   HomeData copyWith({
     List<DailyRecommendationItem>? dailyRecommendations,
     List<DailyRecommendationItem>? upcomingWorkouts,
@@ -26,5 +26,3 @@ class HomeData {
 }
 
 typedef HomeStateType = BaseState<HomeData>;
-
-
