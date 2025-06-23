@@ -39,8 +39,12 @@ class SharedSection extends StatefulWidget {
       );
     } catch (e) {
       for (var size in SectionSize.values) {
-        if (size.displayName.toLowerCase().contains(sectionTitle.toLowerCase()) ||
-            sectionTitle.toLowerCase().contains(size.displayName.toLowerCase())) {
+        if (size.displayName.toLowerCase().contains(
+              sectionTitle.toLowerCase(),
+            ) ||
+            sectionTitle.toLowerCase().contains(
+              size.displayName.toLowerCase(),
+            )) {
           return size;
         }
       }

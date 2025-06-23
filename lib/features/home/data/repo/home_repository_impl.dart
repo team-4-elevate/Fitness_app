@@ -41,22 +41,26 @@ class HomeRepositoryImpl implements HomeRepository {
       failure: (failure) => ApiFailure(failure),
     );
   }
-  
+
   @override
-  Future<ApiResult<List<DailyRecommendationItem>>> getFoodRecommendations() async {
+  Future<ApiResult<List<DailyRecommendationItem>>>
+  getFoodRecommendations() async {
     final result = await _remoteDataSource.getFoodRecommendations();
-    
+
     return result.when(
       success: (foodRecommendations) {
-        final recommendationItems = foodRecommendations.categories != null
-            ? foodRecommendations.categories!
-                .map((category) => DailyRecommendationItem(
-                      id: category.idCategory ?? '',
-                      name: category.strCategory ?? '',
-                      imageUrl: category.strCategoryThumb ?? '',
-                    ))
-                .toList()
-            : <DailyRecommendationItem>[];
+        final recommendationItems =
+            foodRecommendations.categories != null
+                ? foodRecommendations.categories!
+                    .map(
+                      (category) => DailyRecommendationItem(
+                        id: category.idCategory ?? '',
+                        name: category.strCategory ?? '',
+                        imageUrl: category.strCategoryThumb ?? '',
+                      ),
+                    )
+                    .toList()
+                : <DailyRecommendationItem>[];
 
         return ApiSuccess(recommendationItems);
       },

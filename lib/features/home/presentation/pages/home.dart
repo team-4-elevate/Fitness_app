@@ -32,7 +32,6 @@ class _HomeState extends State<Home> {
     {'name': 'Trainer', 'icon': 'assets/images/onboarding_vector_1.png'},
   ];
 
-
   // List of popular trainings
   static const List<Map<String, dynamic>> _popularTrainings = [
     {

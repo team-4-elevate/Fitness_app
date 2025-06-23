@@ -20,9 +20,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
   final GetFoodRecommendations _getFoodRecommendations;
 
   HomeBloc(
-    this._getDailyRecommendationsUseCase, 
+    this._getDailyRecommendationsUseCase,
     this._getUpcomingWorkouts,
-    this._getFoodRecommendations
+    this._getFoodRecommendations,
   ) : super(const BaseInitialState()) {
     on<LoadHomeData>(_onLoadHomeData);
     on<FetchDailyRecommendations>(_onFetchDailyRecommendations);
@@ -35,7 +35,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
     Emitter<HomeStateType> emit,
   ) async {
     emit(const BaseLoadingState());
-
 
     try {
       String targetMuscleGroupId = '67c79f3526895f87ce0aa96b';
@@ -53,7 +52,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
       List<DailyRecommendationItem> upcomingWorkouts = [];
       List<DailyRecommendationItem> foodRecommendations = [];
 
-
       dailyResult.when(
         success: (data) {
           dailyRecommendations = Exercise.toDailyRecommendationItems(
@@ -68,7 +66,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
         },
         failure: (message) => emit(BaseErrorState(message)),
       );
-      
+
       foodResult.when(
         success: (data) {
           foodRecommendations = data;
@@ -151,7 +149,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
       }
     }
   }
-  
+
   //-------------------------------------------------------food recommendations
   Future<void> _onFetchFoodRecommendations(
     FetchFoodRecommendations event,
@@ -160,10 +158,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
     if (state is SuccessState) {
       final currentData = (state as SuccessState).data;
       emit(const BaseLoadingState());
-      
+
       try {
         final result = await _getFoodRecommendations.call();
-        
+
         result.when(
           success: (foodRecommendations) {
             final homeData = currentData.copyWith(
