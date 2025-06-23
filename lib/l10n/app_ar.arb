@@ -371,5 +371,7 @@
     "description": "وصف الشاشة الثالثة في عملية الإعداد الأولي"
   },
   "food_Recommendation_title": "اقتراحات للاكل",
-  "food_Recommendation_no_categories": "لايوجد بيانات"
+  "food_Recommendation_no_categories": "لايوجد بيانات",
+  "food_food_Recommendation_fail_to_loadCategories": "خطأ في تحميل الاصناف",
+  "retry": "حاول مره اخري"
 }

@@ -1,5 +1,5 @@
-import 'package:fitness_app/core/theme/app_colors.dart';
-import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_recommendation_state.dart';
+import 'package:fitness_app/features/food_recommendation/data/models/meals_categories_response/food_category.dart';
+import 'package:fitness_app/features/food_recommendation/data/models/meals_on_category_response/meal.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/widgets/food_grid_loading.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/widgets/grid_view_custom_container.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/widgets/grid_view_custom_widget.dart';
@@ -7,11 +7,18 @@ import 'package:flutter/material.dart';
 
 class FoodGridViewWidget extends StatelessWidget {
   final TabController tabController;
-  final FoodRecommendationState state;
+  final List<FoodCategory> categories;
+  final Map<String, List<Meal>> cachedMeals;
+  final Set<String> loadingCategories;
+  final int selectedCategoryIndex;
+
   const FoodGridViewWidget({
     super.key,
     required this.tabController,
-    required this.state,
+    required this.categories,
+    required this.cachedMeals,
+    required this.loadingCategories,
+    required this.selectedCategoryIndex,
   });
 
   @override
@@ -19,49 +26,33 @@ class FoodGridViewWidget extends StatelessWidget {
     return TabBarView(
       controller: tabController,
       physics: const NeverScrollableScrollPhysics(),
-      children: List.generate(tabController.length, (index) {
-        final categories =
-            state.foodCategoriesState?.whenOrNull(
-              success: (data) => data ?? [],
-            ) ??
-            [];
+      children:
+          categories.asMap().entries.map((entry) {
+            final category = entry.value;
+            final categoryKey = category.strCategory?.toLowerCase() ?? '';
+            final meals = cachedMeals[categoryKey] ?? [];
+            final isLoading = loadingCategories.contains(categoryKey);
 
-        if (index >= categories.length) {
-          return const FoodGridLoading();
-        }
+            if (isLoading) {
+              return const FoodGridLoading();
+            }
 
-        final category = categories[index];
-        final categoryKey = category.strCategory?.toLowerCase() ?? '';
-        final cachedMeals = state.cachedMeals[categoryKey] ?? [];
-        final isLoading = state.loadingCategories.contains(categoryKey);
+            if (meals.isNotEmpty) {
+              return GridViewCustomWidget(
+                itemCount: meals.length,
+                itemBuilder: (context, mealIndex) {
+                  final meal = meals[mealIndex];
+                  return GridViewCustomContainer(
+                    foodName: meal.strMeal ?? '',
+                    imagePath: meal.strMealThumb ?? '',
+                  );
+                },
+              );
+            }
 
-        if (isLoading && cachedMeals.isEmpty) {
-          return const FoodGridLoading();
-        }
-
-        if (cachedMeals.isEmpty) {
-          return Center(
-            child: Text(
-              state.mealsByCategoryState?.whenOrNull(
-                    error: (error) => error.toString(),
-                  ) ??
-                  '',
-              style: const TextStyle(color: AppColors.white),
-            ),
-          );
-        }
-
-        return GridViewCustomWidget(
-          itemCount: cachedMeals.length,
-          itemBuilder: (context, index) {
-            final meal = cachedMeals[index];
-            return GridViewCustomContainer(
-              foodName: meal.strMeal ?? '',
-              imagePath: meal.strMealThumb ?? '',
-            );
-          },
-        );
-      }),
+            // Empty state
+            return SizedBox.shrink();
+          }).toList(),
     );
   }
 }

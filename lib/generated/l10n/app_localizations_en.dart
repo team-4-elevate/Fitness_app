@@ -279,4 +279,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get food_Recommendation_no_categories => 'No categories found';
+
+  @override
+  String get food_food_Recommendation_fail_to_loadCategories => 'Failed to load categories';
+
+  @override
+  String get retry => 'retry';
 }
