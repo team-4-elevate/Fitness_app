@@ -3,13 +3,19 @@ part of 'home_bloc.dart';
 
 class HomeData {
   final List<DailyRecommendationItem> dailyRecommendations;
+  final List<DailyRecommendationItem> upcomingWorkouts;
+  final List<DailyRecommendationItem> foodRecommendations;
   
   const HomeData({
     required this.dailyRecommendations,
+    required this.upcomingWorkouts,
+    required this.foodRecommendations,
   });
   
   HomeData copyWith({
     List<DailyRecommendationItem>? dailyRecommendations,
+    List<DailyRecommendationItem>? upcomingWorkouts,
+    List<DailyRecommendationItem>? foodRecommendations,
   }) {
     return HomeData(
       dailyRecommendations: dailyRecommendations ?? this.dailyRecommendations,
@@ -21,5 +27,4 @@ class HomeData {
 
 typedef HomeStateType = BaseState<HomeData>;
 
-typedef DailyRecommendationStateType = BaseState<List<DailyRecommendationItem>>;
 

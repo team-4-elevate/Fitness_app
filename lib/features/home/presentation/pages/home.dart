@@ -19,7 +19,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    // Load daily recommendations when the screen initializes
     context.read<HomeBloc>().add(const LoadHomeData());
   }
 

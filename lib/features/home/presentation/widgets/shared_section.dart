@@ -2,6 +2,7 @@
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 enum SectionSize {
   dailyToRecommendations('Daily To Recommendations', 104, 104),
@@ -22,6 +23,7 @@ class SharedSection extends StatefulWidget {
   final bool isPopularTraining;
   final List<Map<String, dynamic>> recommendations;
   final VoidCallback? onSeeAllPressed;
+  final bool isLoading;
 
   SharedSection({
     super.key,
@@ -30,6 +32,7 @@ class SharedSection extends StatefulWidget {
     this.isPopularTraining = false,
     required this.recommendations,
     this.onSeeAllPressed,
+    this.isLoading = false,
   });
 
   SectionSize? sectionSizeFromTitle(String sectionTitle) {
@@ -59,7 +62,7 @@ class _SharedSectionState extends State<SharedSection> {
     final width = sectionSize?.width ?? 100.0;
     final height = sectionSize?.height ?? 100.0;
 
-    return Column(
+    Widget content = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // ---------------------------title with seeAll button
@@ -230,6 +233,17 @@ class _SharedSectionState extends State<SharedSection> {
         ),
       ],
     );
+
+    return widget.isLoading 
+        ? Skeletonizer(
+            enabled: true,
+            effect: ShimmerEffect(
+              baseColor: Theme.of(context).colorScheme.surface,
+              highlightColor: Theme.of(context).colorScheme.surfaceVariant,
+            ),
+            child: content,
+          )
+        : content;
   }
 
   //--------------------------------------------------------netwok image
