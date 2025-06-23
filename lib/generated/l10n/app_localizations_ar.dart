@@ -79,15 +79,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onBoardingTitle1 => 'مرحبًا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get onBoardingDesc1 =>
-      'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
+  String get onBoardingDesc1 => 'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
 
   @override
   String get onBoardingTitle2 => 'تخصيص تجربتك';
 
   @override
-  String get onBoardingDesc2 =>
-      'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
+  String get onBoardingDesc2 => 'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
 
   @override
   String get onBoardingTitle3 => 'ابدأ رحلتك';
