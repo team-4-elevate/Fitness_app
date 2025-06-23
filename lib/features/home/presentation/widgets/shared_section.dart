@@ -43,6 +43,7 @@ class SharedSection extends StatefulWidget {
 }
 
 class _SharedSectionState extends State<SharedSection> {
+ 
   @override
   Widget build(BuildContext context) {
     final sectionSize = widget.sectionSizeFromTitle(widget.sectionTitle);
@@ -107,12 +108,8 @@ class _SharedSectionState extends State<SharedSection> {
                   borderRadius: BorderRadius.circular(20.r),
                   child: Stack(
                     children: [
-                      // Background image
                       Positioned.fill(
-                        child: Image.asset(
-                          recommendation['image'],
-                          fit: BoxFit.cover,
-                        ),
+                        child: _buildImageWidget(recommendation['image']),
                       ),
 
                       if (!widget.isPopularTraining) ...[
@@ -138,7 +135,9 @@ class _SharedSectionState extends State<SharedSection> {
                           right: 0,
                           bottom: height.r * 0.1,
                           child: Text(
-                            recommendation['name'],
+                            recommendation['name'].length > 10
+                              ? '${recommendation['name'].substring(0, 10)}...'
+                              : recommendation['name'],
                             style: Theme.of(
                               context,
                             ).textTheme.bodyMedium?.copyWith(
@@ -223,4 +222,50 @@ class _SharedSectionState extends State<SharedSection> {
       ],
     );
   }
+
+
+
+//--------------------------------------------------------netwok image
+   bool _isNetworkImage(String path) {
+    return path.startsWith('http://') || path.startsWith('https://');
+  }
+
+  Widget _buildImageWidget(String imagePath) {
+    if (_isNetworkImage(imagePath)) {
+      return Image.network(
+        imagePath,
+        fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Center(
+            child: CircularProgressIndicator(
+              value:
+                  loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                      : null,
+            ),
+          );
+        },
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            color: AppColors.textSecondary,
+            child: Center(child: Icon(Icons.broken_image, size: 40)),
+          );
+        },
+      );
+    } else {
+      return Image.asset(
+        imagePath,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            color: AppColors.textSecondary,
+            child: Center(child: Icon(Icons.broken_image, size: 40)),
+          );
+        },
+      );
+    }
+  }
+
 }

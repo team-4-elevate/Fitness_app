@@ -28,23 +28,12 @@ void main() async {
   await localizationManager.initialize();
   await configureDependencies();
 
-  // Manually register the LocalizationManager singleton
-  if (!getIt.isRegistered<LocalizationManager>()) {
-    getIt.registerSingleton<LocalizationManager>(localizationManager);
-  }
   await _configureFirebase();
 
   Bloc.observer = AppBlocObserver();
 
-  // Initialize app state before running the app
   final appBloc = getIt<AppBloc>();
-
-  // Check login status first and wait for it
   appBloc.add(CheckUserLoginStatusEvent());
-  // Wait for the login check to complete
-  await Future.delayed(const Duration(milliseconds: 300));
-
-  // Add other events
   appBloc.add(GetAppLocaleEvent());
   appBloc.add(CheckOnboardingStatusEvent());
 

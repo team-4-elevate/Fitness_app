@@ -6,7 +6,8 @@ import 'package:fitness_app/features/auth/presentation/login/login_view_model.da
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
-import 'package:fitness_app/features/home/presentation/home.dart';
+import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
+import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:flutter/material.dart'
@@ -49,7 +50,12 @@ class AppRoutesGenerator {
         );
 
       case AppRoutes.homePage:
-        return MaterialPageRoute(builder: (_) => const Home());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<HomeBloc>(
+            create: (_) => getIt<HomeBloc>(),
+            child: const Home(),
+          ),
+        );
 
       case AppRoutes.layoutScreen:
         return MaterialPageRoute(builder: (_) => MainNavigationScreen());

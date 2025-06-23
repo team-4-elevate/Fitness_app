@@ -35,6 +35,15 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/home/data/datasource/remote_data_source/home_remote_data_source_contract.dart'
+    as _i352;
+import '../../features/home/data/datasource/remote_data_source/home_remote_data_source_impl.dart'
+    as _i395;
+import '../../features/home/data/repo/home_repository_impl.dart' as _i779;
+import '../../features/home/domain/repo/home_repository_contract.dart' as _i207;
+import '../../features/home/domain/usecase/get_daily_recommendations_usecase.dart'
+    as _i844;
+import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
     as _i768;
@@ -102,8 +111,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i792.OnboardingBloc>(
       () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()),
     );
+    gh.factory<_i352.HomeRemoteDataSource>(
+      () => _i395.HomeRemoteDataSourceImpl(gh<_i277.ApiClient>()),
+    );
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
+    );
+    gh.factory<_i207.HomeRepository>(
+      () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()),
     );
     gh.factory<_i170.AuthRepo>(
       () => _i984.AuthRepoImpl(
@@ -111,11 +126,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i304.AppSecureStorage>(),
       ),
     );
+    gh.factory<_i844.GetDailyRecommendationsUseCase>(
+      () => _i844.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()),
+    );
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
+    );
+    gh.factory<_i202.HomeBloc>(
+      () => _i202.HomeBloc(gh<_i844.GetDailyRecommendationsUseCase>()),
     );
     gh.factory<_i18.ForgotPasswordUseCase>(
       () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),

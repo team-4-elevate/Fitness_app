@@ -1,10 +1,23 @@
+// features/home/presentation/bloc/home_state.dart
 part of 'home_bloc.dart';
 
-sealed class HomeState extends Equatable {
-  const HomeState();
-
-  @override
-  List<Object> get props => [];
+class HomeData {
+  final List<DailyRecommendationItem> dailyRecommendations;
+  
+  const HomeData({
+    required this.dailyRecommendations,
+  });
+  
+  HomeData copyWith({
+    List<DailyRecommendationItem>? dailyRecommendations,
+  }) {
+    return HomeData(
+      dailyRecommendations: dailyRecommendations ?? this.dailyRecommendations,
+    );
+  }
 }
 
-final class HomeInitial extends HomeState {}
+typedef HomeStateType = BaseState<HomeData>;
+
+typedef DailyRecommendationStateType = BaseState<List<DailyRecommendationItem>>;
+

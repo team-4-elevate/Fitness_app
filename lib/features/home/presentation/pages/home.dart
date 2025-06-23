@@ -1,13 +1,29 @@
-// features/home/presentation/home.dart
+// features/home/presentation/pages/home.dart
 import 'dart:ui' as ui;
+import 'package:fitness_app/core/base_states/base_state.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:fitness_app/features/home/domain/entities/daily_recommendation_item.dart';
+import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/widgets/category_section.dart';
 import 'package:flutter/material.dart';
-import 'widgets/user_info.dart';
-import 'widgets/shared_section.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../widgets/user_info.dart';
+import '../widgets/shared_section.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    // Load daily recommendations when the screen initializes
+    context.read<HomeBloc>().add(const LoadHomeData());
+  }
 
   // List of categories with their icons
   static const List<Map<String, dynamic>> _categories = [
@@ -105,10 +121,42 @@ class Home extends StatelessWidget {
                     SizedBox(height: 16.r),
 
                     //------------------------------------ Daily Recommendations
-                    SharedSection(
-                      sectionTitle: "Daily To Recommendations",
-                      showSeeAll: false,
-                      recommendations: _dailyRecommendations,
+                    BlocBuilder<HomeBloc, HomeStateType>(
+                      builder: (context, state) {
+                        return switch (state) {
+                          BaseInitialState() => const SizedBox(), 
+                          BaseLoadingState() => const Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 20),
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          SuccessState<HomeData>() => (() {
+                              final data = (state).data;
+                              final recommendations = data.dailyRecommendations
+                                  .map((item) => {
+                                        'name': item.name,
+                                        'image': item.imageUrl,
+                                      })
+                                  .toList();
+                                  
+                              return SharedSection(
+                                sectionTitle: "Daily To Recommendations",
+                                showSeeAll: false,
+                                recommendations: recommendations,
+                              );
+                            })(),
+                          BaseErrorState() => Center(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 20),
+                                child: Text(
+                                  'Error loading recommendations: ${(state as BaseErrorState).error}',
+                                  style: const TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ),
+                        };
+                      },
                     ),
                     SizedBox(height: 16.r),
 
