@@ -24,7 +24,7 @@ bool shouldAutoLogin = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies().then((_) async {
-    if( await getIt<AppSecureStorage>().getToken() != null) {
+    if (await getIt<AppSecureStorage>().getToken() != null) {
       shouldAutoLogin = true;
       return;
     }
@@ -66,8 +66,8 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-              initialRoute: _setInitialRoute()
-                   ),
+              initialRoute: _setInitialRoute(),
+            ),
           );
         },
       ),
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
   }
 
   String _setInitialRoute() {
-    if(shouldAutoLogin) return AppRoutes.homeScreen;
+    if (shouldAutoLogin) return AppRoutes.homeScreen;
     return isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding;
   }
 }
