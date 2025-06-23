@@ -11,6 +11,6 @@ abstract class HomeRepository {
   });
 
   Future<ApiResult<List<DailyRecommendationItem>>> getUpcomingWorkouts();
-  
+
   Future<ApiResult<List<DailyRecommendationItem>>> getFoodRecommendations();
 }

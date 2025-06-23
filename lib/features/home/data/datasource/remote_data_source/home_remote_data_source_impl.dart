@@ -68,7 +68,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       final response = await _apiClient.get(
         'https://www.themealdb.com/api/json/v1/1/categories.php',
       );
-      
+
       return response.when(
         success: (data) {
           try {

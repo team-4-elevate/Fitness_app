@@ -11,6 +11,6 @@ abstract class HomeRemoteDataSource {
   });
 
   Future<ApiResult<UpcomingWorkouts>> getUpcomingWorkouts();
-  
+
   Future<ApiResult<FoodRecomendation>> getFoodRecommendations();
 }
