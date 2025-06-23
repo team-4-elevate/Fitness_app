@@ -36,6 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
   ) async {
     emit(const BaseLoadingState());
 
+
     try {
       String targetMuscleGroupId = '67c79f3526895f87ce0aa96b';
       String difficultyLevelId = '67c797e226895f87ce0aa94b';

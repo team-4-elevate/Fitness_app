@@ -50,7 +50,13 @@ class AppRoutesGenerator {
         );
 
       case AppRoutes.homePage:
-        return MaterialPageRoute(builder: (_) => const Home());
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider<HomeBloc>(
+                create: (_) => getIt<HomeBloc>(),
+                child: const Home(),
+              ),
+        );
 
       case AppRoutes.layoutScreen:
         return MaterialPageRoute(builder: (_) => MainNavigationScreen());
