@@ -26,12 +26,11 @@ void main() {
       homeRepository = HomeRepositoryImpl(mockHomeRemoteDataSource);
     });
 
-
-//-------------------------------------------------------daily recommendations tests
+    //-------------------------------------------------------daily recommendations tests
     group('getDailyRecommendations Tests', () {
       const targetMuscleGroupId = 'muscle123';
       const difficultyLevelId = 'level456';
-      
+
       final mockExercises = [
         Exercise(
           id: 'ex1',
@@ -44,50 +43,71 @@ void main() {
           shortYoutubeDemonstrationLink: 'https://example.com/pullup.mp4',
         ),
       ];
-      
+
       final mockDailyRecommendationResponse = DailyRecommendationResponse(
         message: 'Success',
-        exercises: mockExercises, 
+        exercises: mockExercises,
         totalExercises: mockExercises.length,
       );
 
-      test('should return DailyRecommendationResponse on successful API call', () async {
-        // Arrange
-        when(
-          mockHomeRemoteDataSource.getDailyRecommendations(
+      test(
+        'should return DailyRecommendationResponse on successful API call',
+        () async {
+          // Arrange
+          when(
+            mockHomeRemoteDataSource.getDailyRecommendations(
+              targetMuscleGroupId: targetMuscleGroupId,
+              difficultyLevelId: difficultyLevelId,
+            ),
+          ).thenAnswer(
+            (_) async => ApiSuccess(mockDailyRecommendationResponse),
+          );
+
+          // Act
+          final result = await homeRepository.getDailyRecommendations(
             targetMuscleGroupId: targetMuscleGroupId,
             difficultyLevelId: difficultyLevelId,
-          ),
-        ).thenAnswer((_) async => ApiSuccess(mockDailyRecommendationResponse));
+          );
 
-        // Act
-        final result = await homeRepository.getDailyRecommendations(
-          targetMuscleGroupId: targetMuscleGroupId,
-          difficultyLevelId: difficultyLevelId,
-        );
+          // Assert
+          expect(result, isA<ApiSuccess<DailyRecommendationResponse>>());
 
-        // Assert
-        expect(result, isA<ApiSuccess<DailyRecommendationResponse>>());
-        
-        result.when(
-          success: (data) {
-            expect(data.message, equals(mockDailyRecommendationResponse.message));
-            expect(data.exercises.length, equals(mockDailyRecommendationResponse.exercises.length));
-            expect(data.exercises[0].id, equals(mockDailyRecommendationResponse.exercises[0].id));
-            expect(data.exercises[0].exercise, equals(mockDailyRecommendationResponse.exercises[0].exercise));
-            expect(data.exercises[1].id, equals(mockDailyRecommendationResponse.exercises[1].id));
-          },
-          failure: (message) => fail('Expected success but got failure: $message'),
-        );
+          result.when(
+            success: (data) {
+              expect(
+                data.message,
+                equals(mockDailyRecommendationResponse.message),
+              );
+              expect(
+                data.exercises.length,
+                equals(mockDailyRecommendationResponse.exercises.length),
+              );
+              expect(
+                data.exercises[0].id,
+                equals(mockDailyRecommendationResponse.exercises[0].id),
+              );
+              expect(
+                data.exercises[0].exercise,
+                equals(mockDailyRecommendationResponse.exercises[0].exercise),
+              );
+              expect(
+                data.exercises[1].id,
+                equals(mockDailyRecommendationResponse.exercises[1].id),
+              );
+            },
+            failure:
+                (message) => fail('Expected success but got failure: $message'),
+          );
 
-        // Verify method call
-        verify(
-          mockHomeRemoteDataSource.getDailyRecommendations(
-            targetMuscleGroupId: targetMuscleGroupId,
-            difficultyLevelId: difficultyLevelId,
-          ),
-        ).called(1);
-      });
+          // Verify method call
+          verify(
+            mockHomeRemoteDataSource.getDailyRecommendations(
+              targetMuscleGroupId: targetMuscleGroupId,
+              difficultyLevelId: difficultyLevelId,
+            ),
+          ).called(1);
+        },
+      );
 
       test('should return ApiFailure when remote data source fails', () async {
         // Arrange
@@ -107,7 +127,7 @@ void main() {
 
         // Assert
         expect(result, isA<ApiFailure<DailyRecommendationResponse>>());
-        
+
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (message) {
@@ -123,7 +143,7 @@ void main() {
           ),
         ).called(1);
       });
-      
+
       test('should pass correct parameters to remote data source', () async {
         // Arrange
         when(
@@ -153,8 +173,7 @@ void main() {
     //-------------------------------------------------------upcoming workouts tests
     group('getUpcomingWorkouts Tests', () {
       final mockExercises = [
-    
-      Exercise(
+        Exercise(
           id: 'ex1',
           exercise: 'Push-ups',
           shortYoutubeDemonstrationLink: 'https://example.com/pushup.mp4',
@@ -164,41 +183,46 @@ void main() {
           exercise: 'Pull-ups',
           shortYoutubeDemonstrationLink: 'https://example.com/pullup.mp4',
         ),
-        
-     
       ];
-      
+
       final mockUpcomingWorkouts = UpcomingWorkouts(
         message: 'Success',
         exercises: mockExercises,
       );
 
-      test('should transform UpcomingWorkouts to List<DailyRecommendationItem> on success', () async {
-        // Arrange
-        when(
-          mockHomeRemoteDataSource.getUpcomingWorkouts(),
-        ).thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
+      test(
+        'should transform UpcomingWorkouts to List<DailyRecommendationItem> on success',
+        () async {
+          // Arrange
+          when(
+            mockHomeRemoteDataSource.getUpcomingWorkouts(),
+          ).thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
 
-        // Act
-        final result = await homeRepository.getUpcomingWorkouts();
+          // Act
+          final result = await homeRepository.getUpcomingWorkouts();
 
-        // Assert
-        expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-        
-        result.when(
-          success: (data) {
-            expect(data.length, equals(2));
-            expect(data[0].id, equals(mockExercises[0].id));
-            expect(data[0].name, equals(mockExercises[0].exercise));
-            expect(data[0].imageUrl, equals(mockExercises[0].shortYoutubeDemonstrationLink));
-            expect(data[1].id, equals(mockExercises[1].id));
-          },
-          failure: (message) => fail('Expected success but got failure: $message'),
-        );
+          // Assert
+          expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
 
-        // Verify method call
-        verify(mockHomeRemoteDataSource.getUpcomingWorkouts()).called(1);
-      });
+          result.when(
+            success: (data) {
+              expect(data.length, equals(2));
+              expect(data[0].id, equals(mockExercises[0].id));
+              expect(data[0].name, equals(mockExercises[0].exercise));
+              expect(
+                data[0].imageUrl,
+                equals(mockExercises[0].shortYoutubeDemonstrationLink),
+              );
+              expect(data[1].id, equals(mockExercises[1].id));
+            },
+            failure:
+                (message) => fail('Expected success but got failure: $message'),
+          );
+
+          // Verify method call
+          verify(mockHomeRemoteDataSource.getUpcomingWorkouts()).called(1);
+        },
+      );
 
       test('should return empty list when exercises is null', () async {
         // Arrange
@@ -206,7 +230,7 @@ void main() {
           message: 'Success',
           exercises: null,
         );
-        
+
         when(
           mockHomeRemoteDataSource.getUpcomingWorkouts(),
         ).thenAnswer((_) async => ApiSuccess(emptyUpcomingWorkouts));
@@ -216,12 +240,13 @@ void main() {
 
         // Assert
         expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-        
+
         result.when(
           success: (data) {
             expect(data, isEmpty);
           },
-          failure: (message) => fail('Expected success but got failure: $message'),
+          failure:
+              (message) => fail('Expected success but got failure: $message'),
         );
 
         // Verify method call
@@ -240,7 +265,7 @@ void main() {
 
         // Assert
         expect(result, isA<ApiFailure<List<DailyRecommendationItem>>>());
-        
+
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (message) {
@@ -269,44 +294,49 @@ void main() {
           strCategoryDescription: 'Complex carbohydrates',
         ),
       ];
-      
+
       final mockFoodRecommendation = FoodRecomendation(
         categories: mockCategories,
       );
 
-      test('should transform FoodRecomendation to List<DailyRecommendationItem> on success', () async {
-        // Arrange
-        when(
-          mockHomeRemoteDataSource.getFoodRecommendations(),
-        ).thenAnswer((_) async => ApiSuccess(mockFoodRecommendation));
+      test(
+        'should transform FoodRecomendation to List<DailyRecommendationItem> on success',
+        () async {
+          // Arrange
+          when(
+            mockHomeRemoteDataSource.getFoodRecommendations(),
+          ).thenAnswer((_) async => ApiSuccess(mockFoodRecommendation));
 
-        // Act
-        final result = await homeRepository.getFoodRecommendations();
+          // Act
+          final result = await homeRepository.getFoodRecommendations();
 
-        // Assert
-        expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-        
-        result.when(
-          success: (data) {
-            expect(data.length, equals(2));
-            expect(data[0].id, equals(mockCategories[0].idCategory));
-            expect(data[0].name, equals(mockCategories[0].strCategory));
-            expect(data[0].imageUrl, equals(mockCategories[0].strCategoryThumb));
-            expect(data[1].id, equals(mockCategories[1].idCategory));
-          },
-          failure: (message) => fail('Expected success but got failure: $message'),
-        );
+          // Assert
+          expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
 
-        // Verify method call
-        verify(mockHomeRemoteDataSource.getFoodRecommendations()).called(1);
-      });
+          result.when(
+            success: (data) {
+              expect(data.length, equals(2));
+              expect(data[0].id, equals(mockCategories[0].idCategory));
+              expect(data[0].name, equals(mockCategories[0].strCategory));
+              expect(
+                data[0].imageUrl,
+                equals(mockCategories[0].strCategoryThumb),
+              );
+              expect(data[1].id, equals(mockCategories[1].idCategory));
+            },
+            failure:
+                (message) => fail('Expected success but got failure: $message'),
+          );
+
+          // Verify method call
+          verify(mockHomeRemoteDataSource.getFoodRecommendations()).called(1);
+        },
+      );
 
       test('should return empty list when categories is null', () async {
         // Arrange
-        final emptyFoodRecommendation = FoodRecomendation(
-          categories: null,
-        );
-        
+        final emptyFoodRecommendation = FoodRecomendation(categories: null);
+
         when(
           mockHomeRemoteDataSource.getFoodRecommendations(),
         ).thenAnswer((_) async => ApiSuccess(emptyFoodRecommendation));
@@ -316,12 +346,13 @@ void main() {
 
         // Assert
         expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-        
+
         result.when(
           success: (data) {
             expect(data, isEmpty);
           },
-          failure: (message) => fail('Expected success but got failure: $message'),
+          failure:
+              (message) => fail('Expected success but got failure: $message'),
         );
 
         // Verify method call
@@ -338,11 +369,11 @@ void main() {
             strCategoryDescription: 'Description only',
           ),
         ];
-        
+
         final foodRecommendationWithNulls = FoodRecomendation(
           categories: categoriesWithNulls,
         );
-        
+
         when(
           mockHomeRemoteDataSource.getFoodRecommendations(),
         ).thenAnswer((_) async => ApiSuccess(foodRecommendationWithNulls));
@@ -352,7 +383,7 @@ void main() {
 
         // Assert
         expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-        
+
         result.when(
           success: (data) {
             expect(data.length, equals(1));
@@ -360,7 +391,8 @@ void main() {
             expect(data[0].name, equals(''));
             expect(data[0].imageUrl, equals(''));
           },
-          failure: (message) => fail('Expected success but got failure: $message'),
+          failure:
+              (message) => fail('Expected success but got failure: $message'),
         );
 
         // Verify method call
@@ -379,7 +411,7 @@ void main() {
 
         // Assert
         expect(result, isA<ApiFailure<List<DailyRecommendationItem>>>());
-        
+
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (message) {

@@ -12,11 +12,7 @@ import 'package:fitness_app/features/home/domain/usecases/get_upcoming_workouts.
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-
-@GenerateMocks([
-  HomeRemoteDataSource,
-  HomeRepository,
-])
+@GenerateMocks([HomeRemoteDataSource, HomeRepository])
 void main() {}
 
 // Dummy values for Mockito
@@ -41,10 +37,7 @@ void setupHomeTestDummies() {
 
   // Upcoming Workouts response
   provideDummy<UpcomingWorkouts>(
-    UpcomingWorkouts(
-      message: 'Success',
-      exercises: [],
-    ),
+    UpcomingWorkouts(message: 'Success', exercises: []),
   );
 
   provideDummy<ApiResult<UpcomingWorkouts>>(
@@ -52,11 +45,7 @@ void setupHomeTestDummies() {
   );
 
   // Food Recommendation response
-  provideDummy<FoodRecomendation>(
-    FoodRecomendation(
-      categories: [],
-    ),
-  );
+  provideDummy<FoodRecomendation>(FoodRecomendation(categories: []));
 
   provideDummy<ApiResult<FoodRecomendation>>(
     ApiFailure<FoodRecomendation>('API error'),

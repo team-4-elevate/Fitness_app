@@ -38,15 +38,16 @@ void main() {
         ),
       ];
 
-      when(mockHomeRepository.getUpcomingWorkouts())
-          .thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
+      when(
+        mockHomeRepository.getUpcomingWorkouts(),
+      ).thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
 
       // Act
       final result = await getUpcomingWorkoutsUseCase();
 
       // Assert
       expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-      
+
       result.when(
         success: (data) {
           expect(data.length, equals(2));
@@ -54,7 +55,8 @@ void main() {
           expect(data[0].name, equals('Morning Yoga'));
           expect(data[1].id, equals('workout2'));
         },
-        failure: (message) => fail('Expected success but got failure: $message'),
+        failure:
+            (message) => fail('Expected success but got failure: $message'),
       );
 
       // Verify repository call
@@ -67,16 +69,17 @@ void main() {
     test('should return ApiFailure when repository call fails', () async {
       // Arrange
       const errorMessage = 'Network error';
-      
-      when(mockHomeRepository.getUpcomingWorkouts())
-          .thenAnswer((_) async => ApiFailure(errorMessage));
+
+      when(
+        mockHomeRepository.getUpcomingWorkouts(),
+      ).thenAnswer((_) async => ApiFailure(errorMessage));
 
       // Act
       final result = await getUpcomingWorkoutsUseCase();
 
       // Assert
       expect(result, isA<ApiFailure>());
-      
+
       result.when(
         success: (_) => fail('Expected failure but got success'),
         failure: (message) {
@@ -91,21 +94,23 @@ void main() {
     test('should handle empty response data', () async {
       // Arrange
       final emptyWorkoutsList = <DailyRecommendationItem>[];
-      
-      when(mockHomeRepository.getUpcomingWorkouts())
-          .thenAnswer((_) async => ApiSuccess(emptyWorkoutsList));
+
+      when(
+        mockHomeRepository.getUpcomingWorkouts(),
+      ).thenAnswer((_) async => ApiSuccess(emptyWorkoutsList));
 
       // Act
       final result = await getUpcomingWorkoutsUseCase();
 
       // Assert
       expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-      
+
       result.when(
         success: (data) {
           expect(data, isEmpty);
         },
-        failure: (message) => fail('Expected success but got failure: $message'),
+        failure:
+            (message) => fail('Expected success but got failure: $message'),
       );
 
       // Verify repository call

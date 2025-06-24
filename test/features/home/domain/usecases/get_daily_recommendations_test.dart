@@ -18,7 +18,9 @@ void main() {
 
   setUp(() {
     mockHomeRepository = MockHomeRepository();
-    getDailyRecommendationsUseCase = GetDailyRecommendationsUseCase(mockHomeRepository);
+    getDailyRecommendationsUseCase = GetDailyRecommendationsUseCase(
+      mockHomeRepository,
+    );
   });
 
   //-------------------------------------------------------success case tests
@@ -48,14 +50,15 @@ void main() {
 
       // Assert
       expect(result, isA<ApiSuccess<DailyRecommendationResponse>>());
-      
+
       result.when(
         success: (data) {
           expect(data, equals(mockResponse));
           expect(data.message, equals('Success'));
           expect(data.totalExercises, equals(2));
         },
-        failure: (message) => fail('Expected success but got failure: $message'),
+        failure:
+            (message) => fail('Expected success but got failure: $message'),
       );
 
       // Verify repository was called with correct parameters
@@ -91,7 +94,7 @@ void main() {
 
       // Assert
       expect(result, isA<ApiFailure>());
-      
+
       result.when(
         success: (data) => fail('Expected failure but got success'),
         failure: (message) {
@@ -133,13 +136,14 @@ void main() {
 
       // Assert
       expect(result, isA<ApiSuccess<DailyRecommendationResponse>>());
-      
+
       result.when(
         success: (data) {
           expect(data.exercises, isEmpty);
           expect(data.totalExercises, equals(0));
         },
-        failure: (message) => fail('Expected success but got failure: $message'),
+        failure:
+            (message) => fail('Expected success but got failure: $message'),
       );
     });
   });

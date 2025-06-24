@@ -59,49 +59,63 @@ void main() {
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, SuccessState] when daily recommendations are fetched successfully',
       build: () {
-        when(mockGetDailyRecommendations.call(
-          targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
-          difficultyLevelId: anyNamed('difficultyLevelId'),
-        )).thenAnswer((_) async => ApiSuccess(mockDailyRecommendationResponse));
+        when(
+          mockGetDailyRecommendations.call(
+            targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
+            difficultyLevelId: anyNamed('difficultyLevelId'),
+          ),
+        ).thenAnswer((_) async => ApiSuccess(mockDailyRecommendationResponse));
         return homeBloc;
       },
-      act: (bloc) => bloc.add(const FetchDailyRecommendations(
-        targetMuscleGroupId: 'muscle123',
-        difficultyLevelId: 'level456',
-      )),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<SuccessState<HomeData>>(),
-      ],
+      act:
+          (bloc) => bloc.add(
+            const FetchDailyRecommendations(
+              targetMuscleGroupId: 'muscle123',
+              difficultyLevelId: 'level456',
+            ),
+          ),
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<SuccessState<HomeData>>(),
+          ],
       verify: (_) {
-        verify(mockGetDailyRecommendations.call(
-          targetMuscleGroupId: 'muscle123',
-          difficultyLevelId: 'level456',
-        )).called(1);
+        verify(
+          mockGetDailyRecommendations.call(
+            targetMuscleGroupId: 'muscle123',
+            difficultyLevelId: 'level456',
+          ),
+        ).called(1);
       },
     );
 
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, BaseErrorState] when daily recommendations fetch fails',
       build: () {
-        when(mockGetDailyRecommendations.call(
-          targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
-          difficultyLevelId: anyNamed('difficultyLevelId'),
-        )).thenAnswer((_) async => const ApiFailure('Network error'));
+        when(
+          mockGetDailyRecommendations.call(
+            targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
+            difficultyLevelId: anyNamed('difficultyLevelId'),
+          ),
+        ).thenAnswer((_) async => const ApiFailure('Network error'));
         return homeBloc;
       },
-      act: (bloc) => bloc.add(const FetchDailyRecommendations(
-        targetMuscleGroupId: 'muscle123',
-        difficultyLevelId: 'level456',
-      )),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<BaseErrorState<HomeData>>().having(
-          (state) => state.error,
-          'error message',
-          'Network error',
-        ),
-      ],
+      act:
+          (bloc) => bloc.add(
+            const FetchDailyRecommendations(
+              targetMuscleGroupId: 'muscle123',
+              difficultyLevelId: 'level456',
+            ),
+          ),
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<BaseErrorState<HomeData>>().having(
+              (state) => state.error,
+              'error message',
+              'Network error',
+            ),
+          ],
     );
   });
 
@@ -123,15 +137,17 @@ void main() {
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, SuccessState] when upcoming workouts are fetched successfully',
       build: () {
-        when(mockGetUpcomingWorkouts.call())
-            .thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
+        when(
+          mockGetUpcomingWorkouts.call(),
+        ).thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<SuccessState<HomeData>>(),
-      ],
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<SuccessState<HomeData>>(),
+          ],
       verify: (_) {
         verify(mockGetUpcomingWorkouts.call()).called(1);
       },
@@ -140,19 +156,21 @@ void main() {
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, BaseErrorState] when upcoming workouts fetch fails',
       build: () {
-        when(mockGetUpcomingWorkouts.call())
-            .thenAnswer((_) async => const ApiFailure('Network error'));
+        when(
+          mockGetUpcomingWorkouts.call(),
+        ).thenAnswer((_) async => const ApiFailure('Network error'));
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<BaseErrorState<HomeData>>().having(
-          (state) => state.error,
-          'error message',
-          'Network error',
-        ),
-      ],
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<BaseErrorState<HomeData>>().having(
+              (state) => state.error,
+              'error message',
+              'Network error',
+            ),
+          ],
     );
   });
 
@@ -174,15 +192,17 @@ void main() {
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, SuccessState] when food recommendations are fetched successfully',
       build: () {
-        when(mockGetFoodRecommendations.call())
-            .thenAnswer((_) async => ApiSuccess(mockFoodRecommendations));
+        when(
+          mockGetFoodRecommendations.call(),
+        ).thenAnswer((_) async => ApiSuccess(mockFoodRecommendations));
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchFoodRecommendations()),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<SuccessState<HomeData>>(),
-      ],
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<SuccessState<HomeData>>(),
+          ],
       verify: (_) {
         verify(mockGetFoodRecommendations.call()).called(1);
       },
@@ -191,19 +211,21 @@ void main() {
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, BaseErrorState] when food recommendations fetch fails',
       build: () {
-        when(mockGetFoodRecommendations.call())
-            .thenAnswer((_) async => const ApiFailure('Network error'));
+        when(
+          mockGetFoodRecommendations.call(),
+        ).thenAnswer((_) async => const ApiFailure('Network error'));
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchFoodRecommendations()),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<BaseErrorState<HomeData>>().having(
-          (state) => state.error,
-          'error message',
-          'Network error',
-        ),
-      ],
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<BaseErrorState<HomeData>>().having(
+              (state) => state.error,
+              'error message',
+              'Network error',
+            ),
+          ],
     );
   });
 
@@ -214,7 +236,7 @@ void main() {
       totalExercises: 2,
       exercises: [],
     );
-    
+
     final mockUpcomingWorkouts = [
       DailyRecommendationItem(
         id: 'workout1',
@@ -222,7 +244,7 @@ void main() {
         imageUrl: 'https://example.com/yoga.jpg',
       ),
     ];
-    
+
     final mockFoodRecommendations = [
       DailyRecommendationItem(
         id: 'food1',
@@ -234,29 +256,36 @@ void main() {
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, SuccessState] when fetching all home data successfully',
       build: () {
-        when(mockGetDailyRecommendations.call(
-          targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
-          difficultyLevelId: anyNamed('difficultyLevelId'),
-        )).thenAnswer((_) async => ApiSuccess(mockDailyRecommendationResponse));
-        
-        when(mockGetUpcomingWorkouts.call())
-            .thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
-            
-        when(mockGetFoodRecommendations.call())
-            .thenAnswer((_) async => ApiSuccess(mockFoodRecommendations));
-            
+        when(
+          mockGetDailyRecommendations.call(
+            targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
+            difficultyLevelId: anyNamed('difficultyLevelId'),
+          ),
+        ).thenAnswer((_) async => ApiSuccess(mockDailyRecommendationResponse));
+
+        when(
+          mockGetUpcomingWorkouts.call(),
+        ).thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
+
+        when(
+          mockGetFoodRecommendations.call(),
+        ).thenAnswer((_) async => ApiSuccess(mockFoodRecommendations));
+
         return homeBloc;
       },
       act: (bloc) => bloc.add(const LoadHomeData()),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<SuccessState<HomeData>>(),
-      ],
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<SuccessState<HomeData>>(),
+          ],
       verify: (_) {
-        verify(mockGetDailyRecommendations.call(
-          targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
-          difficultyLevelId: anyNamed('difficultyLevelId'),
-        )).called(1);
+        verify(
+          mockGetDailyRecommendations.call(
+            targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
+            difficultyLevelId: anyNamed('difficultyLevelId'),
+          ),
+        ).called(1);
         verify(mockGetUpcomingWorkouts.call()).called(1);
         verify(mockGetFoodRecommendations.call()).called(1);
       },
@@ -266,22 +295,25 @@ void main() {
     blocTest<HomeBloc, HomeStateType>(
       'emits [BaseLoadingState, BaseErrorState] when fetching all home data fails',
       build: () {
-        when(mockGetDailyRecommendations.call(
-          targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
-          difficultyLevelId: anyNamed('difficultyLevelId'),
-        )).thenAnswer((_) async => const ApiFailure('Network error'));
-            
+        when(
+          mockGetDailyRecommendations.call(
+            targetMuscleGroupId: anyNamed('targetMuscleGroupId'),
+            difficultyLevelId: anyNamed('difficultyLevelId'),
+          ),
+        ).thenAnswer((_) async => const ApiFailure('Network error'));
+
         return homeBloc;
       },
       act: (bloc) => bloc.add(const LoadHomeData()),
-      expect: () => [
-        isA<BaseLoadingState<HomeData>>(),
-        isA<BaseErrorState<HomeData>>().having(
-          (state) => state.error,
-          'error message',
-          'Network error',
-        ),
-      ],
+      expect:
+          () => [
+            isA<BaseLoadingState<HomeData>>(),
+            isA<BaseErrorState<HomeData>>().having(
+              (state) => state.error,
+              'error message',
+              'Network error',
+            ),
+          ],
     );
   });
 }

@@ -38,15 +38,16 @@ void main() {
         ),
       ];
 
-      when(mockHomeRepository.getFoodRecommendations())
-          .thenAnswer((_) async => ApiSuccess(mockFoodRecommendations));
+      when(
+        mockHomeRepository.getFoodRecommendations(),
+      ).thenAnswer((_) async => ApiSuccess(mockFoodRecommendations));
 
       // Act
       final result = await getFoodRecommendationsUseCase();
 
       // Assert
       expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-      
+
       result.when(
         success: (data) {
           expect(data.length, equals(2));
@@ -54,7 +55,8 @@ void main() {
           expect(data[0].name, equals('Healthy Salad'));
           expect(data[1].id, equals('food2'));
         },
-        failure: (message) => fail('Expected success but got failure: $message'),
+        failure:
+            (message) => fail('Expected success but got failure: $message'),
       );
 
       // Verify repository call
@@ -67,16 +69,17 @@ void main() {
     test('should return ApiFailure when repository call fails', () async {
       // Arrange
       const errorMessage = 'Network error';
-      
-      when(mockHomeRepository.getFoodRecommendations())
-          .thenAnswer((_) async => ApiFailure(errorMessage));
+
+      when(
+        mockHomeRepository.getFoodRecommendations(),
+      ).thenAnswer((_) async => ApiFailure(errorMessage));
 
       // Act
       final result = await getFoodRecommendationsUseCase();
 
       // Assert
       expect(result, isA<ApiFailure>());
-      
+
       result.when(
         success: (_) => fail('Expected failure but got success'),
         failure: (message) {
@@ -91,21 +94,23 @@ void main() {
     test('should handle empty response', () async {
       // Arrange
       final emptyFoodRecommendations = <DailyRecommendationItem>[];
-      
-      when(mockHomeRepository.getFoodRecommendations())
-          .thenAnswer((_) async => ApiSuccess(emptyFoodRecommendations));
+
+      when(
+        mockHomeRepository.getFoodRecommendations(),
+      ).thenAnswer((_) async => ApiSuccess(emptyFoodRecommendations));
 
       // Act
       final result = await getFoodRecommendationsUseCase();
 
       // Assert
       expect(result, isA<ApiSuccess<List<DailyRecommendationItem>>>());
-      
+
       result.when(
         success: (data) {
           expect(data, isEmpty);
         },
-        failure: (message) => fail('Expected success but got failure: $message'),
+        failure:
+            (message) => fail('Expected success but got failure: $message'),
       );
     });
   });

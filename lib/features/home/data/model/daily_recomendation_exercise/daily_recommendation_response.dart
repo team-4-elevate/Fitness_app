@@ -14,12 +14,14 @@ class DailyRecommendationResponse {
   factory DailyRecommendationResponse.fromJson(Map<String, dynamic> json) {
     return DailyRecommendationResponse(
       message: json['message'] as String? ?? '',
-      totalExercises: json['totalExercises'] != null ? json['totalExercises'] as int : 0,
-      exercises: json['exercises'] != null
-          ? (json['exercises'] as List)
-              .map((e) => Exercise.fromJson(e as Map<String, dynamic>))
-              .toList()
-          : [],
+      totalExercises:
+          json['totalExercises'] != null ? json['totalExercises'] as int : 0,
+      exercises:
+          json['exercises'] != null
+              ? (json['exercises'] as List)
+                  .map((e) => Exercise.fromJson(e as Map<String, dynamic>))
+                  .toList()
+              : [],
     );
   }
 
