@@ -23,6 +23,7 @@ class SharedSection extends StatefulWidget {
   final bool isPopularTraining;
   final List<Map<String, dynamic>> recommendations;
   final VoidCallback? onSeeAllPressed;
+  final void Function(Map<String, dynamic> item, int index)? onItemPressed;
   final bool isLoading;
 
   SharedSection({
@@ -32,6 +33,7 @@ class SharedSection extends StatefulWidget {
     this.isPopularTraining = false,
     required this.recommendations,
     this.onSeeAllPressed,
+     required this.onItemPressed,
     this.isLoading = false,
   });
 
@@ -106,129 +108,134 @@ class _SharedSectionState extends State<SharedSection> {
             separatorBuilder: (context, index) => SizedBox(width: 12.r),
             itemBuilder: (context, index) {
               final recommendation = widget.recommendations[index];
-              return Container(
-                width: width.r,
-                height: height.r,
-                margin: EdgeInsets.symmetric(vertical: 5.r),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 8.r,
-                      offset: Offset(0, 4.r),
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.r),
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: _buildImageWidget(recommendation['image']),
+              return GestureDetector(
+                onTap: () {
+                  widget.onItemPressed?.call(recommendation, index);
+                },
+                child: Container(
+                  width: width.r,
+                  height: height.r,
+                  margin: EdgeInsets.symmetric(vertical: 5.r),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.r),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 8.r,
+                        offset: Offset(0, 4.r),
                       ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.r),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: _buildImageWidget(recommendation['image']),
+                        ),
 
-                      if (!widget.isPopularTraining) ...[
-                        // ----------------------------------------------gray container with text
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          child: Container(
-                            height: height.r * 0.4,
-                            decoration: BoxDecoration(
-                              color: AppColors.surfaceDark.withOpacity(0.5),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(height / 2.r),
+                        if (!widget.isPopularTraining) ...[
+                          // ----------------------------------------------gray container with text
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            child: Container(
+                              height: height.r * 0.4,
+                              decoration: BoxDecoration(
+                                color: AppColors.surfaceDark.withOpacity(0.5),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(height / 2.r),
+                                ),
                               ),
                             ),
                           ),
-                        ),
 
-                        // Text at bottom
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: height.r * 0.1,
-                          child: Text(
-                            recommendation['name'].length > 10
-                                ? '${recommendation['name'].substring(0, 10)}...'
-                                : recommendation['name'],
-                            style: Theme.of(
-                              context,
-                            ).textTheme.bodyMedium?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ] else ...[
-                        //-------------------------------- Popular training
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: height.r * 0.4,
-                          child: Text(
-                            'Exercises That\nStrengthen Your ${recommendation['name']}',
-                            style: Theme.of(
-                              context,
-                            ).textTheme.titleLarge?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-
-                        Positioned(
-                          left: 16.r,
-                          bottom: 8.r,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12.r,
-                              vertical: 6.r,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.surfaceDark,
-                              borderRadius: BorderRadius.circular(20.r),
-                            ),
+                          // Text at bottom
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: height.r * 0.1,
                             child: Text(
-                              recommendation['tasks'],
-                              style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(color: Colors.white),
-                            ),
-                          ),
-                        ),
-
-                        Positioned(
-                          right: 16.r,
-                          bottom: 8.r,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 12.r,
-                              vertical: 6.r,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.surfaceDark,
-                              borderRadius: BorderRadius.circular(20.r),
-                            ),
-                            child: Text(
-                              recommendation['level'],
-                              style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(color: AppColors.primaryOrange),
+                              recommendation['name'].length > 10
+                                  ? '${recommendation['name'].substring(0, 10)}...'
+                                  : recommendation['name'],
+                              style: Theme.of(
+                                context,
+                              ).textTheme.bodyMedium?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ),
+                        ] else ...[
+                          //-------------------------------- Popular training
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: height.r * 0.4,
+                            child: Text(
+                              'Exercises That\nStrengthen Your ${recommendation['name']}',
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleLarge?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+
+                          Positioned(
+                            left: 16.r,
+                            bottom: 8.r,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 12.r,
+                                vertical: 6.r,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.surfaceDark,
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              child: Text(
+                                recommendation['tasks'],
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(color: Colors.white),
+                              ),
+                            ),
+                          ),
+
+                          Positioned(
+                            right: 16.r,
+                            bottom: 8.r,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 12.r,
+                                vertical: 6.r,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.surfaceDark,
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              child: Text(
+                                recommendation['level'],
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(color: AppColors.primaryOrange),
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               );
@@ -242,8 +249,8 @@ class _SharedSectionState extends State<SharedSection> {
         ? Skeletonizer(
           enabled: true,
           effect: ShimmerEffect(
-            baseColor: Theme.of(context).colorScheme.surface,
-            highlightColor: Theme.of(context).colorScheme.surfaceVariant,
+            baseColor: AppColors.shimmerBaseColor,
+            highlightColor: AppColors.shimmerHighlightColor,
           ),
           child: content,
         )
@@ -262,13 +269,16 @@ class _SharedSectionState extends State<SharedSection> {
         fit: BoxFit.cover,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
-          return Center(
-            child: CircularProgressIndicator(
-              value:
-                  loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                      : null,
+          return Skeletonizer(
+            enabled: true,
+            effect: ShimmerEffect(
+              baseColor: AppColors.shimmerBaseColor,
+              highlightColor: AppColors.shimmerHighlightColor,
+            ),
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: AppColors.surfaceDark,
             ),
           );
         },
