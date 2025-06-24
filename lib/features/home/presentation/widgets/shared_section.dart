@@ -238,15 +238,15 @@ class _SharedSectionState extends State<SharedSection> {
       ],
     );
 
-    return widget.isLoading 
+    return widget.isLoading
         ? Skeletonizer(
-            enabled: true,
-            effect: ShimmerEffect(
-              baseColor: Theme.of(context).colorScheme.surface,
-              highlightColor: Theme.of(context).colorScheme.surfaceVariant,
-            ),
-            child: content,
-          )
+          enabled: true,
+          effect: ShimmerEffect(
+            baseColor: Theme.of(context).colorScheme.surface,
+            highlightColor: Theme.of(context).colorScheme.surfaceVariant,
+          ),
+          child: content,
+        )
         : content;
   }
 
