@@ -33,7 +33,7 @@ class SharedSection extends StatefulWidget {
     this.isPopularTraining = false,
     required this.recommendations,
     this.onSeeAllPressed,
-     required this.onItemPressed,
+    required this.onItemPressed,
     this.isLoading = false,
   });
 

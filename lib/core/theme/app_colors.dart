@@ -51,6 +51,10 @@ class AppColors {
   static const Color glassEffect = Color(0x1AFFFFFF); // 10% opacity white
 
   // =================== Shimmer Effect Colors ===================
-  static const Color shimmerBaseColor = Color(0xFF3A3A3A);   // Dark base for shimmer on dark backgrounds
-  static const Color shimmerHighlightColor = Color(0xFF525252); // Slightly lighter for shimmer effect
+  static const Color shimmerBaseColor = Color(
+    0xFF3A3A3A,
+  ); // Dark base for shimmer on dark backgrounds
+  static const Color shimmerHighlightColor = Color(
+    0xFF525252,
+  ); // Slightly lighter for shimmer effect
 }
