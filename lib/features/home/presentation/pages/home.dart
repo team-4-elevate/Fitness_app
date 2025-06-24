@@ -165,10 +165,6 @@ class _HomeState extends State<Home> {
                                 sectionTitle: "Upcoming Workouts",
                                 recommendations: upcomingWorkouts,
                                 onSeeAllPressed: () {
-                                  // Refresh upcoming workouts data
-                                  context.read<HomeBloc>().add(
-                                    const FetchUpcomingWorkouts(),
-                                  );
                                   debugPrint(
                                     'See All pressed for Upcoming Workouts',
                                   );
@@ -217,10 +213,6 @@ class _HomeState extends State<Home> {
                                 sectionTitle: "Recommendations For You",
                                 recommendations: foodRecommendations,
                                 onSeeAllPressed: () {
-                                  // Refresh food recommendations data
-                                  context.read<HomeBloc>().add(
-                                    const FetchFoodRecommendations(),
-                                  );
                                   debugPrint(
                                     'See All pressed for Food Recommendations',
                                   );
