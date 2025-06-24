@@ -124,11 +124,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i207.HomeRepository>(
       () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()),
     );
-    gh.factory<_i183.GetUpcomingWorkouts>(
-      () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
-    );
     gh.factory<_i588.GetFoodRecommendations>(
       () => _i588.GetFoodRecommendations(gh<_i207.HomeRepository>()),
+    );
+    gh.factory<_i183.GetUpcomingWorkouts>(
+      () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
     );
     gh.factory<_i170.AuthRepo>(
       () => _i984.AuthRepoImpl(

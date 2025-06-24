@@ -24,7 +24,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
       'limit': '5',
     };
 
-    final result = await _apiClient.get<Map<String, dynamic>>(
+    final result = await _apiClient.get(
       '/exercises/random',
       queryParameters: queryParams,
       requiresToken: true,
@@ -43,7 +43,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   Future<ApiResult<UpcomingWorkouts>> getUpcomingWorkouts() async {
     final queryParams = {'limit': '5'};
 
-    final result = await _apiClient.get<Map<String, dynamic>>(
+    final result = await _apiClient.get(
       '/exercises',
       queryParameters: queryParams,
       requiresToken: true,
