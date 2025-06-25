@@ -273,4 +273,53 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
+
+  @override
+  String get food_Recommendation_title => 'اقتراحات للاكل';
+
+  @override
+  String get food_Recommendation_no_categories => 'لايوجد بيانات';
+
+  @override
+  String get food_food_Recommendation_fail_to_loadCategories =>
+      'خطأ في تحميل الاصناف';
+
+  @override
+  String get retry => 'حاول مره اخري';
+
+  @override
+  String get confirmPassword => 'يرجى تأكيد كلمة المرور';
+
+  @override
+  String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
+
+  @override
+  String get enterFourDigitCode => 'يرجى إدخال رمز مكون من 4 أرقام';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get enterYourOtp => 'أدخل رمز التحقق';
+
+  @override
+  String get checkYourEmail => 'تحقق من بريدك الإلكتروني';
+
+  @override
+  String get otpCode => 'رمز التحقق';
+
+  @override
+  String get forgetPassword => 'نسيان كلمة المرور';
+
+  @override
+  String get enterYourEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get sendOtp => 'إرسال رمز التحقق';
+
+  @override
+  String get didntReceiveVerificationCode => 'لم تستلم رمز التحقق؟';
+
+  @override
+  String get resend => 'اعادة الارسال';
 }

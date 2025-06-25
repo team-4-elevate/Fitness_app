@@ -7,8 +7,8 @@ import 'package:fitness_app/features/auth/data/model/login_models/login_response
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../food_recommendation/data/datasources/food_recommend_remote_data_source_impl_test.mocks.dart';
 import 'mocks.dart';
-import 'mocks.mocks.dart';
 
 void main() {
   // Setup dummy values before running tests

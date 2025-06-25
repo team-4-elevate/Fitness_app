@@ -273,4 +273,54 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get food_Recommendation_title => 'Food Recommendation';
+
+  @override
+  String get food_Recommendation_no_categories => 'No categories found';
+
+  @override
+  String get food_food_Recommendation_fail_to_loadCategories =>
+      'Failed to load categories';
+
+  @override
+  String get retry => 'retry';
+
+  @override
+  String get confirmPassword => 'Please confirm your password';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String get enterFourDigitCode => 'Please enter 4 digit code';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get enterYourOtp => 'Enter Your OTP';
+
+  @override
+  String get checkYourEmail => 'Check Your Email';
+
+  @override
+  String get otpCode => 'OTP CODE';
+
+  @override
+  String get forgetPassword => 'Forget Password';
+
+  @override
+  String get enterYourEmail => 'Enter your Email';
+
+  @override
+  String get sendOtp => 'Send OTP';
+
+  @override
+  String get didntReceiveVerificationCode =>
+      'Didn\'t Receive Verification Code?';
+
+  @override
+  String get resend => 'Resend';
 }

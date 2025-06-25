@@ -76,6 +76,11 @@ class MyApp extends StatelessWidget {
     if (shouldAutoLogin) return AppRoutes.layoutScreen;
     return isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding;
   }
+
+  String _setInitialRoute() {
+    if (shouldAutoLogin) return AppRoutes.homePage;
+    return isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding;
+  }
 }
 
 Future<void> _configureFirebase() async {

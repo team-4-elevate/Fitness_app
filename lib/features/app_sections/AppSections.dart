@@ -8,8 +8,11 @@ import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainNavigationScreen extends StatefulWidget {
+  const MainNavigationScreen({super.key});
+
   @override
   _MainNavigationScreenState createState() => _MainNavigationScreenState();
 }
@@ -44,6 +47,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   Widget _buildFloatingNavBar() {
     return Container(
+      margin: EdgeInsets.all(32.w),
       margin: EdgeInsets.all(32.w),
       padding: EdgeInsets.symmetric(horizontal: 25.w),
       height: 80.h,

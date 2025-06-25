@@ -610,6 +610,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @food_Recommendation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Food Recommendation'**
+  String get food_Recommendation_title;
+
+  /// No description provided for @food_Recommendation_no_categories.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories found'**
+  String get food_Recommendation_no_categories;
+
+  /// No description provided for @food_food_Recommendation_fail_to_loadCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load categories'**
+  String get food_food_Recommendation_fail_to_loadCategories;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'retry'**
+  String get retry;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get confirmPassword;
+
+  /// No description provided for @passwordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
+
+  /// No description provided for @enterFourDigitCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter 4 digit code'**
+  String get enterFourDigitCode;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @enterYourOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your OTP'**
+  String get enterYourOtp;
+
+  /// No description provided for @checkYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Your Email'**
+  String get checkYourEmail;
+
+  /// No description provided for @otpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'OTP CODE'**
+  String get otpCode;
+
+  /// No description provided for @forgetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get forgetPassword;
+
+  /// No description provided for @enterYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your Email'**
+  String get enterYourEmail;
+
+  /// No description provided for @sendOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Send OTP'**
+  String get sendOtp;
+
+  /// No description provided for @didntReceiveVerificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t Receive Verification Code?'**
+  String get didntReceiveVerificationCode;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

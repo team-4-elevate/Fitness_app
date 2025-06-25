@@ -1,3 +1,4 @@
+import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -8,18 +9,17 @@ class ApiLocalizationService {
   ApiLocalizationService._();
 
   String _currentLanguage = 'en';
+  final sharedPrefs = getIt<SharedPreferences>();
   AppLocalizations? _currentLocalizations;
 
   Future<void> init() async {
-    final prefs = await SharedPreferences.getInstance();
-    _currentLanguage = prefs.getString('language') ?? 'en';
+    _currentLanguage = sharedPrefs.getString('language') ?? 'en';
   }
 
   Future<void> setLanguage(String lang) async {
     if (lang != 'ar' && lang != 'en') return;
     _currentLanguage = lang;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('language', lang);
+    await sharedPrefs.setString('language', lang);
   }
 
   void setLocalizations(AppLocalizations localizations) {
