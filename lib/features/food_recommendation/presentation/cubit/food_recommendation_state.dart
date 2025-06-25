@@ -41,11 +41,11 @@ class FoodRecommendationState extends Equatable {
 
   @override
   List<Object?> get props => [
-    foodCategoriesState,
-    mealsByCategoryState,
-    selectedCategoryIndex,
-    cachedMeals,
-    loadingCategories,
-    categories,
-  ];
+        foodCategoriesState,
+        mealsByCategoryState,
+        selectedCategoryIndex,
+        cachedMeals,
+        loadingCategories,
+        categories,
+      ];
 }

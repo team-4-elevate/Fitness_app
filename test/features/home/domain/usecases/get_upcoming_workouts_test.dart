@@ -55,8 +55,8 @@ void main() {
           expect(data[0].name, equals('Morning Yoga'));
           expect(data[1].id, equals('workout2'));
         },
-        failure:
-            (message) => fail('Expected success but got failure: $message'),
+        failure: (message) =>
+            fail('Expected success but got failure: $message'),
       );
 
       // Verify repository call
@@ -109,8 +109,8 @@ void main() {
         success: (data) {
           expect(data, isEmpty);
         },
-        failure:
-            (message) => fail('Expected success but got failure: $message'),
+        failure: (message) =>
+            fail('Expected success but got failure: $message'),
       );
 
       // Verify repository call

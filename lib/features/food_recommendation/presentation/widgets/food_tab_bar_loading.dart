@@ -15,16 +15,15 @@ class FoodTabBarLoading extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         itemCount: 4,
         separatorBuilder: (_, __) => SizedBox(width: 8.w),
-        itemBuilder:
-            (context, index) => ShimmerLoading(
-              baseColor: AppColors.gray.withOpacity(0.3),
-              highlightColor: AppColors.white.withOpacity(0.1),
-              child: ShimmerBox(
-                width: 90.w,
-                height: 36.h,
-                borderRadius: BorderRadius.circular(18.r),
-              ),
-            ),
+        itemBuilder: (context, index) => ShimmerLoading(
+          baseColor: AppColors.gray.withOpacity(0.3),
+          highlightColor: AppColors.white.withOpacity(0.1),
+          child: ShimmerBox(
+            width: 90.w,
+            height: 36.h,
+            borderRadius: BorderRadius.circular(18.r),
+          ),
+        ),
       ),
     );
   }

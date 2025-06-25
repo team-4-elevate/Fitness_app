@@ -129,10 +129,9 @@ class DioApiClient implements ApiClient {
     // If custom baseUrl is provided, use it with the exact path provided
     if (baseUrl != null) {
       // Remove trailing slash from baseUrl if present
-      final cleanBaseUrl =
-          baseUrl.endsWith('/')
-              ? baseUrl.substring(0, baseUrl.length - 1)
-              : baseUrl;
+      final cleanBaseUrl = baseUrl.endsWith('/')
+          ? baseUrl.substring(0, baseUrl.length - 1)
+          : baseUrl;
 
       // Use the path exactly as provided (don't add leading slash)
       return '$cleanBaseUrl$path';

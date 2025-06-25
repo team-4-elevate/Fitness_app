@@ -51,7 +51,8 @@ void main() {
         token: token,
       );
 
-      test('should return LoginResponse when repository call succeeds', () async {
+      test('should return LoginResponse when repository call succeeds',
+          () async {
         when(
           mockAuthRepo.login(loginRequest),
         ).thenAnswer((_) async => ApiSuccess(mockLoginResponse));
@@ -72,8 +73,8 @@ void main() {
             expect(data.user?.email, equals(mockLoginResponse.user?.email));
             expect(data.user?.age, equals(mockLoginResponse.user?.age));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         // Verify that repository was called exactly once with correct parameters
@@ -199,8 +200,8 @@ void main() {
             expect(data.token, equals(token));
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         verify(mockAuthRepo.login(loginRequest)).called(1);
@@ -229,8 +230,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user?.id, equals(mockUser.id));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         verify(mockAuthRepo.login(loginRequest)).called(1);
@@ -307,8 +308,8 @@ void main() {
             expect(data.user?.photo, equals(complexUser.photo));
             expect(data.user?.createdAt, equals(complexUser.createdAt));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         verify(mockAuthRepo.login(loginRequest)).called(1);

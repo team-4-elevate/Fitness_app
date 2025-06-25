@@ -76,7 +76,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-
             SafeArea(
               child: RefreshIndicator(
                 color: Theme.of(context).primaryColor,
@@ -108,10 +107,9 @@ class _HomeState extends State<Home> {
                           builder: (context, state) {
                             return switch (state) {
                               BaseInitialState() ||
-                              BaseLoadingState() => const Skeleton(),
-
-                              SuccessState<HomeData>() =>
-                                (() {
+                              BaseLoadingState() =>
+                                const Skeleton(),
+                              SuccessState<HomeData>() => (() {
                                   final data = (state).data;
                                   final recommendations =
                                       data.dailyRecommendations
@@ -135,16 +133,16 @@ class _HomeState extends State<Home> {
                                   );
                                 })(),
                               BaseErrorState() => Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 20,
-                                  ),
-                                  child: Text(
-                                    'Error loading recommendations: ${(state as BaseErrorState).error}',
-                                    style: const TextStyle(color: Colors.red),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20,
+                                    ),
+                                    child: Text(
+                                      'Error loading recommendations: ${(state as BaseErrorState).error}',
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
                                   ),
                                 ),
-                              ),
                             };
                           },
                         ),
@@ -155,20 +153,18 @@ class _HomeState extends State<Home> {
                           builder: (context, state) {
                             return switch (state) {
                               BaseInitialState() ||
-                              BaseLoadingState() => const Skeleton(),
-
-                              SuccessState<HomeData>() =>
-                                (() {
+                              BaseLoadingState() =>
+                                const Skeleton(),
+                              SuccessState<HomeData>() => (() {
                                   final data = (state).data;
-                                  final upcomingWorkouts =
-                                      data.upcomingWorkouts
-                                          .map(
-                                            (item) => {
-                                              'name': item.name,
-                                              'image': item.imageUrl,
-                                            },
-                                          )
-                                          .toList();
+                                  final upcomingWorkouts = data.upcomingWorkouts
+                                      .map(
+                                        (item) => {
+                                          'name': item.name,
+                                          'image': item.imageUrl,
+                                        },
+                                      )
+                                      .toList();
 
                                   return SharedSection(
                                     sectionTitle: "Upcoming Workouts",
@@ -186,16 +182,16 @@ class _HomeState extends State<Home> {
                                   );
                                 })(),
                               BaseErrorState() => Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 20,
-                                  ),
-                                  child: Text(
-                                    'Error loading upcoming workouts: ${(state as BaseErrorState).error}',
-                                    style: const TextStyle(color: Colors.red),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20,
+                                    ),
+                                    child: Text(
+                                      'Error loading upcoming workouts: ${(state as BaseErrorState).error}',
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
                                   ),
                                 ),
-                              ),
                             };
                           },
                         ),
@@ -206,10 +202,9 @@ class _HomeState extends State<Home> {
                           builder: (context, state) {
                             return switch (state) {
                               BaseInitialState() ||
-                              BaseLoadingState() => const Skeleton(),
-
-                              SuccessState<HomeData>() =>
-                                (() {
+                              BaseLoadingState() =>
+                                const Skeleton(),
+                              SuccessState<HomeData>() => (() {
                                   final data = (state).data;
                                   final foodRecommendations =
                                       data.foodRecommendations
@@ -233,23 +228,22 @@ class _HomeState extends State<Home> {
                                         AppRoutes.foodRecommendationScreen,
                                       );
                                     },
-                                    onItemPressed:
-                                        (item, index) => debugPrint(
-                                          'Item pressed: ${item['name']} at index $index',
-                                        ),
+                                    onItemPressed: (item, index) => debugPrint(
+                                      'Item pressed: ${item['name']} at index $index',
+                                    ),
                                   );
                                 })(),
                               BaseErrorState() => Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 20,
-                                  ),
-                                  child: Text(
-                                    'Error loading food recommendations: ${(state as BaseErrorState).error}',
-                                    style: const TextStyle(color: Colors.red),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20,
+                                    ),
+                                    child: Text(
+                                      'Error loading food recommendations: ${(state as BaseErrorState).error}',
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
                                   ),
                                 ),
-                              ),
                             };
                           },
                         ),

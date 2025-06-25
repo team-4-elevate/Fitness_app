@@ -12,7 +12,6 @@ abstract class ApiClient {
     String path, {
     dynamic data,
     String? baseUrl,
-
     Map<String, dynamic>? queryParameters,
     bool requiresToken = false,
   });
@@ -21,7 +20,6 @@ abstract class ApiClient {
     String path, {
     dynamic data,
     String? baseUrl,
-
     Map<String, dynamic>? queryParameters,
     bool requiresToken = false,
   });
@@ -29,7 +27,6 @@ abstract class ApiClient {
   Future<ApiResult<T>> delete<T>(
     String path, {
     String? baseUrl,
-
     Map<String, dynamic>? queryParameters,
     bool requiresToken = false,
   });
@@ -38,7 +35,6 @@ abstract class ApiClient {
     String path, {
     dynamic data,
     String? baseUrl,
-
     Map<String, dynamic>? queryParameters,
     bool requiresToken = false,
   });
