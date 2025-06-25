@@ -16,9 +16,7 @@ void main() {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en'),
-      ],
+      supportedLocales: const [Locale('en')],
       home: Scaffold(
         body: ExercisePageHeaderWidget(
           arguments: ExercisePageArguments(
@@ -32,7 +30,9 @@ void main() {
   }
 
   group('ExercisePageHeaderWidget Tests', () {
-    testWidgets('should display muscle group name', (WidgetTester tester) async {
+    testWidgets('should display muscle group name', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(createWidgetUnderTest());
       await tester.pumpAndSettle();
 
@@ -46,4 +46,4 @@ void main() {
       expect(find.byType(IconButton), findsOneWidget);
     });
   });
-} 
+}
