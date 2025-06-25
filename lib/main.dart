@@ -1,3 +1,4 @@
+// main.dart
 import 'dart:isolate';
 import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
@@ -72,7 +73,7 @@ class MyApp extends StatelessWidget {
   }
 
   String _setInitialRoute() {
-    if (shouldAutoLogin) return AppRoutes.homePage;
+    if (shouldAutoLogin) return AppRoutes.layoutScreen;
     return isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding;
   }
 }
