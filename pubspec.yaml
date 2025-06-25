@@ -60,12 +60,12 @@ dependencies:
   blur:
   flutter_svg:
   pinput:
-  google_fonts: ^6.2.1
-  numberpicker: ^2.1.2
-  icons_plus: ^5.0.0
-  skeletonizer: ^1.4.3
+  google_fonts: 
+  numberpicker: 
+  icons_plus: 
+  skeletonizer: 
   smooth_page_indicator: 
-  cached_network_image: ^3.2.0
+  cached_network_image: 
 
 dev_dependencies:
   flutter_test:

@@ -92,7 +92,11 @@ class AppRoutesGenerator {
       case AppRoutes.onboarding:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
       case AppRoutes.foodDetailsScreen:
-        return MaterialPageRoute(builder: (_) => FoodDetailsPage());
+        return MaterialPageRoute(
+          builder: (_) => FoodDetailsPage(
+            args: settings.arguments as FoodDetailsArgs,
+          ),
+        );
 
       case AppRoutes.foodRecommendationScreen:
         return MaterialPageRoute(

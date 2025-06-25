@@ -1,4 +1,5 @@
 import 'package:fitness_app/core/Constant/app_constants.dart';
+import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/core/responsive/responsive_design.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_intent.dart';
@@ -32,8 +33,8 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<FoodRecommendationViewModel>().doIntent(
-        const GetMealsCategoriesIntent(),
-      );
+            const GetMealsCategoriesIntent(),
+          );
     });
   }
 
@@ -49,8 +50,8 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
         context.read<FoodRecommendationViewModel>().doIntent(
-          ChangeSelectedCategoryIntent(_tabController.index),
-        );
+              ChangeSelectedCategoryIntent(_tabController.index),
+            );
       }
     });
   }
@@ -58,17 +59,15 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FoodRecommendationViewModel, FoodRecommendationState>(
-      buildWhen:
-          (previous, current) =>
-              previous.selectedCategoryIndex != current.selectedCategoryIndex ||
-              previous.foodCategoriesState != current.foodCategoriesState ||
-              previous.mealsByCategoryState != current.mealsByCategoryState ||
-              previous.cachedMeals != current.cachedMeals ||
-              previous.loadingCategories != current.loadingCategories,
-      listenWhen:
-          (previous, current) =>
-              previous.foodCategoriesState != current.foodCategoriesState ||
-              previous.selectedCategoryIndex != current.selectedCategoryIndex,
+      buildWhen: (previous, current) =>
+          previous.selectedCategoryIndex != current.selectedCategoryIndex ||
+          previous.foodCategoriesState != current.foodCategoriesState ||
+          previous.mealsByCategoryState != current.mealsByCategoryState ||
+          previous.cachedMeals != current.cachedMeals ||
+          previous.loadingCategories != current.loadingCategories,
+      listenWhen: (previous, current) =>
+          previous.foodCategoriesState != current.foodCategoriesState ||
+          previous.selectedCategoryIndex != current.selectedCategoryIndex,
       listener: (context, state) {
         state.foodCategoriesState?.whenOrNull(
           success: (data) {
@@ -84,8 +83,8 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
                 _hasLoadedInitialMeals = true;
                 final categoryName = categories[0].strCategory ?? '';
                 context.read<FoodRecommendationViewModel>().doIntent(
-                  GetMealsByCategoryIntent(categoryName),
-                );
+                      GetMealsByCategoryIntent(categoryName),
+                    );
               }
             }
           },
@@ -125,11 +124,9 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
               centerTitle: true,
               leadingWidth: 35.r,
               elevation: 0,
-              leading: SvgPicture.asset(AppConstants.customBackIcon)
-                  .onTap(() {
-                    // Navigator.of(context).pop();
-                  })
-                  .paddingAll(2.r),
+              leading: SvgPicture.asset(AppConstants.customBackIcon).onTap(() {
+                // Navigator.of(context).pop();
+              }).paddingAll(2.r),
             ),
             body: Column(
               children: [
@@ -153,8 +150,7 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
                     const SizedBox.shrink(),
                 SizedBox(height: R.spaceMD),
                 Expanded(
-                  child:
-                      state.foodCategoriesState?.when(
+                  child: state.foodCategoriesState?.when(
                         initial: () => FoodGridLoading(),
                         loading: () => const FoodGridLoading(),
                         success: (categories) {
@@ -168,57 +164,49 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
                           return state.mealsByCategoryState?.when(
                                 initial: () => const FoodGridLoading(),
                                 loading: () => const FoodGridLoading(),
-                                success:
-                                    (meals) => FoodGridViewWidget(
-                                      tabController: _tabController,
-                                      categories: categoryList,
-                                      cachedMeals: state.cachedMeals,
-                                      loadingCategories:
-                                          state.loadingCategories,
-                                      selectedCategoryIndex:
-                                          state.selectedCategoryIndex,
-                                    ),
-                                error:
-                                    (error) => FoodErrorView(
-                                      categoryList: categoryList,
-                                      error: error,
-                                      foodRecommendationViewModel:
-                                          context
-                                              .read<
-                                                FoodRecommendationViewModel
-                                              >(),
-                                      selectedCategoryIndex:
-                                          state.selectedCategoryIndex,
-                                      onPressed: () {
-                                        context
-                                            .read<FoodRecommendationViewModel>()
-                                            .doIntent(
-                                              GetMealsByCategoryIntent(
-                                                categoryList[state
-                                                            .selectedCategoryIndex]
-                                                        .strCategory ??
-                                                    '',
-                                              ),
-                                            );
-                                      },
-                                    ),
+                                success: (meals) => FoodGridViewWidget(
+                                  tabController: _tabController,
+                                  categories: categoryList,
+                                  cachedMeals: state.cachedMeals,
+                                  loadingCategories: state.loadingCategories,
+                                  selectedCategoryIndex:
+                                      state.selectedCategoryIndex,
+                                ),
+                                error: (error) => FoodErrorView(
+                                  categoryList: categoryList,
+                                  error: error,
+                                  foodRecommendationViewModel: context
+                                      .read<FoodRecommendationViewModel>(),
+                                  selectedCategoryIndex:
+                                      state.selectedCategoryIndex,
+                                  onPressed: () {
+                                    context
+                                        .read<FoodRecommendationViewModel>()
+                                        .doIntent(
+                                          GetMealsByCategoryIntent(
+                                            categoryList[state
+                                                        .selectedCategoryIndex]
+                                                    .strCategory ??
+                                                '',
+                                          ),
+                                        );
+                                  },
+                                ),
                               ) ??
                               FoodGridLoading();
                         },
-                        error:
-                            (error) => FoodErrorView(
-                              categoryList: [],
-                              error: error,
-                              foodRecommendationViewModel:
-                                  context.read<FoodRecommendationViewModel>(),
-                              selectedCategoryIndex:
-                                  state.selectedCategoryIndex,
-                              onPressed: () {
-                                context
-                                    .read<FoodRecommendationViewModel>()
-                                    .doIntent(GetMealsCategoriesIntent());
-                              },
-                            ),
+                        error: (error) => FoodErrorView(
+                          categoryList: [],
+                          error: error,
+                          foodRecommendationViewModel:
+                              context.read<FoodRecommendationViewModel>(),
+                          selectedCategoryIndex: state.selectedCategoryIndex,
+                          onPressed: () {
+                            context
+                                .read<FoodRecommendationViewModel>()
+                                .doIntent(GetMealsCategoriesIntent());
+                          },
+                        ),
                       ) ??
                       const FoodGridLoading(),
                 ),

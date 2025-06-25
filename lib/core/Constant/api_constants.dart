@@ -12,6 +12,5 @@ class ApiConstants {
       'https://www.themealdb.com/api/json/v1/1/';
   static const String foodRecommendedCategoriesEndpoint = '/categories.php';
   static const String foodRecommendedMealsEndpoint = '/filter.php';
-  static const String getFoodDetailsEndpoint =
-      'www.themealdb.com/api/json/v1/1/lookup.php';
+  static const String getFoodDetailsEndpoint = '/lookup.php';
 }

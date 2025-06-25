@@ -5,15 +5,19 @@ import 'package:flutter/material.dart';
 class GridViewCustomWidget extends StatelessWidget {
   final int itemCount;
   final Widget Function(BuildContext, int) itemBuilder;
-  const GridViewCustomWidget({
-    super.key,
-    required this.itemCount,
-    required this.itemBuilder,
-  });
+  final bool disableScroll;
+
+  const GridViewCustomWidget(
+      {super.key,
+      required this.itemCount,
+      required this.itemBuilder,
+      this.disableScroll = false});
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      shrinkWrap: disableScroll,
+      physics: disableScroll ? const NeverScrollableScrollPhysics() : null,
       padding: EdgeInsets.symmetric(horizontal: R.paddingMDValue),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount:
