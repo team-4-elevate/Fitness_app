@@ -18,7 +18,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحبًا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+  String get networkError =>
+      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقًا.';
@@ -79,13 +80,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onBoardingTitle1 => 'مرحبًا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get onBoardingDesc1 => 'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
+  String get onBoardingDesc1 =>
+      'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
 
   @override
   String get onBoardingTitle2 => 'تخصيص تجربتك';
 
   @override
-  String get onBoardingDesc2 => 'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
+  String get onBoardingDesc2 =>
+      'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
 
   @override
   String get onBoardingTitle3 => 'ابدأ رحلتك';
@@ -281,7 +284,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get food_Recommendation_no_categories => 'لايوجد بيانات';
 
   @override
-  String get food_food_Recommendation_fail_to_loadCategories => 'خطأ في تحميل الاصناف';
+  String get food_food_Recommendation_fail_to_loadCategories =>
+      'خطأ في تحميل الاصناف';
 
   @override
   String get retry => 'حاول مره اخري';

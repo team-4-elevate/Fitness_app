@@ -34,7 +34,7 @@ void main() {
     // Set up default mock behavior with loading state
     when(mockViewModel.state).thenReturn(
       const FoodRecommendationState(
-        foodCategoriesState: LoadingState(), 
+        foodCategoriesState: LoadingState(),
         mealsByCategoryState: LoadingState(),
       ),
     );
@@ -345,5 +345,4 @@ void main() {
       addTearDown(tester.view.resetPhysicalSize);
     });
   });
-  
 }

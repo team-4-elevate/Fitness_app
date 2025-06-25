@@ -17,8 +17,7 @@ class FoodRecommendationScreen extends StatefulWidget {
   const FoodRecommendationScreen({super.key});
 
   @override
-  State<FoodRecommendationScreen> createState() =>
-      _FoodRecommendationScreen();
+  State<FoodRecommendationScreen> createState() => _FoodRecommendationScreen();
 }
 
 class _FoodRecommendationScreen extends State<FoodRecommendationScreen>

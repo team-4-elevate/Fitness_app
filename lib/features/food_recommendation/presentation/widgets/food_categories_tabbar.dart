@@ -20,33 +20,33 @@ class FoodCategoriesTabbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TabBar(
-          controller: tabController,
-          isScrollable: true,
-          unselectedLabelColor: AppColors.white,
-          dividerColor: Colors.transparent,
-          indicatorColor: Colors.transparent,
-          indicator: const BoxDecoration(),
-          tabAlignment: TabAlignment.start,
-          overlayColor: WidgetStateProperty.all(Colors.transparent),
-          onTap: (index) {
-            context.read<FoodRecommendationViewModel>().doIntent(
-              ChangeSelectedCategoryIntent(index),
-            );
-            final categoryName = categories[index].strCategory ?? '';
-            context.read<FoodRecommendationViewModel>().doIntent(
-              GetMealsByCategoryIntent(categoryName),
-            );
-          },
-          tabs:
-              categories.map((category) {
-                return Tab(
-                  child: CustomTabbarTab(
-                    title: category.strCategory,
-                    isSelected:
-                        selectedCategoryIndex == categories.indexOf(category),
-                  ),
-                );
-              }).toList(),
+      controller: tabController,
+      isScrollable: true,
+      unselectedLabelColor: AppColors.white,
+      dividerColor: Colors.transparent,
+      indicatorColor: Colors.transparent,
+      indicator: const BoxDecoration(),
+      tabAlignment: TabAlignment.start,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      onTap: (index) {
+        context.read<FoodRecommendationViewModel>().doIntent(
+          ChangeSelectedCategoryIntent(index),
         );
+        final categoryName = categories[index].strCategory ?? '';
+        context.read<FoodRecommendationViewModel>().doIntent(
+          GetMealsByCategoryIntent(categoryName),
+        );
+      },
+      tabs:
+          categories.map((category) {
+            return Tab(
+              child: CustomTabbarTab(
+                title: category.strCategory,
+                isSelected:
+                    selectedCategoryIndex == categories.indexOf(category),
+              ),
+            );
+          }).toList(),
+    );
   }
 }
