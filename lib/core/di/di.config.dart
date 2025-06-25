@@ -35,6 +35,7 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/chat_bot/presentation/bloc/chat_bloc.dart' as _i821;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
     as _i768;
@@ -51,7 +52,6 @@ import '../app_local_storage/app_secure_storage_impl.dart' as _i988;
 import '../routes/navigation_obsevation.dart' as _i1052;
 import '../services/shared_prefs.dart' as _i241;
 import '../utils/app_navigator_observer.dart' as _i668;
-import '../utils/navigation_services.dart' as _i565;
 import 'register_module.dart' as _i291;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -66,16 +66,16 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.prefs,
       preResolve: true,
     );
+    gh.factory<_i821.ChatBloc>(() => _i821.ChatBloc());
+    gh.singleton<_i668.AppNavigatorObserver>(
+      () => _i668.AppNavigatorObserver(),
+    );
     gh.singleton<_i1052.AppNavigatorObserver>(
       () => _i1052.AppNavigatorObserver(),
     );
     gh.singleton<_i241.SharedPreferencesService>(
       () => _i241.SharedPreferencesService(),
     );
-    gh.singleton<_i668.AppNavigatorObserver>(
-      () => _i668.AppNavigatorObserver(),
-    );
-    gh.lazySingleton<_i565.NavigationService>(() => _i565.NavigationService());
     gh.factory<_i849.AppLocalStorage>(
       () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()),
     );
@@ -110,14 +110,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
     );
-    gh.factory<_i18.ForgotPasswordUseCase>(
-      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
-    );
     gh.factory<_i37.LoginUseCase>(
       () => _i37.LoginUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i825.ResetPasswordUseCase>(
       () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i18.ForgotPasswordUseCase>(
+      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i509.VerifyOtpUseCase>(
       () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()),

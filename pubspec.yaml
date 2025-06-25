@@ -44,7 +44,7 @@ dependencies:
   flutter_secure_storage:
   provider:
   retrofit:
-  json_annotation:
+  json_annotation: ^4.9.0
   injectable:
   logger:
   connectivity_plus:
@@ -64,16 +64,18 @@ dependencies:
   numberpicker: ^2.1.2
   icons_plus: ^5.0.0
   smooth_page_indicator:
+  google_generative_ai:
+  flutter_svg_provider: ^1.0.7
+  freezed_annotation: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
-  retrofit_generator: '>=8.0.0 <10.0.0'
+  build_runner: ^2.5.3
+  retrofit_generator: ">=8.0.0 <10.0.0"
   injectable_generator:
-  json_serializable:
-  mockito: ^5.4.3 
-  
+  json_serializable: ^6.9.5
+  mockito: ^5.4.3
 
   flutter_native_splash: ^2.4.6
   flutter_launcher_icons: ^0.14.4
@@ -84,6 +86,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  freezed: ^3.0.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

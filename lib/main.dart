@@ -66,8 +66,8 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-              initialRoute:
-                  isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
+              initialRoute: AppRoutes.chatScreen,
+              // isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
             ),
           );
         },
