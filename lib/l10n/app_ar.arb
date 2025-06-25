@@ -381,5 +381,10 @@
   "enterYourEmail": "أدخل بريدك الإلكتروني",
   "sendOtp": "إرسال رمز التحقق",
   "didntReceiveVerificationCode": "لم تستلم رمز التحقق؟",
-  "resend": "اعادة الارسال"
+  "resend": "اعادة الارسال",
+  "exercise": "تمرين",
+      "motivational_quote": "كل قطرة عرق هي صوت للحياة التي لم تعشها بعد.",
+      "no_exercises_found": "لم يتم العثور على تمارين",
+      "failed_to_load_exercises": "فشل في تحميل التمارين",
+      "video_not_available": "الفيديو غير متاح، يرجى المحاولة مرة أخرى لاحقاً"
 }

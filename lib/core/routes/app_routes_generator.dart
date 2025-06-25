@@ -6,12 +6,17 @@ import 'package:fitness_app/features/auth/presentation/login/login_view_model.da
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
+import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arguments.dart';
+import 'package:fitness_app/features/exercise/presentation/bloc/exercise_bloc.dart';
+import 'package:fitness_app/features/exercise/presentation/bloc/exercise_event.dart';
+import 'package:fitness_app/features/exercise/presentation/view/exercise_page/exercise_page.dart';
 import 'package:fitness_app/features/home/home.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
 import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/app_sections/AppSections.dart';
 import '../../features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
 import '../../features/auth/presentation/forget_password/view/create_new_password/create_new_password_page.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
@@ -48,7 +53,7 @@ class AppRoutesGenerator {
         );
 
       case AppRoutes.homePage:
-        return MaterialPageRoute(builder: (_) => const Home());
+        return MaterialPageRoute(builder: (_) => MainNavigationScreen());
 
       case AppRoutes.forgotPass:
         return MaterialPageRoute(
@@ -82,7 +87,24 @@ class AppRoutesGenerator {
         );
       case AppRoutes.onboarding:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
-
+      case AppRoutes.exercisePage:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) {
+                  // final args = settings.arguments as ExercisePageArguments;
+                  return getIt<ExercisePageBloc>()
+                    ..add(GetLevelsEvent());
+                },
+                child: ExercisePage(
+                  arguments: ExercisePageArguments(
+                    muscleGroupId: '67c79f3526895f87ce0aa96b',
+                    muscleGroupName: 'Glutes',
+                    muscleGroupImage: null,
+                  ),
+                ),
+              ),
+        );
       default:
         return MaterialPageRoute(
           builder:

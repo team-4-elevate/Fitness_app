@@ -8,4 +8,6 @@ class ApiConstants {
   static const String verifyOtpEndpoint = '/auth/verifyResetCode';
   static const String resetPasswordEndpoint = '/auth/resetPassword';
   static const String registerEndpoint = '/auth/signup';
+  static const String difficultyLevel = '/levels';
+  static const String exercises = '/exercises';
 }

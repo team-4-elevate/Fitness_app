@@ -35,6 +35,19 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_impl.dart'
+    as _i649;
+import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_interface.dart'
+    as _i139;
+import '../../features/exercise/data/repo_impl/exercise_repo_impl.dart'
+    as _i824;
+import '../../features/exercise/domain/repo_interface/exercise_repo_interface.dart'
+    as _i822;
+import '../../features/exercise/domain/use_cases/get_exercise_use_case.dart'
+    as _i182;
+import '../../features/exercise/domain/use_cases/get_levels_use_case.dart'
+    as _i233;
+import '../../features/exercise/presentation/bloc/exercise_bloc.dart' as _i154;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
     as _i768;
@@ -51,7 +64,6 @@ import '../app_local_storage/app_secure_storage_impl.dart' as _i988;
 import '../routes/navigation_obsevation.dart' as _i1052;
 import '../services/shared_prefs.dart' as _i241;
 import '../utils/app_navigator_observer.dart' as _i668;
-import '../utils/navigation_services.dart' as _i565;
 import 'register_module.dart' as _i291;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -66,16 +78,15 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.prefs,
       preResolve: true,
     );
+    gh.singleton<_i668.AppNavigatorObserver>(
+      () => _i668.AppNavigatorObserver(),
+    );
     gh.singleton<_i1052.AppNavigatorObserver>(
       () => _i1052.AppNavigatorObserver(),
     );
     gh.singleton<_i241.SharedPreferencesService>(
       () => _i241.SharedPreferencesService(),
     );
-    gh.singleton<_i668.AppNavigatorObserver>(
-      () => _i668.AppNavigatorObserver(),
-    );
-    gh.lazySingleton<_i565.NavigationService>(() => _i565.NavigationService());
     gh.factory<_i849.AppLocalStorage>(
       () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()),
     );
@@ -95,8 +106,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i792.OnboardingBloc>(
       () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()),
     );
+    gh.factory<_i139.ExerciseRemoteDsInterface>(
+      () => _i649.ExerciseRemoteDsImpl(gh<_i277.ApiClient>()),
+    );
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
+    );
+    gh.factory<_i822.ExerciseRepoInterface>(
+      () => _i824.ExerciseRepoImpl(gh<_i139.ExerciseRemoteDsInterface>()),
     );
     gh.factory<_i170.AuthRepo>(
       () => _i984.AuthRepoImpl(
@@ -110,14 +127,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
     );
-    gh.factory<_i18.ForgotPasswordUseCase>(
-      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
+    gh.factory<_i182.GetExercisesUseCase>(
+      () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()),
+    );
+    gh.factory<_i233.GetLevelsUseCase>(
+      () => _i233.GetLevelsUseCase(gh<_i822.ExerciseRepoInterface>()),
     );
     gh.factory<_i37.LoginUseCase>(
       () => _i37.LoginUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i825.ResetPasswordUseCase>(
       () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i18.ForgotPasswordUseCase>(
+      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i509.VerifyOtpUseCase>(
       () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()),
@@ -127,6 +150,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i18.ForgotPasswordUseCase>(),
         gh<_i509.VerifyOtpUseCase>(),
         gh<_i825.ResetPasswordUseCase>(),
+      ),
+    );
+    gh.factory<_i154.ExercisePageBloc>(
+      () => _i154.ExercisePageBloc(
+        getLevelsUseCase: gh<_i233.GetLevelsUseCase>(),
+        getExercisesUseCase: gh<_i182.GetExercisesUseCase>(),
       ),
     );
     gh.factory<_i225.LoginViewModel>(

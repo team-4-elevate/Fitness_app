@@ -409,5 +409,10 @@
   "enterYourEmail": "Enter your Email",
   "sendOtp": "Send OTP",
   "didntReceiveVerificationCode": "Didn't Receive Verification Code?",
-  "resend": "Resend"
+  "resend": "Resend",
+      "exercise": "Exercise",
+      "motivational_quote": "Each drop of sweat is a vote for the life you haven't lived yet.",
+      "no_exercises_found": "No exercises found",
+      "failed_to_load_exercises": "Failed to load exercises",
+      "video_not_available": "Video is not available, please try again later"
 }

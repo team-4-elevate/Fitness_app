@@ -18,8 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحبًا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError =>
-      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقًا.';
@@ -80,15 +79,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onBoardingTitle1 => 'مرحبًا بك في تطبيق اللياقة البدنية';
 
   @override
-  String get onBoardingDesc1 =>
-      'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
+  String get onBoardingDesc1 => 'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
 
   @override
   String get onBoardingTitle2 => 'تخصيص تجربتك';
 
   @override
-  String get onBoardingDesc2 =>
-      'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
+  String get onBoardingDesc2 => 'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
 
   @override
   String get onBoardingTitle3 => 'ابدأ رحلتك';
@@ -312,4 +309,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get resend => 'اعادة الارسال';
+
+  @override
+  String get exercise => 'تمرين';
+
+  @override
+  String get motivational_quote => 'كل قطرة عرق هي صوت للحياة التي لم تعشها بعد.';
+
+  @override
+  String get no_exercises_found => 'لم يتم العثور على تمارين';
+
+  @override
+  String get failed_to_load_exercises => 'فشل في تحميل التمارين';
+
+  @override
+  String get video_not_available => 'الفيديو غير متاح، يرجى المحاولة مرة أخرى لاحقاً';
 }
