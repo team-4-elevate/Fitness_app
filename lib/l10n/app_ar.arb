@@ -4,11 +4,11 @@
   "@appTitle": {
     "description": "عنوان التطبيق"
   },
-  "hello": "مرحبًا",
+  "hello": "مرحبا",
   "@hello": {
     "description": "تحية بسيطة"
   },
-  "welcome": "مرحبًا بك في تطبيق اللياقة البدنية",
+  "welcome": "مرحباً بك في تطبيق اللياقة البدنية",
   "@welcome": {
     "description": "رسالة ترحيب للمستخدمين"
   },
@@ -16,9 +16,9 @@
   "@networkError": {
     "description": "رسالة خطأ عند عدم وجود اتصال بالشبكة"
   },
-  "serverError": "خطأ في الخادم. يرجى المحاولة لاحقًا.",
+  "serverError": "خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.",
   "@serverError": {
-    "description": "رسالة خطأ لأخطاء الخادم"
+    "description": "رسالة خطأ للأخطاء الخادم"
   },
   "unknownError": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
   "@unknownError": {
@@ -26,47 +26,47 @@
   },
   "timeout": "انتهت مهلة الاتصال. يرجى المحاولة مرة أخرى.",
   "@timeout": {
-    "description": "رسالة خطأ لانتهاء المهلة"
+    "description": "رسالة خطأ لانتهاء المهلة الزمنية"
   },
   "unauthorized": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.",
   "@unauthorized": {
-    "description": "رسالة خطأ عند فشل تسجيل الدخول"
+    "description": "رسالة خطأ للوصول غير المصرح به"
   },
   "forbidden": "ليس لديك إذن للوصول.",
   "@forbidden": {
-    "description": "رسالة خطأ عند عدم وجود إذن"
+    "description": "رسالة خطأ للوصول المحظور"
   },
-  "notFound": "لم يتم العثور على البيانات المطلوبة.",
+  "notFound": "البيانات المطلوبة غير موجودة.",
   "@notFound": {
-    "description": "رسالة خطأ عند عدم العثور على البيانات"
+    "description": "رسالة خطأ للموارد غير الموجودة"
   },
-  "validationError": "البيانات المقدمة غير صالحة.",
+  "validationError": "البيانات المقدمة غير صحيحة.",
   "@validationError": {
-    "description": "رسالة خطأ لبيانات غير صالحة"
+    "description": "رسالة خطأ لأخطاء التحقق"
   },
-  "badRequest": "طلب غير صالح.",
+  "badRequest": "طلب غير صحيح.",
   "@badRequest": {
-    "description": "رسالة خطأ لطلب غير صالح"
+    "description": "رسالة خطأ للطلبات السيئة"
   },
   "requestCancelled": "تم إلغاء الطلب.",
   "@requestCancelled": {
-    "description": "رسالة خطأ عند إلغاء الطلب"
+    "description": "رسالة خطأ للطلبات الملغاة"
   },
   "connectionError": "خطأ في الاتصال. يرجى التحقق من الشبكة.",
   "@connectionError": {
-    "description": "رسالة خطأ لمشاكل الاتصال"
+    "description": "رسالة خطأ لأخطاء الاتصال"
   },
   "socketException": "مشكلة في الاتصال. يرجى التحقق من الإنترنت.",
   "@socketException": {
-    "description": "رسالة خطأ لمشاكل الاتصال"
+    "description": "رسالة خطأ لاستثناءات المقبس"
   },
-  "formatException": "تعذر قراءة البيانات المستلمة.",
+  "formatException": "لا يمكن قراءة البيانات المستلمة.",
   "@formatException": {
-    "description": "رسالة خطأ لمشاكل تنسيق البيانات"
+    "description": "رسالة خطأ لاستثناءات التنسيق"
   },
   "errorWithMessage": "حدث خطأ: {message}",
   "@errorWithMessage": {
-    "description": "رسالة خطأ مع متغير",
+    "description": "رسالة خطأ مع معامل",
     "placeholders": {
       "message": {
         "type": "String",
@@ -84,13 +84,50 @@
       }
     }
   },
-  "login_heyThere": "مرحبًا بك",
-  "@login_heyThere": {
-    "description": "نص ترحيبي في صفحة تسجيل الدخول"
+
+  "skip": "تخطي",
+  "@skip": {
+    "description": "زر لتخطي التعريف بالتطبيق"
   },
-  "login_welcomeBack": "مرحبًا بعودتك",
+  "back": "رجوع",
+  "@back": {
+    "description": "زر للعودة إلى الصفحة السابقة في التعريف"
+  },
+  "doIt": "لنبدأ",
+  "@doIt": {
+    "description": "زر للمتابعة بعد التعريف بالتطبيق"
+  },
+  "onBoardingTitle1": "ثمن التميز\nهو الانضباط",
+  "@onBoardingTitle1": {
+    "description": "عنوان شاشة التعريف الأولى"
+  },
+  "onBoardingDesc1": "ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك",
+  "@onBoardingDesc1": {
+    "description": "وصف شاشة التعريف الأولى"
+  },
+  "onBoardingTitle2": "اللياقة البدنية لم تكن\nممتعة هكذا من قبل",
+  "@onBoardingTitle2": {
+    "description": "عنوان شاشة التعريف الثانية"
+  },
+  "onBoardingDesc2": "اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية",
+  "@onBoardingDesc2": {
+    "description": "وصف شاشة التعريف الثانية"
+  },
+  "onBoardingTitle3": "لا مزيد من الأعذار\nافعلها الآن",
+  "@onBoardingTitle3": {
+    "description": "عنوان شاشة التعريف الثالثة"
+  },
+  "onBoardingDesc3": "حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك",
+  "@onBoardingDesc3": {
+    "description": "وصف شاشة التعريف الثالثة"
+  },
+  "login_heyThere": "أهلاً بك",
+  "@login_heyThere": {
+    "description": "نص الترحيب في صفحة تسجيل الدخول"
+  },
+  "login_welcomeBack": "مرحباً بعودتك",
   "@login_welcomeBack": {
-    "description": "رسالة ترحيب في صفحة تسجيل الدخول"
+    "description": "رسالة الترحيب بالعودة في صفحة تسجيل الدخول"
   },
   "login_title": "تسجيل الدخول",
   "@login_title": {
@@ -98,65 +135,67 @@
   },
   "login_emailLabel": "البريد الإلكتروني",
   "@login_emailLabel": {
-    "description": "تسمية حقل البريد الإلكتروني"
+    "description": "تسمية حقل البريد الإلكتروني في صفحة تسجيل الدخول"
   },
   "login_emailHint": "أدخل بريدك الإلكتروني",
   "@login_emailHint": {
-    "description": "نص تلميحي لحقل البريد الإلكتروني"
+    "description": "نص المساعدة لحقل البريد الإلكتروني في صفحة تسجيل الدخول"
   },
   "login_passwordLabel": "كلمة المرور",
   "@login_passwordLabel": {
-    "description": "تسمية حقل كلمة المرور"
+    "description": "تسمية حقل كلمة المرور في صفحة تسجيل الدخول"
   },
   "login_passwordHint": "أدخل كلمة المرور",
   "@login_passwordHint": {
-    "description": "نص تلميحي لحقل كلمة المرور"
+    "description": "نص المساعدة لحقل كلمة المرور في صفحة تسجيل الدخول"
   },
-  "login_forgotPassword": "هل نسيت كلمة المرور؟",
+  "login_forgotPassword": "نسيت كلمة المرور؟",
   "@login_forgotPassword": {
-    "description": "رابط نسيت كلمة المرور"
+    "description": "نص رابط نسيان كلمة المرور في صفحة تسجيل الدخول"
   },
   "login_orDivider": "أو",
   "@login_orDivider": {
-    "description": "نص فاصل بين خيارات تسجيل الدخول"
+    "description": "نص الفاصل بين خيارات تسجيل الدخول"
   },
   "login_noAccount": "ليس لديك حساب؟",
   "@login_noAccount": {
-    "description": "نص عدم وجود حساب"
+    "description": "نص رسالة عدم وجود حساب في صفحة تسجيل الدخول"
   },
-  "login_register": " سجل",
+  "login_register": " إنشاء حساب",
   "@login_register": {
-    "description": "رابط التسجيل"
+    "description": "نص رابط إنشاء حساب في صفحة تسجيل الدخول"
   },
   "login_socialTitle": "تسجيل الدخول الاجتماعي",
   "@login_socialTitle": {
     "description": "عنوان قسم تسجيل الدخول الاجتماعي"
   },
-  "login_socialMessage": "تسجيل الدخول الاجتماعي غير متوفر بعد.",
+  "login_socialMessage": "تسجيل الدخول الاجتماعي غير متاح حالياً.",
   "@login_socialMessage": {
-    "description": "رسالة عدم توفر تسجيل الدخول الاجتماعي"
+    "description": "رسالة تشير إلى أن تسجيل الدخول الاجتماعي غير مطبق بعد"
   },
-  "login_socialButton": "حسنًا فهمت",
+  "login_socialButton": "حسناً، فهمت",
   "@login_socialButton": {
-    "description": "زر تأكيد رسالة تسجيل الدخول الاجتماعي"
+    "description": "نص زر الموافقة على رسالة تسجيل الدخول الاجتماعي"
   },
+
   "login_successTitle": "تم تسجيل الدخول بنجاح",
   "@login_successTitle": {
-    "description": "عنوان نجاح تسجيل الدخول"
+    "description": "عنوان حوار نجاح تسجيل الدخول"
   },
-  "login_successMessage": "مرحبًا بعودتك، {user}!",
+  "login_successMessage": "مرحباً بعودتك، {user}!",
   "@login_successMessage": {
     "description": "رسالة نجاح تسجيل الدخول مع اسم المستخدم",
     "placeholders": {
       "user": {
         "type": "String",
-        "description": "اسم المستخدم الأول"
+        "description": "الاسم الأول للمستخدم"
       }
     }
   },
+
   "login_failedTitle": "فشل تسجيل الدخول",
   "@login_failedTitle": {
-    "description": "عنوان فشل تسجيل الدخول"
+    "description": "عنوان حوار فشل تسجيل الدخول"
   },
   "login_failedMessage": "{error}",
   "@login_failedMessage": {
@@ -164,231 +203,394 @@
     "placeholders": {
       "error": {
         "type": "String",
-        "description": "رسالة الخطأ"
+        "description": "رسالة الخطأ المراد عرضها"
       }
     }
   },
-  "login_failedButton": "حسنًا فهمت",
+
+  "login_failedButton": "حسناً، فهمت",
   "@login_failedButton": {
-    "description": "زر تأكيد فشل تسجيل الدخول"
+    "description": "نص زر الموافقة على فشل تسجيل الدخول"
   },
-  "registerSuccess": "تم التسجيل بنجاح!",
+  
+  "registerSuccess": "تم إنشاء الحساب بنجاح!",
   "@registerSuccess": {
-    "description": "رسالة نجاح التسجيل"
+    "description": "رسالة تظهر عند نجاح إنشاء الحساب"
   },
+  
   "next": "التالي",
   "@next": {
-    "description": "زر الخطوة التالية"
+    "description": "نص زر الخطوة التالية"
   },
+  
   "finish": "إنهاء",
   "@finish": {
-    "description": "زر الخطوة النهائية"
+    "description": "نص زر الخطوة الأخيرة"
   },
+  
   "registrationTitle1": "أخبرنا عن نفسك!",
   "@registrationTitle1": {
-    "description": "عنوان اختيار الجنس"
+    "description": "عنوان خطوة اختيار الجنس"
   },
   "registrationSubtitle1": "نحتاج لمعرفة جنسك",
   "@registrationSubtitle1": {
-    "description": "العنوان الفرعي لاختيار الجنس"
+    "description": "عنوان فرعي لخطوة اختيار الجنس"
   },
+  
   "registrationTitle2": "كم عمرك؟",
   "@registrationTitle2": {
-    "description": "عنوان اختيار العمر"
+    "description": "عنوان خطوة اختيار العمر"
   },
-  "registrationSubtitle2": "يساعدنا هذا في إنشاء خطتك الشخصية",
+  "registrationSubtitle2": "هذا يساعدنا في إنشاء خطتك الشخصية",
   "@registrationSubtitle2": {
-    "description": "العنوان الفرعي لاختيار العمر"
+    "description": "عنوان فرعي لخطوة اختيار العمر"
   },
+  
   "registrationTitle3": "ما هو وزنك؟",
   "@registrationTitle3": {
-    "description": "عنوان اختيار الوزن"
+    "description": "عنوان خطوة اختيار الوزن"
   },
   "registrationSubtitle3": "نستخدم هذا لحساب السعرات الحرارية",
   "@registrationSubtitle3": {
-    "description": "العنوان الفرعي لاختيار الوزن"
+    "description": "عنوان فرعي لخطوة اختيار الوزن"
   },
+
+  "data_parse_error_upcoming_workouts": "فشل في تحليل التمارين القادمة: {error}",
+  "@data_parse_error_upcoming_workouts": {
+    "description": "رسالة خطأ عند فشل تحليل التمارين القادمة",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "تنسيق غير صحيح"
+      }
+    }
+  },
+  "data_parse_error_food_recommendations": "فشل في تحليل توصيات الطعام: {error}",
+  "@data_parse_error_food_recommendations": {
+    "description": "رسالة خطأ عند فشل تحليل توصيات الطعام",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "تنسيق غير صحيح"
+      }
+    }
+  },
+  "data_network_error": "خطأ في الشبكة: {error}",
+  "@data_network_error": {
+    "description": "رسالة خطأ لمشاكل الشبكة",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "رفض الاتصال"
+      }
+    }
+  },
+
+  "domain_error_loading_data": "خطأ في تحميل البيانات: {message}",
+  "@domain_error_loading_data": {
+    "description": "رسالة خطأ عامة لطبقة النطاق",
+    "placeholders": {
+      "message": {
+        "type": "String",
+        "example": "استجابة غير صحيحة"
+      }
+    }
+  },
+
+  "dailyToRecommendations": "التوصيات اليومية",
+  "@dailyToRecommendations": {
+    "description": "عنوان قسم التوصيات اليومية"
+  },
+  "home_upcoming_workouts": "التمارين القادمة",
+  "@home_upcoming_workouts": {
+    "description": "عنوان قسم التمارين القادمة"
+  },
+  "home_recommendations_for_you": "توصيات لك",
+  "@home_recommendations_for_you": {
+    "description": "عنوان قسم توصيات الطعام"
+  },
+  "home_popular_training": "التمارين الشائعة",
+  "@home_popular_training": {
+    "description": "عنوان قسم التمارين الشائعة"
+  },
+  "home_see_all": "عرض الكل",
+  "@home_see_all": {
+    "description": "زر لعرض جميع العناصر في القسم"
+  },
+  "home_error_upcoming_workouts": "خطأ في تحميل التمارين القادمة: {error}",
+  "@home_error_upcoming_workouts": {
+    "description": "رسالة خطأ عند فشل تحميل التمارين القادمة",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "خطأ في الشبكة"
+      }
+    }
+  },
+  "home_error_food_recommendations": "خطأ في تحميل توصيات الطعام: {error}",
+  "@home_error_food_recommendations": {
+    "description": "رسالة خطأ عند فشل تحميل توصيات الطعام",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "خطأ في الشبكة"
+      }
+    }
+  },
+
+  "failed_to_parse_upcoming_workouts": "فشل في تحليل التمارين القادمة: ",
+  "@failed_to_parse_upcoming_workouts": {
+    "description": "رسالة خطأ عند فشل تحليل التمارين القادمة"
+  },
+
+  "let_s_start_your_day": "لنبدأ يومك",
+  "@let_s_start_your_day": {
+    "description": "رسالة ترحيب لبدء اليوم"
+  },
+  
+  "category_gym": "صالة الألعاب",
+  "@category_gym": {
+    "description": "اسم فئة صالة الألعاب"
+  },
+  "category_fitness": "لياقة بدنية",
+  "@category_fitness": {
+    "description": "اسم فئة اللياقة البدنية"
+  },
+  "category_yoga": "يوغا",
+  "@category_yoga": {
+    "description": "اسم فئة اليوغا"
+  },
+  "category_aerobics": "إيروبكس",
+  "@category_aerobics": {
+    "description": "اسم فئة الإيروبكس"
+  },
+  "category_trainer": "مدرب",
+  "@category_trainer": {
+    "description": "اسم فئة المدرب"
+  },
+
+  "workout_category_full_body": "كامل الجسم",
+  "@workout_category_full_body": {
+    "description": "فئة تمارين كامل الجسم"
+  },
+  "workout_category_chest": "الصدر",
+  "@workout_category_chest": {
+    "description": "فئة تمارين الصدر"
+  },
+  "workout_category_arm": "الذراع",
+  "@workout_category_arm": {
+    "description": "فئة تمارين الذراع"
+  },
+  "workout_category_leg": "الساق",
+  "@workout_category_leg": {
+    "description": "فئة تمارين الساق"
+  },
+  
   "registrationTitle4": "ما هو طولك؟",
   "@registrationTitle4": {
-    "description": "عنوان اختيار الطول"
+    "description": "عنوان خطوة اختيار الطول"
   },
-  "registrationSubtitle4": "يساعدنا هذا في حساب مؤشر كتلة الجسم",
+  "registrationSubtitle4": "هذا يساعدنا في حساب مؤشر كتلة الجسم",
   "@registrationSubtitle4": {
-    "description": "العنوان الفرعي لاختيار الطول"
+    "description": "عنوان فرعي لخطوة اختيار الطول"
   },
+  
   "registrationTitle5": "ما هو هدفك؟",
   "@registrationTitle5": {
-    "description": "عنوان اختيار الهدف"
+    "description": "عنوان خطوة اختيار الهدف"
   },
-  "registrationSubtitle5": "أخبرنا بما تريد تحقيقه",
+  "registrationSubtitle5": "أخبرنا ما تريد تحقيقه",
   "@registrationSubtitle5": {
-    "description": "العنوان الفرعي لاختيار الهدف"
+    "description": "عنوان فرعي لخطوة اختيار الهدف"
   },
+  
   "registrationTitle6": "ما مدى نشاطك؟",
   "@registrationTitle6": {
-    "description": "عنوان اختيار مستوى النشاط"
+    "description": "عنوان خطوة اختيار مستوى النشاط"
   },
   "registrationSubtitle6": "مستوى نشاطك يساعدنا في تحديد الأهداف",
   "@registrationSubtitle6": {
-    "description": "العنوان الفرعي لاختيار مستوى النشاط"
+    "description": "عنوان فرعي لخطوة اختيار مستوى النشاط"
   },
+  
   "year": "سنة",
   "@year": {
     "description": "تسمية اختيار العمر"
   },
-  "kg": "كجم",
+  
+  "kg": "كغ",
   "@kg": {
     "description": "تسمية اختيار الوزن"
   },
+  
   "cm": "سم",
   "@cm": {
     "description": "تسمية اختيار الطول"
   },
+  
   "male": "ذكر",
   "@male": {
-    "description": "خيار الجنس ذكر"
+    "description": "تسمية خيار الجنس الذكر"
   },
+  
   "female": "أنثى",
   "@female": {
-    "description": "خيار الجنس أنثى"
+    "description": "تسمية خيار الجنس الأنثى"
   },
+  
   "goalGainWeight": "زيادة الوزن",
   "@goalGainWeight": {
-    "description": "خيار الهدف زيادة الوزن"
+    "description": "خيار الهدف لزيادة الوزن"
   },
-  "goalLoseWeight": "فقدان الوزن",
+  "goalLoseWeight": "إنقاص الوزن",
   "@goalLoseWeight": {
-    "description": "خيار الهدف فقدان الوزن"
+    "description": "خيار الهدف لإنقاص الوزن"
   },
-  "goalGetFitter": "أن أصبح أكثر لياقة",
+  "goalGetFitter": "تحسين اللياقة",
   "@goalGetFitter": {
-    "description": "خيار الهدف أن أصبح أكثر لياقة"
+    "description": "خيار الهدف لتحسين اللياقة البدنية"
   },
   "goalGainFlexibility": "زيادة المرونة",
   "@goalGainFlexibility": {
-    "description": "خيار الهدف زيادة المرونة"
+    "description": "خيار الهدف لزيادة المرونة"
   },
   "goalLearnBasics": "تعلم الأساسيات",
   "@goalLearnBasics": {
-    "description": "خيار الهدف تعلم الأساسيات"
+    "description": "خيار الهدف لتعلم الأساسيات"
   },
-  "activityRookie": "مبتدئ",
+  
+  "activityRookie": "مبتدئ جداً",
   "@activityRookie": {
-    "description": "خيار مستوى النشاط مبتدئ"
+    "description": "خيار مستوى النشاط للمبتدئ جداً"
   },
   "activityBeginner": "مبتدئ",
   "@activityBeginner": {
-    "description": "خيار مستوى النشاط مبتدئ"
+    "description": "خيار مستوى النشاط للمبتدئ"
   },
   "activityIntermediate": "متوسط",
   "@activityIntermediate": {
-    "description": "خيار مستوى النشاط متوسط"
+    "description": "خيار مستوى النشاط للمتوسط"
   },
   "activityAdvanced": "متقدم",
   "@activityAdvanced": {
-    "description": "خيار مستوى النشاط متقدم"
+    "description": "خيار مستوى النشاط للمتقدم"
   },
   "activityTrueBeast": "محترف",
   "@activityTrueBeast": {
-    "description": "خيار مستوى النشاط محترف"
+    "description": "خيار مستوى النشاط للمحترف"
   },
+
   "firstName": "الاسم الأول",
   "@firstName": {
     "description": "تسمية حقل الاسم الأول"
   },
+
   "lastName": "اسم العائلة",
   "@lastName": {
     "description": "تسمية حقل اسم العائلة"
   },
+
   "email": "البريد الإلكتروني",
   "@email": {
     "description": "تسمية حقل البريد الإلكتروني"
   },
+
   "password": "كلمة المرور",
   "@password": {
     "description": "تسمية حقل كلمة المرور"
   },
+
   "passwordRequired": "كلمة المرور مطلوبة",
   "@passwordRequired": {
-    "description": "رسالة خطأ عند ترك كلمة المرور فارغة"
-  },
-  "registerGreeting": "مرحبًا بك",
-  "@registerGreeting": {
-    "description": "نص ترحيبي في صفحة التسجيل"
-  },
-  "createAccount": "إنشاء حساب",
-  "@createAccount": {
-    "description": "عنوان صفحة التسجيل"
-  },
-  "register": "تسجيل",
-  "@register": {
-    "description": "زر التسجيل"
+    "description": "رسالة خطأ عند ترك حقل كلمة المرور فارغاً"
   },
 
-  "alreadyHaveAnAccount": "هل لديك حساب بالفعل؟",
+  "registerGreeting": "أهلاً وسهلاً",
+  "@registerGreeting": {
+    "description": "نص الترحيب في صفحة إنشاء الحساب"
+  },
+
+  "createAccount": "إنشاء حساب",
+  "@createAccount": {
+    "description": "عنوان صفحة إنشاء الحساب"
+  },
+
+  "register": "إنشاء حساب",
+  "@register": {
+    "description": "نص زر إنشاء الحساب"
+  },
+
+  "alreadyHaveAnAccount": "لديك حساب بالفعل؟",
   "@alreadyHaveAnAccount": {
-    "description": "نص السؤال عما إذا كان لدى المستخدم حساب بالفعل في صفحة التسجيل"
+    "description": "نص السؤال عما إذا كان لدى المستخدم حساب في صفحة إنشاء الحساب"
   },
 
   "login": "تسجيل الدخول",
   "@login": {
     "description": "نص تسجيل الدخول للأزرار والروابط"
   },
-  "skip": "تخطي",
-  "@skip": {
-    "description": "زر تخطي في عملية الإعداد الأولي"
+  "food_Recommendation_title": "توصيات الطعام",
+  "@food_Recommendation_title": {
+    "description": "عنوان قسم توصيات الطعام"
   },
-  "back": "رجوع",
-  "@back": {
-    "description": "زر الرجوع في عملية الإعداد الأولي"
+  "food_Recommendation_no_categories": "لا توجد فئات",
+  "@food_Recommendation_no_categories": {
+    "description": "رسالة تظهر عند عدم وجود فئات طعام"
   },
-  "doIt": "لنبدأ",
-  "@doIt": {
-    "description": "زر البدء في عملية الإعداد الأولي"
+  "food_food_Recommendation_fail_to_loadCategories": "فشل في تحميل الفئات",
+  "@food_food_Recommendation_fail_to_loadCategories": {
+    "description": "رسالة خطأ تظهر عند فشل تحميل فئات الطعام"
   },
-  "onBoardingTitle1": "مرحبًا بك في تطبيق اللياقة البدنية",
-  "@onBoardingTitle1": {
-    "description": "عنوان الشاشة الأولى في عملية الإعداد الأولي"
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "نص زر إعادة المحاولة"
   },
-  "onBoardingDesc1": "هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.",
-  "@onBoardingDesc1": {
-    "description": "وصف الشاشة الأولى في عملية الإعداد الأولي"
-  },
-  "onBoardingTitle2": "تخصيص تجربتك",
-  "@onBoardingTitle2": {
-    "description": "عنوان الشاشة الثانية في عملية الإعداد الأولي"
-  },
-  "onBoardingDesc2": "أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.",
-  "@onBoardingDesc2": {
-    "description": "وصف الشاشة الثانية في عملية الإعداد الأولي"
-  },
-  "onBoardingTitle3": "ابدأ رحلتك",
-  "@onBoardingTitle3": {
-    "description": "عنوان الشاشة الثالثة في عملية الإعداد الأولي"
-  },
-  "onBoardingDesc3": "دعنا نبدأ رحلتك نحو حياة أكثر صحة ولياقة.",
-  "@onBoardingDesc3": {
-    "description": "وصف الشاشة الثالثة في عملية الإعداد الأولي"
-  },
-  "food_Recommendation_title": "اقتراحات للاكل",
-  "food_Recommendation_no_categories": "لايوجد بيانات",
-  "food_food_Recommendation_fail_to_loadCategories": "خطأ في تحميل الاصناف",
-  "retry": "حاول مره اخري",
   "confirmPassword": "يرجى تأكيد كلمة المرور",
+  "@confirmPassword": {
+    "description": "تسمية حقل تأكيد كلمة المرور"
+  },
   "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
-  "enterFourDigitCode": "يرجى إدخال رمز مكون من 4 أرقام",
+  "@passwordsDoNotMatch": {
+    "description": "رسالة خطأ عند عدم تطابق كلمات المرور"
+  },
+  "enterFourDigitCode": "يرجى إدخال الرمز المكون من 4 أرقام",
+  "@enterFourDigitCode": {
+    "description": "تسمية إدخال رمز مكون من أربعة أرقام"
+  },
   "confirm": "تأكيد",
+  "@confirm": {
+    "description": "نص زر تأكيد الإجراء"
+  },
   "enterYourOtp": "أدخل رمز التحقق",
+  "@enterYourOtp": {
+    "description": "تسمية إدخال رمز التحقق لمرة واحدة"
+  },
   "checkYourEmail": "تحقق من بريدك الإلكتروني",
+  "@checkYourEmail": {
+    "description": "تسمية التحقق من البريد الإلكتروني"
+  },
   "otpCode": "رمز التحقق",
-  "forgetPassword": "نسيان كلمة المرور",
+  "@otpCode": {
+    "description": "تسمية إدخال رمز التحقق"
+  },
+  "forgetPassword": "نسيت كلمة المرور",
+  "@forgetPassword": {
+    "description": "تسمية نسيان كلمة المرور"
+  },
   "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "@enterYourEmail": {
+    "description": "تسمية إدخال البريد الإلكتروني"
+  },
   "sendOtp": "إرسال رمز التحقق",
+  "@sendOtp": {
+    "description": "نص زر إرسال رمز التحقق"
+  },
   "didntReceiveVerificationCode": "لم تستلم رمز التحقق؟",
-  "resend": "اعادة الارسال",
-  "exercise": "تمرين",
-      "motivational_quote": "كل قطرة عرق هي صوت للحياة التي لم تعشها بعد.",
-      "no_exercises_found": "لم يتم العثور على تمارين",
-      "failed_to_load_exercises": "فشل في تحميل التمارين",
-      "video_not_available": "الفيديو غير متاح، يرجى المحاولة مرة أخرى لاحقاً"
+  "@didntReceiveVerificationCode": {
+    "description": "نص السؤال عما إذا لم يستلم المستخدم رمز التحقق"
+  },
+  "resend": "إعادة الإرسال",
+  "@resend": {
+    "description": "نص زر إعادة إرسال رمز التحقق"
+  }
 }

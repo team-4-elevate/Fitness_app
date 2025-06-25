@@ -104,11 +104,16 @@ class AppRoutesGenerator {
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
 
       case AppRoutes.foodRecommendationScreen:
+        final args = settings.arguments as Map<String, dynamic>?;
+        final selectedTabIndex = args?['selectedTabIndex'];
+
         return MaterialPageRoute(
           builder:
               (_) => BlocProvider(
                 create: (_) => getIt<FoodRecommendationViewModel>(),
-                child: const FoodRecommendationScreen(),
+                child: FoodRecommendationScreen(
+                  selectedTabIndex: selectedTabIndex,
+                ),
               ),
         );
 

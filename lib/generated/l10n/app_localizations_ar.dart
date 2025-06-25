@@ -1,3 +1,4 @@
+// generated/l10n/app_localizations_ar.dart
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
@@ -12,17 +13,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appTitle => 'تطبيق اللياقة البدنية';
 
   @override
-  String get hello => 'مرحبًا';
+  String get hello => 'مرحبا';
 
   @override
-  String get welcome => 'مرحبًا بك في تطبيق اللياقة البدنية';
+  String get welcome => 'مرحباً بك في تطبيق اللياقة البدنية';
 
   @override
   String get networkError =>
       'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
-  String get serverError => 'خطأ في الخادم. يرجى المحاولة لاحقًا.';
+  String get serverError => 'خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.';
 
   @override
   String get unknownError => 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.';
@@ -37,13 +38,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get forbidden => 'ليس لديك إذن للوصول.';
 
   @override
-  String get notFound => 'لم يتم العثور على البيانات المطلوبة.';
+  String get notFound => 'البيانات المطلوبة غير موجودة.';
 
   @override
-  String get validationError => 'البيانات المقدمة غير صالحة.';
+  String get validationError => 'البيانات المقدمة غير صحيحة.';
 
   @override
-  String get badRequest => 'طلب غير صالح.';
+  String get badRequest => 'طلب غير صحيح.';
 
   @override
   String get requestCancelled => 'تم إلغاء الطلب.';
@@ -55,7 +56,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get socketException => 'مشكلة في الاتصال. يرجى التحقق من الإنترنت.';
 
   @override
-  String get formatException => 'تعذر قراءة البيانات المستلمة.';
+  String get formatException => 'لا يمكن قراءة البيانات المستلمة.';
 
   @override
   String errorWithMessage(String message) {
@@ -77,30 +78,31 @@ class AppLocalizationsAr extends AppLocalizations {
   String get doIt => 'لنبدأ';
 
   @override
-  String get onBoardingTitle1 => 'مرحبًا بك في تطبيق اللياقة البدنية';
+  String get onBoardingTitle1 => 'ثمن التميز\nهو الانضباط';
 
   @override
   String get onBoardingDesc1 =>
-      'هذا التطبيق مصمم لمساعدتك في تحقيق أهداف لياقتك البدنية.';
+      'ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك';
 
   @override
-  String get onBoardingTitle2 => 'تخصيص تجربتك';
+  String get onBoardingTitle2 => 'اللياقة البدنية لم تكن\nممتعة هكذا من قبل';
 
   @override
   String get onBoardingDesc2 =>
-      'أخبرنا عن أهدافك ومستوى لياقتك لنقدم لك خطة مخصصة.';
+      'اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية';
 
   @override
-  String get onBoardingTitle3 => 'ابدأ رحلتك';
+  String get onBoardingTitle3 => 'لا مزيد من الأعذار\nافعلها الآن';
 
   @override
-  String get onBoardingDesc3 => 'دعنا نبدأ رحلتك نحو حياة أكثر صحة ولياقة.';
+  String get onBoardingDesc3 =>
+      'حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك';
 
   @override
-  String get login_heyThere => 'مرحبًا بك';
+  String get login_heyThere => 'أهلاً بك';
 
   @override
-  String get login_welcomeBack => 'مرحبًا بعودتك';
+  String get login_welcomeBack => 'مرحباً بعودتك';
 
   @override
   String get login_title => 'تسجيل الدخول';
@@ -118,7 +120,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login_passwordHint => 'أدخل كلمة المرور';
 
   @override
-  String get login_forgotPassword => 'هل نسيت كلمة المرور؟';
+  String get login_forgotPassword => 'نسيت كلمة المرور؟';
 
   @override
   String get login_orDivider => 'أو';
@@ -127,23 +129,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login_noAccount => 'ليس لديك حساب؟';
 
   @override
-  String get login_register => ' سجل';
+  String get login_register => ' إنشاء حساب';
 
   @override
   String get login_socialTitle => 'تسجيل الدخول الاجتماعي';
 
   @override
-  String get login_socialMessage => 'تسجيل الدخول الاجتماعي غير متوفر بعد.';
+  String get login_socialMessage => 'تسجيل الدخول الاجتماعي غير متاح حالياً.';
 
   @override
-  String get login_socialButton => 'حسنًا فهمت';
+  String get login_socialButton => 'حسناً، فهمت';
 
   @override
   String get login_successTitle => 'تم تسجيل الدخول بنجاح';
 
   @override
   String login_successMessage(String user) {
-    return 'مرحبًا بعودتك، $user!';
+    return 'مرحباً بعودتك، $user!';
   }
 
   @override
@@ -155,10 +157,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get login_failedButton => 'حسنًا فهمت';
+  String get login_failedButton => 'حسناً، فهمت';
 
   @override
-  String get registerSuccess => 'تم التسجيل بنجاح!';
+  String get registerSuccess => 'تم إنشاء الحساب بنجاح!';
 
   @override
   String get next => 'التالي';
@@ -176,7 +178,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get registrationTitle2 => 'كم عمرك؟';
 
   @override
-  String get registrationSubtitle2 => 'يساعدنا هذا في إنشاء خطتك الشخصية';
+  String get registrationSubtitle2 => 'هذا يساعدنا في إنشاء خطتك الشخصية';
 
   @override
   String get registrationTitle3 => 'ما هو وزنك؟';
@@ -185,16 +187,110 @@ class AppLocalizationsAr extends AppLocalizations {
   String get registrationSubtitle3 => 'نستخدم هذا لحساب السعرات الحرارية';
 
   @override
+  String data_parse_error_upcoming_workouts(String error) {
+    return 'فشل في تحليل التمارين القادمة: $error';
+  }
+
+  @override
+  String data_parse_error_food_recommendations(String error) {
+    return 'فشل في تحليل توصيات الطعام: $error';
+  }
+
+  @override
+  String data_network_error(String error) {
+    return 'خطأ في الشبكة: $error';
+  }
+
+  @override
+  String domain_error_loading_data(String message) {
+    return 'خطأ في تحميل البيانات: $message';
+  }
+
+  @override
+  String get dailyToRecommendations => 'التوصيات اليومية';
+
+  @override
+  String get home_upcoming_workouts => 'التمارين القادمة';
+
+  @override
+  String get home_recommendations_for_you => 'توصيات لك';
+
+  @override
+  String get home_popular_training => 'التمارين الشائعة';
+
+  @override
+  String get home_see_all => 'عرض الكل';
+
+  @override
+  String home_error_upcoming_workouts(String error) {
+    return 'خطأ في تحميل التمارين القادمة: $error';
+  }
+
+  @override
+  String home_error_loading_upcoming_workouts(String error) {
+    return 'Error loading upcoming workouts: $error';
+  }
+
+  @override
+  String home_error_food_recommendations(String error) {
+    return 'خطأ في تحميل توصيات الطعام: $error';
+  }
+
+  @override
+  String home_error_loading_food_recommendations(String error) {
+    return 'Error loading food recommendations: $error';
+  }
+
+  @override
+  String home_error_loading_daily_recommendations(String error) {
+    return 'Error loading daily recommendations: $error';
+  }
+
+  @override
+  String get failed_to_parse_upcoming_workouts =>
+      'فشل في تحليل التمارين القادمة: ';
+
+  @override
+  String get let_s_start_your_day => 'لنبدأ يومك';
+
+  @override
+  String get category_gym => 'صالة الألعاب';
+
+  @override
+  String get category_fitness => 'لياقة بدنية';
+
+  @override
+  String get category_yoga => 'يوغا';
+
+  @override
+  String get category_aerobics => 'إيروبكس';
+
+  @override
+  String get category_trainer => 'مدرب';
+
+  @override
+  String get workout_category_full_body => 'كامل الجسم';
+
+  @override
+  String get workout_category_chest => 'الصدر';
+
+  @override
+  String get workout_category_arm => 'الذراع';
+
+  @override
+  String get workout_category_leg => 'الساق';
+
+  @override
   String get registrationTitle4 => 'ما هو طولك؟';
 
   @override
-  String get registrationSubtitle4 => 'يساعدنا هذا في حساب مؤشر كتلة الجسم';
+  String get registrationSubtitle4 => 'هذا يساعدنا في حساب مؤشر كتلة الجسم';
 
   @override
   String get registrationTitle5 => 'ما هو هدفك؟';
 
   @override
-  String get registrationSubtitle5 => 'أخبرنا بما تريد تحقيقه';
+  String get registrationSubtitle5 => 'أخبرنا ما تريد تحقيقه';
 
   @override
   String get registrationTitle6 => 'ما مدى نشاطك؟';
@@ -206,7 +302,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get year => 'سنة';
 
   @override
-  String get kg => 'كجم';
+  String get kg => 'كغ';
 
   @override
   String get cm => 'سم';
@@ -221,10 +317,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get goalGainWeight => 'زيادة الوزن';
 
   @override
-  String get goalLoseWeight => 'فقدان الوزن';
+  String get goalLoseWeight => 'إنقاص الوزن';
 
   @override
-  String get goalGetFitter => 'أن أصبح أكثر لياقة';
+  String get goalGetFitter => 'تحسين اللياقة';
 
   @override
   String get goalGainFlexibility => 'زيادة المرونة';
@@ -233,7 +329,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get goalLearnBasics => 'تعلم الأساسيات';
 
   @override
-  String get activityRookie => 'مبتدئ';
+  String get activityRookie => 'مبتدئ جداً';
 
   @override
   String get activityBeginner => 'مبتدئ';
@@ -263,32 +359,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordRequired => 'كلمة المرور مطلوبة';
 
   @override
-  String get registerGreeting => 'مرحبًا بك';
+  String get registerGreeting => 'أهلاً وسهلاً';
 
   @override
   String get createAccount => 'إنشاء حساب';
 
   @override
-  String get register => 'تسجيل';
+  String get register => 'إنشاء حساب';
 
   @override
-  String get alreadyHaveAnAccount => 'هل لديك حساب بالفعل؟';
+  String get alreadyHaveAnAccount => 'لديك حساب بالفعل؟';
 
   @override
   String get login => 'تسجيل الدخول';
 
   @override
-  String get food_Recommendation_title => 'اقتراحات للاكل';
+  String get food_Recommendation_title => 'توصيات الطعام';
 
   @override
-  String get food_Recommendation_no_categories => 'لايوجد بيانات';
+  String get food_Recommendation_no_categories => 'لا توجد فئات';
 
   @override
   String get food_food_Recommendation_fail_to_loadCategories =>
-      'خطأ في تحميل الاصناف';
+      'فشل في تحميل الفئات';
 
   @override
-  String get retry => 'حاول مره اخري';
+  String get retry => 'إعادة المحاولة';
 
   @override
   String get confirmPassword => 'يرجى تأكيد كلمة المرور';
@@ -297,7 +393,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
 
   @override
-  String get enterFourDigitCode => 'يرجى إدخال رمز مكون من 4 أرقام';
+  String get enterFourDigitCode => 'يرجى إدخال الرمز المكون من 4 أرقام';
 
   @override
   String get confirm => 'تأكيد';
@@ -312,7 +408,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get otpCode => 'رمز التحقق';
 
   @override
-  String get forgetPassword => 'نسيان كلمة المرور';
+  String get forgetPassword => 'نسيت كلمة المرور';
 
   @override
   String get enterYourEmail => 'أدخل بريدك الإلكتروني';
