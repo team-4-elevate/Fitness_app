@@ -859,36 +859,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Resend'**
   String get resend;
-
-  /// No description provided for @exercise.
-  ///
-  /// In en, this message translates to:
-  /// **'Exercise'**
-  String get exercise;
-
-  /// No description provided for @motivational_quote.
-  ///
-  /// In en, this message translates to:
-  /// **'Each drop of sweat is a vote for the life you haven\'t lived yet.'**
-  String get motivational_quote;
-
-  /// No description provided for @no_exercises_found.
-  ///
-  /// In en, this message translates to:
-  /// **'No exercises found'**
-  String get no_exercises_found;
-
-  /// No description provided for @failed_to_load_exercises.
-  ///
-  /// In en, this message translates to:
-  /// **'Failed to load exercises'**
-  String get failed_to_load_exercises;
-
-  /// No description provided for @video_not_available.
-  ///
-  /// In en, this message translates to:
-  /// **'Video is not available, please try again later'**
-  String get video_not_available;
 }
 
 class _AppLocalizationsDelegate

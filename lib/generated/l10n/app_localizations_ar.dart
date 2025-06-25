@@ -1,4 +1,3 @@
-// generated/l10n/app_localizations_ar.dart
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
@@ -420,22 +419,5 @@ class AppLocalizationsAr extends AppLocalizations {
   String get didntReceiveVerificationCode => 'لم تستلم رمز التحقق؟';
 
   @override
-  String get resend => 'اعادة الارسال';
-
-  @override
-  String get exercise => 'تمرين';
-
-  @override
-  String get motivational_quote =>
-      'كل قطرة عرق هي صوت للحياة التي لم تعشها بعد.';
-
-  @override
-  String get no_exercises_found => 'لم يتم العثور على تمارين';
-
-  @override
-  String get failed_to_load_exercises => 'فشل في تحميل التمارين';
-
-  @override
-  String get video_not_available =>
-      'الفيديو غير متاح، يرجى المحاولة مرة أخرى لاحقاً';
+  String get resend => 'إعادة الإرسال';
 }

@@ -424,21 +424,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resend => 'Resend';
-
-  @override
-  String get exercise => 'Exercise';
-
-  @override
-  String get motivational_quote =>
-      'Each drop of sweat is a vote for the life you haven\'t lived yet.';
-
-  @override
-  String get no_exercises_found => 'No exercises found';
-
-  @override
-  String get failed_to_load_exercises => 'Failed to load exercises';
-
-  @override
-  String get video_not_available =>
-      'Video is not available, please try again later';
 }
