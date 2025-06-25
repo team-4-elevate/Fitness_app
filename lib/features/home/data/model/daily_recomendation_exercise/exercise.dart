@@ -190,6 +190,7 @@ class Exercise {
       id: id ?? '',
       name: exercise ?? 'Unknown Exercise',
       imageUrl: thumbnailUrl,
+      bodyRegion: bodyRegion,
     );
   }
 
