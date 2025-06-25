@@ -90,20 +90,18 @@ class AppRoutesGenerator {
       case AppRoutes.exercisePage:
         return MaterialPageRoute(
           builder:
-              (_) => BlocProvider(
+              (_) {
+                final args = settings.arguments as ExercisePageArguments;
+                return BlocProvider(
                 create: (context) {
-                  // final args = settings.arguments as ExercisePageArguments;
                   return getIt<ExercisePageBloc>()
                     ..add(GetLevelsEvent());
                 },
                 child: ExercisePage(
-                  arguments: ExercisePageArguments(
-                    muscleGroupId: '67c79f3526895f87ce0aa96b',
-                    muscleGroupName: 'Glutes',
-                    muscleGroupImage: null,
-                  ),
+                  arguments: args,
                 ),
-              ),
+              );
+              },
         );
       default:
         return MaterialPageRoute(
