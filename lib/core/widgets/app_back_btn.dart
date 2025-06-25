@@ -12,13 +12,11 @@ class AppBackBtn extends StatelessWidget {
       width: 24,
       child: InkWell(
         onTap: () {
-          if(Navigator.canPop(context)){
+          if (Navigator.canPop(context)) {
             Navigator.pop(context);
           }
         },
-        child: ClipOval(
-          child: SvgPicture.asset(AppConstants.appBackBtn),
-        ),
+        child: ClipOval(child: SvgPicture.asset(AppConstants.appBackBtn)),
       ),
     );
   }

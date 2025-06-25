@@ -21,16 +21,11 @@ class ExercisePageHeaderBody extends StatelessWidget {
       },
       builder: (context, state) {
         return state.getLevelsStatus.isSuccess
-            ? ExerciseTabBar(
-          muscleGroupId: arguments.muscleGroupId,
-        )
+            ? ExerciseTabBar(muscleGroupId: arguments.muscleGroupId)
             : Skeletonizer(
-          enabled: !state.getLevelsStatus.isSuccess,
-          child: const SizedBox(
-            height: 50,
-            width: double.infinity,
-          ),
-        );
+              enabled: !state.getLevelsStatus.isSuccess,
+              child: const SizedBox(height: 50, width: double.infinity),
+            );
       },
     );
   }

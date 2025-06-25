@@ -15,10 +15,16 @@ class ExercisePage extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(AppConstants.exerciseBottomBg),
-            fit: BoxFit.cover)),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           children: [
             ExercisePageHeaderWidget(arguments: arguments),
-            ExerciseListView(muscleGroupId: arguments.muscleGroupId),])));
+            ExerciseListView(muscleGroupId: arguments.muscleGroupId),
+          ],
+        ),
+      ),
+    );
   }
 }

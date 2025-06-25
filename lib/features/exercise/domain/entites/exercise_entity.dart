@@ -15,4 +15,3 @@ class ExerciseEntity {
     required this.primeMoverMuscle,
   });
 }
-

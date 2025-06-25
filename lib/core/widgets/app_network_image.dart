@@ -10,15 +10,16 @@ class AppNetworkImage extends StatefulWidget {
   final BorderRadius? borderRadius;
   final Widget? placeHolder;
   final Widget? errorBuilder;
-  const AppNetworkImage(
-      {super.key,
-      required this.networkImage,
-      this.width,
-      this.height,
-      this.fit,
-      this.borderRadius,
-      this.placeHolder,
-      this.errorBuilder});
+  const AppNetworkImage({
+    super.key,
+    required this.networkImage,
+    this.width,
+    this.height,
+    this.fit,
+    this.borderRadius,
+    this.placeHolder,
+    this.errorBuilder,
+  });
 
   @override
   State<AppNetworkImage> createState() => _AppNetworkImageState();
@@ -32,15 +33,16 @@ class _AppNetworkImageState extends State<AppNetworkImage> {
     return ClipRRect(
       borderRadius: widget.borderRadius ?? BorderRadius.zero,
       child: CachedNetworkImage(
-          key: _imageKey,
-          imageUrl: widget.networkImage,
-          fit: widget.fit ?? BoxFit.cover,
-          height: widget.height,
-          width: widget.width,
-          placeholder: (context, url) =>
-              widget.placeHolder ?? _buildPlaceholder(),
-          errorWidget: (context, url, error) =>
-              widget.errorBuilder ?? _buildErrorWidget()),
+        key: _imageKey,
+        imageUrl: widget.networkImage,
+        fit: widget.fit ?? BoxFit.cover,
+        height: widget.height,
+        width: widget.width,
+        placeholder:
+            (context, url) => widget.placeHolder ?? _buildPlaceholder(),
+        errorWidget:
+            (context, url, error) => widget.errorBuilder ?? _buildErrorWidget(),
+      ),
     );
   }
 
@@ -48,9 +50,7 @@ class _AppNetworkImageState extends State<AppNetworkImage> {
     return Shimmer.fromColors(
       baseColor: Colors.grey[300]!,
       highlightColor: Colors.grey[100]!,
-      child: Container(
-        color: Colors.grey[300],
-      ),
+      child: Container(color: Colors.grey[300]),
     );
   }
 
@@ -59,12 +59,9 @@ class _AppNetworkImageState extends State<AppNetworkImage> {
       color: Colors.grey[300]!,
       child: Center(
         child: IconButton(
-            onPressed: _retryLoading,
-            icon: Icon(
-              Icons.refresh_outlined,
-              color: Colors.white,
-              size: 40,
-            )),
+          onPressed: _retryLoading,
+          icon: Icon(Icons.refresh_outlined, color: Colors.white, size: 40),
+        ),
       ),
     );
   }

@@ -6,7 +6,6 @@ class DifficultyLevelDM {
   DifficultyLevelDM({required this.id, required this.name});
 
   factory DifficultyLevelDM.fromJson(Map<String, dynamic> json) {
-
     return DifficultyLevelDM(id: json['_id'] ?? '', name: json['name'] ?? '');
   }
 
