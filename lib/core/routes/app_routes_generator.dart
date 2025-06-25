@@ -98,10 +98,11 @@ class AppRoutesGenerator {
 
       case AppRoutes.foodRecommendationScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => getIt<FoodRecommendationViewModel>(),
-            child: const FoodRecommendationScreen(),
-          ),
+          builder:
+              (_) => BlocProvider(
+                create: (_) => getIt<FoodRecommendationViewModel>(),
+                child: const FoodRecommendationScreen(),
+              ),
         );
 
       default:
