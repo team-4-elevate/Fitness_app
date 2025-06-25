@@ -64,7 +64,6 @@ dependencies:
   numberpicker: ^2.1.2
   icons_plus: ^5.0.0
   skeletonizer: ^1.4.3
-  smooth_page_indicator:
   smooth_page_indicator: 
   cached_network_image: ^3.2.0
 
