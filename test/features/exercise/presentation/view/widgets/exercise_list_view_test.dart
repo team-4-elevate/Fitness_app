@@ -33,22 +33,20 @@ void main() {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en'),
-      ],
+      supportedLocales: const [Locale('en')],
       home: Scaffold(
         body: BlocProvider<ExercisePageBloc>.value(
           value: mockBloc,
-          child: const ExerciseListView(
-            muscleGroupId: 'muscle1',
-          ),
+          child: const ExerciseListView(muscleGroupId: 'muscle1'),
         ),
       ),
     );
   }
 
   group('ExerciseListView Widget Tests', () {
-    testWidgets('should display loading shimmer initially', (WidgetTester tester) async {
+    testWidgets('should display loading shimmer initially', (
+      WidgetTester tester,
+    ) async {
       when(mockBloc.state).thenReturn(const ExercisePageState());
 
       await tester.pumpWidget(createWidgetUnderTest());
@@ -57,7 +55,9 @@ void main() {
       expect(find.byType(ExerciseListView), findsOneWidget);
     });
 
-    testWidgets('should display exercises when loaded successfully', (WidgetTester tester) async {
+    testWidgets('should display exercises when loaded successfully', (
+      WidgetTester tester,
+    ) async {
       final mockLevels = [
         DifficultyLevelEntity(id: 'level1', name: 'Beginner'),
       ];
@@ -85,13 +85,9 @@ void main() {
         ExercisePageState(
           getLevelsStatus: Status.success,
           getExercisesStatus: Status.success,
-          levelExerciseMap: {
-            mockLevels[0]: mockExercises,
-          },
+          levelExerciseMap: {mockLevels[0]: mockExercises},
           currentLevelId: 'level1',
-          levelIdAndPagesMap: {
-            'level1': 1,
-          },
+          levelIdAndPagesMap: {'level1': 1},
         ),
       );
 
@@ -102,7 +98,9 @@ void main() {
       expect(find.text('Bench Press'), findsOneWidget);
     });
 
-    testWidgets('should display error message when loading fails', (WidgetTester tester) async {
+    testWidgets('should display error message when loading fails', (
+      WidgetTester tester,
+    ) async {
       when(mockBloc.state).thenReturn(
         const ExercisePageState(
           getLevelsStatus: Status.success,
@@ -117,7 +115,9 @@ void main() {
       expect(find.text('Failed to load exercises'), findsOneWidget);
     });
 
-    testWidgets('should display empty state when no exercises found', (WidgetTester tester) async {
+    testWidgets('should display empty state when no exercises found', (
+      WidgetTester tester,
+    ) async {
       final mockLevels = [
         DifficultyLevelEntity(id: 'level1', name: 'Beginner'),
       ];
@@ -126,13 +126,9 @@ void main() {
         ExercisePageState(
           getLevelsStatus: Status.success,
           getExercisesStatus: Status.success,
-          levelExerciseMap: {
-            mockLevels[0]: <ExerciseEntity>[],
-          },
+          levelExerciseMap: {mockLevels[0]: <ExerciseEntity>[]},
           currentLevelId: 'level1',
-          levelIdAndPagesMap: {
-            'level1': 1,
-          },
+          levelIdAndPagesMap: {'level1': 1},
         ),
       );
 
@@ -142,4 +138,4 @@ void main() {
       expect(find.text('No exercises found'), findsOneWidget);
     });
   });
-} 
+}
