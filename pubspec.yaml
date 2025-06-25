@@ -65,7 +65,9 @@ dependencies:
   icons_plus: 
   skeletonizer: 
   smooth_page_indicator: 
-  cached_network_image: 
+
+  cached_network_image: ^3.2.0
+  youtube_player_flutter: ^9.1.1
 
 dev_dependencies:
   flutter_test:

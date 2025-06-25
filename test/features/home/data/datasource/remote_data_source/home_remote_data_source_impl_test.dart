@@ -6,6 +6,8 @@ import 'package:fitness_app/features/home/data/model/food_recomendation/food_rec
 import 'package:fitness_app/features/home/data/model/upcoming_workouts/upcoming_workouts/upcoming_workouts.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+
+import '../../../../auth/data/datasource/remote_data_source/mocks.mocks.dart';
 import '../../../../food_recommendation/data/datasources/food_recommend_remote_data_source_impl_test.mocks.dart';
 import 'mocks.dart';
 

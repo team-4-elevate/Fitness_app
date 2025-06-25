@@ -428,6 +428,156 @@ abstract class AppLocalizations {
   /// **'We Use This For Calorie Calculations'**
   String get registrationSubtitle3;
 
+  /// Error message when parsing upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to parse upcoming workouts: {error}'**
+  String data_parse_error_upcoming_workouts(String error);
+
+  /// Error message when parsing food recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to parse food recommendations: {error}'**
+  String data_parse_error_food_recommendations(String error);
+
+  /// Error message for network issues
+  ///
+  /// In en, this message translates to:
+  /// **'Network error: {error}'**
+  String data_network_error(String error);
+
+  /// Generic error message for domain layer
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading data: {message}'**
+  String domain_error_loading_data(String message);
+
+  /// Title for Daily To Recommendations section
+  ///
+  /// In en, this message translates to:
+  /// **'Daily To Recommendations'**
+  String get dailyToRecommendations;
+
+  /// Title for upcoming workouts section
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Workouts'**
+  String get home_upcoming_workouts;
+
+  /// Title for food recommendations section
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendations For You'**
+  String get home_recommendations_for_you;
+
+  /// Title for popular training section
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Training'**
+  String get home_popular_training;
+
+  /// Button to see all items in a section
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get home_see_all;
+
+  /// Error message when loading upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading upcoming workouts: {error}'**
+  String home_error_upcoming_workouts(String error);
+
+  /// Error message when loading upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading upcoming workouts: {error}'**
+  String home_error_loading_upcoming_workouts(String error);
+
+  /// Error message when loading food recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading food recommendations: {error}'**
+  String home_error_food_recommendations(String error);
+
+  /// Error message when loading food recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading food recommendations: {error}'**
+  String home_error_loading_food_recommendations(String error);
+
+  /// Error message when loading daily recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading daily recommendations: {error}'**
+  String home_error_loading_daily_recommendations(String error);
+
+  /// Error message when parsing upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to parse upcoming workouts:'**
+  String get failed_to_parse_upcoming_workouts;
+
+  /// Greeting message to start the day
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Start Your Day'**
+  String get let_s_start_your_day;
+
+  /// Gym category name
+  ///
+  /// In en, this message translates to:
+  /// **'Gym'**
+  String get category_gym;
+
+  /// Fitness category name
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness'**
+  String get category_fitness;
+
+  /// Yoga category name
+  ///
+  /// In en, this message translates to:
+  /// **'Yoga'**
+  String get category_yoga;
+
+  /// Aerobics category name
+  ///
+  /// In en, this message translates to:
+  /// **'Aerobics'**
+  String get category_aerobics;
+
+  /// Trainer category name
+  ///
+  /// In en, this message translates to:
+  /// **'Trainer'**
+  String get category_trainer;
+
+  /// Full body workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Full Body'**
+  String get workout_category_full_body;
+
+  /// Chest workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Chest'**
+  String get workout_category_chest;
+
+  /// Arm workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Arm'**
+  String get workout_category_arm;
+
+  /// Leg workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Leg'**
+  String get workout_category_leg;
+
   /// Title for height selection step
   ///
   /// In en, this message translates to:
@@ -614,101 +764,131 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
-  /// No description provided for @food_Recommendation_title.
+  /// Title for the food recommendation section
   ///
   /// In en, this message translates to:
   /// **'Food Recommendation'**
   String get food_Recommendation_title;
 
-  /// No description provided for @food_Recommendation_no_categories.
+  /// Message displayed when no food categories are found
   ///
   /// In en, this message translates to:
   /// **'No categories found'**
   String get food_Recommendation_no_categories;
 
-  /// No description provided for @food_food_Recommendation_fail_to_loadCategories.
+  /// Error message displayed when failing to load food categories
   ///
   /// In en, this message translates to:
   /// **'Failed to load categories'**
   String get food_food_Recommendation_fail_to_loadCategories;
 
-  /// No description provided for @retry.
+  /// Retry button text
   ///
   /// In en, this message translates to:
   /// **'retry'**
   String get retry;
 
-  /// No description provided for @confirmPassword.
+  /// Label for confirm password input field
   ///
   /// In en, this message translates to:
   /// **'Please confirm your password'**
   String get confirmPassword;
 
-  /// No description provided for @passwordsDoNotMatch.
+  /// Error message when passwords do not match
   ///
   /// In en, this message translates to:
   /// **'Passwords do not match'**
   String get passwordsDoNotMatch;
 
-  /// No description provided for @enterFourDigitCode.
+  /// Label for entering a four-digit code
   ///
   /// In en, this message translates to:
   /// **'Please enter 4 digit code'**
   String get enterFourDigitCode;
 
-  /// No description provided for @confirm.
+  /// Button text to confirm an action
   ///
   /// In en, this message translates to:
   /// **'Confirm'**
   String get confirm;
 
-  /// No description provided for @enterYourOtp.
+  /// Label for entering OTP (One Time Password)
   ///
   /// In en, this message translates to:
   /// **'Enter Your OTP'**
   String get enterYourOtp;
 
-  /// No description provided for @checkYourEmail.
+  /// Label for checking email
   ///
   /// In en, this message translates to:
   /// **'Check Your Email'**
   String get checkYourEmail;
 
-  /// No description provided for @otpCode.
+  /// Label for entering OTP code
   ///
   /// In en, this message translates to:
   /// **'OTP CODE'**
   String get otpCode;
 
-  /// No description provided for @forgetPassword.
+  /// Label for forget password
   ///
   /// In en, this message translates to:
   /// **'Forget Password'**
   String get forgetPassword;
 
-  /// No description provided for @enterYourEmail.
+  /// Label for entering email
   ///
   /// In en, this message translates to:
   /// **'Enter your Email'**
   String get enterYourEmail;
 
-  /// No description provided for @sendOtp.
+  /// Button text to send OTP
   ///
   /// In en, this message translates to:
   /// **'Send OTP'**
   String get sendOtp;
 
-  /// No description provided for @didntReceiveVerificationCode.
+  /// Text asking if user didn't receive verification code
   ///
   /// In en, this message translates to:
   /// **'Didn\'t Receive Verification Code?'**
   String get didntReceiveVerificationCode;
 
-  /// No description provided for @resend.
+  /// Button text to resend verification code
   ///
   /// In en, this message translates to:
   /// **'Resend'**
   String get resend;
+
+  /// Message displayed when a video is not available
+  ///
+  /// In en, this message translates to:
+  /// **'Video not available'**
+  String get video_not_available;
+
+  /// Label for exercise section
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise'**
+  String get exercise;
+
+  /// Message displayed when no exercises are found
+  ///
+  /// In en, this message translates to:
+  /// **'No exercises found'**
+  String get no_exercises_found;
+
+  /// Error message displayed when failing to load exercises
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load exercises'**
+  String failed_to_load_exercises(Object error);
+
+  /// Title for the motivational quote section
+  ///
+  /// In en, this message translates to:
+  /// **'Motivational Quote'**
+  String get motivational_quote;
 }
 
 class _AppLocalizationsDelegate

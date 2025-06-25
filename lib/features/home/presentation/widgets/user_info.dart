@@ -1,5 +1,6 @@
-// features/home/widgets/user_info.dart
+// features/home/presentation/widgets/user_info.dart
 import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class UserInfo extends StatelessWidget {
@@ -27,7 +28,7 @@ class UserInfo extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Let\'s Start Your Day',
+              AppLocalizations.of(context).let_s_start_your_day,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ],

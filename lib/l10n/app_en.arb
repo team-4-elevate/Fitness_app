@@ -254,6 +254,166 @@
   "@registrationSubtitle3": {
     "description": "Subtitle for weight selection step"
   },
+
+  "data_parse_error_upcoming_workouts": "Failed to parse upcoming workouts: {error}",
+  "@data_parse_error_upcoming_workouts": {
+    "description": "Error message when parsing upcoming workouts fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Invalid format"
+      }
+    }
+  },
+  "data_parse_error_food_recommendations": "Failed to parse food recommendations: {error}",
+  "@data_parse_error_food_recommendations": {
+    "description": "Error message when parsing food recommendations fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Invalid format"
+      }
+    }
+  },
+  "data_network_error": "Network error: {error}",
+  "@data_network_error": {
+    "description": "Error message for network issues",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Connection refused"
+      }
+    }
+  },
+
+  "domain_error_loading_data": "Error loading data: {message}",
+  "@domain_error_loading_data": {
+    "description": "Generic error message for domain layer",
+    "placeholders": {
+      "message": {
+        "type": "String",
+        "example": "Invalid response"
+      }
+    }
+  },
+
+  "dailyToRecommendations": "Daily To Recommendations",
+  "@dailyToRecommendations": {
+    "description": "Title for Daily To Recommendations section"
+  },
+  "home_upcoming_workouts": "Upcoming Workouts",
+  "@home_upcoming_workouts": {
+    "description": "Title for upcoming workouts section"
+  },
+  "home_recommendations_for_you": "Recommendations For You",
+  "@home_recommendations_for_you": {
+    "description": "Title for food recommendations section"
+  },
+  "home_popular_training": "Popular Training",
+  "@home_popular_training": {
+    "description": "Title for popular training section"
+  },
+  "home_see_all": "See All",
+  "@home_see_all": {
+    "description": "Button to see all items in a section"
+  },
+  "home_error_upcoming_workouts": "Error loading upcoming workouts: {error}",
+  "@home_error_upcoming_workouts": {
+    "description": "Error message when loading upcoming workouts fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "home_error_loading_upcoming_workouts": "Error loading upcoming workouts: {error}",
+  "@home_error_loading_upcoming_workouts": {
+    "description": "Error message when loading upcoming workouts fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "home_error_food_recommendations": "Error loading food recommendations: {error}",
+  "@home_error_food_recommendations": {
+    "description": "Error message when loading food recommendations fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "home_error_loading_food_recommendations": "Error loading food recommendations: {error}",
+  "@home_error_loading_food_recommendations": {
+    "description": "Error message when loading food recommendations fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "home_error_loading_daily_recommendations": "Error loading daily recommendations: {error}",
+  "@home_error_loading_daily_recommendations": {
+    "description": "Error message when loading daily recommendations fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "failed_to_parse_upcoming_workouts": "Failed to parse upcoming workouts:",
+  "@failed_to_parse_upcoming_workouts": {
+    "description": "Error message when parsing upcoming workouts fails"
+  },
+
+ "let_s_start_your_day": "Let's Start Your Day",
+"@let_s_start_your_day": {
+  "description": "Greeting message to start the day"
+},
+  
+  "category_gym": "Gym",
+  "@category_gym": {
+    "description": "Gym category name"
+  },
+  "category_fitness": "Fitness",
+  "@category_fitness": {
+    "description": "Fitness category name"
+  },
+  "category_yoga": "Yoga",
+  "@category_yoga": {
+    "description": "Yoga category name"
+  },
+  "category_aerobics": "Aerobics",
+  "@category_aerobics": {
+    "description": "Aerobics category name"
+  },
+  "category_trainer": "Trainer",
+  "@category_trainer": {
+    "description": "Trainer category name"
+  },
+
+  "workout_category_full_body": "Full Body",
+  "@workout_category_full_body": {
+    "description": "Full body workout category"
+  },
+  "workout_category_chest": "Chest",
+  "@workout_category_chest": {
+    "description": "Chest workout category"
+  },
+  "workout_category_arm": "Arm",
+  "@workout_category_arm": {
+    "description": "Arm workout category"
+  },
+  "workout_category_leg": "Leg",
+  "@workout_category_leg": {
+    "description": "Leg workout category"
+  },
   
   "registrationTitle4": "WHAT IS YOUR HEIGHT?",
   "@registrationTitle4": {
@@ -399,19 +559,87 @@
     "description": "Login text for buttons and links"
   },
   "food_Recommendation_title": "Food Recommendation",
+  "@food_Recommendation_title": {
+    "description": "Title for the food recommendation section"
+  },
   "food_Recommendation_no_categories":"No categories found",
+  "@food_Recommendation_no_categories": {
+    "description": "Message displayed when no food categories are found"
+  },
   "food_food_Recommendation_fail_to_loadCategories":"Failed to load categories",
+  "@food_food_Recommendation_fail_to_loadCategories": {
+    "description": "Error message displayed when failing to load food categories"
+  },
   "retry": "retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
   "confirmPassword": "Please confirm your password",
+  "@confirmPassword": {
+    "description": "Label for confirm password input field"
+  },
   "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Error message when passwords do not match"
+  },
   "enterFourDigitCode": "Please enter 4 digit code",
+  "@enterFourDigitCode": {
+    "description": "Label for entering a four-digit code"
+  },
   "confirm": "Confirm",
+  "@confirm": {
+    "description": "Button text to confirm an action"
+  },
   "enterYourOtp": "Enter Your OTP",
+  "@enterYourOtp": {
+    "description": "Label for entering OTP (One Time Password)"
+  },
   "checkYourEmail": "Check Your Email",
+  "@checkYourEmail": {
+    "description": "Label for checking email"
+  },
   "otpCode": "OTP CODE",
+  "@otpCode": {
+    "description": "Label for entering OTP code"
+  },
   "forgetPassword": "Forget Password",
+  "@forgetPassword": {
+    "description": "Label for forget password"
+  },
   "enterYourEmail": "Enter your Email",
+  "@enterYourEmail": {
+    "description": "Label for entering email"
+  },
   "sendOtp": "Send OTP",
+  "@sendOtp": {
+    "description": "Button text to send OTP"
+  },
   "didntReceiveVerificationCode": "Didn't Receive Verification Code?",
-  "resend": "Resend"
+  "@didntReceiveVerificationCode": {
+    "description": "Text asking if user didn't receive verification code"
+  },
+  "resend": "Resend",
+  "@resend": {
+    "description": "Button text to resend verification code"
+  },
+    "video_not_available": "Video not available",
+  "@video_not_available": {
+    "description": "Message displayed when a video is not available"
+  },
+  "exercise": "Exercise",
+  "@exercise": {
+    "description": "Label for exercise section"
+  },
+  "no_exercises_found": "No exercises found",
+  "@no_exercises_found": {
+    "description": "Message displayed when no exercises are found"
+  },
+  "failed_to_load_exercises": "Failed to load exercises",
+  "@failed_to_load_exercises": {
+    "description": "Error message displayed when failing to load exercises"
+  },
+  "motivational_quote": "Motivational Quote",
+  "@motivational_quote": {
+    "description": "Title for the motivational quote section"
+  }
 }

@@ -1,3 +1,4 @@
+// features/food_recommendation/presentation/pages/food_recommendation_screen.dart
 import 'package:fitness_app/core/Constant/app_constants.dart';
 import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/core/responsive/responsive_design.dart';
@@ -15,7 +16,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FoodRecommendationScreen extends StatefulWidget {
-  const FoodRecommendationScreen({super.key});
+  final int? selectedTabIndex;
+
+  const FoodRecommendationScreen({super.key, this.selectedTabIndex});
 
   @override
   State<FoodRecommendationScreen> createState() => _FoodRecommendationScreen();
@@ -42,10 +45,19 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
     if (tabCount <= 0) return;
     final previousIndex = _tabController.length > 0 ? _tabController.index : 0;
     _tabController.dispose();
+
+    int initialIndex;
+    if (widget.selectedTabIndex != null &&
+        widget.selectedTabIndex! < tabCount) {
+      initialIndex = widget.selectedTabIndex!;
+    } else {
+      initialIndex = previousIndex < tabCount ? previousIndex : 0;
+    }
+
     _tabController = TabController(
       length: tabCount,
       vsync: this,
-      initialIndex: previousIndex < tabCount ? previousIndex : 0,
+      initialIndex: initialIndex,
     );
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
@@ -81,7 +93,16 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
               });
               if (!_hasLoadedInitialMeals) {
                 _hasLoadedInitialMeals = true;
-                final categoryName = categories[0].strCategory ?? '';
+                int indexToLoad = 0;
+                if (widget.selectedTabIndex != null &&
+                    widget.selectedTabIndex! < categories.length) {
+                  indexToLoad = widget.selectedTabIndex!;
+                  context.read<FoodRecommendationViewModel>().doIntent(
+                    ChangeSelectedCategoryIntent(indexToLoad),
+                  );
+                }
+
+                final categoryName = categories[indexToLoad].strCategory ?? '';
                 context.read<FoodRecommendationViewModel>().doIntent(
                       GetMealsByCategoryIntent(categoryName),
                     );
@@ -124,9 +145,12 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
               centerTitle: true,
               leadingWidth: 35.r,
               elevation: 0,
-              leading: SvgPicture.asset(AppConstants.customBackIcon).onTap(() {
-                // Navigator.of(context).pop();
-              }).paddingAll(2.r),
+
+              leading: SvgPicture.asset(AppConstants.customBackIcon)
+                  .onTap(() {
+                    Navigator.of(context).pop();
+                  })
+                  .paddingAll(2.r),
             ),
             body: Column(
               children: [

@@ -5,6 +5,7 @@ import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/widgets/category_section.dart';
 import 'package:fitness_app/features/home/presentation/widgets/skeleton.dart';
+import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/user_info.dart';
@@ -24,14 +25,30 @@ class _HomeState extends State<Home> {
     context.read<HomeBloc>().add(const LoadHomeData());
   }
 
-  // List of categories with their icons
-  static const List<Map<String, dynamic>> _categories = [
-    {'name': 'Gym', 'icon': 'assets/images/onboarding_vector_1.png'},
-    {'name': 'Fitness', 'icon': 'assets/images/onboarding_vector_1.png'},
-    {'name': 'Yoga', 'icon': 'assets/images/onboarding_vector_1.png'},
-    {'name': 'Aerobics', 'icon': 'assets/images/onboarding_vector_1.png'},
-    {'name': 'Trainer', 'icon': 'assets/images/onboarding_vector_1.png'},
-  ];
+  List<Map<String, dynamic>> _getLocalizedCategories(BuildContext context) {
+    return [
+      {
+        'name': AppLocalizations.of(context).category_gym,
+        'icon': 'assets/images/onboarding_vector_1.png',
+      },
+      {
+        'name': AppLocalizations.of(context).category_fitness,
+        'icon': 'assets/images/onboarding_vector_1.png',
+      },
+      {
+        'name': AppLocalizations.of(context).category_yoga,
+        'icon': 'assets/images/onboarding_vector_1.png',
+      },
+      {
+        'name': AppLocalizations.of(context).category_aerobics,
+        'icon': 'assets/images/onboarding_vector_1.png',
+      },
+      {
+        'name': AppLocalizations.of(context).category_trainer,
+        'icon': 'assets/images/onboarding_vector_1.png',
+      },
+    ];
+  }
 
   // List of popular trainings
   static const List<Map<String, dynamic>> _popularTrainings = [
@@ -98,7 +115,9 @@ class _HomeState extends State<Home> {
                         SizedBox(height: 16.r),
 
                         //------------------------------------ Categories
-                        const CategorySection(categories: _categories),
+                        CategorySection(
+                          categories: _getLocalizedCategories(context),
+                        ),
 
                         SizedBox(height: 16.r),
 
@@ -122,25 +141,34 @@ class _HomeState extends State<Home> {
                                           .toList();
 
                                   return SharedSection(
-                                    sectionTitle: "Daily To Recommendations",
+                                    sectionTitle:
+                                        AppLocalizations.of(
+                                          context,
+                                        ).dailyToRecommendations,
                                     showSeeAll: false,
                                     recommendations: recommendations,
                                     onItemPressed: (item, index) {
                                       debugPrint(
-                                        'Item pressed: ${item['name']} at index $index',
+                                        AppLocalizations.of(
+                                          context,
+                                        ).dailyToRecommendations,
                                       );
                                     },
                                   );
                                 })(),
                               BaseErrorState() => Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 20,
+
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 20,
+                                  ),
+                                  child: Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    ).home_error_loading_daily_recommendations(
+                                      (state as BaseErrorState).error,
                                     ),
-                                    child: Text(
-                                      'Error loading recommendations: ${(state as BaseErrorState).error}',
-                                      style: const TextStyle(color: Colors.red),
-                                    ),
+                                    style: const TextStyle(color: Colors.red),
                                   ),
                                 ),
                             };
@@ -167,7 +195,10 @@ class _HomeState extends State<Home> {
                                       .toList();
 
                                   return SharedSection(
-                                    sectionTitle: "Upcoming Workouts",
+                                    sectionTitle:
+                                        AppLocalizations.of(
+                                          context,
+                                        ).home_upcoming_workouts,
                                     recommendations: upcomingWorkouts,
                                     onSeeAllPressed: () {
                                       debugPrint(
@@ -182,14 +213,18 @@ class _HomeState extends State<Home> {
                                   );
                                 })(),
                               BaseErrorState() => Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 20,
+
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 20,
+                                  ),
+                                  child: Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    ).home_error_loading_upcoming_workouts(
+                                      (state as BaseErrorState).error,
                                     ),
-                                    child: Text(
-                                      'Error loading upcoming workouts: ${(state as BaseErrorState).error}',
-                                      style: const TextStyle(color: Colors.red),
-                                    ),
+                                    style: const TextStyle(color: Colors.red),
                                   ),
                                 ),
                             };
@@ -217,7 +252,10 @@ class _HomeState extends State<Home> {
                                           .toList();
 
                                   return SharedSection(
-                                    sectionTitle: "Recommendations For You",
+                                    sectionTitle:
+                                        AppLocalizations.of(
+                                          context,
+                                        ).home_recommendations_for_you,
                                     recommendations: foodRecommendations,
                                     onSeeAllPressed: () {
                                       debugPrint(
@@ -228,20 +266,28 @@ class _HomeState extends State<Home> {
                                         AppRoutes.foodRecommendationScreen,
                                       );
                                     },
-                                    onItemPressed: (item, index) => debugPrint(
-                                      'Item pressed: ${item['name']} at index $index',
-                                    ),
+
+                                    onItemPressed: (item, index) {
+                                      Navigator.pushNamed(
+                                        context,
+                                        AppRoutes.foodRecommendationScreen,
+                                        arguments: {'selectedTabIndex': index},
+                                      );
+                                    },
                                   );
                                 })(),
                               BaseErrorState() => Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 20,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 20,
+                                  ),
+                                  child: Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    ).home_error_loading_food_recommendations(
+                                      (state as BaseErrorState).error,
                                     ),
-                                    child: Text(
-                                      'Error loading food recommendations: ${(state as BaseErrorState).error}',
-                                      style: const TextStyle(color: Colors.red),
-                                    ),
+                                    style: const TextStyle(color: Colors.red),
                                   ),
                                 ),
                             };
@@ -251,7 +297,10 @@ class _HomeState extends State<Home> {
 
                         //--------------------------------------popular training
                         SharedSection(
-                          sectionTitle: "popular training",
+                          sectionTitle:
+                              AppLocalizations.of(
+                                context,
+                              ).home_popular_training,
                           showSeeAll: false,
                           isPopularTraining: true,
                           recommendations: _popularTrainings,

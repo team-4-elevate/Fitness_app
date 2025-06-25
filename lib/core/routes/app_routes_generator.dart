@@ -7,6 +7,10 @@ import 'package:fitness_app/features/auth/presentation/login/login_view_model.da
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
+import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arguments.dart';
+import 'package:fitness_app/features/exercise/presentation/bloc/exercise_bloc.dart';
+import 'package:fitness_app/features/exercise/presentation/bloc/exercise_event.dart';
+import 'package:fitness_app/features/exercise/presentation/view/exercise_page/exercise_page.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_recommendation_viewmodel.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/pages/food_recommendation_screen.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
@@ -17,6 +21,7 @@ import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/app_sections/AppSections.dart';
 import '../../features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
 import '../../features/auth/presentation/forget_password/view/create_new_password/create_new_password_page.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
@@ -99,13 +104,32 @@ class AppRoutesGenerator {
         );
 
       case AppRoutes.foodRecommendationScreen:
+        final args = settings.arguments as Map<String, dynamic>?;
+        final selectedTabIndex = args?['selectedTabIndex'];
+
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => getIt<FoodRecommendationViewModel>(),
-            child: const FoodRecommendationScreen(),
-          ),
+
+          builder:
+              (_) => BlocProvider(
+                create: (_) => getIt<FoodRecommendationViewModel>(),
+                child: FoodRecommendationScreen(
+                  selectedTabIndex: selectedTabIndex,
+                ),
+              ),
         );
 
+      case AppRoutes.exercisePage:
+        return MaterialPageRoute(
+          builder: (_) {
+            final args = settings.arguments as ExercisePageArguments;
+            return BlocProvider(
+              create: (context) {
+                return getIt<ExercisePageBloc>()..add(GetLevelsEvent());
+              },
+              child: ExercisePage(arguments: args),
+            );
+          },
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:math' as math;
 import 'dart:ui';
 import 'dart:io';
+import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
@@ -65,6 +66,11 @@ extension BuildContextExtensions on BuildContext {
   Brightness get brightness => Theme.of(this).brightness;
   bool get isDarkMode => brightness == Brightness.dark;
   bool get isLightMode => brightness == Brightness.light;
+
+  void handleBlocLoading({required Status prev, required Status curr}) {
+    if ((!curr.isLoading && !prev.isLoading) || prev == curr) return;
+    curr.isLoading ? showLoading() : hideLoading();
+  }
 
   // =================== Localization ===================
   AppLocalizations get l10n => AppLocalizations.of(this);
@@ -180,7 +186,8 @@ extension BuildContextExtensions on BuildContext {
   }
 
   void hideLoading() {
-    if (Navigator.of(this).canPop() && mounted) {
+    bool isDialogShown = ModalRoute.of(this)?.isCurrent == false;
+    if (Navigator.of(this).canPop() && mounted && isDialogShown) {
       Navigator.of(this).pop();
     }
   }
@@ -737,6 +744,10 @@ extension StringExtensions on String {
     return RegExp(
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
     ).hasMatch(this);
+  }
+
+  String videoIdToYoutubeThumbnail() {
+    return 'https://img.youtube.com/vi/$this/mqdefault.jpg';
   }
 
   /// Check if string is URL
