@@ -89,19 +89,15 @@ class AppRoutesGenerator {
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
       case AppRoutes.exercisePage:
         return MaterialPageRoute(
-          builder:
-              (_) {
-                final args = settings.arguments as ExercisePageArguments;
-                return BlocProvider(
-                create: (context) {
-                  return getIt<ExercisePageBloc>()
-                    ..add(GetLevelsEvent());
-                },
-                child: ExercisePage(
-                  arguments: args,
-                ),
-              );
+          builder: (_) {
+            final args = settings.arguments as ExercisePageArguments;
+            return BlocProvider(
+              create: (context) {
+                return getIt<ExercisePageBloc>()..add(GetLevelsEvent());
               },
+              child: ExercisePage(arguments: args),
+            );
+          },
         );
       default:
         return MaterialPageRoute(
