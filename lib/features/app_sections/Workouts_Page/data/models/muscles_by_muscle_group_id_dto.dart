@@ -9,15 +9,18 @@ class MusclesByMuscleGroupIdResponseDto {
   final List<MusclesByMuscleGroupIdMusclesDto?>? muscles;
 
   MusclesByMuscleGroupIdResponseDto(
-      this.message, this.totalMuscles, this.muscles);
+    this.message,
+    this.totalMuscles,
+    this.muscles,
+  );
 
   factory MusclesByMuscleGroupIdResponseDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$MusclesByMuscleGroupIdResponseDtoFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$MusclesByMuscleGroupIdResponseDtoFromJson(json);
 }
 
 @JsonSerializable()
-class MusclesByMuscleGroupIdMusclesDto{
+class MusclesByMuscleGroupIdMusclesDto {
   @JsonKey(name: '_id')
   final String? id;
   final String? name;
@@ -26,6 +29,6 @@ class MusclesByMuscleGroupIdMusclesDto{
   MusclesByMuscleGroupIdMusclesDto(this.id, this.name, this.image);
 
   factory MusclesByMuscleGroupIdMusclesDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$MusclesByMuscleGroupIdMusclesDtoFromJson(json);
+    Map<String, dynamic> json,
+  ) => _$MusclesByMuscleGroupIdMusclesDtoFromJson(json);
 }

@@ -17,12 +17,11 @@ class WorkoutPage extends StatefulWidget {
   const WorkoutPage({super.key});
 
   @override
-  State<WorkoutPage> createState() =>
-      _WorkoutPageState();
+  State<WorkoutPage> createState() => _WorkoutPageState();
 }
 
-class _WorkoutPageState
-    extends State<WorkoutPage> with TickerProviderStateMixin {
+class _WorkoutPageState extends State<WorkoutPage>
+    with TickerProviderStateMixin {
   late TabController _tabController;
   bool _hasLoadedInitialMuscles = false;
 
@@ -32,8 +31,8 @@ class _WorkoutPageState
     _tabController = TabController(length: 0, vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<WorkoutRecommendationViewModel>().doIntent(
-            const GetMuscleGroupsIntent(),
-          );
+        const GetMuscleGroupsIntent(),
+      );
     });
   }
 
@@ -49,30 +48,34 @@ class _WorkoutPageState
     _tabController.addListener(() {
       if (!_tabController.indexIsChanging) {
         context.read<WorkoutRecommendationViewModel>().doIntent(
-              ChangeSelectedGroupIntent(_tabController.index),
-            );
+          ChangeSelectedGroupIntent(_tabController.index),
+        );
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<WorkoutRecommendationViewModel, WorkoutRecommendationState>(
-      buildWhen: (prev, curr) =>
-          prev.selectedGroupIndex != curr.selectedGroupIndex ||
-          prev.muscleGroupsState != curr.muscleGroupsState ||
-          prev.musclesByGroupState != curr.musclesByGroupState ||
-          prev.cachedMuscles != curr.cachedMuscles ||
-          prev.loadingGroups != curr.loadingGroups,
-      listenWhen: (prev, curr) =>
-          prev.muscleGroupsState != curr.muscleGroupsState ||
-          prev.selectedGroupIndex != curr.selectedGroupIndex,
+    return BlocConsumer<
+      WorkoutRecommendationViewModel,
+      WorkoutRecommendationState
+    >(
+      buildWhen:
+          (prev, curr) =>
+              prev.selectedGroupIndex != curr.selectedGroupIndex ||
+              prev.muscleGroupsState != curr.muscleGroupsState ||
+              prev.musclesByGroupState != curr.musclesByGroupState ||
+              prev.cachedMuscles != curr.cachedMuscles ||
+              prev.loadingGroups != curr.loadingGroups,
+      listenWhen:
+          (prev, curr) =>
+              prev.muscleGroupsState != curr.muscleGroupsState ||
+              prev.selectedGroupIndex != curr.selectedGroupIndex,
       listener: (context, state) {
         state.muscleGroupsState?.whenOrNull(
           success: (data) {
             final groups = data ?? [];
-            if (groups.isNotEmpty &&
-                _tabController.length != groups.length) {
+            if (groups.isNotEmpty && _tabController.length != groups.length) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 if (mounted) _updateTabController(groups.length);
               });
@@ -81,8 +84,8 @@ class _WorkoutPageState
                 _hasLoadedInitialMuscles = true;
                 final firstGroupId = groups[0].id ?? '';
                 context.read<WorkoutRecommendationViewModel>().doIntent(
-                      GetMusclesByGroupIntent(firstGroupId),
-                    );
+                  GetMusclesByGroupIntent(firstGroupId),
+                );
               }
             }
           },
@@ -121,9 +124,9 @@ class _WorkoutPageState
               centerTitle: true,
               title: Text(context.l10n.food_Recommendation_title),
               leadingWidth: 35.r,
-              leading: SvgPicture.asset(AppConstants.customBackIcon)
-                  .onTap(() => Navigator.of(context).pop())
-                  .paddingAll(2.r),
+              leading: SvgPicture.asset(
+                AppConstants.customBackIcon,
+              ).onTap(() => Navigator.of(context).pop()).paddingAll(2.r),
             ),
             body: Column(
               children: [
@@ -135,7 +138,8 @@ class _WorkoutPageState
                         if (_tabController.length == groupList.length) {
                           return WorkoutsCategoriesTabbar(
                             tabController: _tabController,
-                             IdMuscles: [], selectedCategoryIndex: _tabController.index,
+                            IdMuscles: [],
+                            selectedCategoryIndex: _tabController.index,
                           );
                         } else {
                           return const WorkoutTabBarLoading();
@@ -145,7 +149,8 @@ class _WorkoutPageState
                     const SizedBox.shrink(),
                 SizedBox(height: R.spaceMD),
                 Expanded(
-                  child: state.muscleGroupsState?.when(
+                  child:
+                      state.muscleGroupsState?.when(
                         initial: () => const WorkoutGridLoading(),
                         loading: () => const WorkoutGridLoading(),
                         success: (groups) {
@@ -157,39 +162,57 @@ class _WorkoutPageState
                           return state.musclesByGroupState?.when(
                                 initial: () => const WorkoutGridLoading(),
                                 loading: () => const WorkoutGridLoading(),
-                                success: (_) => WorkoutGridViewWidget(
-                                  tabController: _tabController,
-                                  muscleGroups:  groupList,
-                                  cachedWorkouts: state.cachedMuscles,
-                                  loadingGroups: state.loadingGroups,
-                                  selectedGroupIndex: state.selectedGroupIndex,
-                                ),
-                                error: (error) => WorkoutErrorView(
-                                  categoryList: groupList, 
-                                  error: error,
-                                  workoutsViewModel: context.read<WorkoutRecommendationViewModel>(),
-                                  selectedCategoryIndex: state.selectedGroupIndex,
-                                  onPressed: () {
-                                    final groupId = groupList[state.selectedGroupIndex].id ?? '';
-                                    context.read<WorkoutRecommendationViewModel>().doIntent(
-                                          GetMusclesByGroupIntent(groupId),
-                                        );
-                                  }, 
-                                ),
+                                success:
+                                    (_) => WorkoutGridViewWidget(
+                                      tabController: _tabController,
+                                      muscleGroups: groupList,
+                                      cachedWorkouts: state.cachedMuscles,
+                                      loadingGroups: state.loadingGroups,
+                                      selectedGroupIndex:
+                                          state.selectedGroupIndex,
+                                    ),
+                                error:
+                                    (error) => WorkoutErrorView(
+                                      categoryList: groupList,
+                                      error: error,
+                                      workoutsViewModel:
+                                          context
+                                              .read<
+                                                WorkoutRecommendationViewModel
+                                              >(),
+                                      selectedCategoryIndex:
+                                          state.selectedGroupIndex,
+                                      onPressed: () {
+                                        final groupId =
+                                            groupList[state.selectedGroupIndex]
+                                                .id ??
+                                            '';
+                                        context
+                                            .read<
+                                              WorkoutRecommendationViewModel
+                                            >()
+                                            .doIntent(
+                                              GetMusclesByGroupIntent(groupId),
+                                            );
+                                      },
+                                    ),
                               ) ??
                               const WorkoutGridLoading();
                         },
-                        error: (error) => WorkoutErrorView(
-                          categoryList: [],
-                          error: error,
-                          workoutsViewModel: context.read<WorkoutRecommendationViewModel>(),
-                          selectedCategoryIndex: state.selectedGroupIndex,
-                          onPressed: () {
-                            context.read<WorkoutRecommendationViewModel>().doIntent(
-                                  const GetMuscleGroupsIntent(),
-                                );
-                          },
-                        ),
+                        error:
+                            (error) => WorkoutErrorView(
+                              categoryList: [],
+                              error: error,
+                              workoutsViewModel:
+                                  context
+                                      .read<WorkoutRecommendationViewModel>(),
+                              selectedCategoryIndex: state.selectedGroupIndex,
+                              onPressed: () {
+                                context
+                                    .read<WorkoutRecommendationViewModel>()
+                                    .doIntent(const GetMuscleGroupsIntent());
+                              },
+                            ),
                       ) ??
                       const WorkoutGridLoading(),
                 ),

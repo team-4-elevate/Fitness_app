@@ -5,8 +5,11 @@ class MusclesByMuscleGroupIdEntity extends Equatable {
   final String name;
   final String image;
 
-  MusclesByMuscleGroupIdEntity(
-      {required this.id, required this.name, required this.image});
+  MusclesByMuscleGroupIdEntity({
+    required this.id,
+    required this.name,
+    required this.image,
+  });
 
   @override
   List<Object?> get props => [id, name, image];

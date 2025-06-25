@@ -12,46 +12,41 @@ import 'package:fitness_app/features/app_sections/Workouts_Page/domain/entities/
 import 'package:fitness_app/features/app_sections/Workouts_Page/domain/entities/muscles_by_muscle_group_id_entity.dart';
 import 'package:injectable/injectable.dart';
 
-
 @Injectable(as: WorkoutsDataSourceContract)
-
-class WorkoutsRepositoryImplementation implements WorkoutsDataSourceContract{
-final ApiClient apiClient;
+class WorkoutsRepositoryImplementation implements WorkoutsDataSourceContract {
+  final ApiClient apiClient;
   WorkoutsRepositoryImplementation({required this.apiClient});
 
   @override
-Future<ApiResult<WorkoutsResponseDto>> getAllWorkouts() async {
-    var response = await apiClient.get(
-      ApiConstants.getAllWorkoutsEndpoint,
-    ); 
+  Future<ApiResult<WorkoutsResponseDto>> getAllWorkouts() async {
+    var response = await apiClient.get(ApiConstants.getAllWorkoutsEndpoint);
     return response.map((data) {
       return WorkoutsResponseDto.fromJson(data);
     });
-  
-}
+  }
 
   @override
   Future<ApiResult<GetAllWorkoutsByIdDto>> getWorkoutById(String id) async {
     var response = await apiClient.get(
       ApiConstants.getWorkoutsByIdEndpoint,
-      queryParameters: {'id': id},  
+      queryParameters: {'id': id},
     );
-     return response.map((data) {
+    return response.map((data) {
       return GetAllWorkoutsByIdDto.fromJson(data);
     });
-    }
+  }
 
-      @override
-  Future<ApiResult<List<MusclesByMuscleGroupIdMusclesDto>>> getMusclesByMuscleGroupId(String id) async {
+  @override
+  Future<ApiResult<List<MusclesByMuscleGroupIdMusclesDto>>>
+  getMusclesByMuscleGroupId(String id) async {
     var response = await apiClient.get(
-    ApiConstants.getWorkoutsByMuscleGroupIdEndpoint,
-    queryParameters: {'id': id},
-   );
-    return  response.map((data) {
+      ApiConstants.getWorkoutsByMuscleGroupIdEndpoint,
+      queryParameters: {'id': id},
+    );
+    return response.map((data) {
       return (data as List)
           .map((item) => MusclesByMuscleGroupIdMusclesDto.fromJson(item))
           .toList();
     });
   }
 }
-

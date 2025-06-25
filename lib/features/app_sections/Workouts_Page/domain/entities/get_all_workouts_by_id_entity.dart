@@ -10,18 +10,20 @@ class MusclesByIdResponseEntity extends Equatable {
     this.muscleGroup,
     this.muscles,
   });
-   
+
   factory MusclesByIdResponseEntity.fromJson(Map<String, dynamic> json) {
     return MusclesByIdResponseEntity(
       message: json["message"],
-      muscleGroup: json["muscleGroup"] != null 
-          ? MuscleGroupEntityById.fromJson(json["muscleGroup"])
-          : null,
-      muscles: json["muscles"] != null
-          ? (json["muscles"] as List)
-              .map((muscle) => MuscleEntity.fromJson(muscle))
-              .toList()
-          : null,
+      muscleGroup:
+          json["muscleGroup"] != null
+              ? MuscleGroupEntityById.fromJson(json["muscleGroup"])
+              : null,
+      muscles:
+          json["muscles"] != null
+              ? (json["muscles"] as List)
+                  .map((muscle) => MuscleEntity.fromJson(muscle))
+                  .toList()
+              : null,
     );
   }
 
@@ -33,16 +35,10 @@ class MuscleGroupEntityById extends Equatable {
   final String? id;
   final String? name;
 
-  const MuscleGroupEntityById({
-    this.id,
-    this.name,
-  });
+  const MuscleGroupEntityById({this.id, this.name});
 
   factory MuscleGroupEntityById.fromJson(Map<String, dynamic> json) {
-    return MuscleGroupEntityById(
-      id: json["_id"],
-      name: json["name"],
-    );
+    return MuscleGroupEntityById(id: json["_id"], name: json["name"]);
   }
 
   @override
@@ -54,11 +50,7 @@ class MuscleEntity extends Equatable {
   final String? name;
   final String? image;
 
-  const MuscleEntity({
-    this.id,
-    this.name,
-    this.image,
-  });
+  const MuscleEntity({this.id, this.name, this.image});
 
   factory MuscleEntity.fromJson(Map<String, dynamic> json) {
     return MuscleEntity(

@@ -11,11 +11,7 @@ class GetAllWorkoutsByIdDto {
   @JsonKey(name: "muscles")
   final List<Muscles>? muscles;
 
-  GetAllWorkoutsByIdDto ({
-    this.message,
-    this.muscleGroup,
-    this.muscles,
-  });
+  GetAllWorkoutsByIdDto({this.message, this.muscleGroup, this.muscles});
 
   factory GetAllWorkoutsByIdDto.fromJson(Map<String, dynamic> json) {
     return _$GetAllWorkoutsByIdDtoFromJson(json);
@@ -33,10 +29,7 @@ class MuscleGroup {
   @JsonKey(name: "name")
   final String? name;
 
-  MuscleGroup ({
-    this.id,
-    this.name,
-  });
+  MuscleGroup({this.id, this.name});
 
   factory MuscleGroup.fromJson(Map<String, dynamic> json) {
     return _$MuscleGroupFromJson(json);
@@ -56,11 +49,7 @@ class Muscles {
   @JsonKey(name: "image")
   final String? image;
 
-  Muscles ({
-    this.Id,
-    this.name,
-    this.image,
-  });
+  Muscles({this.Id, this.name, this.image});
 
   factory Muscles.fromJson(Map<String, dynamic> json) {
     return _$MusclesFromJson(json);
@@ -70,5 +59,3 @@ class Muscles {
     return _$MusclesToJson(this);
   }
 }
-
-

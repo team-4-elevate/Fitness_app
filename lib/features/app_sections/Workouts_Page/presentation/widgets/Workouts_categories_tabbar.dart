@@ -21,33 +21,32 @@ class WorkoutsCategoriesTabbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TabBar(
-          controller: tabController,
-          isScrollable: true,
-          unselectedLabelColor: AppColors.white,
-          dividerColor: Colors.transparent,
-          indicatorColor: Colors.transparent,
-          indicator: const BoxDecoration(),
-          tabAlignment: TabAlignment.start,
-          overlayColor: WidgetStateProperty.all(Colors.transparent),
-          onTap: (index) {
-            context.read<WorkoutRecommendationViewModel>().doIntent(
-              ChangeSelectedGroupIntent(index),
-            );
-            final categoryName = IdMuscles[index].id ?? '';
-            context.read<WorkoutRecommendationViewModel>().doIntent(
-              GetMusclesByGroupIntent(categoryName),
-            );
-          },
-          tabs:
-              IdMuscles.map((id) {
-                return Tab(
-                  child: CustomTabbarTab(
-                    title: id.name,
-                    isSelected:
-                        selectedCategoryIndex == IdMuscles.indexOf(id),
-                  ),
-                );
-              }).toList(),
+      controller: tabController,
+      isScrollable: true,
+      unselectedLabelColor: AppColors.white,
+      dividerColor: Colors.transparent,
+      indicatorColor: Colors.transparent,
+      indicator: const BoxDecoration(),
+      tabAlignment: TabAlignment.start,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      onTap: (index) {
+        context.read<WorkoutRecommendationViewModel>().doIntent(
+          ChangeSelectedGroupIntent(index),
         );
+        final categoryName = IdMuscles[index].id ?? '';
+        context.read<WorkoutRecommendationViewModel>().doIntent(
+          GetMusclesByGroupIntent(categoryName),
+        );
+      },
+      tabs:
+          IdMuscles.map((id) {
+            return Tab(
+              child: CustomTabbarTab(
+                title: id.name,
+                isSelected: selectedCategoryIndex == IdMuscles.indexOf(id),
+              ),
+            );
+          }).toList(),
+    );
   }
 }

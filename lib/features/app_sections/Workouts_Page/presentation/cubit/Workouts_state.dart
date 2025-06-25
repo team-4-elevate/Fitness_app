@@ -40,11 +40,11 @@ class WorkoutRecommendationState extends Equatable {
 
   @override
   List<Object?> get props => [
-        muscleGroupsState,
-        musclesByGroupState,
-        selectedGroupIndex,
-        cachedMuscles,
-        loadingGroups,
-        groups,
-      ];
+    muscleGroupsState,
+    musclesByGroupState,
+    selectedGroupIndex,
+    cachedMuscles,
+    loadingGroups,
+    groups,
+  ];
 }

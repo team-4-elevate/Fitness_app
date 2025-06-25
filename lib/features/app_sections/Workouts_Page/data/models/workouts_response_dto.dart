@@ -9,10 +9,7 @@ class WorkoutsResponseDto {
   @JsonKey(name: "musclesGroup")
   final List<MusclesGroup>? musclesGroup;
 
-  WorkoutsResponseDto ({
-    this.message,
-    this.musclesGroup,
-  });
+  WorkoutsResponseDto({this.message, this.musclesGroup});
 
   factory WorkoutsResponseDto.fromJson(Map<String, dynamic> json) {
     return _$WorkoutsResponseDtoFromJson(json);
@@ -30,10 +27,7 @@ class MusclesGroup {
   @JsonKey(name: "name")
   final String? name;
 
-  MusclesGroup ({
-    this.id,
-    this.name,
-  });
+  MusclesGroup({this.id, this.name});
 
   factory MusclesGroup.fromJson(Map<String, dynamic> json) {
     return _$MusclesGroupFromJson(json);

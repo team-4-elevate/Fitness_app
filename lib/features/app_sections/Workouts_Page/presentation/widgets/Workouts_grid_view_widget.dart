@@ -28,31 +28,32 @@ class WorkoutGridViewWidget extends StatelessWidget {
     return TabBarView(
       controller: tabController,
       physics: const NeverScrollableScrollPhysics(),
-      children: muscleGroups.asMap().entries.map((entry) {
-        final group = entry.value;
-        final groupKey = group.name?.toLowerCase() ?? '';
-        final workouts = cachedWorkouts[groupKey] ?? [];
-        final isLoading = loadingGroups.contains(groupKey);
+      children:
+          muscleGroups.asMap().entries.map((entry) {
+            final group = entry.value;
+            final groupKey = group.name?.toLowerCase() ?? '';
+            final workouts = cachedWorkouts[groupKey] ?? [];
+            final isLoading = loadingGroups.contains(groupKey);
 
-        if (isLoading) {
-          return const WorkoutGridLoading();
-        }
+            if (isLoading) {
+              return const WorkoutGridLoading();
+            }
 
-        if (workouts.isNotEmpty) {
-          return GridViewCustomWidget(
-            itemCount: workouts.length,
-            itemBuilder: (context, index) {
-              final workout = workouts[index];
-              return GridViewCustomContainer(
-                imagePath: workout.image ?? '',
-                 MusclesName:workout.name?? '',
+            if (workouts.isNotEmpty) {
+              return GridViewCustomWidget(
+                itemCount: workouts.length,
+                itemBuilder: (context, index) {
+                  final workout = workouts[index];
+                  return GridViewCustomContainer(
+                    imagePath: workout.image ?? '',
+                    MusclesName: workout.name ?? '',
+                  );
+                },
               );
-            },
-          );
-        }
+            }
 
-        return const SizedBox.shrink();
-      }).toList(),
+            return const SizedBox.shrink();
+          }).toList(),
     );
   }
 }

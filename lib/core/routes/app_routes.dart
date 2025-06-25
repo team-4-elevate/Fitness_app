@@ -21,5 +21,4 @@ class AppRoutes {
   static const String changePasswordScreen = '/changePasswordScreen';
   static const String MainNavigationScreen = '/mainnavigationscreen';
   static const String Workouts = '/Workouts';
-
 }

@@ -14,7 +14,3 @@ class WorkoutsUseCase {
     return response;
   }
 }
-
-
-
-

@@ -7,7 +7,6 @@ import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/features/app_sections/Workouts_Page/data/models/muscles_by_muscle_group_id_dto.dart';
 import 'package:fitness_app/features/app_sections/Workouts_Page/domain/usecase/workouts_use_case.dart';
 
-
 @injectable
 class WorkoutRecommendationViewModel extends Cubit<WorkoutRecommendationState> {
   WorkoutRecommendationViewModel(
@@ -37,7 +36,11 @@ class WorkoutRecommendationViewModel extends Cubit<WorkoutRecommendationState> {
     final result = await _workoutsUseCase.getAllWorkouts();
     result.when(
       success: (data) {
-        emit(state.copyWith(muscleGroupsState: SuccessState(data.musclesGroup ?? [])));
+        emit(
+          state.copyWith(
+            muscleGroupsState: SuccessState(data.musclesGroup ?? []),
+          ),
+        );
       },
       failure: (message) {
         emit(state.copyWith(muscleGroupsState: ErrorState(message)));
@@ -48,33 +51,38 @@ class WorkoutRecommendationViewModel extends Cubit<WorkoutRecommendationState> {
   Future<void> _handleGetMusclesByGroup(String groupId) async {
     if (state.cachedMuscles.containsKey(groupId)) return;
 
-    emit(state.copyWith(
-      loadingGroups: {...state.loadingGroups, groupId},
-    ));
+    emit(state.copyWith(loadingGroups: {...state.loadingGroups, groupId}));
 
     final result = await _getWorkoutsByIdUseCase.call(groupId);
     result.when(
       success: (muscles) {
-        final updatedCache = Map<String, List<MusclesByMuscleGroupIdMusclesDto>>.from(state.cachedMuscles);
+        final updatedCache =
+            Map<String, List<MusclesByMuscleGroupIdMusclesDto>>.from(
+              state.cachedMuscles,
+            );
         final updatedLoading = Set<String>.from(state.loadingGroups);
 
         updatedCache[groupId] = muscles;
         updatedLoading.remove(groupId);
 
-        emit(state.copyWith(
-          musclesByGroupState: SuccessState(muscles),
-          cachedMuscles: updatedCache,
-          loadingGroups: updatedLoading,
-        ));
+        emit(
+          state.copyWith(
+            musclesByGroupState: SuccessState(muscles),
+            cachedMuscles: updatedCache,
+            loadingGroups: updatedLoading,
+          ),
+        );
       },
       failure: (message) {
         final updatedLoading = Set<String>.from(state.loadingGroups);
         updatedLoading.remove(groupId);
 
-        emit(state.copyWith(
-          musclesByGroupState: ErrorState(message),
-          loadingGroups: updatedLoading,
-        ));
+        emit(
+          state.copyWith(
+            musclesByGroupState: ErrorState(message),
+            loadingGroups: updatedLoading,
+          ),
+        );
       },
     );
   }

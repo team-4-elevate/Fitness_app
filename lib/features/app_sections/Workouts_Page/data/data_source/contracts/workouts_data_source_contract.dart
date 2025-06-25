@@ -6,9 +6,6 @@ import 'package:fitness_app/features/app_sections/Workouts_Page/data/models/work
 abstract class WorkoutsDataSourceContract {
   Future<ApiResult<WorkoutsResponseDto>> getAllWorkouts();
   Future<ApiResult<GetAllWorkoutsByIdDto>> getWorkoutById(String id);
-  Future<ApiResult<List<MusclesByMuscleGroupIdMusclesDto>>> getMusclesByMuscleGroupId(String id);
-
-  
-
-
+  Future<ApiResult<List<MusclesByMuscleGroupIdMusclesDto>>>
+  getMusclesByMuscleGroupId(String id);
 }
