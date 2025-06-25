@@ -6,6 +6,8 @@ import 'package:fitness_app/features/auth/presentation/login/login_view_model.da
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
+import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_recommendation_viewmodel.dart';
+import 'package:fitness_app/features/food_recommendation/presentation/pages/food_recommendation_screen.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
@@ -93,6 +95,14 @@ class AppRoutesGenerator {
         );
       case AppRoutes.onboarding:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
+
+      case AppRoutes.foodRecommendationScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<FoodRecommendationViewModel>(),
+            child: const FoodRecommendationScreen(),
+          ),
+        );
 
       default:
         return MaterialPageRoute(

@@ -1,3 +1,4 @@
+// core/routes/app_routes.dart
 class AppRoutes {
   AppRoutes._();
   static const String onboarding = '/onboarding';
@@ -13,4 +14,5 @@ class AppRoutes {
   static const String profilePage = '/profilePage';
   static const String homeScreen = '/homeScreen';
   static const String changePasswordScreen = '/changePasswordScreen';
+  static const String foodRecommendationScreen = '/foodRecommendationScreen';
 }

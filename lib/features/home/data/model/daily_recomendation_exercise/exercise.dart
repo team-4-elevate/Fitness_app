@@ -179,7 +179,7 @@ class Exercise {
     if (videoId != null) {
       return 'https://img.youtube.com/vi/$videoId/hqdefault.jpg';
     }
-    return 'https://via.placeholder.com/150?text=Exercise';
+    return 'assets/images/fit1.png';
   }
 
   //------------------------------------------toDailyRecommendationItem
