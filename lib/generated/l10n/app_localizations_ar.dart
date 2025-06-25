@@ -420,4 +420,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get resend => 'إعادة الإرسال';
+
+  @override
+  String get video_not_available => 'الفيديو غير متاح';
+
+  @override
+  String get exercise => 'تمرين';
+
+  @override
+  String get no_exercises_found => 'لم يتم العثور على تمارين';
+
+  @override
+  String failed_to_load_exercises(Object error) {
+    return 'فشل في تحميل التمارين: $error';
+  }
+
+  @override
+  String get motivational_quote => 'اقتباس تحفيزي';
 }

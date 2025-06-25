@@ -859,6 +859,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Resend'**
   String get resend;
+
+  /// Message displayed when a video is not available
+  ///
+  /// In en, this message translates to:
+  /// **'Video not available'**
+  String get video_not_available;
+
+  /// Label for exercise section
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise'**
+  String get exercise;
+
+  /// Message displayed when no exercises are found
+  ///
+  /// In en, this message translates to:
+  /// **'No exercises found'**
+  String get no_exercises_found;
+
+  /// Error message displayed when failing to load exercises
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load exercises'**
+  String failed_to_load_exercises(Object error);
+
+  /// Title for the motivational quote section
+  ///
+  /// In en, this message translates to:
+  /// **'Motivational Quote'**
+  String get motivational_quote;
 }
 
 class _AppLocalizationsDelegate

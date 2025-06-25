@@ -424,4 +424,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resend => 'Resend';
+
+  @override
+  String get video_not_available => 'Video not available';
+
+  @override
+  String get exercise => 'Exercise';
+
+  @override
+  String get no_exercises_found => 'No exercises found';
+
+  @override
+  String failed_to_load_exercises(Object error) {
+    return 'Failed to load exercises';
+  }
+
+  @override
+  String get motivational_quote => 'Motivational Quote';
 }
