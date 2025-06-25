@@ -22,10 +22,9 @@ class OtpTextField extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color:
-                  pinController.text == ''
-                      ? Colors.white
-                      : AppColors.primaryOrange,
+              color: pinController.text == ''
+                  ? Colors.white
+                  : AppColors.primaryOrange,
               width: 2,
             ),
           ),

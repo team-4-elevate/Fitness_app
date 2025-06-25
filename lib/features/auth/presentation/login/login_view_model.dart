@@ -136,13 +136,12 @@ class LoginViewModel extends Cubit<LoginState> {
 
   Future<void> _doLogin() async {
     return await handleCubitStates(
-      request:
-          () => _loginUseCase.call(
-            LoginRequest(
-              email: emailController.text.trim(),
-              password: passwordController.text,
-            ),
-          ),
+      request: () => _loginUseCase.call(
+        LoginRequest(
+          email: emailController.text.trim(),
+          password: passwordController.text,
+        ),
+      ),
       emit: (newState) {
         emit(state.copyWith(loginState: newState));
       },

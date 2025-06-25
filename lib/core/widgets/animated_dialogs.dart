@@ -286,8 +286,7 @@ abstract class BaseAnimatedDialog extends StatefulWidget {
 }
 
 abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
-    extends State<T>
-    with TickerProviderStateMixin {
+    extends State<T> with TickerProviderStateMixin {
   late AnimationController _scaleController;
   late AnimationController _fadeController;
   late Animation<double> _scaleAnimation;
@@ -306,15 +305,13 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
 
   void _initializeAnimations() {
     _scaleController = AnimationController(
-      duration:
-          widget.customization.animationDuration ??
+      duration: widget.customization.animationDuration ??
           const Duration(milliseconds: 400),
       vsync: this,
     );
 
     _fadeController = AnimationController(
-      duration:
-          widget.customization.fadeAnimationDuration ??
+      duration: widget.customization.fadeAnimationDuration ??
           const Duration(milliseconds: 300),
       vsync: this,
     );
@@ -444,8 +441,7 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
           child: ScaleTransition(
             scale: _scaleAnimation,
             child: Container(
-              margin:
-                  customization.dialogMargin ??
+              margin: customization.dialogMargin ??
                   EdgeInsets.symmetric(horizontal: R.space24),
               width: dialogSize.width,
               height: dialogSize.height,
@@ -454,8 +450,7 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
                 borderRadius: BorderRadius.circular(
                   customization.borderRadius ?? R.borderLGValue,
                 ),
-                boxShadow:
-                    customization.customShadows ??
+                boxShadow: customization.customShadows ??
                     [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.15),
@@ -489,8 +484,7 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
 
   Widget _buildAnimationSection() {
     final customization = widget.customization;
-    final animationSize =
-        customization.animationSize ??
+    final animationSize = customization.animationSize ??
         R.adaptive(mobile: 100, tablet: 120, desktop: 140);
 
     return SizedBox(
@@ -517,8 +511,7 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
     final customization = widget.customization;
 
     return Padding(
-      padding:
-          customization.contentPadding ??
+      padding: customization.contentPadding ??
           EdgeInsets.symmetric(horizontal: R.space20, vertical: R.space12),
       child: Column(
         children: [
@@ -527,8 +520,7 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
             style: TextStyle(
               fontSize: customization.titleFontSize ?? R.textLG,
               fontWeight: customization.titleFontWeight ?? FontWeight.bold,
-              color:
-                  customization.titleColor ??
+              color: customization.titleColor ??
                   customization.primaryColor ??
                   primaryColor,
               height: 1.3,
@@ -565,8 +557,7 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
 
     if (widget.secondaryButton) {
       return Padding(
-        padding:
-            customization.buttonPadding ??
+        padding: customization.buttonPadding ??
             EdgeInsets.symmetric(horizontal: R.space20),
         child: Row(
           children: [
@@ -635,8 +626,7 @@ abstract class BaseAnimatedDialogState<T extends BaseAnimatedDialog>
 
     // Single button
     return Padding(
-      padding:
-          customization.buttonPadding ??
+      padding: customization.buttonPadding ??
           EdgeInsets.symmetric(horizontal: R.space20),
       child: SizedBox(
         width: double.infinity,
@@ -771,26 +761,25 @@ extension DialogExtensions on BuildContext {
       context: this,
       barrierDismissible: barrierDismissible,
       barrierColor: customization.barrierColor ?? Colors.black.withOpacity(0.5),
-      builder:
-          (context) => BaseAnimatedDialogImpl(
-            title: title,
-            message: message,
-            animationPath: animationPath,
-            showButton: showButton,
-            buttonText: buttonText,
-            onButtonPressed: onButtonPressed,
-            onAnimationComplete: onAnimationComplete,
-            autoDismiss: autoDismiss,
-            dismissDelay: dismissDelay,
-            barrierDismissible: barrierDismissible,
-            customization: customization,
-            lottieRepeat: lottieRepeat,
-            lottieReverse: lottieReverse,
-            customWidget: customWidget,
-            secondaryButton: secondaryButton,
-            secondaryButtonText: secondaryButtonText,
-            onSecondaryButtonPressed: onSecondaryButtonPressed,
-          ),
+      builder: (context) => BaseAnimatedDialogImpl(
+        title: title,
+        message: message,
+        animationPath: animationPath,
+        showButton: showButton,
+        buttonText: buttonText,
+        onButtonPressed: onButtonPressed,
+        onAnimationComplete: onAnimationComplete,
+        autoDismiss: autoDismiss,
+        dismissDelay: dismissDelay,
+        barrierDismissible: barrierDismissible,
+        customization: customization,
+        lottieRepeat: lottieRepeat,
+        lottieReverse: lottieReverse,
+        customWidget: customWidget,
+        secondaryButton: secondaryButton,
+        secondaryButtonText: secondaryButtonText,
+        onSecondaryButtonPressed: onSecondaryButtonPressed,
+      ),
     );
   }
 
@@ -818,25 +807,24 @@ extension DialogExtensions on BuildContext {
       barrierDismissible: barrierDismissible,
       barrierColor:
           (customization?.barrierColor) ?? Colors.black.withOpacity(0.5),
-      builder:
-          (context) => SuccessDialog(
-            title: title,
-            message: message,
-            showButton: showButton,
-            buttonText: buttonText,
-            onButtonPressed: onButtonPressed,
-            onAnimationComplete: onAnimationComplete,
-            autoDismiss: autoDismiss,
-            dismissDelay: dismissDelay,
-            barrierDismissible: barrierDismissible,
-            customization: customization ?? DialogCustomization.success,
-            lottieRepeat: lottieRepeat,
-            lottieReverse: lottieReverse,
-            customWidget: customWidget,
-            secondaryButton: secondaryButton,
-            secondaryButtonText: secondaryButtonText,
-            onSecondaryButtonPressed: onSecondaryButtonPressed,
-          ),
+      builder: (context) => SuccessDialog(
+        title: title,
+        message: message,
+        showButton: showButton,
+        buttonText: buttonText,
+        onButtonPressed: onButtonPressed,
+        onAnimationComplete: onAnimationComplete,
+        autoDismiss: autoDismiss,
+        dismissDelay: dismissDelay,
+        barrierDismissible: barrierDismissible,
+        customization: customization ?? DialogCustomization.success,
+        lottieRepeat: lottieRepeat,
+        lottieReverse: lottieReverse,
+        customWidget: customWidget,
+        secondaryButton: secondaryButton,
+        secondaryButtonText: secondaryButtonText,
+        onSecondaryButtonPressed: onSecondaryButtonPressed,
+      ),
     );
   }
 
@@ -864,25 +852,24 @@ extension DialogExtensions on BuildContext {
       barrierDismissible: barrierDismissible,
       barrierColor:
           (customization?.barrierColor) ?? Colors.black.withOpacity(0.5),
-      builder:
-          (context) => FailureDialog(
-            title: title,
-            message: message,
-            showButton: showButton,
-            buttonText: buttonText,
-            onButtonPressed: onButtonPressed,
-            onAnimationComplete: onAnimationComplete,
-            autoDismiss: autoDismiss,
-            dismissDelay: dismissDelay,
-            barrierDismissible: barrierDismissible,
-            customization: customization ?? DialogCustomization.failure,
-            lottieRepeat: lottieRepeat,
-            lottieReverse: lottieReverse,
-            customWidget: customWidget,
-            secondaryButton: secondaryButton,
-            secondaryButtonText: secondaryButtonText,
-            onSecondaryButtonPressed: onSecondaryButtonPressed,
-          ),
+      builder: (context) => FailureDialog(
+        title: title,
+        message: message,
+        showButton: showButton,
+        buttonText: buttonText,
+        onButtonPressed: onButtonPressed,
+        onAnimationComplete: onAnimationComplete,
+        autoDismiss: autoDismiss,
+        dismissDelay: dismissDelay,
+        barrierDismissible: barrierDismissible,
+        customization: customization ?? DialogCustomization.failure,
+        lottieRepeat: lottieRepeat,
+        lottieReverse: lottieReverse,
+        customWidget: customWidget,
+        secondaryButton: secondaryButton,
+        secondaryButtonText: secondaryButtonText,
+        onSecondaryButtonPressed: onSecondaryButtonPressed,
+      ),
     );
   }
 

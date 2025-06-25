@@ -29,7 +29,6 @@ class StepIndicator extends StatelessWidget {
             backgroundColor: Colors.transparent,
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryOrange),
           ),
-
           Center(child: Text('$currentStep/$totalSteps')),
         ],
       ),

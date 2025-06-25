@@ -150,8 +150,7 @@ extension BuildContextExtensions on BuildContext {
         backgroundColor: backgroundColor ?? AppColors.primaryOrange,
         duration: duration ?? const Duration(seconds: 3),
         behavior: SnackBarBehavior.floating,
-        shape:
-            shape ??
+        shape: shape ??
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
         action: action,
         width: width,
@@ -246,8 +245,7 @@ extension BuildContextExtensions on BuildContext {
       isScrollControlled: isScrollControlled,
       backgroundColor: backgroundColor,
       elevation: elevation,
-      shape:
-          shape ??
+      shape: shape ??
           const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           ),
@@ -327,15 +325,16 @@ extension WidgetExtensions on Widget {
     double top = 0,
     double right = 0,
     double bottom = 0,
-  }) => Padding(
-    padding: EdgeInsets.only(
-      left: left.r,
-      top: top.r,
-      right: right.r,
-      bottom: bottom.r,
-    ),
-    child: this,
-  );
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left.r,
+          top: top.r,
+          right: right.r,
+          bottom: bottom.r,
+        ),
+        child: this,
+      );
 
   Widget paddingLTRB(double left, double top, double right, double bottom) =>
       Padding(
@@ -360,15 +359,16 @@ extension WidgetExtensions on Widget {
     double top = 0,
     double right = 0,
     double bottom = 0,
-  }) => Container(
-    margin: EdgeInsets.only(
-      left: left.r,
-      top: top.r,
-      right: right.r,
-      bottom: bottom.r,
-    ),
-    child: this,
-  );
+  }) =>
+      Container(
+        margin: EdgeInsets.only(
+          left: left.r,
+          top: top.r,
+          right: right.r,
+          bottom: bottom.r,
+        ),
+        child: this,
+      );
 
   Widget marginLTRB(double left, double top, double right, double bottom) =>
       Container(
@@ -408,9 +408,9 @@ extension WidgetExtensions on Widget {
       SingleChildScrollView(physics: physics, child: this);
 
   Widget get disableScroll => NotificationListener<ScrollNotification>(
-    onNotification: (_) => true,
-    child: this,
-  );
+        onNotification: (_) => true,
+        child: this,
+      );
 
   Widget get intrinsicHeight => IntrinsicHeight(child: this);
   Widget get intrinsicWidth => IntrinsicWidth(child: this);
@@ -432,51 +432,52 @@ extension WidgetExtensions on Widget {
       ClipRRect(borderRadius: BorderRadius.circular(radius.r), child: this);
 
   Widget roundedTop(double radius) => ClipRRect(
-    borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(radius.r),
-      topRight: Radius.circular(radius.r),
-    ),
-    child: this,
-  );
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius.r),
+          topRight: Radius.circular(radius.r),
+        ),
+        child: this,
+      );
 
   Widget roundedBottom(double radius) => ClipRRect(
-    borderRadius: BorderRadius.only(
-      bottomLeft: Radius.circular(radius.r),
-      bottomRight: Radius.circular(radius.r),
-    ),
-    child: this,
-  );
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(radius.r),
+          bottomRight: Radius.circular(radius.r),
+        ),
+        child: this,
+      );
 
   Widget roundedLeft(double radius) => ClipRRect(
-    borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(radius.r),
-      bottomLeft: Radius.circular(radius.r),
-    ),
-    child: this,
-  );
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius.r),
+          bottomLeft: Radius.circular(radius.r),
+        ),
+        child: this,
+      );
 
   Widget roundedRight(double radius) => ClipRRect(
-    borderRadius: BorderRadius.only(
-      topRight: Radius.circular(radius.r),
-      bottomRight: Radius.circular(radius.r),
-    ),
-    child: this,
-  );
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(radius.r),
+          bottomRight: Radius.circular(radius.r),
+        ),
+        child: this,
+      );
 
   Widget roundedCustom({
     double topLeft = 0,
     double topRight = 0,
     double bottomLeft = 0,
     double bottomRight = 0,
-  }) => ClipRRect(
-    borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(topLeft.r),
-      topRight: Radius.circular(topRight.r),
-      bottomLeft: Radius.circular(bottomLeft.r),
-      bottomRight: Radius.circular(bottomRight.r),
-    ),
-    child: this,
-  );
+  }) =>
+      ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(topLeft.r),
+          topRight: Radius.circular(topRight.r),
+          bottomLeft: Radius.circular(bottomLeft.r),
+          bottomRight: Radius.circular(bottomRight.r),
+        ),
+        child: this,
+      );
 
   Widget rounded(double radius) =>
       ClipRRect(borderRadius: BorderRadius.circular(radius.r), child: this);
@@ -488,19 +489,20 @@ extension WidgetExtensions on Widget {
     double blurRadius = 4,
     Offset offset = const Offset(0, 2),
     double spreadRadius = 0,
-  }) => Container(
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: color,
-          blurRadius: blurRadius,
-          offset: offset,
-          spreadRadius: spreadRadius,
+  }) =>
+      Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: color,
+              blurRadius: blurRadius,
+              offset: offset,
+              spreadRadius: spreadRadius,
+            ),
+          ],
         ),
-      ],
-    ),
-    child: this,
-  );
+        child: this,
+      );
 
   Widget elevation(double elevation) =>
       Material(elevation: elevation, child: this);
@@ -512,11 +514,12 @@ extension WidgetExtensions on Widget {
   Widget fadeInOut(
     bool isVisible, {
     Duration duration = const Duration(milliseconds: 300),
-  }) => AnimatedOpacity(
-    opacity: isVisible ? 1.0 : 0.0,
-    duration: duration,
-    child: this,
-  );
+  }) =>
+      AnimatedOpacity(
+        opacity: isVisible ? 1.0 : 0.0,
+        duration: duration,
+        child: this,
+      );
 
   Widget scale(double scale) => Transform.scale(scale: scale, child: this);
 
@@ -549,7 +552,8 @@ extension WidgetExtensions on Widget {
   Widget visibleWithReplacement(
     bool isVisible, {
     Widget replacement = const SizedBox(),
-  }) => Visibility(visible: isVisible, replacement: replacement, child: this);
+  }) =>
+      Visibility(visible: isVisible, replacement: replacement, child: this);
 
   // =================== Layout & Positioning ===================
   Widget fitted({BoxFit fit = BoxFit.contain}) =>
@@ -562,15 +566,16 @@ extension WidgetExtensions on Widget {
     double? bottom,
     double? width,
     double? height,
-  }) => Positioned(
-    left: left?.r,
-    top: top?.r,
-    right: right?.r,
-    bottom: bottom?.r,
-    width: width?.r,
-    height: height?.r,
-    child: this,
-  );
+  }) =>
+      Positioned(
+        left: left?.r,
+        top: top?.r,
+        right: right?.r,
+        bottom: bottom?.r,
+        width: width?.r,
+        height: height?.r,
+        child: this,
+      );
 
   // =================== Decoration ===================
   Widget decorated({
@@ -581,20 +586,20 @@ extension WidgetExtensions on Widget {
     BorderRadius? customBorderRadius,
     Gradient? gradient,
     DecorationImage? image,
-  }) => Container(
-    decoration: BoxDecoration(
-      color: color,
-      borderRadius:
-          borderRadius != null
+  }) =>
+      Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: borderRadius != null
               ? BorderRadius.circular(borderRadius.r)
               : customBorderRadius,
-      boxShadow: boxShadow,
-      border: border,
-      gradient: gradient,
-      image: image,
-    ),
-    child: this,
-  );
+          boxShadow: boxShadow,
+          border: border,
+          gradient: gradient,
+          image: image,
+        ),
+        child: this,
+      );
 
   // =================== Special Effects ===================
   Widget blur({
@@ -604,24 +609,24 @@ extension WidgetExtensions on Widget {
   }) =>
       enabled
           ? ImageFiltered(
-            imageFilter: ImageFilter.blur(
-              sigmaX: sigma,
-              sigmaY: sigma,
-              tileMode: tileMode,
-            ),
-            child: this,
-          )
+              imageFilter: ImageFilter.blur(
+                sigmaX: sigma,
+                sigmaY: sigma,
+                tileMode: tileMode,
+              ),
+              child: this,
+            )
           : this;
 
   Widget blurBackground({double sigma = 10, Color? color}) => ClipRect(
-    child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
-      child: Container(
-        color: color ?? Colors.black.withOpacity(0.1),
-        child: this,
-      ),
-    ),
-  );
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
+          child: Container(
+            color: color ?? Colors.black.withOpacity(0.1),
+            child: this,
+          ),
+        ),
+      );
 
   // =================== Theming ===================
   Widget withTheme(ThemeData theme) => Theme(data: theme, child: this);
@@ -633,17 +638,18 @@ extension WidgetExtensions on Widget {
     Brightness? statusBarIconBrightness,
     Color? systemNavigationBarColor,
     Brightness? systemNavigationBarIconBrightness,
-  }) => AnnotatedRegion<SystemUiOverlayStyle>(
-    value:
-        style ??
-        SystemUiOverlayStyle(
-          statusBarColor: statusBarColor ?? Colors.transparent,
-          statusBarIconBrightness: statusBarIconBrightness,
-          systemNavigationBarColor: systemNavigationBarColor,
-          systemNavigationBarIconBrightness: systemNavigationBarIconBrightness,
-        ),
-    child: this,
-  );
+  }) =>
+      AnnotatedRegion<SystemUiOverlayStyle>(
+        value: style ??
+            SystemUiOverlayStyle(
+              statusBarColor: statusBarColor ?? Colors.transparent,
+              statusBarIconBrightness: statusBarIconBrightness,
+              systemNavigationBarColor: systemNavigationBarColor,
+              systemNavigationBarIconBrightness:
+                  systemNavigationBarIconBrightness,
+            ),
+        child: this,
+      );
 }
 
 /// =================== NUMERIC EXTENSIONS ===================
@@ -1051,15 +1057,15 @@ extension DateTimeExtensions on DateTime {
 
   /// Add years
   DateTime addYears(int years) => DateTime(
-    year + years,
-    month,
-    day,
-    hour,
-    minute,
-    second,
-    millisecond,
-    microsecond,
-  );
+        year + years,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+        microsecond,
+      );
 
   /// Subtract years
   DateTime subtractYears(int years) => addYears(-years);

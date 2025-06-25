@@ -146,11 +146,9 @@ class AppTheme {
         foregroundColor: AppColors.white,
         shadowColor: AppColors.primaryOrange.withOpacity(0.3),
         elevation: 0,
-
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(R.borderButtonValue),
         ),
-
         textStyle: TextStyle(
           fontSize: R.textMD,
           fontFamily: AppFontStyle.customAppFont.fontFamily, // Custom font
@@ -256,7 +254,7 @@ class AppTheme {
     ),
 
     // =================== Dialog Theme - Responsive ===================
-    dialogTheme: DialogThemeData(
+    dialogTheme: DialogTheme(
       backgroundColor: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
@@ -285,7 +283,7 @@ class AppTheme {
     ),
 
     // =================== Card Theme - Responsive ===================
-    cardTheme: CardThemeData(
+    cardTheme: CardTheme(
       color: AppColors.white,
       surfaceTintColor: Colors.transparent,
       shadowColor: AppColors.black.withOpacity(0.1),
@@ -483,25 +481,23 @@ class AppTheme {
       filled: true,
       fillColor: Colors.white.withOpacity(0.1),
       contentPadding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 16.r),
-      prefixIcon:
-          prefixIcon != null
-              ? Icon(
-                prefixIcon,
+      prefixIcon: prefixIcon != null
+          ? Icon(
+              prefixIcon,
+              color: Colors.white.withOpacity(0.7),
+              size: R.iconBase, // ✅ Responsive icon size
+            )
+          : null,
+      suffixIcon: suffixIcon != null
+          ? IconButton(
+              icon: Icon(
+                suffixIcon,
                 color: Colors.white.withOpacity(0.7),
                 size: R.iconBase, // ✅ Responsive icon size
-              )
-              : null,
-      suffixIcon:
-          suffixIcon != null
-              ? IconButton(
-                icon: Icon(
-                  suffixIcon,
-                  color: Colors.white.withOpacity(0.7),
-                  size: R.iconBase, // ✅ Responsive icon size
-                ),
-                onPressed: onSuffixIconPressed,
-              )
-              : null,
+              ),
+              onPressed: onSuffixIconPressed,
+            )
+          : null,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50.r),
         borderSide: BorderSide(color: Colors.white.withOpacity(0.2)),

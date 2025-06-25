@@ -15,14 +15,14 @@ class DioApiClient implements ApiClient {
   final AppSecureStorage localStorage;
 
   DioApiClient(this.localStorage)
-    : _dio = Dio(
-        BaseOptions(
-          baseUrl: ApiConstants.baseUrl,
-          connectTimeout: const Duration(seconds: 10),
-          receiveTimeout: const Duration(seconds: 10),
-          responseType: ResponseType.json,
-        ),
-      ) {
+      : _dio = Dio(
+          BaseOptions(
+            baseUrl: ApiConstants.baseUrl,
+            connectTimeout: const Duration(seconds: 10),
+            receiveTimeout: const Duration(seconds: 10),
+            responseType: ResponseType.json,
+          ),
+        ) {
     _dio.interceptors.add(PrettyDioLogger());
   }
 

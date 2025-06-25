@@ -35,22 +35,22 @@ class ErrorHandler {
     return switch (e.type) {
       DioExceptionType.connectionTimeout ||
       DioExceptionType.sendTimeout ||
-      DioExceptionType
-          .receiveTimeout => _localization.translate('errors.timeout'),
+      DioExceptionType.receiveTimeout =>
+        _localization.translate('errors.timeout'),
       DioExceptionType.badResponse when e.response != null =>
         _handleBadResponse(e.response!),
       DioExceptionType.cancel => _localization.translate(
-        'errors.request_cancelled',
-      ),
+          'errors.request_cancelled',
+        ),
       DioExceptionType.connectionError => _localization.translate(
-        'errors.connection_error',
-      ),
+          'errors.connection_error',
+        ),
       _ when e.error is SocketException => _localization.translate(
-        'errors.no_internet',
-      ),
+          'errors.no_internet',
+        ),
       _ => _localization.translate('errors.unknown', {
-        'message': e.message ?? '',
-      }),
+          'message': e.message ?? '',
+        }),
     };
   }
 
@@ -70,8 +70,8 @@ class ErrorHandler {
       422 => _extractValidationErrors(response),
       500 || 502 || 503 => _localization.translate('errors.server_error'),
       _ => _localization.translate('errors.status_code', {
-        'status': statusCode?.toString() ?? 'unknown',
-      }),
+          'status': statusCode?.toString() ?? 'unknown',
+        }),
     };
   }
 
