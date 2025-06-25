@@ -6,4 +6,6 @@ class AppConstants {
   static const String exerciseBottomBg =
       'assets/images/exercise_btm_background.png';
   static const String appBackBtn = 'assets/icons/back_btn.svg';
+  static const String foodBgImage = 'assets/images/foodBgImage.png';
+  static const String customBackIcon = 'assets/icons/Back.svg';
 }

@@ -10,4 +10,8 @@ class ApiConstants {
   static const String registerEndpoint = '/auth/signup';
   static const String difficultyLevel = '/levels';
   static const String exercises = '/exercises';
+  static const String foodRecommendBaseUrl =
+      'https://www.themealdb.com/api/json/v1/1/';
+  static const String foodRecommendedCategoriesEndpoint = '/categories.php';
+  static const String foodRecommendedMealsEndpoint = '/filter.php';
 }

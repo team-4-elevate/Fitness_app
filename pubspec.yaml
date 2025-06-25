@@ -63,7 +63,9 @@ dependencies:
   google_fonts: ^6.2.1
   numberpicker: ^2.1.2
   icons_plus: ^5.0.0
-  smooth_page_indicator:
+  skeletonizer: ^1.4.3
+  smooth_page_indicator: 
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:
