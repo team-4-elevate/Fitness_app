@@ -35,6 +35,20 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/food_recommendation/data/datasources/food_recommend_remote_data_source.dart'
+    as _i483;
+import '../../features/food_recommendation/data/datasources/food_recommend_remote_data_source_impl.dart'
+    as _i740;
+import '../../features/food_recommendation/data/repositories/food_recommend_repo_impl.dart'
+    as _i190;
+import '../../features/food_recommendation/domain/repositories/food_recommend_repo.dart'
+    as _i988;
+import '../../features/food_recommendation/domain/usecases/get_meals_categories_use_case.dart'
+    as _i520;
+import '../../features/food_recommendation/domain/usecases/get_meals_on_category_use_case.dart'
+    as _i420;
+import '../../features/food_recommendation/presentation/cubit/food_recommendation_viewmodel.dart'
+    as _i68;
 import '../../features/home/data/datasource/remote_data_source/home_remote_data_source_contract.dart'
     as _i352;
 import '../../features/home/data/datasource/remote_data_source/home_remote_data_source_impl.dart'
@@ -109,6 +123,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i277.ApiClient>(
       () => _i861.DioApiClient(gh<_i304.AppSecureStorage>()),
     );
+    gh.factory<_i483.FoodRecommendRemoteDataSource>(
+      () => _i740.FoodRecommendRemoteDataSourceImpl(gh<_i277.ApiClient>()),
+    );
     gh.factory<_i758.ShowOnboardingUseCase>(
       () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()),
     );
@@ -121,6 +138,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
     );
+    gh.factory<_i988.FoodRecommendRepo>(
+      () => _i190.FoodRecommendRepoImpl(
+        gh<_i483.FoodRecommendRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i520.GetMealsCategoriesUseCase>(
+      () => _i520.GetMealsCategoriesUseCase(gh<_i988.FoodRecommendRepo>()),
+    );
+    gh.factory<_i420.GetMealsOnCategoryUseCase>(
+      () => _i420.GetMealsOnCategoryUseCase(gh<_i988.FoodRecommendRepo>()),
+    );
     gh.factory<_i207.HomeRepository>(
       () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()),
     );
@@ -129,6 +157,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i183.GetUpcomingWorkouts>(
       () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
+    );
+    gh.factory<_i68.FoodRecommendationViewModel>(
+      () => _i68.FoodRecommendationViewModel(
+        gh<_i520.GetMealsCategoriesUseCase>(),
+        gh<_i420.GetMealsOnCategoryUseCase>(),
+      ),
     );
     gh.factory<_i170.AuthRepo>(
       () => _i984.AuthRepoImpl(
