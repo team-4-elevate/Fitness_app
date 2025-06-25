@@ -10,7 +10,6 @@ import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arg
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_bloc.dart';
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_event.dart';
 import 'package:fitness_app/features/exercise/presentation/view/exercise_page/exercise_page.dart';
-import 'package:fitness_app/features/home/home.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_recommendation_viewmodel.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/pages/food_recommendation_screen.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
@@ -67,7 +66,6 @@ class AppRoutesGenerator {
         );
 
       case AppRoutes.layoutScreen:
-        return MaterialPageRoute(builder: (_) => MainNavigationScreen());
         return MaterialPageRoute(builder: (_) => MainNavigationScreen());
 
       case AppRoutes.forgotPass:

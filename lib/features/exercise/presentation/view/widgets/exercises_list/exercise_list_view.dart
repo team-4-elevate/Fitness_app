@@ -1,3 +1,4 @@
+// features/exercise/presentation/view/widgets/exercises_list/exercise_list_view.dart
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/exercise/presentation/view/widgets/exercises_list/exercises_pagination_view.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class ExerciseListView extends StatelessWidget {
         if (state.getExercisesStatus.isError) {
           return Center(
             child: Text(
-              state.errorMessage ?? context.l10n.failed_to_load_exercises,
+              state.errorMessage ?? context.l10n.unknownError,
               style: TextStyle(color: Colors.red),
             ),
           );

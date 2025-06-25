@@ -35,6 +35,19 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_impl.dart'
+    as _i649;
+import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_interface.dart'
+    as _i139;
+import '../../features/exercise/data/repo_impl/exercise_repo_impl.dart'
+    as _i824;
+import '../../features/exercise/domain/repo_interface/exercise_repo_interface.dart'
+    as _i822;
+import '../../features/exercise/domain/use_cases/get_exercise_use_case.dart'
+    as _i182;
+import '../../features/exercise/domain/use_cases/get_levels_use_case.dart'
+    as _i233;
+import '../../features/exercise/presentation/bloc/exercise_bloc.dart' as _i154;
 import '../../features/food_recommendation/data/datasources/food_recommend_remote_data_source.dart'
     as _i483;
 import '../../features/food_recommendation/data/datasources/food_recommend_remote_data_source_impl.dart'
@@ -62,19 +75,6 @@ import '../../features/home/domain/usecases/get_food_recommendations.dart'
 import '../../features/home/domain/usecases/get_upcoming_workouts.dart'
     as _i183;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
-import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_impl.dart'
-    as _i649;
-import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_interface.dart'
-    as _i139;
-import '../../features/exercise/data/repo_impl/exercise_repo_impl.dart'
-    as _i824;
-import '../../features/exercise/domain/repo_interface/exercise_repo_interface.dart'
-    as _i822;
-import '../../features/exercise/domain/use_cases/get_exercise_use_case.dart'
-    as _i182;
-import '../../features/exercise/domain/use_cases/get_levels_use_case.dart'
-    as _i233;
-import '../../features/exercise/presentation/bloc/exercise_bloc.dart' as _i154;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
     as _i768;
@@ -106,9 +106,6 @@ extension GetItInjectableX on _i174.GetIt {
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
-    );
-    gh.singleton<_i668.AppNavigatorObserver>(
-      () => _i668.AppNavigatorObserver(),
     );
     gh.singleton<_i1052.AppNavigatorObserver>(
       () => _i1052.AppNavigatorObserver(),
@@ -157,9 +154,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
     );
-    gh.factory<_i822.ExerciseRepoInterface>(
-      () => _i824.ExerciseRepoImpl(gh<_i139.ExerciseRemoteDsInterface>()),
-    );
     gh.factory<_i988.FoodRecommendRepo>(
       () => _i190.FoodRecommendRepoImpl(
         gh<_i483.FoodRecommendRemoteDataSource>(),
@@ -179,6 +173,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i183.GetUpcomingWorkouts>(
       () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
+    );
+    gh.factory<_i822.ExerciseRepoInterface>(
+      () => _i824.ExerciseRepoImpl(gh<_i139.ExerciseRemoteDsInterface>()),
     );
     gh.factory<_i68.FoodRecommendationViewModel>(
       () => _i68.FoodRecommendationViewModel(
@@ -207,14 +204,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i233.GetLevelsUseCase>(
       () => _i233.GetLevelsUseCase(gh<_i822.ExerciseRepoInterface>()),
     );
+    gh.factory<_i18.ForgotPasswordUseCase>(
+      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
+    );
     gh.factory<_i37.LoginUseCase>(
       () => _i37.LoginUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i825.ResetPasswordUseCase>(
       () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()),
-    );
-    gh.factory<_i18.ForgotPasswordUseCase>(
-      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
     );
     gh.factory<_i509.VerifyOtpUseCase>(
       () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()),

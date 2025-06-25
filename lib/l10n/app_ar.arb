@@ -592,5 +592,25 @@
   "resend": "إعادة الإرسال",
   "@resend": {
     "description": "نص زر إعادة إرسال رمز التحقق"
+  },
+    "video_not_available": "الفيديو غير متاح",
+  "@video_not_available": {
+    "description": "رسالة تظهر عند عدم توفر الفيديو"
+  },
+  "exercise": "تمرين",
+  "@exercise": {
+    "description": "تسمية التمرين"
+  },
+  "no_exercises_found": "لم يتم العثور على تمارين",
+  "@no_exercises_found": {
+    "description": "رسالة تظهر عند عدم العثور على تمارين"
+  },
+  "failed_to_load_exercises": "فشل في تحميل التمارين: {error}",
+  "@failed_to_load_exercises": {
+    "description": "رسالة خطأ عند فشل تحميل التمارين"
+  },
+  "motivational_quote": "اقتباس تحفيزي",
+  "@motivational_quote": {
+    "description": "تسمية قسم الاقتباسات التحفيزية"
   }
 }

@@ -621,5 +621,25 @@
   "resend": "Resend",
   "@resend": {
     "description": "Button text to resend verification code"
+  },
+    "video_not_available": "Video not available",
+  "@video_not_available": {
+    "description": "Message displayed when a video is not available"
+  },
+  "exercise": "Exercise",
+  "@exercise": {
+    "description": "Label for exercise section"
+  },
+  "no_exercises_found": "No exercises found",
+  "@no_exercises_found": {
+    "description": "Message displayed when no exercises are found"
+  },
+  "failed_to_load_exercises": "Failed to load exercises",
+  "@failed_to_load_exercises": {
+    "description": "Error message displayed when failing to load exercises"
+  },
+  "motivational_quote": "Motivational Quote",
+  "@motivational_quote": {
+    "description": "Title for the motivational quote section"
   }
 }
