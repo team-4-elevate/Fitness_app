@@ -188,6 +188,100 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationSubtitle3 => 'We Use This For Calorie Calculations';
 
   @override
+  String data_parse_error_upcoming_workouts(String error) {
+    return 'Failed to parse upcoming workouts: $error';
+  }
+
+  @override
+  String data_parse_error_food_recommendations(String error) {
+    return 'Failed to parse food recommendations: $error';
+  }
+
+  @override
+  String data_network_error(String error) {
+    return 'Network error: $error';
+  }
+
+  @override
+  String domain_error_loading_data(String message) {
+    return 'Error loading data: $message';
+  }
+
+  @override
+  String get dailyToRecommendations => 'Daily To Recommendations';
+
+  @override
+  String get home_upcoming_workouts => 'Upcoming Workouts';
+
+  @override
+  String get home_recommendations_for_you => 'Recommendations For You';
+
+  @override
+  String get home_popular_training => 'Popular Training';
+
+  @override
+  String get home_see_all => 'See All';
+
+  @override
+  String home_error_upcoming_workouts(String error) {
+    return 'Error loading upcoming workouts: $error';
+  }
+
+  @override
+  String home_error_loading_upcoming_workouts(String error) {
+    return 'Error loading upcoming workouts: $error';
+  }
+
+  @override
+  String home_error_food_recommendations(String error) {
+    return 'Error loading food recommendations: $error';
+  }
+
+  @override
+  String home_error_loading_food_recommendations(String error) {
+    return 'Error loading food recommendations: $error';
+  }
+
+  @override
+  String home_error_loading_daily_recommendations(String error) {
+    return 'Error loading daily recommendations: $error';
+  }
+
+  @override
+  String get failed_to_parse_upcoming_workouts =>
+      'Failed to parse upcoming workouts:';
+
+  @override
+  String get let_s_start_your_day => 'Let\'s Start Your Day';
+
+  @override
+  String get category_gym => 'Gym';
+
+  @override
+  String get category_fitness => 'Fitness';
+
+  @override
+  String get category_yoga => 'Yoga';
+
+  @override
+  String get category_aerobics => 'Aerobics';
+
+  @override
+  String get category_trainer => 'Trainer';
+
+  @override
+  String get workout_category_full_body => 'Full Body';
+
+  @override
+  String get workout_category_chest => 'Chest';
+
+  @override
+  String get workout_category_arm => 'Arm';
+
+  @override
+  String get workout_category_leg => 'Leg';
+
+  @override
   String get registrationTitle4 => 'WHAT IS YOUR HEIGHT?';
 
   @override
