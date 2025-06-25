@@ -1,6 +1,6 @@
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/app_sections/ChatAipage.dart';
-import 'package:fitness_app/features/app_sections/GymPage.dart';
+import 'package:fitness_app/features/app_sections/Workouts_Page/presentation/pages/Workouts.dart';
 import 'package:fitness_app/features/app_sections/HomePage.dart';
 import 'package:fitness_app/features/app_sections/ProfilePage.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   void initState() {
     super.initState();
-    _pages = const [HomePage(), ChatAipage(), GymPage(), ProfilePage()];
+    _pages = const [HomePage(), ChatAipage(), WorkoutPage(), ProfilePage()];
   }
 
   void _onItemTapped(int index) {

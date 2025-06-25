@@ -277,4 +277,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
+  
+  @override
+  // TODO: implement food_Recommendation_no_categories
+  String get food_Recommendation_no_categories => throw UnimplementedError();
+  
+  @override
+  // TODO: implement food_Recommendation_title
+  String get food_Recommendation_title => throw UnimplementedError();
+  
+  @override
+  // TODO: implement food_food_Recommendation_fail_to_loadCategories
+  String get food_food_Recommendation_fail_to_loadCategories => throw UnimplementedError();
+  
+  @override
+  // TODO: implement retry
+  String get retry => throw UnimplementedError();
 }

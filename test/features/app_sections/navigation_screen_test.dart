@@ -2,7 +2,7 @@ import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fitness_app/features/app_sections/ChatAipage.dart';
-import 'package:fitness_app/features/app_sections/GymPage.dart';
+import 'package:fitness_app/features/app_sections/Workouts_Page/presentation/pages/Workouts.dart';
 import 'package:fitness_app/features/app_sections/HomePage.dart';
 import 'package:fitness_app/features/app_sections/ProfilePage.dart';
 
@@ -27,8 +27,8 @@ void main() {
       await tester.pumpWidget(MaterialApp(home: MainNavigationScreen()));
       await tester.tap(find.byKey(Key('nav_icon_gym')));
       await tester.pumpAndSettle();
-      expect(find.byType(GymPage), findsOneWidget);
-      expect(find.byType(GymPage), findsNothing);
+      expect(find.byType(Workouts), findsOneWidget);
+      expect(find.byType(Workouts), findsNothing);
     });
 
     testWidgets('Navigate to ProfilePage', (WidgetTester tester) async {

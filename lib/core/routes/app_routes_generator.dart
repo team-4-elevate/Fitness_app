@@ -13,6 +13,7 @@ import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/app_sections/Workouts_Page/presentation/pages/Workouts.dart';
 import '../../features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
 import '../../features/auth/presentation/forget_password/view/create_new_password/create_new_password_page.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
@@ -83,6 +84,8 @@ class AppRoutesGenerator {
         );
       case AppRoutes.onboarding:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
+      case AppRoutes.Workouts:
+        return MaterialPageRoute(builder: (_) => Workouts());
 
       default:
         return MaterialPageRoute(

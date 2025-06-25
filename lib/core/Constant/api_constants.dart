@@ -8,4 +8,7 @@ class ApiConstants {
   static const String verifyOtpEndpoint = '/auth/verifyResetCode';
   static const String resetPasswordEndpoint = '/auth/resetPassword';
   static const String registerEndpoint = '/auth/signup';
+  static const String getAllWorkoutsEndpoint = "api/v1/muscles";
+  static const String getWorkoutsByIdEndpoint = "api/v1/musclesGroup";
+  static const String getWorkoutsByMuscleGroupIdEndpoint = "api/v1/musclesGroup/by-muscle-group";
 }
