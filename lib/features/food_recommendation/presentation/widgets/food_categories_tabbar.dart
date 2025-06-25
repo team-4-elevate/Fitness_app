@@ -2,7 +2,7 @@ import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/features/food_recommendation/data/models/meals_categories_response/food_category.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_intent.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_recommendation_viewmodel.dart';
-import 'package:fitness_app/features/food_recommendation/presentation/widgets/custom_tabbar_tab.dart';
+import 'package:fitness_app/core/widgets/custom_tabbar_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

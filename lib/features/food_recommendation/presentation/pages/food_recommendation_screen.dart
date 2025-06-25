@@ -18,10 +18,10 @@ class FoodRecommendationScreen extends StatefulWidget {
 
   @override
   State<FoodRecommendationScreen> createState() =>
-      _FoodRecommendationMviScreenState();
+      _FoodRecommendationScreen();
 }
 
-class _FoodRecommendationMviScreenState extends State<FoodRecommendationScreen>
+class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
   bool _hasLoadedInitialMeals = false;

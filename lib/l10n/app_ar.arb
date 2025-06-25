@@ -373,5 +373,17 @@
   "food_Recommendation_title": "اقتراحات للاكل",
   "food_Recommendation_no_categories": "لايوجد بيانات",
   "food_food_Recommendation_fail_to_loadCategories": "خطأ في تحميل الاصناف",
-  "retry": "حاول مره اخري"
+  "retry": "حاول مره اخري",
+  "confirmPassword": "يرجى تأكيد كلمة المرور",
+  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+  "enterFourDigitCode": "يرجى إدخال رمز مكون من 4 أرقام",
+  "confirm": "تأكيد",
+  "enterYourOtp": "أدخل رمز التحقق",
+  "checkYourEmail": "تحقق من بريدك الإلكتروني",
+  "otpCode": "رمز التحقق",
+  "forgetPassword": "نسيان كلمة المرور",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "sendOtp": "إرسال رمز التحقق",
+  "didntReceiveVerificationCode": "لم تستلم رمز التحقق؟",
+  "resend": "اعادة الارسال"
 }

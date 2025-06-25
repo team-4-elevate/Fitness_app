@@ -401,5 +401,17 @@
   "food_Recommendation_title": "Food Recommendation",
   "food_Recommendation_no_categories":"No categories found",
   "food_food_Recommendation_fail_to_loadCategories":"Failed to load categories",
-  "retry": "retry"
+  "retry": "retry",
+  "confirmPassword": "Please confirm your password",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "enterFourDigitCode": "Please enter 4 digit code",
+  "confirm": "Confirm",
+  "enterYourOtp": "Enter Your OTP",
+  "checkYourEmail": "Check Your Email",
+  "otpCode": "OTP CODE",
+  "forgetPassword": "Forget Password",
+  "enterYourEmail": "Enter your Email",
+  "sendOtp": "Send OTP",
+  "didntReceiveVerificationCode": "Didn't Receive Verification Code?",
+  "resend": "Resend"
 }

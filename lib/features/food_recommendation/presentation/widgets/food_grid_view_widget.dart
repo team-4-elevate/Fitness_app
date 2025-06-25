@@ -1,8 +1,8 @@
 import 'package:fitness_app/features/food_recommendation/data/models/meals_categories_response/food_category.dart';
 import 'package:fitness_app/features/food_recommendation/data/models/meals_on_category_response/meal.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/widgets/food_grid_loading.dart';
-import 'package:fitness_app/features/food_recommendation/presentation/widgets/grid_view_custom_container.dart';
-import 'package:fitness_app/features/food_recommendation/presentation/widgets/grid_view_custom_widget.dart';
+import 'package:fitness_app/core/widgets/grid_view_custom_container.dart';
+import 'package:fitness_app/core/widgets/grid_view_custom_widget.dart';
 import 'package:flutter/material.dart';
 
 class FoodGridViewWidget extends StatelessWidget {
