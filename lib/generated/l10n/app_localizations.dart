@@ -614,6 +614,30 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
+  /// No description provided for @food_Recommendation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Food Recommendation'**
+  String get food_Recommendation_title;
+
+  /// No description provided for @food_Recommendation_no_categories.
+  ///
+  /// In en, this message translates to:
+  /// **'No categories found'**
+  String get food_Recommendation_no_categories;
+
+  /// No description provided for @food_food_Recommendation_fail_to_loadCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load categories'**
+  String get food_food_Recommendation_fail_to_loadCategories;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'retry'**
+  String get retry;
+
   /// No description provided for @confirmPassword.
   ///
   /// In en, this message translates to:

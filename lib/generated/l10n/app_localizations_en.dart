@@ -282,6 +282,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get food_Recommendation_title => 'Food Recommendation';
+
+  @override
+  String get food_Recommendation_no_categories => 'No categories found';
+
+  @override
+  String get food_food_Recommendation_fail_to_loadCategories =>
+      'Failed to load categories';
+
+  @override
+  String get retry => 'retry';
+
+  @override
   String get confirmPassword => 'Please confirm your password';
 
   @override
