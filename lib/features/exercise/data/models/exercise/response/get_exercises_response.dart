@@ -21,9 +21,10 @@ class GetExerciseResponse {
       totalExercises: json['totalExercises'] ?? 0,
       totalPages: json['totalPages'] ?? 0,
       currentPage: json['currentPage'] ?? 0,
-      exercises: (json['exercises'] as List<dynamic>?)
-          ?.map((x) => ExerciseDM.fromJson(x))
-          .toList() ??
+      exercises:
+          (json['exercises'] as List<dynamic>?)
+              ?.map((x) => ExerciseDM.fromJson(x))
+              .toList() ??
           [],
     );
   }

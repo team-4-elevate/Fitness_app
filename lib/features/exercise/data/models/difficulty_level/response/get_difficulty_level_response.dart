@@ -10,9 +10,9 @@ class DifficultyLevelsResponse {
     return DifficultyLevelsResponse(
       message: json['message'] ?? '',
       levels:
-      (json['levels'] as List<dynamic>?)
-          ?.map((x) => DifficultyLevelDM.fromJson(x))
-          .toList() ??
+          (json['levels'] as List<dynamic>?)
+              ?.map((x) => DifficultyLevelDM.fromJson(x))
+              .toList() ??
           [],
     );
   }

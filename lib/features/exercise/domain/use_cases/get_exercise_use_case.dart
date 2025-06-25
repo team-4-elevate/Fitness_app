@@ -15,7 +15,7 @@ class GetExercisesUseCase {
     final res = await _repo.fetchExercises(
       levelId: levelId,
       muscleGroupId: muscleGroupId,
-      page: page
+      page: page,
     );
     return res.map((e) => e.map((e) => e.toEntity()).toList());
   }

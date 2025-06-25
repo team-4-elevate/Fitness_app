@@ -58,20 +58,30 @@ class ExercisePageHeaderWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-              left: 16,
-              top: MediaQuery.paddingOf(context).top + 16,
-              child: IconButton(
+            left: 16,
+            top: MediaQuery.paddingOf(context).top + 16,
+            child: IconButton(
               onPressed: () => Navigator.pop(context),
-                icon: SizedBox(
-                  height: 30,
-                    width: 30,
-                  child: ClipOval(
-                    child: ColoredBox(
-                      color: AppColors.primaryOrange,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: SvgPicture.asset(AppConstants.appBackBtn,fit: BoxFit.cover),
-                      ))))))])
+              icon: SizedBox(
+                height: 30,
+                width: 30,
+                child: ClipOval(
+                  child: ColoredBox(
+                    color: AppColors.primaryOrange,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: SvgPicture.asset(
+                        AppConstants.appBackBtn,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

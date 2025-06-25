@@ -739,6 +739,7 @@ extension StringExtensions on String {
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
     ).hasMatch(this);
   }
+
   String videoIdToYoutubeThumbnail() {
     return 'https://img.youtube.com/vi/$this/mqdefault.jpg';
   }

@@ -106,11 +106,10 @@ class ExercisePageBloc extends Bloc<ExercisePageEvent, ExercisePageState> {
     );
   }
 
-
   Future<void> _onLoadMoreExercises(
-      LoadMoreExercisesEvent event,
-      Emitter<ExercisePageState> emit,
-      ) async {
+    LoadMoreExercisesEvent event,
+    Emitter<ExercisePageState> emit,
+  ) async {
     if (state.hasMoreExercises == true && state.isLoadingMore != true) {
       emit(state.copyWith(isLoadingMore: true));
 
@@ -124,30 +123,33 @@ class ExercisePageBloc extends Bloc<ExercisePageEvent, ExercisePageState> {
       result.when(
         success: (newExercises) {
           final currentLevel = state.levelExerciseMap.keys.firstWhere(
-                (level) => level.id == event.levelId,
+            (level) => level.id == event.levelId,
           );
           final currentExercises = state.levelExerciseMap[currentLevel] ?? [];
 
-          emit(state.copyWith(
-            isLoadingMore: false,
-            levelExerciseMap: {
-              ...state.levelExerciseMap,
-              currentLevel: [...currentExercises, ...newExercises],
-            },
-            levelIdAndPagesMap: {
-              ...state.levelIdAndPagesMap,
-              event.levelId: currentPage + 1,
-            },
-            hasMoreExercises: newExercises.isNotEmpty,
-          ));
+          emit(
+            state.copyWith(
+              isLoadingMore: false,
+              levelExerciseMap: {
+                ...state.levelExerciseMap,
+                currentLevel: [...currentExercises, ...newExercises],
+              },
+              levelIdAndPagesMap: {
+                ...state.levelIdAndPagesMap,
+                event.levelId: currentPage + 1,
+              },
+              hasMoreExercises: newExercises.isNotEmpty,
+            ),
+          );
         },
-        failure: (message) => emit(state.copyWith(
-          isLoadingMore: false,
-          errorMessage: message,
-        )),
+        failure:
+            (message) => emit(
+              state.copyWith(isLoadingMore: false, errorMessage: message),
+            ),
       );
     }
   }
+
   void _onShowYoutubeVideo(
     ShowYoutubeVideoEvent event,
     Emitter<ExercisePageState> emit,

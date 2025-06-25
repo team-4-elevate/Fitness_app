@@ -27,7 +27,7 @@ class ExercisePageState extends Equatable {
     this.currentVideoId,
     this.currentVideoLink,
     this.hasMoreExercises,
-    this.isLoadingMore
+    this.isLoadingMore,
   });
 
   ExercisePageState copyWith({
@@ -43,20 +43,20 @@ class ExercisePageState extends Equatable {
     String? currentVideoId,
     String? currentVideoLink,
     bool? hasMoreExercises,
-    bool? isLoadingMore
+    bool? isLoadingMore,
   }) {
     return ExercisePageState(
       getLevelsStatus: levelsStatus ?? this.getLevelsStatus,
-        levelIdAndPagesMap: levelIdAndPagesMap ?? this.levelIdAndPagesMap,
+      levelIdAndPagesMap: levelIdAndPagesMap ?? this.levelIdAndPagesMap,
       getExercisesStatus: exercisesStatus ?? this.getExercisesStatus,
       errorMessage: errorMessage ?? this.errorMessage,
       currentLevelId: selectedLevelId ?? this.currentLevelId,
       levelExerciseMap: levelExerciseMap ?? this.levelExerciseMap,
-        hasMoreExercises: hasMoreExercises ?? this.hasMoreExercises,
-        isLoadingMore: isLoadingMore ?? this.isLoadingMore,
-        currentVideoId: currentVideoId,
-        shouldShowYoutubeVideo: shouldShowYoutubeVideo,
-        currentVideoLink:currentVideoLink
+      hasMoreExercises: hasMoreExercises ?? this.hasMoreExercises,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+      currentVideoId: currentVideoId,
+      shouldShowYoutubeVideo: shouldShowYoutubeVideo,
+      currentVideoLink: currentVideoLink,
     );
   }
 
@@ -72,6 +72,6 @@ class ExercisePageState extends Equatable {
     currentVideoLink,
     levelIdAndPagesMap,
     hasMoreExercises,
-    isLoadingMore
+    isLoadingMore,
   ];
 }

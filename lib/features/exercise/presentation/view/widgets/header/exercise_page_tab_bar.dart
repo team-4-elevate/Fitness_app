@@ -21,12 +21,16 @@ class _ExerciseTabBarState extends State<ExerciseTabBar>
   late final ExercisePageBloc bloc;
   @override
   void didChangeDependencies() {
-    levels = context.read<ExercisePageBloc>().state.levelExerciseMap.keys.toList();
-    bloc = context.read<ExercisePageBloc>()..add(GetExercisesEvent(
-      muscleGroupId: widget.muscleGroupId,
-      levelId: levels[0].id,
-      showLoading: true,
-    ),);
+    levels =
+        context.read<ExercisePageBloc>().state.levelExerciseMap.keys.toList();
+    bloc =
+        context.read<ExercisePageBloc>()..add(
+          GetExercisesEvent(
+            muscleGroupId: widget.muscleGroupId,
+            levelId: levels[0].id,
+            showLoading: true,
+          ),
+        );
 
     controller = TabController(length: levels.length, vsync: this);
     super.didChangeDependencies();
@@ -35,44 +39,44 @@ class _ExerciseTabBarState extends State<ExerciseTabBar>
   @override
   Widget build(BuildContext context) {
     return ExercisePageBlurWidget(
-        sigma: 10,
-        height: 50,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2),
-          child: DefaultTabController(
-            length: levels.length,
-            child: TabBar(
-              physics: const BouncingScrollPhysics(),
-              labelStyle: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              indicator: BoxDecoration(
-                color: AppColors.primaryOrange,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.white70,
-              dividerColor: Colors.transparent,
-              onTap:
-                  (v) => context.read<ExercisePageBloc>().add(
-                    GetExercisesEvent(
-                      levelId: levels[v].id,
-                      muscleGroupId: widget.muscleGroupId,
-                      showLoading: true,
-                    ),
+      sigma: 10,
+      height: 50,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2),
+        child: DefaultTabController(
+          length: levels.length,
+          child: TabBar(
+            physics: const BouncingScrollPhysics(),
+            labelStyle: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            indicator: BoxDecoration(
+              color: AppColors.primaryOrange,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white70,
+            dividerColor: Colors.transparent,
+            onTap:
+                (v) => context.read<ExercisePageBloc>().add(
+                  GetExercisesEvent(
+                    levelId: levels[v].id,
+                    muscleGroupId: widget.muscleGroupId,
+                    showLoading: true,
                   ),
-              tabs: List.generate(
-                levels.length,
-                (index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Tab(height: 32, text: levels[index].name),
                 ),
+            tabs: List.generate(
+              levels.length,
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Tab(height: 32, text: levels[index].name),
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }

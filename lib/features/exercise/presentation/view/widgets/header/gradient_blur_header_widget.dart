@@ -11,7 +11,7 @@ class ExercisePageBlurWidget extends StatelessWidget {
     required this.child,
     this.height,
     this.sigma,
-    this.radius
+    this.radius,
   });
 
   @override
@@ -19,10 +19,12 @@ class ExercisePageBlurWidget extends StatelessWidget {
     return SizedBox(
       height: height,
       child: ClipRRect(
-        borderRadius: radius?? BorderRadius.only(
-          bottomRight: Radius.circular(20),
-          bottomLeft: Radius.circular(20),
-        ),
+        borderRadius:
+            radius ??
+            BorderRadius.only(
+              bottomRight: Radius.circular(20),
+              bottomLeft: Radius.circular(20),
+            ),
         child: BackdropFilter(
           filter: ui.ImageFilter.blur(sigmaX: sigma ?? 4, sigmaY: sigma ?? 4),
           child: Container(

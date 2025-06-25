@@ -106,8 +106,10 @@ class ExerciseDM {
       forceType: json['force_type'] ?? '',
       mechanics: json['mechanics'] ?? '',
       laterality: json['laterality'] ?? '',
-      primaryExerciseClassification: json['primary_exercise_classification'] ?? '',
-      shortYoutubeDemonstrationLink: json['short_youtube_demonstration_link'] ?? '',
+      primaryExerciseClassification:
+          json['primary_exercise_classification'] ?? '',
+      shortYoutubeDemonstrationLink:
+          json['short_youtube_demonstration_link'] ?? '',
       inDepthYoutubeExplanationLink: json['in_depth_youtube_explanation_link'],
     );
   }
@@ -150,6 +152,7 @@ class ExerciseDM {
       'in_depth_youtube_explanation_link': inDepthYoutubeExplanationLink,
     };
   }
+
   ExerciseEntity toEntity() {
     return ExerciseEntity(
       id: id,

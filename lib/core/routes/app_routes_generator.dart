@@ -93,8 +93,7 @@ class AppRoutesGenerator {
               (_) => BlocProvider(
                 create: (context) {
                   // final args = settings.arguments as ExercisePageArguments;
-                  return getIt<ExercisePageBloc>()
-                    ..add(GetLevelsEvent());
+                  return getIt<ExercisePageBloc>()..add(GetLevelsEvent());
                 },
                 child: ExercisePage(
                   arguments: ExercisePageArguments(
