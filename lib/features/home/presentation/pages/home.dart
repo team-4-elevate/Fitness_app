@@ -151,14 +151,16 @@ class _HomeState extends State<Home> {
                                     showSeeAll: false,
                                     recommendations: recommendations,
                                     onItemPressed: (item, index) {
-                                      final exerciseItem = data.dailyRecommendations[index];
+                                      final exerciseItem =
+                                          data.dailyRecommendations[index];
                                       Navigator.pushNamed(
                                         context,
                                         AppRoutes.exercisePage,
                                         arguments: ExercisePageArguments(
                                           muscleGroupId: exerciseItem.id,
                                           muscleGroupName: exerciseItem.name,
-                                          muscleGroupImage: exerciseItem.imageUrl,
+                                          muscleGroupImage:
+                                              exerciseItem.imageUrl,
                                         ),
                                       );
                                     },
