@@ -18,7 +18,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   DateTime? _lastProfileFetchTime;
 
   AppBloc(this._authLocalDataSource, this._appSecureStorage)
-    : super(const AppState()) {
+      : super(const AppState()) {
     on<CheckUserLoginStatusEvent>(_onCheckUserLoginStatus);
     on<UserLoggedInEvent>(_onUserLoggedIn);
     on<UserLoggedOutEvent>(_onUserLoggedOut);

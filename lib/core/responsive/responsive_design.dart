@@ -97,10 +97,10 @@ class R {
 
   /// Responsive component sizes
   static double get adaptiveButtonHeight => _r.adaptiveValue(
-    mobile: buttonHeight,
-    tablet: buttonHeightLG,
-    desktop: buttonHeightLG,
-  );
+        mobile: buttonHeight,
+        tablet: buttonHeightLG,
+        desktop: buttonHeightLG,
+      );
 
   static double get adaptiveIconSize =>
       _r.adaptiveValue(mobile: iconBase, tablet: iconLG, desktop: iconXL);
@@ -116,24 +116,24 @@ class R {
 
   /// Responsive padding
   static EdgeInsets get responsivePadding => EdgeInsets.all(
-    _r.adaptiveValue(mobile: space16, tablet: space24, desktop: space32),
-  );
+        _r.adaptiveValue(mobile: space16, tablet: space24, desktop: space32),
+      );
 
   static EdgeInsets get horizontalPadding => EdgeInsets.symmetric(
-    horizontal: _r.adaptiveValue(
-      mobile: space16,
-      tablet: space24,
-      desktop: space32,
-    ),
-  );
+        horizontal: _r.adaptiveValue(
+          mobile: space16,
+          tablet: space24,
+          desktop: space32,
+        ),
+      );
 
   static EdgeInsets get verticalPadding => EdgeInsets.symmetric(
-    vertical: _r.adaptiveValue(
-      mobile: space16,
-      tablet: space20,
-      desktop: space24,
-    ),
-  );
+        vertical: _r.adaptiveValue(
+          mobile: space16,
+          tablet: space20,
+          desktop: space24,
+        ),
+      );
 
   // =================== SIZED BOXES ===================
 

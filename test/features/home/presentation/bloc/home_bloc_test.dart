@@ -67,18 +67,16 @@ void main() {
         ).thenAnswer((_) async => ApiSuccess(mockDailyRecommendationResponse));
         return homeBloc;
       },
-      act:
-          (bloc) => bloc.add(
-            const FetchDailyRecommendations(
-              targetMuscleGroupId: 'muscle123',
-              difficultyLevelId: 'level456',
-            ),
-          ),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<SuccessState<HomeData>>(),
-          ],
+      act: (bloc) => bloc.add(
+        const FetchDailyRecommendations(
+          targetMuscleGroupId: 'muscle123',
+          difficultyLevelId: 'level456',
+        ),
+      ),
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<SuccessState<HomeData>>(),
+      ],
       verify: (_) {
         verify(
           mockGetDailyRecommendations.call(
@@ -100,22 +98,20 @@ void main() {
         ).thenAnswer((_) async => const ApiFailure('Network error'));
         return homeBloc;
       },
-      act:
-          (bloc) => bloc.add(
-            const FetchDailyRecommendations(
-              targetMuscleGroupId: 'muscle123',
-              difficultyLevelId: 'level456',
-            ),
-          ),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<BaseErrorState<HomeData>>().having(
-              (state) => state.error,
-              'error message',
-              'Network error',
-            ),
-          ],
+      act: (bloc) => bloc.add(
+        const FetchDailyRecommendations(
+          targetMuscleGroupId: 'muscle123',
+          difficultyLevelId: 'level456',
+        ),
+      ),
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<BaseErrorState<HomeData>>().having(
+          (state) => state.error,
+          'error message',
+          'Network error',
+        ),
+      ],
     );
   });
 
@@ -143,11 +139,10 @@ void main() {
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<SuccessState<HomeData>>(),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<SuccessState<HomeData>>(),
+      ],
       verify: (_) {
         verify(mockGetUpcomingWorkouts.call()).called(1);
       },
@@ -162,15 +157,14 @@ void main() {
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<BaseErrorState<HomeData>>().having(
-              (state) => state.error,
-              'error message',
-              'Network error',
-            ),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<BaseErrorState<HomeData>>().having(
+          (state) => state.error,
+          'error message',
+          'Network error',
+        ),
+      ],
     );
   });
 
@@ -198,11 +192,10 @@ void main() {
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchFoodRecommendations()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<SuccessState<HomeData>>(),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<SuccessState<HomeData>>(),
+      ],
       verify: (_) {
         verify(mockGetFoodRecommendations.call()).called(1);
       },
@@ -217,15 +210,14 @@ void main() {
         return homeBloc;
       },
       act: (bloc) => bloc.add(const FetchFoodRecommendations()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<BaseErrorState<HomeData>>().having(
-              (state) => state.error,
-              'error message',
-              'Network error',
-            ),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<BaseErrorState<HomeData>>().having(
+          (state) => state.error,
+          'error message',
+          'Network error',
+        ),
+      ],
     );
   });
 
@@ -274,11 +266,10 @@ void main() {
         return homeBloc;
       },
       act: (bloc) => bloc.add(const LoadHomeData()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<SuccessState<HomeData>>(),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<SuccessState<HomeData>>(),
+      ],
       verify: (_) {
         verify(
           mockGetDailyRecommendations.call(
@@ -305,15 +296,14 @@ void main() {
         return homeBloc;
       },
       act: (bloc) => bloc.add(const LoadHomeData()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<BaseErrorState<HomeData>>().having(
-              (state) => state.error,
-              'error message',
-              'Network error',
-            ),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<BaseErrorState<HomeData>>().having(
+          (state) => state.error,
+          'error message',
+          'Network error',
+        ),
+      ],
     );
   });
 }

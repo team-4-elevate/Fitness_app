@@ -32,25 +32,24 @@ import 'package:mockito/mockito.dart' as _i1;
 class _FakeTextEditingController_0 extends _i1.SmartFake
     implements _i2.TextEditingController {
   _FakeTextEditingController_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeGlobalKey_1<T extends _i2.State<_i2.StatefulWidget>>
-    extends _i1.SmartFake
-    implements _i2.GlobalKey<T> {
+    extends _i1.SmartFake implements _i2.GlobalKey<T> {
   _FakeGlobalKey_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeValueNotifier_2<T> extends _i1.SmartFake
     implements _i2.ValueNotifier<T> {
   _FakeValueNotifier_2(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 class _FakeLoginState_3 extends _i1.SmartFake implements _i3.LoginState {
   _FakeLoginState_3(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+      : super(parent, parentInvocation);
 }
 
 /// A class which mocks [LoginViewModel].
@@ -62,48 +61,40 @@ class MockLoginViewModel extends _i1.Mock implements _i4.LoginViewModel {
   }
 
   @override
-  _i2.TextEditingController get emailController =>
-      (super.noSuchMethod(
-            Invocation.getter(#emailController),
-            returnValue: _FakeTextEditingController_0(
-              this,
-              Invocation.getter(#emailController),
-            ),
-          )
-          as _i2.TextEditingController);
+  _i2.TextEditingController get emailController => (super.noSuchMethod(
+        Invocation.getter(#emailController),
+        returnValue: _FakeTextEditingController_0(
+          this,
+          Invocation.getter(#emailController),
+        ),
+      ) as _i2.TextEditingController);
 
   @override
-  _i2.TextEditingController get passwordController =>
-      (super.noSuchMethod(
-            Invocation.getter(#passwordController),
-            returnValue: _FakeTextEditingController_0(
-              this,
-              Invocation.getter(#passwordController),
-            ),
-          )
-          as _i2.TextEditingController);
+  _i2.TextEditingController get passwordController => (super.noSuchMethod(
+        Invocation.getter(#passwordController),
+        returnValue: _FakeTextEditingController_0(
+          this,
+          Invocation.getter(#passwordController),
+        ),
+      ) as _i2.TextEditingController);
 
   @override
-  _i2.GlobalKey<_i2.FormState> get formKey =>
-      (super.noSuchMethod(
-            Invocation.getter(#formKey),
-            returnValue: _FakeGlobalKey_1<_i2.FormState>(
-              this,
-              Invocation.getter(#formKey),
-            ),
-          )
-          as _i2.GlobalKey<_i2.FormState>);
+  _i2.GlobalKey<_i2.FormState> get formKey => (super.noSuchMethod(
+        Invocation.getter(#formKey),
+        returnValue: _FakeGlobalKey_1<_i2.FormState>(
+          this,
+          Invocation.getter(#formKey),
+        ),
+      ) as _i2.GlobalKey<_i2.FormState>);
 
   @override
-  _i2.ValueNotifier<bool> get isPasswordVisible =>
-      (super.noSuchMethod(
-            Invocation.getter(#isPasswordVisible),
-            returnValue: _FakeValueNotifier_2<bool>(
-              this,
-              Invocation.getter(#isPasswordVisible),
-            ),
-          )
-          as _i2.ValueNotifier<bool>);
+  _i2.ValueNotifier<bool> get isPasswordVisible => (super.noSuchMethod(
+        Invocation.getter(#isPasswordVisible),
+        returnValue: _FakeValueNotifier_2<bool>(
+          this,
+          Invocation.getter(#isPasswordVisible),
+        ),
+      ) as _i2.ValueNotifier<bool>);
 
   @override
   bool get isFormValid =>
@@ -126,9 +117,9 @@ class MockLoginViewModel extends _i1.Mock implements _i4.LoginViewModel {
 
   @override
   set formKey(_i2.GlobalKey<_i2.FormState>? _formKey) => super.noSuchMethod(
-    Invocation.setter(#formKey, _formKey),
-    returnValueForMissingStub: null,
-  );
+        Invocation.setter(#formKey, _formKey),
+        returnValueForMissingStub: null,
+      );
 
   @override
   set isPasswordVisible(_i2.ValueNotifier<bool>? _isPasswordVisible) =>
@@ -139,37 +130,33 @@ class MockLoginViewModel extends _i1.Mock implements _i4.LoginViewModel {
 
   @override
   set emailError(String? _emailError) => super.noSuchMethod(
-    Invocation.setter(#emailError, _emailError),
-    returnValueForMissingStub: null,
-  );
+        Invocation.setter(#emailError, _emailError),
+        returnValueForMissingStub: null,
+      );
 
   @override
   set passwordError(String? _passwordError) => super.noSuchMethod(
-    Invocation.setter(#passwordError, _passwordError),
-    returnValueForMissingStub: null,
-  );
+        Invocation.setter(#passwordError, _passwordError),
+        returnValueForMissingStub: null,
+      );
 
   @override
   set isFormValid(bool? _isFormValid) => super.noSuchMethod(
-    Invocation.setter(#isFormValid, _isFormValid),
-    returnValueForMissingStub: null,
-  );
+        Invocation.setter(#isFormValid, _isFormValid),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i3.LoginState get state =>
-      (super.noSuchMethod(
-            Invocation.getter(#state),
-            returnValue: _FakeLoginState_3(this, Invocation.getter(#state)),
-          )
-          as _i3.LoginState);
+  _i3.LoginState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeLoginState_3(this, Invocation.getter(#state)),
+      ) as _i3.LoginState);
 
   @override
-  _i5.Stream<_i3.LoginState> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i5.Stream<_i3.LoginState>.empty(),
-          )
-          as _i5.Stream<_i3.LoginState>);
+  _i5.Stream<_i3.LoginState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i5.Stream<_i3.LoginState>.empty(),
+      ) as _i5.Stream<_i3.LoginState>);
 
   @override
   bool get isClosed =>
@@ -178,40 +165,38 @@ class MockLoginViewModel extends _i1.Mock implements _i4.LoginViewModel {
 
   @override
   void loginIntent(_i6.LoginIntent? intent) => super.noSuchMethod(
-    Invocation.method(#loginIntent, [intent]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#loginIntent, [intent]),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i5.Future<void> close() =>
-      (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i5.Future<void>.value(),
-            returnValueForMissingStub: _i5.Future<void>.value(),
-          )
-          as _i5.Future<void>);
+  _i5.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(#close, []),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
   void emit(_i3.LoginState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#emit, [state]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void onChange(_i7.Change<_i3.LoginState>? change) => super.noSuchMethod(
-    Invocation.method(#onChange, [change]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#onChange, [change]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#addError, [error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(#onError, [error, stackTrace]),
+        returnValueForMissingStub: null,
+      );
 }

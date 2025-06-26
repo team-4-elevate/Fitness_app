@@ -84,8 +84,8 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           showDialog(
             context: context,
             barrierDismissible: false,
-            builder:
-                (context) => const Center(child: CircularProgressIndicator()),
+            builder: (context) =>
+                const Center(child: CircularProgressIndicator()),
           );
         } else if (state is SuccessState) {
           if (Navigator.canPop(context)) {
@@ -134,10 +134,9 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           isRegister: true,
           registerStep: _currentStep,
           showSocialLogin: false,
-          primaryButtonText:
-              _currentStep < 6
-                  ? AppLocalizations.of(context).next
-                  : AppLocalizations.of(context).finish,
+          primaryButtonText: _currentStep < 6
+              ? AppLocalizations.of(context).next
+              : AppLocalizations.of(context).finish,
           primaryButtonAction: () {
             bool isValid = _validateCurrentStep();
             if (isValid) {
@@ -181,10 +180,9 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           userData: _userData,
           onGenderSelected: (gender) {
             setState(() {
-              _userData.gender =
-                  gender == AppLocalizations.of(context).male
-                      ? v.Gender.male
-                      : v.Gender.female;
+              _userData.gender = gender == AppLocalizations.of(context).male
+                  ? v.Gender.male
+                  : v.Gender.female;
             });
           },
         );
@@ -243,12 +241,11 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           localization: AppLocalizations.of(context),
         );
         return SelectionOptionStep(
-          options:
-              goalOptions
-                  .map(
-                    (option) => OptionItem(id: option.id, label: option.label),
-                  )
-                  .toList(),
+          options: goalOptions
+              .map(
+                (option) => OptionItem(id: option.id, label: option.label),
+              )
+              .toList(),
           selectedOptionId: _userData.goal,
           onOptionSelected: (goalId) {
             setState(() {
@@ -263,12 +260,11 @@ class _RegisterDetailsViewState extends State<RegisterDetailsView> {
           localization: AppLocalizations.of(context),
         );
         return SelectionOptionStep(
-          options:
-              activityOptions
-                  .map(
-                    (option) => OptionItem(id: option.id, label: option.label),
-                  )
-                  .toList(),
+          options: activityOptions
+              .map(
+                (option) => OptionItem(id: option.id, label: option.label),
+              )
+              .toList(),
           selectedOptionId: _userData.activityLevel,
           onOptionSelected: (activityId) {
             setState(() {

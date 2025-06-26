@@ -45,7 +45,6 @@ class Skeleton extends StatelessWidget {
                       height: double.infinity,
                       color: AppColors.surfaceDark,
                     ),
-
                     Positioned(
                       top: 10.r,
                       left: 10.r,
@@ -58,7 +57,6 @@ class Skeleton extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     Positioned(
                       left: 0,
                       right: 0,
@@ -68,7 +66,6 @@ class Skeleton extends StatelessWidget {
                         color: AppColors.surfaceDark.withOpacity(0.5),
                       ),
                     ),
-
                     Positioned(
                       left: 10.r,
                       right: 10.r,

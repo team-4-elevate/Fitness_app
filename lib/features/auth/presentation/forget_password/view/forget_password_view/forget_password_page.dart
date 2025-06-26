@@ -70,13 +70,11 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             return c.forgetPasswordStatus.isSuccess ||
                 c.forgetPasswordStatus.isError;
           },
-          listener:
-              (context, state) =>
-                  state.forgetPasswordStatus.isSuccess
-                      ? Navigator.of(
-                        context,
-                      ).pushNamed(AppRoutes.forgetPassOtpPage, arguments: _bloc)
-                      : context.showSnackBar(state.errorMessage),
+          listener: (context, state) => state.forgetPasswordStatus.isSuccess
+              ? Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.forgetPassOtpPage, arguments: _bloc)
+              : context.showSnackBar(state.errorMessage),
           child: Form(
             key: _formKey,
             child: TextFormField(

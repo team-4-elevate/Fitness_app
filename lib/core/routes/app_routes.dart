@@ -16,4 +16,5 @@ class AppRoutes {
   static const String exercisePage = '/exercisePage';
   static const String changePasswordScreen = '/changePasswordScreen';
   static const String foodRecommendationScreen = '/foodRecommendationScreen';
+  static const String foodDetailsScreen = '/foodDetailsScreen';
 }

@@ -38,10 +38,9 @@ class SelectionOptionStep extends StatelessWidget {
             itemBuilder: (context, index) {
               final option = options[index];
               return _buildOption(
-                title:
-                    option.description != null
-                        ? '${option.label} - ${option.description}'
-                        : option.label,
+                title: option.description != null
+                    ? '${option.label} - ${option.description}'
+                    : option.label,
                 isSelected: selectedOptionId == option.id,
                 onTap: () => onOptionSelected(option.id),
               );
@@ -95,19 +94,18 @@ class SelectionOptionStep extends StatelessWidget {
                   width: 1.r,
                 ),
               ),
-              child:
-                  isSelected
-                      ? Center(
-                        child: Container(
-                          width: 10.r,
-                          height: 10.r,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.textSecondary,
-                          ),
+              child: isSelected
+                  ? Center(
+                      child: Container(
+                        width: 10.r,
+                        height: 10.r,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.textSecondary,
                         ),
-                      )
-                      : null,
+                      ),
+                    )
+                  : null,
             ),
           ],
         ),

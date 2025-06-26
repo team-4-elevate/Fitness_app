@@ -29,12 +29,11 @@ class HomeRepositoryImpl implements HomeRepository {
 
     return result.when(
       success: (upcomingWorkouts) {
-        final recommendationItems =
-            upcomingWorkouts.exercises != null
-                ? upcomingWorkouts.exercises!
-                    .map((exercise) => exercise.toDailyRecommendationItem())
-                    .toList()
-                : <DailyRecommendationItem>[];
+        final recommendationItems = upcomingWorkouts.exercises != null
+            ? upcomingWorkouts.exercises!
+                .map((exercise) => exercise.toDailyRecommendationItem())
+                .toList()
+            : <DailyRecommendationItem>[];
 
         return ApiSuccess(recommendationItems);
       },
@@ -44,23 +43,22 @@ class HomeRepositoryImpl implements HomeRepository {
 
   @override
   Future<ApiResult<List<DailyRecommendationItem>>>
-  getFoodRecommendations() async {
+      getFoodRecommendations() async {
     final result = await _remoteDataSource.getFoodRecommendations();
 
     return result.when(
       success: (foodRecommendations) {
-        final recommendationItems =
-            foodRecommendations.categories != null
-                ? foodRecommendations.categories!
-                    .map(
-                      (category) => DailyRecommendationItem(
-                        id: category.idCategory ?? '',
-                        name: category.strCategory ?? '',
-                        imageUrl: category.strCategoryThumb ?? '',
-                      ),
-                    )
-                    .toList()
-                : <DailyRecommendationItem>[];
+        final recommendationItems = foodRecommendations.categories != null
+            ? foodRecommendations.categories!
+                .map(
+                  (category) => DailyRecommendationItem(
+                    id: category.idCategory ?? '',
+                    name: category.strCategory ?? '',
+                    imageUrl: category.strCategoryThumb ?? '',
+                  ),
+                )
+                .toList()
+            : <DailyRecommendationItem>[];
 
         return ApiSuccess(recommendationItems);
       },

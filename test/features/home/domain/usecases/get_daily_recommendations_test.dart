@@ -57,8 +57,8 @@ void main() {
           expect(data.message, equals('Success'));
           expect(data.totalExercises, equals(2));
         },
-        failure:
-            (message) => fail('Expected success but got failure: $message'),
+        failure: (message) =>
+            fail('Expected success but got failure: $message'),
       );
 
       // Verify repository was called with correct parameters
@@ -142,8 +142,8 @@ void main() {
           expect(data.exercises, isEmpty);
           expect(data.totalExercises, equals(0));
         },
-        failure:
-            (message) => fail('Expected success but got failure: $message'),
+        failure: (message) =>
+            fail('Expected success but got failure: $message'),
       );
     });
   });

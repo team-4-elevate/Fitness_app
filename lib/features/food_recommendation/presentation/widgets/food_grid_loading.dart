@@ -18,16 +18,15 @@ class FoodGridLoading extends StatelessWidget {
         mainAxisSpacing: 10.h,
       ),
       itemCount: 12,
-      itemBuilder:
-          (context, index) => ShimmerLoading(
-            baseColor: AppColors.gray.withOpacity(0.3),
-            highlightColor: AppColors.white.withOpacity(0.1),
-            child: ShimmerBox(
-              width: double.infinity,
-              height: 160.h,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-          ),
+      itemBuilder: (context, index) => ShimmerLoading(
+        baseColor: AppColors.gray.withOpacity(0.3),
+        highlightColor: AppColors.white.withOpacity(0.1),
+        child: ShimmerBox(
+          width: double.infinity,
+          height: 160.h,
+          borderRadius: BorderRadius.circular(20.r),
+        ),
+      ),
     );
   }
 }

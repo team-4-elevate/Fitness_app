@@ -45,11 +45,11 @@ class SharedSection extends StatefulWidget {
     } catch (e) {
       for (var size in SectionSize.values) {
         if (size.displayName.toLowerCase().contains(
-              sectionTitle.toLowerCase(),
-            ) ||
+                  sectionTitle.toLowerCase(),
+                ) ||
             sectionTitle.toLowerCase().contains(
-              size.displayName.toLowerCase(),
-            )) {
+                  size.displayName.toLowerCase(),
+                )) {
           return size;
         }
       }
@@ -103,7 +103,6 @@ class _SharedSectionState extends State<SharedSection> {
           height: height.r + 10.r,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-
             itemCount: widget.recommendations.length,
             separatorBuilder: (context, index) => SizedBox(width: 12.r),
             itemBuilder: (context, index) {
@@ -133,7 +132,6 @@ class _SharedSectionState extends State<SharedSection> {
                         Positioned.fill(
                           child: _buildImageWidget(recommendation['image']),
                         ),
-
                         if (!widget.isPopularTraining) ...[
                           // ----------------------------------------------gray container with text
                           Positioned(
@@ -163,9 +161,9 @@ class _SharedSectionState extends State<SharedSection> {
                               style: Theme.of(
                                 context,
                               ).textTheme.bodyMedium?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -182,9 +180,9 @@ class _SharedSectionState extends State<SharedSection> {
                               style: Theme.of(
                                 context,
                               ).textTheme.titleLarge?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                               textAlign: TextAlign.center,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -205,7 +203,9 @@ class _SharedSectionState extends State<SharedSection> {
                               ),
                               child: Text(
                                 recommendation['tasks'],
-                                style: Theme.of(context).textTheme.bodyMedium
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
                                     ?.copyWith(color: Colors.white),
                               ),
                             ),
@@ -225,7 +225,9 @@ class _SharedSectionState extends State<SharedSection> {
                               ),
                               child: Text(
                                 recommendation['level'],
-                                style: Theme.of(context).textTheme.bodyMedium
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
                                     ?.copyWith(color: AppColors.primaryOrange),
                                 textAlign: TextAlign.center,
                                 maxLines: 1,
@@ -247,13 +249,13 @@ class _SharedSectionState extends State<SharedSection> {
 
     return widget.isLoading
         ? Skeletonizer(
-          enabled: true,
-          effect: ShimmerEffect(
-            baseColor: AppColors.shimmerBaseColor,
-            highlightColor: AppColors.shimmerHighlightColor,
-          ),
-          child: content,
-        )
+            enabled: true,
+            effect: ShimmerEffect(
+              baseColor: AppColors.shimmerBaseColor,
+              highlightColor: AppColors.shimmerHighlightColor,
+            ),
+            child: content,
+          )
         : content;
   }
 

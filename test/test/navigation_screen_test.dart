@@ -1,9 +1,9 @@
 import 'package:fitness_app/features/app_sections/AppSections.dart';
+import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fitness_app/features/app_sections/ChatAipage.dart';
 import 'package:fitness_app/features/app_sections/GymPage.dart';
-import 'package:fitness_app/features/app_sections/HomePage.dart';
 import 'package:fitness_app/features/app_sections/ProfilePage.dart';
 
 void main() {
@@ -11,8 +11,8 @@ void main() {
     testWidgets('Initial page is HomePage', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(home: MainNavigationScreen()));
 
-      expect(find.byType(HomePage), findsOneWidget);
-      expect(find.byType(HomePage), findsNothing);
+      expect(find.byType(Home), findsOneWidget);
+      expect(find.byType(Home), findsNothing);
     });
 
     testWidgets('Navigate to ChatAipage', (WidgetTester tester) async {

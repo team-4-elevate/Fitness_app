@@ -164,7 +164,6 @@ class _RegisterViewState extends State<RegisterView> {
             isBold: true,
             text: 'Create An Account',
           ),
-
           isRegister: true,
           registerStep: 1,
           showSocialLogin: true,
@@ -193,7 +192,6 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             ],
           ),
-
           content: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -218,12 +216,11 @@ class _RegisterViewState extends State<RegisterView> {
                       validator: AppValidators.validateFirstName,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
-                        errorText:
-                            _hasFirstNameError
-                                ? AppValidators.validateFirstName(
-                                  _firstNameController.text,
-                                )
-                                : null,
+                        errorText: _hasFirstNameError
+                            ? AppValidators.validateFirstName(
+                                _firstNameController.text,
+                              )
+                            : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: SvgPicture.asset(
@@ -248,12 +245,11 @@ class _RegisterViewState extends State<RegisterView> {
                       validator: AppValidators.validateLastName,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
-                        errorText:
-                            _hasLastNameError
-                                ? AppValidators.validateLastName(
-                                  _lastNameController.text,
-                                )
-                                : null,
+                        errorText: _hasLastNameError
+                            ? AppValidators.validateLastName(
+                                _lastNameController.text,
+                              )
+                            : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: SvgPicture.asset(
@@ -279,12 +275,11 @@ class _RegisterViewState extends State<RegisterView> {
                       validator: AppValidators.validateEmail,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: InputDecoration(
-                        errorText:
-                            _hasEmailError
-                                ? AppValidators.validateEmail(
-                                  _emailController.text,
-                                )
-                                : null,
+                        errorText: _hasEmailError
+                            ? AppValidators.validateEmail(
+                                _emailController.text,
+                              )
+                            : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: Icon(Icons.email_outlined),
@@ -305,20 +300,16 @@ class _RegisterViewState extends State<RegisterView> {
                       obscureText: _obscurePassword,
                       keyboardType: TextInputType.visiblePassword,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator:
-                          (value) =>
-                              value == null || value.isEmpty
-                                  ? AppLocalizations.of(
-                                    context,
-                                  ).passwordRequired
-                                  : null,
-
+                      validator: (value) => value == null || value.isEmpty
+                          ? AppLocalizations.of(
+                              context,
+                            ).passwordRequired
+                          : null,
                       decoration: InputDecoration(
-                        errorText:
-                            _passwordController.text.isEmpty &&
-                                    _hasPasswordError
-                                ? AppLocalizations.of(context).passwordRequired
-                                : null,
+                        errorText: _passwordController.text.isEmpty &&
+                                _hasPasswordError
+                            ? AppLocalizations.of(context).passwordRequired
+                            : null,
                         prefixIcon: Padding(
                           padding: EdgeInsets.only(left: 16.r, right: 8.r),
                           child: Icon(Icons.lock_outline_sharp),

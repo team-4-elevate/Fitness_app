@@ -22,18 +22,17 @@ class UpcomingWorkouts {
       totalExercises: json['totalExercises'] as int?,
       totalPages: json['totalPages'] as int?,
       currentPage: json['currentPage'] as int?,
-      exercises:
-          (json['exercises'] as List<dynamic>?)
-              ?.map((e) => Exercise.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      exercises: (json['exercises'] as List<dynamic>?)
+          ?.map((e) => Exercise.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'message': message,
-    'totalExercises': totalExercises,
-    'totalPages': totalPages,
-    'currentPage': currentPage,
-    'exercises': exercises?.map((e) => e.toJson()).toList(),
-  };
+        'message': message,
+        'totalExercises': totalExercises,
+        'totalPages': totalPages,
+        'currentPage': currentPage,
+        'exercises': exercises?.map((e) => e.toJson()).toList(),
+      };
 }
