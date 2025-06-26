@@ -100,7 +100,6 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-
             SafeArea(
               child: RefreshIndicator(
                 color: Theme.of(context).primaryColor,
@@ -134,10 +133,9 @@ class _HomeState extends State<Home> {
                           builder: (context, state) {
                             return switch (state) {
                               BaseInitialState() ||
-                              BaseLoadingState() => const Skeleton(),
-
-                              SuccessState<HomeData>() =>
-                                (() {
+                              BaseLoadingState() =>
+                                const Skeleton(),
+                              SuccessState<HomeData>() => (() {
                                   final data = (state).data;
                                   final recommendations =
                                       data.dailyRecommendations
@@ -166,6 +164,7 @@ class _HomeState extends State<Home> {
                                   );
                                 })(),
                               BaseErrorState() => Center(
+
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 20,
@@ -190,10 +189,9 @@ class _HomeState extends State<Home> {
                           builder: (context, state) {
                             return switch (state) {
                               BaseInitialState() ||
-                              BaseLoadingState() => const Skeleton(),
-
-                              SuccessState<HomeData>() =>
-                                (() {
+                              BaseLoadingState() =>
+                                const Skeleton(),
+                              SuccessState<HomeData>() => (() {
                                   final data = (state).data;
                                   final muscleGroups = ['Full Body'];
                                   final muscleGroupIds = ['all'];
@@ -265,6 +263,7 @@ class _HomeState extends State<Home> {
                                   );
                                 })(),
                               BaseErrorState() => Center(
+
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 20,
@@ -289,10 +288,9 @@ class _HomeState extends State<Home> {
                           builder: (context, state) {
                             return switch (state) {
                               BaseInitialState() ||
-                              BaseLoadingState() => const Skeleton(),
-
-                              SuccessState<HomeData>() =>
-                                (() {
+                              BaseLoadingState() =>
+                                const Skeleton(),
+                              SuccessState<HomeData>() => (() {
                                   final data = (state).data;
                                   final foodRecommendations =
                                       data.foodRecommendations
@@ -319,6 +317,7 @@ class _HomeState extends State<Home> {
                                         AppRoutes.foodRecommendationScreen,
                                       );
                                     },
+
                                     onItemPressed: (item, index) {
                                       Navigator.pushNamed(
                                         context,

@@ -1,6 +1,7 @@
 // core/routes/app_routes_generator.dart
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
+import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
@@ -15,8 +16,8 @@ import 'package:fitness_app/features/food_recommendation/presentation/pages/food
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:fitness_app/features/home/presentation/widgets/upcoming-workout_tapbar.dart';
+import 'package:fitness_app/features/food_details/presentation/pages/food_details_page.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
-import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,38 +33,34 @@ class AppRoutesGenerator {
     switch (settings.name) {
       case AppRoutes.loginPage:
         return MaterialPageRoute(
-          builder:
-              (_) => BlocProvider<LoginViewModel>(
-                create: (_) => getIt<LoginViewModel>(),
-                child: const LoginView(),
-              ),
+          builder: (_) => BlocProvider<LoginViewModel>(
+            create: (_) => getIt<LoginViewModel>(),
+            child: const LoginView(),
+          ),
         );
       case AppRoutes.registerPage:
         return MaterialPageRoute(
-          builder:
-              (_) => BlocProvider<RegisterBloc>(
-                create: (context) => getIt<RegisterBloc>(),
-                child: const RegisterView(),
-              ),
+          builder: (_) => BlocProvider<RegisterBloc>(
+            create: (context) => getIt<RegisterBloc>(),
+            child: const RegisterView(),
+          ),
         );
       case AppRoutes.registerDetailsView:
         final args = settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
           settings: settings,
-          builder:
-              (_) => BlocProvider<RegisterBloc>.value(
-                value: args?['registerBloc'],
-                child: RegisterDetailsView(initialData: args?['userData']),
-              ),
+          builder: (_) => BlocProvider<RegisterBloc>.value(
+            value: args?['registerBloc'],
+            child: RegisterDetailsView(initialData: args?['userData']),
+          ),
         );
 
       case AppRoutes.homePage:
         return MaterialPageRoute(
-          builder:
-              (_) => BlocProvider<HomeBloc>(
-                create: (_) => getIt<HomeBloc>(),
-                child: const Home(),
-              ),
+          builder: (_) => BlocProvider<HomeBloc>(
+            create: (_) => getIt<HomeBloc>(),
+            child: const Home(),
+          ),
         );
 
       case AppRoutes.layoutScreen:
@@ -72,11 +69,10 @@ class AppRoutesGenerator {
       case AppRoutes.forgotPass:
         return MaterialPageRoute(
           settings: settings,
-          builder:
-              (_) => BlocProvider(
-                create: (_) => getIt<ForgetPasswordBloc>(),
-                child: const ForgetPasswordPage(),
-              ),
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<ForgetPasswordBloc>(),
+            child: const ForgetPasswordPage(),
+          ),
         );
       case AppRoutes.forgetPassOtpPage:
         final args = settings.arguments as ForgetPasswordBloc;
@@ -101,12 +97,19 @@ class AppRoutesGenerator {
         );
       case AppRoutes.onboarding:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
+      case AppRoutes.foodDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => FoodDetailsPage(
+            args: settings.arguments as FoodDetailsArgs,
+          ),
+        );
 
       case AppRoutes.foodRecommendationScreen:
         final args = settings.arguments as Map<String, dynamic>?;
         final selectedTabIndex = args?['selectedTabIndex'];
 
         return MaterialPageRoute(
+
           builder:
               (_) => BlocProvider(
                 create: (_) => getIt<FoodRecommendationViewModel>(),
@@ -132,12 +135,11 @@ class AppRoutesGenerator {
         return MaterialPageRoute(builder: (_) => const UpcomingWorkoutTabBar());
       default:
         return MaterialPageRoute(
-          builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text('No route defined for ${settings.name}'),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
+          ),
         );
     }
   }

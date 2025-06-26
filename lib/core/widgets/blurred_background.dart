@@ -24,13 +24,12 @@ class BlurredBackground extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        image:
-            backgroundImage != null
-                ? DecorationImage(
-                  image: AssetImage(backgroundImage!),
-                  fit: BoxFit.cover,
-                )
-                : null,
+        image: backgroundImage != null
+            ? DecorationImage(
+                image: AssetImage(backgroundImage!),
+                fit: BoxFit.cover,
+              )
+            : null,
         color: backgroundImage == null ? AppColors.backgroundDark : null,
       ),
       child: BackdropFilter(

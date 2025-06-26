@@ -80,8 +80,8 @@ class LoginBlocListener extends StatelessWidget {
               onButtonPressed: () {
                 context.pop();
                 context.read<LoginViewModel>().loginIntent(
-                  LoginIntent.resetStates,
-                );
+                      LoginIntent.resetStates,
+                    );
               },
             );
           },

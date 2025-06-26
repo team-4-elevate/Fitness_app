@@ -95,8 +95,8 @@ void main() {
                 equals(mockDailyRecommendationResponse.exercises[1].id),
               );
             },
-            failure:
-                (message) => fail('Expected success but got failure: $message'),
+            failure: (message) =>
+                fail('Expected success but got failure: $message'),
           );
 
           // Verify method call
@@ -236,8 +236,8 @@ void main() {
               );
               expect(data[1].id, equals(mockCategories[1].idCategory));
             },
-            failure:
-                (message) => fail('Expected success but got failure: $message'),
+            failure: (message) =>
+                fail('Expected success but got failure: $message'),
           );
 
           // Verify method call
@@ -263,8 +263,8 @@ void main() {
           success: (data) {
             expect(data, isEmpty);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         // Verify method call
@@ -303,8 +303,8 @@ void main() {
             expect(data[0].name, equals(''));
             expect(data[0].imageUrl, equals(''));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         // Verify method call

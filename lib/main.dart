@@ -56,7 +56,6 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               supportedLocales: localizationManager.supportedLocales,
               locale: localizationManager.currentLocale,
-
               theme: AppTheme.lightTheme,
               onGenerateRoute: AppRoutesGenerator.generateRoute,
               builder: (context, child) {

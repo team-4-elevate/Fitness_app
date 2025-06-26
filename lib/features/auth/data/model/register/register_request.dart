@@ -42,16 +42,16 @@ class RegisterRequest {
   }
 
   Map<String, dynamic> toJson() => {
-    'firstName': firstName,
-    'lastName': lastName,
-    'email': email,
-    'password': password,
-    'rePassword': rePassword,
-    'gender': gender,
-    'height': height,
-    'weight': weight,
-    'age': age,
-    'goal': goal,
-    'activityLevel': activityLevel,
-  };
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'rePassword': rePassword,
+        'gender': gender,
+        'height': height,
+        'weight': weight,
+        'age': age,
+        'goal': goal,
+        'activityLevel': activityLevel,
+      };
 }

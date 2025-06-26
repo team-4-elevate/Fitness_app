@@ -36,7 +36,6 @@ import 'package:mockito/src/dummies.dart' as _i6;
 // ignore_for_file: deprecated_member_use_from_same_package
 // ignore_for_file: implementation_imports
 // ignore_for_file: invalid_use_of_visible_for_testing_member
-// ignore_for_file: must_be_immutable
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
@@ -52,29 +51,34 @@ class MockHomeRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>
-  getDailyRecommendations({
+  _i3.Future<
+      _i4.ApiResult<_i5.DailyRecommendationResponse>> getDailyRecommendations({
     required String? targetMuscleGroupId,
     required String? difficultyLevelId,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#getDailyRecommendations, [], {
+        Invocation.method(
+          #getDailyRecommendations,
+          [],
+          {
+            #targetMuscleGroupId: targetMuscleGroupId,
+            #difficultyLevelId: difficultyLevelId,
+          },
+        ),
+        returnValue:
+            _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>.value(
+                _i6.dummyValue<_i4.ApiResult<_i5.DailyRecommendationResponse>>(
+          this,
+          Invocation.method(
+            #getDailyRecommendations,
+            [],
+            {
               #targetMuscleGroupId: targetMuscleGroupId,
               #difficultyLevelId: difficultyLevelId,
-            }),
-            returnValue: _i3.Future<
-              _i4.ApiResult<_i5.DailyRecommendationResponse>
-            >.value(
-              _i6.dummyValue<_i4.ApiResult<_i5.DailyRecommendationResponse>>(
-                this,
-                Invocation.method(#getDailyRecommendations, [], {
-                  #targetMuscleGroupId: targetMuscleGroupId,
-                  #difficultyLevelId: difficultyLevelId,
-                }),
-              ),
-            ),
-          )
-          as _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>);
+            },
+          ),
+        )),
+      ) as _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>);
 
   @override
   _i3.Future<_i4.ApiResult<_i7.FoodRecomendation>> getFoodRecommendations() =>
@@ -129,29 +133,34 @@ class MockHomeRepository extends _i1.Mock implements _i10.HomeRepository {
   }
 
   @override
-  _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>
-  getDailyRecommendations({
+  _i3.Future<
+      _i4.ApiResult<_i5.DailyRecommendationResponse>> getDailyRecommendations({
     required String? targetMuscleGroupId,
     required String? difficultyLevelId,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#getDailyRecommendations, [], {
+        Invocation.method(
+          #getDailyRecommendations,
+          [],
+          {
+            #targetMuscleGroupId: targetMuscleGroupId,
+            #difficultyLevelId: difficultyLevelId,
+          },
+        ),
+        returnValue:
+            _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>.value(
+                _i6.dummyValue<_i4.ApiResult<_i5.DailyRecommendationResponse>>(
+          this,
+          Invocation.method(
+            #getDailyRecommendations,
+            [],
+            {
               #targetMuscleGroupId: targetMuscleGroupId,
               #difficultyLevelId: difficultyLevelId,
-            }),
-            returnValue: _i3.Future<
-              _i4.ApiResult<_i5.DailyRecommendationResponse>
-            >.value(
-              _i6.dummyValue<_i4.ApiResult<_i5.DailyRecommendationResponse>>(
-                this,
-                Invocation.method(#getDailyRecommendations, [], {
-                  #targetMuscleGroupId: targetMuscleGroupId,
-                  #difficultyLevelId: difficultyLevelId,
-                }),
-              ),
-            ),
-          )
-          as _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>);
+            },
+          ),
+        )),
+      ) as _i3.Future<_i4.ApiResult<_i5.DailyRecommendationResponse>>);
 
   @override
   _i3.Future<_i4.ApiResult<List<_i11.DailyRecommendationItem>>>

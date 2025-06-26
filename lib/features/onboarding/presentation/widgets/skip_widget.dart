@@ -29,9 +29,9 @@ class SkipWidget extends StatelessWidget {
             child: Text(
               context.l10n.skip,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppColors.darkWhite,
-                fontWeight: FontWeight.w500,
-              ),
+                    color: AppColors.darkWhite,
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
           ),
         ),

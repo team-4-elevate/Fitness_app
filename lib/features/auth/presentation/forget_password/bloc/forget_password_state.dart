@@ -43,11 +43,11 @@ class ForgetPasswordState extends Equatable {
 
   @override
   List get props => [
-    userEmail,
-    errorMessage,
-    shouldVerify,
-    forgetPasswordStatus,
-    verifyResetCodeStatus,
-    resetPasswordStatus,
-  ];
+        userEmail,
+        errorMessage,
+        shouldVerify,
+        forgetPasswordStatus,
+        verifyResetCodeStatus,
+        resetPasswordStatus,
+      ];
 }

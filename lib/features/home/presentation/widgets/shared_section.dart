@@ -50,11 +50,11 @@ class SharedSection extends StatefulWidget {
     } catch (e) {
       for (var size in SectionSize.values) {
         if (size.displayName.toLowerCase().contains(
-              sectionTitle.toLowerCase(),
-            ) ||
+                  sectionTitle.toLowerCase(),
+                ) ||
             sectionTitle.toLowerCase().contains(
-              size.displayName.toLowerCase(),
-            )) {
+                  size.displayName.toLowerCase(),
+                )) {
           return size;
         }
       }
@@ -276,13 +276,13 @@ class _SharedSectionState extends State<SharedSection> {
 
     return widget.isLoading
         ? Skeletonizer(
-          enabled: true,
-          effect: ShimmerEffect(
-            baseColor: AppColors.shimmerBaseColor,
-            highlightColor: AppColors.shimmerHighlightColor,
-          ),
-          child: content,
-        )
+            enabled: true,
+            effect: ShimmerEffect(
+              baseColor: AppColors.shimmerBaseColor,
+              highlightColor: AppColors.shimmerHighlightColor,
+            ),
+            child: content,
+          )
         : content;
   }
 

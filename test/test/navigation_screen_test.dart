@@ -1,5 +1,6 @@
 // test/test/navigation_screen_test.dart
 import 'package:fitness_app/features/app_sections/AppSections.dart';
+import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fitness_app/features/app_sections/ChatAipage.dart';

@@ -23,9 +23,9 @@ class AuthPagesUiArguments {
     this.primaryButtonText,
     this.primaryButtonAction,
   }) : assert(
-         !isRegister || registerStep != null,
-         'you should provide register step if isRegister is true',
-       );
+          !isRegister || registerStep != null,
+          'you should provide register step if isRegister is true',
+        );
 }
 
 class AuthPageTitleArguments {

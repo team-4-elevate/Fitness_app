@@ -30,23 +30,21 @@ class FoodCategoriesTabbar extends StatelessWidget {
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       onTap: (index) {
         context.read<FoodRecommendationViewModel>().doIntent(
-          ChangeSelectedCategoryIntent(index),
-        );
+              ChangeSelectedCategoryIntent(index),
+            );
         final categoryName = categories[index].strCategory ?? '';
         context.read<FoodRecommendationViewModel>().doIntent(
-          GetMealsByCategoryIntent(categoryName),
-        );
-      },
-      tabs:
-          categories.map((category) {
-            return Tab(
-              child: CustomTabbarTab(
-                title: category.strCategory,
-                isSelected:
-                    selectedCategoryIndex == categories.indexOf(category),
-              ),
+              GetMealsByCategoryIntent(categoryName),
             );
-          }).toList(),
+      },
+      tabs: categories.map((category) {
+        return Tab(
+          child: CustomTabbarTab(
+            title: category.strCategory,
+            isSelected: selectedCategoryIndex == categories.indexOf(category),
+          ),
+        );
+      }).toList(),
     );
   }
 }

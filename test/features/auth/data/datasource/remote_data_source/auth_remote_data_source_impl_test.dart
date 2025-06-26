@@ -94,8 +94,8 @@ void main() {
             );
             expect(data.user?.email, equals(expectedLoginResponse.user?.email));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         verify(
@@ -215,8 +215,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -247,8 +247,8 @@ void main() {
             expect(data.token, equals('invalid_token_string'));
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -300,8 +300,8 @@ void main() {
             expect(data.token, equals('mock_jwt_token_12345'));
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -330,8 +330,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user, isNotNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -357,8 +357,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
     });

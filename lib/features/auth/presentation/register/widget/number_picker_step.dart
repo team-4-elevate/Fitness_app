@@ -29,7 +29,6 @@ class NumberPickerStep extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 20.r),
-
           Text(
             label,
             style: TextStyle(
@@ -38,9 +37,7 @@ class NumberPickerStep extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
           SizedBox(height: 8.r),
-
           NumberPicker(
             value: value,
             minValue: minValue,
@@ -63,7 +60,6 @@ class NumberPickerStep extends StatelessWidget {
             axis: Axis.horizontal,
             itemWidth: itemWidth.r,
           ),
-
           Icon(Icons.arrow_drop_up, color: Colors.deepOrange, size: 24.r),
         ],
       ),

@@ -24,10 +24,10 @@ class OtpFooterTextWidget extends StatelessWidget {
               child: Text(
                 'Resend Code?',
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  decoration: TextDecoration.underline,
-                  color: AppColors.primaryOrange,
-                  decorationColor: AppColors.primaryOrange,
-                ),
+                      decoration: TextDecoration.underline,
+                      color: AppColors.primaryOrange,
+                      decorationColor: AppColors.primaryOrange,
+                    ),
               ),
             ),
           ),

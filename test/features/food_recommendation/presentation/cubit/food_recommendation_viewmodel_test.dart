@@ -74,15 +74,14 @@ void main() {
           return viewModel;
         },
         act: (cubit) => cubit.doIntent(const GetMealsCategoriesIntent()),
-        expect:
-            () => [
-              const FoodRecommendationState(
-                foodCategoriesState: LoadingState(),
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(mockCategories),
-              ),
-            ],
+        expect: () => [
+          const FoodRecommendationState(
+            foodCategoriesState: LoadingState(),
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(mockCategories),
+          ),
+        ],
         verify: (_) {
           verify(mockMealsCategoriesUseCase.call()).called(1);
         },
@@ -98,15 +97,14 @@ void main() {
           return viewModel;
         },
         act: (cubit) => cubit.doIntent(const GetMealsCategoriesIntent()),
-        expect:
-            () => [
-              const FoodRecommendationState(
-                foodCategoriesState: LoadingState(),
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: ErrorState('Network error'),
-              ),
-            ],
+        expect: () => [
+          const FoodRecommendationState(
+            foodCategoriesState: LoadingState(),
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: ErrorState('Network error'),
+          ),
+        ],
         verify: (_) {
           verify(mockMealsCategoriesUseCase.call()).called(1);
         },
@@ -121,15 +119,14 @@ void main() {
           return viewModel;
         },
         act: (cubit) => cubit.doIntent(const GetMealsCategoriesIntent()),
-        expect:
-            () => [
-              const FoodRecommendationState(
-                foodCategoriesState: LoadingState(),
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(<FoodCategory>[]),
-              ),
-            ],
+        expect: () => [
+          const FoodRecommendationState(
+            foodCategoriesState: LoadingState(),
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(<FoodCategory>[]),
+          ),
+        ],
         verify: (_) {
           verify(mockMealsCategoriesUseCase.call()).called(1);
         },
@@ -159,18 +156,16 @@ void main() {
           ).thenAnswer((_) async => const ApiSuccess(mockMeals));
           return viewModel;
         },
-        act:
-            (cubit) =>
-                cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
-        expect:
-            () => [
-              const FoodRecommendationState(loadingCategories: {'beef'}),
-              FoodRecommendationState(
-                mealsByCategoryState: const SuccessState(mockMeals),
-                cachedMeals: const {'beef': mockMeals},
-                loadingCategories: const <String>{},
-              ),
-            ],
+        act: (cubit) =>
+            cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
+        expect: () => [
+          const FoodRecommendationState(loadingCategories: {'beef'}),
+          FoodRecommendationState(
+            mealsByCategoryState: const SuccessState(mockMeals),
+            cachedMeals: const {'beef': mockMeals},
+            loadingCategories: const <String>{},
+          ),
+        ],
         verify: (_) {
           verify(mockMealsOnCategoryUseCase.call(testCategory)).called(1);
         },
@@ -185,17 +180,15 @@ void main() {
           ).thenAnswer((_) async => const ApiFailure(errorMessage));
           return viewModel;
         },
-        act:
-            (cubit) =>
-                cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
-        expect:
-            () => [
-              const FoodRecommendationState(loadingCategories: {'beef'}),
-              const FoodRecommendationState(
-                mealsByCategoryState: ErrorState('Category not found'),
-                loadingCategories: <String>{},
-              ),
-            ],
+        act: (cubit) =>
+            cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
+        expect: () => [
+          const FoodRecommendationState(loadingCategories: {'beef'}),
+          const FoodRecommendationState(
+            mealsByCategoryState: ErrorState('Category not found'),
+            loadingCategories: <String>{},
+          ),
+        ],
         verify: (_) {
           verify(mockMealsOnCategoryUseCase.call(testCategory)).called(1);
         },
@@ -204,12 +197,10 @@ void main() {
       blocTest<FoodRecommendationViewModel, FoodRecommendationState>(
         'should not call use case when meals are already cached',
         build: () => viewModel,
-        seed:
-            () =>
-                const FoodRecommendationState(cachedMeals: {'beef': mockMeals}),
-        act:
-            (cubit) =>
-                cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
+        seed: () =>
+            const FoodRecommendationState(cachedMeals: {'beef': mockMeals}),
+        act: (cubit) =>
+            cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
         expect: () => <FoodRecommendationState>[],
         verify: (_) {
           verifyNever(mockMealsOnCategoryUseCase.call(any));
@@ -224,18 +215,16 @@ void main() {
           ).thenAnswer((_) async => const ApiSuccess(<Meal>[]));
           return viewModel;
         },
-        act:
-            (cubit) =>
-                cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
-        expect:
-            () => [
-              const FoodRecommendationState(loadingCategories: {'beef'}),
-              const FoodRecommendationState(
-                mealsByCategoryState: SuccessState(<Meal>[]),
-                cachedMeals: {'beef': <Meal>[]},
-                loadingCategories: <String>{},
-              ),
-            ],
+        act: (cubit) =>
+            cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
+        expect: () => [
+          const FoodRecommendationState(loadingCategories: {'beef'}),
+          const FoodRecommendationState(
+            mealsByCategoryState: SuccessState(<Meal>[]),
+            cachedMeals: {'beef': <Meal>[]},
+            loadingCategories: <String>{},
+          ),
+        ],
         verify: (_) {
           verify(mockMealsOnCategoryUseCase.call(testCategory)).called(1);
         },
@@ -249,17 +238,15 @@ void main() {
           ).thenThrow(Exception('Network timeout'));
           return viewModel;
         },
-        act:
-            (cubit) =>
-                cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
-        expect:
-            () => [
-              const FoodRecommendationState(loadingCategories: {'beef'}),
-              const FoodRecommendationState(
-                mealsByCategoryState: ErrorState('Exception: Network timeout'),
-                loadingCategories: <String>{},
-              ),
-            ],
+        act: (cubit) =>
+            cubit.doIntent(const GetMealsByCategoryIntent(testCategory)),
+        expect: () => [
+          const FoodRecommendationState(loadingCategories: {'beef'}),
+          const FoodRecommendationState(
+            mealsByCategoryState: ErrorState('Exception: Network timeout'),
+            loadingCategories: <String>{},
+          ),
+        ],
         verify: (_) {
           verify(mockMealsOnCategoryUseCase.call(testCategory)).called(1);
         },
@@ -282,33 +269,30 @@ void main() {
           cubit.doIntent(const ChangeSelectedCategoryIntent(3));
           cubit.doIntent(const ChangeSelectedCategoryIntent(0));
         },
-        expect:
-            () => [
-              const FoodRecommendationState(selectedCategoryIndex: 1),
-              const FoodRecommendationState(selectedCategoryIndex: 3),
-              const FoodRecommendationState(selectedCategoryIndex: 0),
-            ],
+        expect: () => [
+          const FoodRecommendationState(selectedCategoryIndex: 1),
+          const FoodRecommendationState(selectedCategoryIndex: 3),
+          const FoodRecommendationState(selectedCategoryIndex: 0),
+        ],
       );
 
       blocTest<FoodRecommendationViewModel, FoodRecommendationState>(
         'should preserve other state when changing category index',
         build: () => viewModel,
-        seed:
-            () => const FoodRecommendationState(
-              foodCategoriesState: SuccessState([]),
-              cachedMeals: {'beef': []},
-              loadingCategories: {'chicken'},
-            ),
+        seed: () => const FoodRecommendationState(
+          foodCategoriesState: SuccessState([]),
+          cachedMeals: {'beef': []},
+          loadingCategories: {'chicken'},
+        ),
         act: (cubit) => cubit.doIntent(const ChangeSelectedCategoryIntent(5)),
-        expect:
-            () => [
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState([]),
-                cachedMeals: {'beef': []},
-                loadingCategories: {'chicken'},
-                selectedCategoryIndex: 5,
-              ),
-            ],
+        expect: () => [
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState([]),
+            cachedMeals: {'beef': []},
+            loadingCategories: {'chicken'},
+            selectedCategoryIndex: 5,
+          ),
+        ],
       );
     });
 
@@ -352,25 +336,24 @@ void main() {
           await Future.delayed(const Duration(milliseconds: 10));
           cubit.doIntent(const GetMealsByCategoryIntent('Beef'));
         },
-        expect:
-            () => [
-              const FoodRecommendationState(
-                foodCategoriesState: LoadingState(),
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(mockCategories),
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(mockCategories),
-                loadingCategories: {'beef'},
-              ),
-              FoodRecommendationState(
-                foodCategoriesState: const SuccessState(mockCategories),
-                mealsByCategoryState: const SuccessState(mockMeals),
-                cachedMeals: const {'beef': mockMeals},
-                loadingCategories: const <String>{},
-              ),
-            ],
+        expect: () => [
+          const FoodRecommendationState(
+            foodCategoriesState: LoadingState(),
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(mockCategories),
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(mockCategories),
+            loadingCategories: {'beef'},
+          ),
+          FoodRecommendationState(
+            foodCategoriesState: const SuccessState(mockCategories),
+            mealsByCategoryState: const SuccessState(mockMeals),
+            cachedMeals: const {'beef': mockMeals},
+            loadingCategories: const <String>{},
+          ),
+        ],
         verify: (_) {
           verify(mockMealsCategoriesUseCase.call()).called(1);
           verify(mockMealsOnCategoryUseCase.call('Beef')).called(1);
@@ -395,30 +378,29 @@ void main() {
           await Future.delayed(const Duration(milliseconds: 10));
           cubit.doIntent(const ChangeSelectedCategoryIntent(1));
         },
-        expect:
-            () => [
-              const FoodRecommendationState(
-                foodCategoriesState: LoadingState(),
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(mockCategories),
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(mockCategories),
-                loadingCategories: {'beef'},
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(mockCategories),
-                mealsByCategoryState: ErrorState('Network error'),
-                loadingCategories: <String>{},
-              ),
-              const FoodRecommendationState(
-                foodCategoriesState: SuccessState(mockCategories),
-                mealsByCategoryState: ErrorState('Network error'),
-                loadingCategories: <String>{},
-                selectedCategoryIndex: 1,
-              ),
-            ],
+        expect: () => [
+          const FoodRecommendationState(
+            foodCategoriesState: LoadingState(),
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(mockCategories),
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(mockCategories),
+            loadingCategories: {'beef'},
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(mockCategories),
+            mealsByCategoryState: ErrorState('Network error'),
+            loadingCategories: <String>{},
+          ),
+          const FoodRecommendationState(
+            foodCategoriesState: SuccessState(mockCategories),
+            mealsByCategoryState: ErrorState('Network error'),
+            loadingCategories: <String>{},
+            selectedCategoryIndex: 1,
+          ),
+        ],
         verify: (_) {
           verify(mockMealsCategoriesUseCase.call()).called(1);
           verify(mockMealsOnCategoryUseCase.call('Beef')).called(1);
@@ -443,34 +425,33 @@ void main() {
           await Future.delayed(const Duration(milliseconds: 10));
           cubit.doIntent(const ChangeSelectedCategoryIntent(2));
         },
-        expect:
-            () => [
-              const FoodRecommendationState(loadingCategories: {'beef'}),
-              FoodRecommendationState(
-                mealsByCategoryState: const SuccessState(mockMeals),
-                cachedMeals: const {'beef': mockMeals},
-                loadingCategories: const <String>{},
-              ),
-              FoodRecommendationState(
-                foodCategoriesState: const LoadingState(),
-                mealsByCategoryState: const SuccessState(mockMeals),
-                cachedMeals: const {'beef': mockMeals},
-                loadingCategories: const <String>{},
-              ),
-              FoodRecommendationState(
-                foodCategoriesState: const SuccessState(mockCategories),
-                mealsByCategoryState: const SuccessState(mockMeals),
-                cachedMeals: const {'beef': mockMeals},
-                loadingCategories: const <String>{},
-              ),
-              FoodRecommendationState(
-                foodCategoriesState: const SuccessState(mockCategories),
-                mealsByCategoryState: const SuccessState(mockMeals),
-                cachedMeals: const {'beef': mockMeals},
-                loadingCategories: const <String>{},
-                selectedCategoryIndex: 2,
-              ),
-            ],
+        expect: () => [
+          const FoodRecommendationState(loadingCategories: {'beef'}),
+          FoodRecommendationState(
+            mealsByCategoryState: const SuccessState(mockMeals),
+            cachedMeals: const {'beef': mockMeals},
+            loadingCategories: const <String>{},
+          ),
+          FoodRecommendationState(
+            foodCategoriesState: const LoadingState(),
+            mealsByCategoryState: const SuccessState(mockMeals),
+            cachedMeals: const {'beef': mockMeals},
+            loadingCategories: const <String>{},
+          ),
+          FoodRecommendationState(
+            foodCategoriesState: const SuccessState(mockCategories),
+            mealsByCategoryState: const SuccessState(mockMeals),
+            cachedMeals: const {'beef': mockMeals},
+            loadingCategories: const <String>{},
+          ),
+          FoodRecommendationState(
+            foodCategoriesState: const SuccessState(mockCategories),
+            mealsByCategoryState: const SuccessState(mockMeals),
+            cachedMeals: const {'beef': mockMeals},
+            loadingCategories: const <String>{},
+            selectedCategoryIndex: 2,
+          ),
+        ],
         verify: (_) {
           verify(mockMealsOnCategoryUseCase.call('Beef')).called(1);
           verify(mockMealsCategoriesUseCase.call()).called(1);

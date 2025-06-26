@@ -16,4 +16,5 @@ class ApiConstants {
   static const String foodRecommendedCategoriesEndpoint = '/categories.php';
   static const String foodRecommendedMealsEndpoint = '/filter.php';
   static const String muscles = '/muscles';
+  static const String getFoodDetailsEndpoint = '/lookup.php';
 }

@@ -309,22 +309,21 @@ void main() {
           loginViewModel.passwordController.text = 'Test@123';
         },
         act: (cubit) => cubit.loginIntent(LoginIntent.loginButtonPressed),
-        expect:
-            () => [
-              predicate<LoginState>(
-                (state) =>
-                    state.emailError == null &&
-                    state.passwordError == null &&
-                    state.isFormValid == true &&
-                    state.loginState == null,
-              ),
-              predicate<LoginState>(
-                (state) => state.loginState is LoadingState<LoginResponse>,
-              ),
-              predicate<LoginState>(
-                (state) => state.loginState is SuccessState<LoginResponse>,
-              ),
-            ],
+        expect: () => [
+          predicate<LoginState>(
+            (state) =>
+                state.emailError == null &&
+                state.passwordError == null &&
+                state.isFormValid == true &&
+                state.loginState == null,
+          ),
+          predicate<LoginState>(
+            (state) => state.loginState is LoadingState<LoginResponse>,
+          ),
+          predicate<LoginState>(
+            (state) => state.loginState is SuccessState<LoginResponse>,
+          ),
+        ],
         verify: (_) {
           verify(mockLoginUseCase.call(any)).called(1);
         },
@@ -379,37 +378,33 @@ void main() {
       blocTest<LoginViewModel, LoginState>(
         'should emit state with navigateToResetPassword true',
         build: () => loginViewModel,
-        act:
-            (cubit) =>
-                cubit.loginIntent(LoginIntent.forgotPasswordButtonPressed),
-        expect:
-            () => [
-              predicate<LoginState>(
-                (state) => state.navigateToResetPassword == true,
-              ),
-            ],
+        act: (cubit) =>
+            cubit.loginIntent(LoginIntent.forgotPasswordButtonPressed),
+        expect: () => [
+          predicate<LoginState>(
+            (state) => state.navigateToResetPassword == true,
+          ),
+        ],
       );
 
       blocTest<LoginViewModel, LoginState>(
         'should emit state with showSocialLoginMessage true',
         build: () => loginViewModel,
         act: (cubit) => cubit.loginIntent(LoginIntent.socialLoginButtonPressed),
-        expect:
-            () => [
-              predicate<LoginState>(
-                (state) => state.showSocialLoginMessage == true,
-              ),
-            ],
+        expect: () => [
+          predicate<LoginState>(
+            (state) => state.showSocialLoginMessage == true,
+          ),
+        ],
       );
 
       blocTest<LoginViewModel, LoginState>(
         'should emit state with navigateToSignUp true',
         build: () => loginViewModel,
         act: (cubit) => cubit.loginIntent(LoginIntent.registerButtonPressed),
-        expect:
-            () => [
-              predicate<LoginState>((state) => state.navigateToSignUp == true),
-            ],
+        expect: () => [
+          predicate<LoginState>((state) => state.navigateToSignUp == true),
+        ],
       );
     });
 
@@ -439,22 +434,21 @@ void main() {
           loginViewModel.passwordController.text = 'Test@123';
         },
         act: (cubit) => cubit.loginIntent(LoginIntent.loginButtonPressed),
-        expect:
-            () => [
-              predicate<LoginState>(
-                (state) =>
-                    state.emailError == null &&
-                    state.passwordError == null &&
-                    state.isFormValid == true &&
-                    state.loginState == null,
-              ),
-              predicate<LoginState>(
-                (state) => state.loginState is LoadingState<LoginResponse>,
-              ),
-              predicate<LoginState>(
-                (state) => state.loginState is ErrorState<LoginResponse>,
-              ),
-            ],
+        expect: () => [
+          predicate<LoginState>(
+            (state) =>
+                state.emailError == null &&
+                state.passwordError == null &&
+                state.isFormValid == true &&
+                state.loginState == null,
+          ),
+          predicate<LoginState>(
+            (state) => state.loginState is LoadingState<LoginResponse>,
+          ),
+          predicate<LoginState>(
+            (state) => state.loginState is ErrorState<LoginResponse>,
+          ),
+        ],
       );
     });
 

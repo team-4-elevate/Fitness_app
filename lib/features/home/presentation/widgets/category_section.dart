@@ -37,15 +37,14 @@ class CategorySection extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.length,
                 // ------------------------------------------------divider
-                separatorBuilder:
-                    (context, index) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5.r),
-                      child: VerticalDivider(
-                        color: Colors.white.withOpacity(0.2),
-                        thickness: 1.r,
-                        width: 20.r,
-                      ),
-                    ),
+                separatorBuilder: (context, index) => Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.r),
+                  child: VerticalDivider(
+                    color: Colors.white.withOpacity(0.2),
+                    thickness: 1.r,
+                    width: 20.r,
+                  ),
+                ),
                 // ------------------------------------------------itemBuilder
                 itemBuilder: (context, index) {
                   final String name = categories[index]['name'];
@@ -53,7 +52,6 @@ class CategorySection extends StatelessWidget {
 
                   return SizedBox(
                     width: 70.r,
-
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -71,7 +69,9 @@ class CategorySection extends StatelessWidget {
                           flex: 3,
                           child: Text(
                             name,
-                            style: Theme.of(context).textTheme.bodySmall
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
                                 ?.copyWith(color: Colors.white),
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.ellipsis,

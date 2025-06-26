@@ -21,18 +21,19 @@ class AppState extends Equatable {
     bool? hasProfileData,
     String? appLocale,
     bool? isShowOnboarding,
-  }) => AppState(
-    isLoggedIn: isLoggedIn ?? this.isLoggedIn,
-    hasProfileData: hasProfileData ?? this.hasProfileData,
-    appLocale: appLocale ?? this.appLocale,
-    isShowOnboarding: isShowOnboarding ?? this.isShowOnboarding,
-  );
+  }) =>
+      AppState(
+        isLoggedIn: isLoggedIn ?? this.isLoggedIn,
+        hasProfileData: hasProfileData ?? this.hasProfileData,
+        appLocale: appLocale ?? this.appLocale,
+        isShowOnboarding: isShowOnboarding ?? this.isShowOnboarding,
+      );
 
   @override
   List<Object?> get props => [
-    isLoggedIn,
-    hasProfileData,
-    appLocale,
-    isShowOnboarding,
-  ];
+        isLoggedIn,
+        hasProfileData,
+        appLocale,
+        isShowOnboarding,
+      ];
 }

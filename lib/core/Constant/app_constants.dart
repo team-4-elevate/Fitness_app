@@ -8,4 +8,5 @@ class AppConstants {
   static const String appBackBtn = 'assets/icons/back_btn.svg';
   static const String foodBgImage = 'assets/images/foodBgImage.png';
   static const String customBackIcon = 'assets/icons/Back.svg';
+  static const String backIconSVG = 'assets/icons/back-icon.svg';
 }

@@ -6,6 +6,7 @@ import 'package:fitness_app/features/home/data/model/food_recomendation/food_rec
 import 'package:fitness_app/features/home/data/model/upcoming_workouts/upcoming_workouts/upcoming_workouts.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+
 import '../../../../auth/data/datasource/remote_data_source/mocks.mocks.dart';
 import '../../../../food_recommendation/data/datasources/food_recommend_remote_data_source_impl_test.mocks.dart';
 import 'mocks.dart';
@@ -82,8 +83,8 @@ void main() {
               expect(data.exercises[1].exercise, equals('Pull-ups'));
               expect(data.exercises[1].bodyRegion, equals('Upper body'));
             },
-            failure:
-                (message) => fail('Expected success but got failure: $message'),
+            failure: (message) =>
+                fail('Expected success but got failure: $message'),
           );
 
           verify(
@@ -154,8 +155,8 @@ void main() {
             expect(data.message, isA<String>());
             expect(data.exercises, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
     });
@@ -298,8 +299,8 @@ void main() {
             expect(data.categories?[1].idCategory, equals('cat2'));
             expect(data.categories?[1].strCategory, equals('Carbs'));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
         verify(
           mockApiClient.get(
@@ -338,8 +339,8 @@ void main() {
           success: (data) {
             expect(data.categories, isEmpty);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
     });
