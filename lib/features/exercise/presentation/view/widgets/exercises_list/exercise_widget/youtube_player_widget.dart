@@ -19,27 +19,25 @@ class ExerciseYoutubePlayerWidget extends StatelessWidget {
       listener: (context, state) {
         showDialog(
           context: context,
-          builder:
-              (context) =>
-                  state.currentVideoId != null
-                      ? Dialog(
-                        backgroundColor: Colors.transparent,
-                        child: Center(
-                          child: YoutubePlayer(
-                            controller: YoutubePlayerController(
-                              initialVideoId: state.currentVideoId!,
-                              flags: YoutubePlayerFlags(autoPlay: false),
-                            ),
-                            progressIndicatorColor: AppColors.primaryOrange,
-                          ),
-                        ),
-                      )
-                      : Center(
-                        child: SizedBox(
-                          height: 200,
-                          child: Text(context.l10n.video_not_available),
-                        ),
+          builder: (context) => state.currentVideoId != null
+              ? Dialog(
+                  backgroundColor: Colors.transparent,
+                  child: Center(
+                    child: YoutubePlayer(
+                      controller: YoutubePlayerController(
+                        initialVideoId: state.currentVideoId!,
+                        flags: YoutubePlayerFlags(autoPlay: false),
                       ),
+                      progressIndicatorColor: AppColors.primaryOrange,
+                    ),
+                  ),
+                )
+              : Center(
+                  child: SizedBox(
+                    height: 200,
+                    child: Text(context.l10n.video_not_available),
+                  ),
+                ),
         ).then((_) {
           bloc.add(CloseYoutubeVideoEvent());
         });

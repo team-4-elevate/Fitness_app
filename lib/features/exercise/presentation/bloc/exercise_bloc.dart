@@ -19,9 +19,9 @@ class ExercisePageBloc extends Bloc<ExercisePageEvent, ExercisePageState> {
   ExercisePageBloc({
     required GetLevelsUseCase getLevelsUseCase,
     required GetExercisesUseCase getExercisesUseCase,
-  }) : _getExercisesUseCase = getExercisesUseCase,
-       _getLevelsUseCase = getLevelsUseCase,
-       super(const ExercisePageState()) {
+  })  : _getExercisesUseCase = getExercisesUseCase,
+        _getLevelsUseCase = getLevelsUseCase,
+        super(const ExercisePageState()) {
     _mapEvents();
   }
 
@@ -32,19 +32,17 @@ class ExercisePageBloc extends Bloc<ExercisePageEvent, ExercisePageState> {
     emit(state.copyWith(levelsStatus: Status.loading));
     final resp = await _getLevelsUseCase();
     resp.when(
-      success:
-          (levels) => emit(
-            state.copyWith(
-              levelsStatus: Status.success,
-              levelExerciseMap: Map.fromIterable(levels, value: (_) => []),
-              selectedLevelId: levels.first.id,
-              levelIdAndPagesMap: {for (final level in levels) level.id: 1},
-            ),
-          ),
-      failure:
-          (message) => emit(
-            state.copyWith(errorMessage: message, levelsStatus: Status.error),
-          ),
+      success: (levels) => emit(
+        state.copyWith(
+          levelsStatus: Status.success,
+          levelExerciseMap: Map.fromIterable(levels, value: (_) => []),
+          selectedLevelId: levels.first.id,
+          levelIdAndPagesMap: {for (final level in levels) level.id: 1},
+        ),
+      ),
+      failure: (message) => emit(
+        state.copyWith(errorMessage: message, levelsStatus: Status.error),
+      ),
     );
   }
 
@@ -96,13 +94,12 @@ class ExercisePageBloc extends Bloc<ExercisePageEvent, ExercisePageState> {
         );
         log(state.levelIdAndPagesMap[event.levelId].toString());
       },
-      failure:
-          (message) => emit(
-            state.copyWith(
-              errorMessage: message,
-              exercisesStatus: Status.error,
-            ),
-          ),
+      failure: (message) => emit(
+        state.copyWith(
+          errorMessage: message,
+          exercisesStatus: Status.error,
+        ),
+      ),
     );
   }
 
@@ -142,10 +139,9 @@ class ExercisePageBloc extends Bloc<ExercisePageEvent, ExercisePageState> {
             ),
           );
         },
-        failure:
-            (message) => emit(
-              state.copyWith(isLoadingMore: false, errorMessage: message),
-            ),
+        failure: (message) => emit(
+          state.copyWith(isLoadingMore: false, errorMessage: message),
+        ),
       );
     }
   }

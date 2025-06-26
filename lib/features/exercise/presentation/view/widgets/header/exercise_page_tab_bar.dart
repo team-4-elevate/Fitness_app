@@ -24,14 +24,14 @@ class _ExerciseTabBarState extends State<ExerciseTabBar>
   void didChangeDependencies() {
     levels =
         context.read<ExercisePageBloc>().state.levelExerciseMap.keys.toList();
-    bloc =
-        context.read<ExercisePageBloc>()..add(
-          GetExercisesEvent(
-            muscleGroupId: widget.muscleGroupId,
-            levelId: levels[0].id,
-            showLoading: true,
-          ),
-        );
+    bloc = context.read<ExercisePageBloc>()
+      ..add(
+        GetExercisesEvent(
+          muscleGroupId: widget.muscleGroupId,
+          levelId: levels[0].id,
+          showLoading: true,
+        ),
+      );
 
     controller = TabController(length: levels.length, vsync: this);
     super.didChangeDependencies();
@@ -60,8 +60,7 @@ class _ExerciseTabBarState extends State<ExerciseTabBar>
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white70,
             dividerColor: Colors.transparent,
-            onTap:
-                (v) => context.read<ExercisePageBloc>().add(
+            onTap: (v) => context.read<ExercisePageBloc>().add(
                   GetExercisesEvent(
                     levelId: levels[v].id,
                     muscleGroupId: widget.muscleGroupId,

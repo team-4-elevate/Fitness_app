@@ -38,10 +38,10 @@ class _AppNetworkImageState extends State<AppNetworkImage> {
         fit: widget.fit ?? BoxFit.cover,
         height: widget.height,
         width: widget.width,
-        placeholder:
-            (context, url) => widget.placeHolder ?? _buildPlaceholder(),
-        errorWidget:
-            (context, url, error) => widget.errorBuilder ?? _buildErrorWidget(),
+        placeholder: (context, url) =>
+            widget.placeHolder ?? _buildPlaceholder(),
+        errorWidget: (context, url, error) =>
+            widget.errorBuilder ?? _buildErrorWidget(),
       ),
     );
   }

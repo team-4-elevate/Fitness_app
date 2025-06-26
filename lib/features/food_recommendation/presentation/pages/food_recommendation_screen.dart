@@ -98,8 +98,8 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
                     widget.selectedTabIndex! < categories.length) {
                   indexToLoad = widget.selectedTabIndex!;
                   context.read<FoodRecommendationViewModel>().doIntent(
-                    ChangeSelectedCategoryIntent(indexToLoad),
-                  );
+                        ChangeSelectedCategoryIntent(indexToLoad),
+                      );
                 }
 
                 final categoryName = categories[indexToLoad].strCategory ?? '';
@@ -145,12 +145,9 @@ class _FoodRecommendationScreen extends State<FoodRecommendationScreen>
               centerTitle: true,
               leadingWidth: 35.r,
               elevation: 0,
-
-              leading: SvgPicture.asset(AppConstants.customBackIcon)
-                  .onTap(() {
-                    Navigator.of(context).pop();
-                  })
-                  .paddingAll(2.r),
+              leading: SvgPicture.asset(AppConstants.customBackIcon).onTap(() {
+                Navigator.of(context).pop();
+              }).paddingAll(2.r),
             ),
             body: Column(
               children: [

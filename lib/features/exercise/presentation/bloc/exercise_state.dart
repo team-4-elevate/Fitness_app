@@ -62,16 +62,16 @@ class ExercisePageState extends Equatable {
 
   @override
   List<Object?> get props => [
-    getLevelsStatus,
-    getExercisesStatus,
-    errorMessage,
-    currentLevelId,
-    levelExerciseMap,
-    shouldShowYoutubeVideo,
-    currentVideoId,
-    currentVideoLink,
-    levelIdAndPagesMap,
-    hasMoreExercises,
-    isLoadingMore,
-  ];
+        getLevelsStatus,
+        getExercisesStatus,
+        errorMessage,
+        currentLevelId,
+        levelExerciseMap,
+        shouldShowYoutubeVideo,
+        currentVideoId,
+        currentVideoLink,
+        levelIdAndPagesMap,
+        hasMoreExercises,
+        isLoadingMore,
+      ];
 }

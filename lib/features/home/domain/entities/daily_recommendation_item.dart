@@ -18,10 +18,10 @@ class DailyRecommendationItem extends Equatable {
 
   @override
   List<Object?> get props => [
-    id,
-    name,
-    imageUrl,
-    bodyRegion,
-    targetMuscleGroup,
-  ];
+        id,
+        name,
+        imageUrl,
+        bodyRegion,
+        targetMuscleGroup,
+      ];
 }

@@ -19,8 +19,7 @@ class ExercisePageBlurWidget extends StatelessWidget {
     return SizedBox(
       height: height,
       child: ClipRRect(
-        borderRadius:
-            radius ??
+        borderRadius: radius ??
             BorderRadius.only(
               bottomRight: Radius.circular(20),
               bottomLeft: Radius.circular(20),

@@ -83,45 +83,41 @@ class MockHomeRemoteDataSource extends _i1.Mock
   @override
   _i3.Future<_i4.ApiResult<_i7.FoodRecomendation>> getFoodRecommendations() =>
       (super.noSuchMethod(
+        Invocation.method(#getFoodRecommendations, []),
+        returnValue: _i3.Future<_i4.ApiResult<_i7.FoodRecomendation>>.value(
+          _i6.dummyValue<_i4.ApiResult<_i7.FoodRecomendation>>(
+            this,
             Invocation.method(#getFoodRecommendations, []),
-            returnValue: _i3.Future<_i4.ApiResult<_i7.FoodRecomendation>>.value(
-              _i6.dummyValue<_i4.ApiResult<_i7.FoodRecomendation>>(
-                this,
-                Invocation.method(#getFoodRecommendations, []),
-              ),
-            ),
-          )
-          as _i3.Future<_i4.ApiResult<_i7.FoodRecomendation>>);
+          ),
+        ),
+      ) as _i3.Future<_i4.ApiResult<_i7.FoodRecomendation>>);
 
   @override
   _i3.Future<_i4.ApiResult<_i8.UpcomingTapbar>> getMuscleGroups() =>
       (super.noSuchMethod(
+        Invocation.method(#getMuscleGroups, []),
+        returnValue: _i3.Future<_i4.ApiResult<_i8.UpcomingTapbar>>.value(
+          _i6.dummyValue<_i4.ApiResult<_i8.UpcomingTapbar>>(
+            this,
             Invocation.method(#getMuscleGroups, []),
-            returnValue: _i3.Future<_i4.ApiResult<_i8.UpcomingTapbar>>.value(
-              _i6.dummyValue<_i4.ApiResult<_i8.UpcomingTapbar>>(
-                this,
-                Invocation.method(#getMuscleGroups, []),
-              ),
-            ),
-          )
-          as _i3.Future<_i4.ApiResult<_i8.UpcomingTapbar>>);
+          ),
+        ),
+      ) as _i3.Future<_i4.ApiResult<_i8.UpcomingTapbar>>);
 
   @override
   _i3.Future<_i4.ApiResult<_i9.WorkoutByGroupResponse>>
-  getWorkoutsByMuscleGroupId(String? muscleGroupId) =>
-      (super.noSuchMethod(
+      getWorkoutsByMuscleGroupId(String? muscleGroupId) => (super.noSuchMethod(
             Invocation.method(#getWorkoutsByMuscleGroupId, [muscleGroupId]),
             returnValue:
                 _i3.Future<_i4.ApiResult<_i9.WorkoutByGroupResponse>>.value(
-                  _i6.dummyValue<_i4.ApiResult<_i9.WorkoutByGroupResponse>>(
-                    this,
-                    Invocation.method(#getWorkoutsByMuscleGroupId, [
-                      muscleGroupId,
-                    ]),
-                  ),
-                ),
-          )
-          as _i3.Future<_i4.ApiResult<_i9.WorkoutByGroupResponse>>);
+              _i6.dummyValue<_i4.ApiResult<_i9.WorkoutByGroupResponse>>(
+                this,
+                Invocation.method(#getWorkoutsByMuscleGroupId, [
+                  muscleGroupId,
+                ]),
+              ),
+            ),
+          ) as _i3.Future<_i4.ApiResult<_i9.WorkoutByGroupResponse>>);
 }
 
 /// A class which mocks [HomeRepository].
@@ -164,48 +160,41 @@ class MockHomeRepository extends _i1.Mock implements _i10.HomeRepository {
 
   @override
   _i3.Future<_i4.ApiResult<List<_i11.DailyRecommendationItem>>>
-  getFoodRecommendations() =>
-      (super.noSuchMethod(
+      getFoodRecommendations() => (super.noSuchMethod(
             Invocation.method(#getFoodRecommendations, []),
             returnValue: _i3.Future<
-              _i4.ApiResult<List<_i11.DailyRecommendationItem>>
-            >.value(
+                _i4.ApiResult<List<_i11.DailyRecommendationItem>>>.value(
               _i6.dummyValue<_i4.ApiResult<List<_i11.DailyRecommendationItem>>>(
                 this,
                 Invocation.method(#getFoodRecommendations, []),
               ),
             ),
-          )
-          as _i3.Future<_i4.ApiResult<List<_i11.DailyRecommendationItem>>>);
+          ) as _i3.Future<_i4.ApiResult<List<_i11.DailyRecommendationItem>>>);
 
   @override
   _i3.Future<_i4.ApiResult<List<_i12.MusclesGroup>>> getMuscleGroups() =>
       (super.noSuchMethod(
+        Invocation.method(#getMuscleGroups, []),
+        returnValue: _i3.Future<_i4.ApiResult<List<_i12.MusclesGroup>>>.value(
+          _i6.dummyValue<_i4.ApiResult<List<_i12.MusclesGroup>>>(
+            this,
             Invocation.method(#getMuscleGroups, []),
-            returnValue:
-                _i3.Future<_i4.ApiResult<List<_i12.MusclesGroup>>>.value(
-                  _i6.dummyValue<_i4.ApiResult<List<_i12.MusclesGroup>>>(
-                    this,
-                    Invocation.method(#getMuscleGroups, []),
-                  ),
-                ),
-          )
-          as _i3.Future<_i4.ApiResult<List<_i12.MusclesGroup>>>);
+          ),
+        ),
+      ) as _i3.Future<_i4.ApiResult<List<_i12.MusclesGroup>>>);
 
   @override
   _i3.Future<_i4.ApiResult<List<_i13.WorkoutByGroupItem>>>
-  getWorkoutsByMuscleGroupId(String? muscleGroupId) =>
-      (super.noSuchMethod(
+      getWorkoutsByMuscleGroupId(String? muscleGroupId) => (super.noSuchMethod(
             Invocation.method(#getWorkoutsByMuscleGroupId, [muscleGroupId]),
             returnValue:
                 _i3.Future<_i4.ApiResult<List<_i13.WorkoutByGroupItem>>>.value(
-                  _i6.dummyValue<_i4.ApiResult<List<_i13.WorkoutByGroupItem>>>(
-                    this,
-                    Invocation.method(#getWorkoutsByMuscleGroupId, [
-                      muscleGroupId,
-                    ]),
-                  ),
-                ),
-          )
-          as _i3.Future<_i4.ApiResult<List<_i13.WorkoutByGroupItem>>>);
+              _i6.dummyValue<_i4.ApiResult<List<_i13.WorkoutByGroupItem>>>(
+                this,
+                Invocation.method(#getWorkoutsByMuscleGroupId, [
+                  muscleGroupId,
+                ]),
+              ),
+            ),
+          ) as _i3.Future<_i4.ApiResult<List<_i13.WorkoutByGroupItem>>>);
 }
