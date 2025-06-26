@@ -9,3 +9,13 @@ class SendUserMessage extends ChatEvent {
 }
 
 class StartChatPressed extends ChatEvent {}
+
+class LoadConversation extends ChatEvent {
+  final String id;
+
+  LoadConversation(this.id);
+}
+
+class SaveConversation extends ChatEvent {}
+
+class LoadAllConversations extends ChatEvent {}

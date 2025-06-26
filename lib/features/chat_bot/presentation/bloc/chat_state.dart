@@ -17,3 +17,8 @@ class ChatError extends ChatState {
   final String error;
   ChatError(this.error);
 }
+
+class ConversationsLoaded extends ChatState {
+  final List<ConversationEntity> conversations;
+  ConversationsLoaded(this.conversations);
+}

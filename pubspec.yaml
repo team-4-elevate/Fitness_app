@@ -67,6 +67,10 @@ dependencies:
   google_generative_ai:
   flutter_svg_provider: ^1.0.7
   freezed_annotation: ^3.0.0
+  hive_ce:
+  hive_ce_flutter:
+  uuid:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +91,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   freezed: ^3.0.6
+  hive_ce_generator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

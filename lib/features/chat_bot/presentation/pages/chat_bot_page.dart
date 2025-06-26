@@ -1,5 +1,6 @@
 import 'package:fitness_app/core/generated/assets.dart';
 import 'package:fitness_app/features/chat_bot/presentation/bloc/chat_bloc.dart';
+import 'package:fitness_app/features/chat_bot/presentation/widgets/chat_drawer.dart';
 import 'package:fitness_app/features/chat_bot/presentation/widgets/chat_screen.dart';
 import 'package:fitness_app/features/chat_bot/presentation/widgets/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,23 +21,28 @@ class _BotScreenState extends State<ChatBotPage> {
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: true,
-
+      endDrawer: ChatDrawer(),
       appBar: AppBar(
         title: const Text('Smart coach'),
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: SvgPicture.asset(Assets.iconsBackIcon, height: 30),
-          onPressed: () {
+          onPressed: () async {
+            context.read<ChatBloc>().add(SaveConversation());
+            await Future.delayed(Duration(milliseconds: 300));
             Navigator.pop(context);
           },
         ),
         actions: [
-          IconButton(
-            icon: SvgPicture.asset(Assets.iconsMenuIcon, height: 30),
-            onPressed: () {
-              // Handle AI chat icon action
-            },
+          Builder(
+            builder:
+                (context) => IconButton(
+                  icon: SvgPicture.asset(Assets.iconsMenuIcon, height: 30),
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                ),
           ),
         ],
       ),

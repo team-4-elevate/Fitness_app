@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:google_generative_ai/google_generative_ai.dart' as _i656;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
@@ -35,6 +36,19 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/chat_bot/data/data_sources/local/chat_bot_local_data_source.dart'
+    as _i1027;
+import '../../features/chat_bot/data/data_sources/local/chat_bot_local_data_source_impl.dart'
+    as _i638;
+import '../../features/chat_bot/data/data_sources/remote/chat_bot_remote_data_source.dart'
+    as _i1003;
+import '../../features/chat_bot/data/data_sources/remote/chat_bot_remote_data_source_impl.dart'
+    as _i734;
+import '../../features/chat_bot/data/repository/chat_bot_repo_impl.dart'
+    as _i195;
+import '../../features/chat_bot/domain/repository/chat_bot_repo.dart' as _i361;
+import '../../features/chat_bot/domain/usecase/send_message_usecase.dart'
+    as _i94;
 import '../../features/chat_bot/presentation/bloc/chat_bloc.dart' as _i821;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
@@ -49,6 +63,8 @@ import '../app_local_storage/app_local_storage.dart' as _i849;
 import '../app_local_storage/app_local_storage_imp.dart' as _i458;
 import '../app_local_storage/app_secure_storage.dart' as _i304;
 import '../app_local_storage/app_secure_storage_impl.dart' as _i988;
+import '../gemini/gemini_module.dart' as _i810;
+import '../hive/hive_config.dart' as _i515;
 import '../routes/navigation_obsevation.dart' as _i1052;
 import '../services/shared_prefs.dart' as _i241;
 import '../utils/app_navigator_observer.dart' as _i668;
@@ -62,26 +78,41 @@ extension GetItInjectableX on _i174.GetIt {
   }) async {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
+    final geminiModule = _$GeminiModule();
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.factory<_i821.ChatBloc>(() => _i821.ChatBloc());
     gh.singleton<_i668.AppNavigatorObserver>(
       () => _i668.AppNavigatorObserver(),
     );
+    gh.singleton<_i515.HiveService>(() => _i515.HiveService());
     gh.singleton<_i1052.AppNavigatorObserver>(
       () => _i1052.AppNavigatorObserver(),
     );
     gh.singleton<_i241.SharedPreferencesService>(
       () => _i241.SharedPreferencesService(),
     );
+    gh.factory<String>(() => geminiModule.apiKey, instanceName: 'geminiApiKey');
     gh.factory<_i849.AppLocalStorage>(
       () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()),
     );
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
+    gh.factory<String>(
+      () => geminiModule.modelId,
+      instanceName: 'geminiModelId',
+    );
+    gh.factory<_i1027.ChatBotLocalDataSource>(
+      () => _i638.ChatBotLocalDataSourceImpl(gh<_i515.HiveService>()),
+    );
     gh.factory<_i111.AuthLocalDataSourceContract>(
       () => _i812.AuthLocalDataSourceImpl(gh<_i304.AppSecureStorage>()),
+    );
+    gh.lazySingleton<_i656.GenerativeModel>(
+      () => geminiModule.generativeModel(
+        gh<String>(instanceName: 'geminiApiKey'),
+        gh<String>(instanceName: 'geminiModelId'),
+      ),
     );
     gh.factory<_i768.OnboardingRepo>(
       () => _i371.OnboardingRepoImp(gh<_i849.AppLocalStorage>()),
@@ -95,8 +126,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i792.OnboardingBloc>(
       () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()),
     );
+    gh.factory<_i1003.ChatBotRemoteDataSource>(
+      () => _i734.ChatBotRemoteDataSourceImpl(gh<_i656.GenerativeModel>()),
+    );
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
       () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()),
+    );
+    gh.factory<_i361.ChatBotRepo>(
+      () => _i195.ChatBotRepoImpl(
+        gh<_i1003.ChatBotRemoteDataSource>(),
+        gh<_i1027.ChatBotLocalDataSource>(),
+      ),
     );
     gh.factory<_i170.AuthRepo>(
       () => _i984.AuthRepoImpl(
@@ -106,6 +146,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i94.SendMessageUsecase>(
+      () => _i94.SendMessageUsecase(gh<_i361.ChatBotRepo>()),
     );
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
@@ -129,6 +172,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i825.ResetPasswordUseCase>(),
       ),
     );
+    gh.factory<_i821.ChatBloc>(
+      () => _i821.ChatBloc(
+        gh<_i94.SendMessageUsecase>(),
+        gh<_i361.ChatBotRepo>(),
+      ),
+    );
     gh.factory<_i225.LoginViewModel>(
       () => _i225.LoginViewModel(gh<_i37.LoginUseCase>()),
     );
@@ -137,3 +186,5 @@ extension GetItInjectableX on _i174.GetIt {
 }
 
 class _$RegisterModule extends _i291.RegisterModule {}
+
+class _$GeminiModule extends _i810.GeminiModule {}

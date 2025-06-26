@@ -3,4 +3,5 @@ class AppKeys {
   static const String userId = 'userId';
   static const String userData = 'userData';
   static const String showOnboarding = 'showOnboarding';
+  static const String conversationsKey = 'conversations';
 }

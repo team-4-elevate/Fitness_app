@@ -6,6 +6,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fitness_app/core/app_bloc_observer.dart';
 import 'package:fitness_app/core/app_local_storage/app_local_storage.dart';
 import 'package:fitness_app/core/di/di.dart';
+import 'package:fitness_app/core/hive/hive_config.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
@@ -30,7 +31,7 @@ void main() async {
     isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
   });
   await _configureFirebase();
-
+  await getIt<HiveService>().init();
   Bloc.observer = AppBlocObserver();
 
   runApp(const MyApp());

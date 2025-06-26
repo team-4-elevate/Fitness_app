@@ -34,7 +34,7 @@ class MessageWidget extends StatelessWidget {
           end: isUser ? 10 : 30,
         ),
         child: Container(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
             color:
                 isUser
