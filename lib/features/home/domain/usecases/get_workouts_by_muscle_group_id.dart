@@ -11,7 +11,9 @@ class GetWorkoutsByMuscleGroupId {
 
   const GetWorkoutsByMuscleGroupId(this._homeRepository);
 
-  Future<ApiResult<List<WorkoutByGroupItem>>> call({required String muscleGroupId}) async {
+  Future<ApiResult<List<WorkoutByGroupItem>>> call({
+    required String muscleGroupId,
+  }) async {
     return await _homeRepository.getWorkoutsByMuscleGroupId(muscleGroupId);
   }
 }

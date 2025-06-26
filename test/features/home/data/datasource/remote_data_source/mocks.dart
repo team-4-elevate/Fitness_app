@@ -35,8 +35,6 @@ void setupHomeTestDummies() {
     ApiFailure<DailyRecommendationResponse>('API error'),
   );
 
- 
-
   // Food Recommendation response
   provideDummy<FoodRecomendation>(FoodRecomendation(categories: []));
 

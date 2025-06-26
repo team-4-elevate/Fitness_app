@@ -21,19 +21,11 @@ class WorkoutItem {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      '_id': id,
-      'name': name,
-      'image': image,
-    };
+    return {'_id': id, 'name': name, 'image': image};
   }
 
   // Convert to domain entity
   WorkoutByGroupItem toEntity() {
-    return WorkoutByGroupItem(
-      id: id,
-      name: name,
-      image: image,
-    );
+    return WorkoutByGroupItem(id: id, name: name, image: image);
   }
 }

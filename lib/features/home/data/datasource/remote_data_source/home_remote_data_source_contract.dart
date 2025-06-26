@@ -15,5 +15,7 @@ abstract class HomeRemoteDataSource {
 
   Future<ApiResult<UpcomingTapbar>> getMuscleGroups();
 
-  Future<ApiResult<WorkoutByGroupResponse>> getWorkoutsByMuscleGroupId(String muscleGroupId);
+  Future<ApiResult<WorkoutByGroupResponse>> getWorkoutsByMuscleGroupId(
+    String muscleGroupId,
+  );
 }

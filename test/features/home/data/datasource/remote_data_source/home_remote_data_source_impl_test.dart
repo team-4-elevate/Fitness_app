@@ -195,9 +195,9 @@ void main() {
             requiresToken: anyNamed('requiresToken'),
           ),
         ).thenAnswer((_) async => ApiSuccess(mockApiResponse));
-       // final result = await homeRemoteDataSource.getUpcomingWorkouts();
+        // final result = await homeRemoteDataSource.getUpcomingWorkouts();
         //expect(result, isA<ApiSuccess<UpcomingWorkouts>>());
-/* 
+        /* 
         result.when(
           success: (data) {
             expect(data.message, equals('Success'));
@@ -228,9 +228,9 @@ void main() {
             requiresToken: anyNamed('requiresToken'),
           ),
         ).thenAnswer((_) async => ApiFailure(errorMessage));
-       // final result = await homeRemoteDataSource.getUpcomingWorkouts();
+        // final result = await homeRemoteDataSource.getUpcomingWorkouts();
         //expect(result, isA<ApiFailure<UpcomingWorkouts>>());
-/* 
+        /* 
         result.when(
           success: (data) => fail('Expected failure but got success'),
           failure: (message) {
@@ -249,7 +249,7 @@ void main() {
             requiresToken: anyNamed('requiresToken'),
           ),
         ).thenAnswer((_) async => ApiSuccess(emptyResponse));
-      /*  //  final result = await homeRemoteDataSource.getUpcomingWorkouts();
+        /*  //  final result = await homeRemoteDataSource.getUpcomingWorkouts();
 
         // Assert
         expect(result, isA<ApiSuccess<UpcomingWorkouts>>());
@@ -262,7 +262,7 @@ void main() {
           failure:
               (message) => fail('Expected success but got failure: $message'),
         ); */
-      }); 
+      });
     });
 
     //----------------------------------------------------getFoodRecommendations Tests

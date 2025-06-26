@@ -66,7 +66,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
         failure: (message) => emit(BaseErrorState(message)),
       );
 
-
       foodResult.when(
         success: (data) {
           foodRecommendations = data;
@@ -131,7 +130,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
     }
   }
 
-
   //-------------------------------------------------------food recommendations
   Future<void> _onFetchFoodRecommendations(
     FetchFoodRecommendations event,
@@ -191,7 +189,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
   ) async {
     if (state is SuccessState) {
       final currentData = (state as SuccessState).data;
-            try {
+      try {
         if (event.muscleGroupId.toLowerCase() == 'all') {
           await _handleFullBodyTab(currentData, emit);
         } else {
@@ -201,7 +199,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
 
           result.when(
             success: (workoutsByGroup) {
-              final homeData = currentData.copyWith(workoutsByGroup: workoutsByGroup);
+              final homeData = currentData.copyWith(
+                workoutsByGroup: workoutsByGroup,
+              );
               emit(SuccessState(homeData));
             },
             failure: (message) {
@@ -221,25 +221,28 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
   ) async {
     final muscleGroups = currentData.muscleGroups;
     final combinedWorkouts = <WorkoutByGroupItem>[];
-    
-    for (int i = 0; i < muscleGroups.length && i < 3; i++) { 
+
+    for (int i = 0; i < muscleGroups.length && i < 3; i++) {
       final muscleGroup = muscleGroups[i];
       if (muscleGroup.id == null || muscleGroup.id!.isEmpty) continue;
-            final result = await _getWorkoutsByMuscleGroupId.call(
+      final result = await _getWorkoutsByMuscleGroupId.call(
         muscleGroupId: muscleGroup.id!,
       );
-      
+
       result.when(
         success: (workouts) {
-          final workoutsToAdd = workouts.length > 2 ? workouts.sublist(0, 2) : workouts;
+          final workoutsToAdd =
+              workouts.length > 2 ? workouts.sublist(0, 2) : workouts;
           combinedWorkouts.addAll(workoutsToAdd);
         },
         failure: (message) {
-          debugPrint('Failed to fetch workouts for ${muscleGroup.name}: $message');
+          debugPrint(
+            'Failed to fetch workouts for ${muscleGroup.name}: $message',
+          );
         },
       );
     }
-    
+
     if (combinedWorkouts.isNotEmpty) {
       final homeData = currentData.copyWith(workoutsByGroup: combinedWorkouts);
       emit(SuccessState(homeData));
@@ -248,13 +251,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeStateType> {
         final result = await _getWorkoutsByMuscleGroupId.call(
           muscleGroupId: muscleGroups.first.id!,
         );
-        
+
         result.when(
           success: (workouts) {
             final homeData = currentData.copyWith(workoutsByGroup: workouts);
             emit(SuccessState(homeData));
           },
-          failure: (_) {}, 
+          failure: (_) {},
         );
       }
     }

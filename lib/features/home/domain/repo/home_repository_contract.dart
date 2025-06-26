@@ -15,6 +15,8 @@ abstract class HomeRepository {
   Future<ApiResult<List<DailyRecommendationItem>>> getFoodRecommendations();
 
   Future<ApiResult<List<MusclesGroup>>> getMuscleGroups();
-  
-  Future<ApiResult<List<WorkoutByGroupItem>>> getWorkoutsByMuscleGroupId(String muscleGroupId);
+
+  Future<ApiResult<List<WorkoutByGroupItem>>> getWorkoutsByMuscleGroupId(
+    String muscleGroupId,
+  );
 }

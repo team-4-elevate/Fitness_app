@@ -16,7 +16,8 @@ class WorkoutByGroupResponse {
     return WorkoutByGroupResponse(
       message: json['message'] ?? '',
       totalMuscles: json['totalMuscles'] ?? 0,
-      muscles: (json['muscles'] as List?)
+      muscles:
+          (json['muscles'] as List?)
               ?.map((muscle) => WorkoutItem.fromJson(muscle))
               .toList() ??
           [],

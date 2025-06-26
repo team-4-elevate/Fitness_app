@@ -195,34 +195,38 @@ class _HomeState extends State<Home> {
                                   final data = (state).data;
                                   final muscleGroups = ['Full Body'];
                                   final muscleGroupIds = ['all'];
-                                  
+
                                   muscleGroups.addAll(
                                     data.muscleGroups.map(
                                       (group) => group.name ?? 'Other',
                                     ),
                                   );
-                                  
+
                                   muscleGroupIds.addAll(
                                     data.muscleGroups.map(
                                       (group) => group.id ?? '',
                                     ),
                                   );
-                                  
-                                  if (data.workoutsByGroup.isEmpty && _selectedCategoryIndex == 0) {
+
+                                  if (data.workoutsByGroup.isEmpty &&
+                                      _selectedCategoryIndex == 0) {
                                     context.read<HomeBloc>().add(
                                       const FetchWorkoutsByMuscleGroupId(
                                         muscleGroupId: 'all',
                                       ),
                                     );
                                   }
-                                  
-                                  final workoutsToDisplay = data.workoutsByGroup.map(
-                                    (workout) => {
-                                      'name': workout.name,
-                                      'image': workout.image,
-                                    },
-                                  ).toList();
-                                  
+
+                                  final workoutsToDisplay =
+                                      data.workoutsByGroup
+                                          .map(
+                                            (workout) => {
+                                              'name': workout.name,
+                                              'image': workout.image,
+                                            },
+                                          )
+                                          .toList();
+
                                   return SharedSection(
                                     sectionTitle:
                                         AppLocalizations.of(
@@ -236,9 +240,16 @@ class _HomeState extends State<Home> {
                                           context,
                                           AppRoutes.exercisePage,
                                           arguments: ExercisePageArguments(
-                                            muscleGroupId: data.workoutsByGroup[index].id,
-                                            muscleGroupName: data.workoutsByGroup[index].name,
-                                            muscleGroupImage: data.workoutsByGroup[index].image,
+                                            muscleGroupId:
+                                                data.workoutsByGroup[index].id,
+                                            muscleGroupName:
+                                                data
+                                                    .workoutsByGroup[index]
+                                                    .name,
+                                            muscleGroupImage:
+                                                data
+                                                    .workoutsByGroup[index]
+                                                    .image,
                                           ),
                                         );
                                       }
@@ -249,16 +260,17 @@ class _HomeState extends State<Home> {
                                       setState(() {
                                         _selectedCategoryIndex = index;
                                       });
-                                      if (index >= 0 && index < muscleGroupIds.length) {
-                                        final muscleGroupId = muscleGroupIds[index];
-                                        
+                                      if (index >= 0 &&
+                                          index < muscleGroupIds.length) {
+                                        final muscleGroupId =
+                                            muscleGroupIds[index];
+
                                         context.read<HomeBloc>().add(
                                           FetchWorkoutsByMuscleGroupId(
                                             muscleGroupId: muscleGroupId,
                                           ),
                                         );
                                       }
-                                    
                                     },
                                   );
                                 })(),
