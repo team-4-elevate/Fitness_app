@@ -25,7 +25,6 @@ class HomeRepositoryImpl implements HomeRepository {
     );
   }
 
-
   @override
   Future<ApiResult<List<DailyRecommendationItem>>>
   getFoodRecommendations() async {
@@ -70,12 +69,17 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<ApiResult<List<WorkoutByGroupItem>>> getWorkoutsByMuscleGroupId(String muscleGroupId) async {
-    final result = await _remoteDataSource.getWorkoutsByMuscleGroupId(muscleGroupId);
-    
+  Future<ApiResult<List<WorkoutByGroupItem>>> getWorkoutsByMuscleGroupId(
+    String muscleGroupId,
+  ) async {
+    final result = await _remoteDataSource.getWorkoutsByMuscleGroupId(
+      muscleGroupId,
+    );
+
     return result.when(
       success: (response) {
-        final workoutItems = response.muscles.map((item) => item.toEntity()).toList();
+        final workoutItems =
+            response.muscles.map((item) => item.toEntity()).toList();
         return ApiSuccess(workoutItems);
       },
       failure: (failure) => ApiFailure(failure),

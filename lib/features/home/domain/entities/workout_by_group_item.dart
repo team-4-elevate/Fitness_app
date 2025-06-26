@@ -16,10 +16,6 @@ class WorkoutByGroupItem extends Equatable {
   List<Object?> get props => [id, name, image];
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'image': image,
-    };
+    return {'id': id, 'name': name, 'image': image};
   }
 }

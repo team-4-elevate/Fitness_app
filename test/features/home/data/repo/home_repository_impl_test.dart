@@ -184,11 +184,7 @@ void main() {
           shortYoutubeDemonstrationLink: 'https://example.com/pullup.mp4',
         ),
       ];
-
-   
-
-   
-        });
+    });
 
     //-------------------------------------------------------food recommendations tests
     group('getFoodRecommendations Tests', () {

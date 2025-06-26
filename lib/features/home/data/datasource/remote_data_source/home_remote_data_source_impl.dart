@@ -41,7 +41,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     );
   }
 
-
   @override
   Future<ApiResult<FoodRecomendation>> getFoodRecommendations() async {
     try {
@@ -90,16 +89,20 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<ApiResult<WorkoutByGroupResponse>> getWorkoutsByMuscleGroupId(String muscleGroupId) async {
+  Future<ApiResult<WorkoutByGroupResponse>> getWorkoutsByMuscleGroupId(
+    String muscleGroupId,
+  ) async {
     try {
-      final String endpoint = muscleGroupId.toLowerCase() == 'all' 
-          ? '/exercises/workouts' 
-          : '/musclesGroup/by-muscle-group';
-      
-      final Map<String, dynamic>? queryParams = muscleGroupId.toLowerCase() != 'all'
-          ? {'muscleGroupId': muscleGroupId}
-          : null;
-      
+      final String endpoint =
+          muscleGroupId.toLowerCase() == 'all'
+              ? '/exercises/workouts'
+              : '/musclesGroup/by-muscle-group';
+
+      final Map<String, dynamic>? queryParams =
+          muscleGroupId.toLowerCase() != 'all'
+              ? {'muscleGroupId': muscleGroupId}
+              : null;
+
       final response = await _apiClient.get(
         endpoint,
         queryParameters: queryParams,

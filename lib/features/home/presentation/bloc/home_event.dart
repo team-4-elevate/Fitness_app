@@ -25,8 +25,6 @@ class FetchDailyRecommendations extends HomeEvent {
   List<Object> get props => [targetMuscleGroupId, difficultyLevelId];
 }
 
-
-
 class FetchFoodRecommendations extends HomeEvent {
   const FetchFoodRecommendations();
 }

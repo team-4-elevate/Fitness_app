@@ -10,8 +10,6 @@ void main() {
   group('MainNavigationScreen Tests', () {
     testWidgets('Initial page is HomePage', (WidgetTester tester) async {
       await tester.pumpWidget(MaterialApp(home: MainNavigationScreen()));
-
-
     });
 
     testWidgets('Navigate to ChatAipage', (WidgetTester tester) async {

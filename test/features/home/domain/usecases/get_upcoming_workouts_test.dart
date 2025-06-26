@@ -35,8 +35,6 @@ void main() {
           imageUrl: 'https://example.com/cardio.jpg',
         ),
       ];
-
     });
   });
-
 }
