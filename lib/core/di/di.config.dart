@@ -72,8 +72,10 @@ import '../../features/home/domain/usecases/get_daily_recommendations_usecase.da
     as _i1029;
 import '../../features/home/domain/usecases/get_food_recommendations.dart'
     as _i588;
-import '../../features/home/domain/usecases/get_upcoming_workouts.dart'
-    as _i183;
+import '../../features/home/domain/usecases/get_muscle_groups_use_case.dart'
+    as _i208;
+import '../../features/home/domain/usecases/get_workouts_by_muscle_group_id.dart'
+    as _i598;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
 import '../../features/onboarding/data/repo/onboarding_repo_imp.dart' as _i371;
 import '../../features/onboarding/domain/repository/onboarding_repo.dart'
@@ -168,11 +170,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i207.HomeRepository>(
       () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()),
     );
+    gh.factory<_i208.GetMuscleGroupsUseCase>(
+      () => _i208.GetMuscleGroupsUseCase(gh<_i207.HomeRepository>()),
+    );
+    gh.factory<_i598.GetWorkoutsByMuscleGroupId>(
+      () => _i598.GetWorkoutsByMuscleGroupId(gh<_i207.HomeRepository>()),
+    );
     gh.factory<_i588.GetFoodRecommendations>(
       () => _i588.GetFoodRecommendations(gh<_i207.HomeRepository>()),
-    );
-    gh.factory<_i183.GetUpcomingWorkouts>(
-      () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
     );
     gh.factory<_i822.ExerciseRepoInterface>(
       () => _i824.ExerciseRepoImpl(gh<_i139.ExerciseRemoteDsInterface>()),
@@ -194,6 +199,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i941.RegisterUseCase>(
       () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()),
+    );
+    gh.factory<_i202.HomeBloc>(
+      () => _i202.HomeBloc(
+        gh<_i1029.GetDailyRecommendationsUseCase>(),
+        gh<_i588.GetFoodRecommendations>(),
+        gh<_i208.GetMuscleGroupsUseCase>(),
+        gh<_i598.GetWorkoutsByMuscleGroupId>(),
+      ),
     );
     gh.factory<_i1034.RegisterBloc>(
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
@@ -227,13 +240,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i154.ExercisePageBloc(
         getLevelsUseCase: gh<_i233.GetLevelsUseCase>(),
         getExercisesUseCase: gh<_i182.GetExercisesUseCase>(),
-      ),
-    );
-    gh.factory<_i202.HomeBloc>(
-      () => _i202.HomeBloc(
-        gh<_i1029.GetDailyRecommendationsUseCase>(),
-        gh<_i183.GetUpcomingWorkouts>(),
-        gh<_i588.GetFoodRecommendations>(),
       ),
     );
     gh.factory<_i225.LoginViewModel>(

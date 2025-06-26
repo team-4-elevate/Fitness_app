@@ -15,7 +15,7 @@ import 'package:mockito/mockito.dart';
 // Generate mocks for the bloc tests
 @GenerateMocks([
   GetDailyRecommendationsUseCase,
-  GetUpcomingWorkouts,
+  // GetUpcomingWorkouts,
   GetFoodRecommendations,
 ])
 import 'home_bloc_test.mocks.dart';
@@ -32,7 +32,7 @@ void main() {
     mockGetFoodRecommendations = MockGetFoodRecommendations();
     homeBloc = HomeBloc(
       mockGetDailyRecommendations,
-      mockGetUpcomingWorkouts,
+      // mockGetUpcomingWorkouts,
       mockGetFoodRecommendations,
     );
   });
@@ -142,7 +142,7 @@ void main() {
         ).thenAnswer((_) async => ApiSuccess(mockUpcomingWorkouts));
         return homeBloc;
       },
-      act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
+      //act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
       expect:
           () => [
             isA<BaseLoadingState<HomeData>>(),
@@ -161,7 +161,7 @@ void main() {
         ).thenAnswer((_) async => const ApiFailure('Network error'));
         return homeBloc;
       },
-      act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
+      // act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
       expect:
           () => [
             isA<BaseLoadingState<HomeData>>(),

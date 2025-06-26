@@ -191,6 +191,7 @@ class Exercise {
       name: exercise ?? 'Unknown Exercise',
       imageUrl: thumbnailUrl,
       bodyRegion: bodyRegion,
+      targetMuscleGroup: targetMuscleGroup,
     );
   }
 

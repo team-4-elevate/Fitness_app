@@ -1,12 +1,13 @@
 // features/home/presentation/widgets/shared_section.dart
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:fitness_app/features/home/presentation/widgets/upcoming-workout_tapbar.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 enum SectionSize {
   dailyToRecommendations('Daily To Recommendations', 104, 104),
-  upcomingWorkouts('Upcoming Workouts', 80, 80),
+  upcomingWorkouts('Upcoming Workouts', 110, 112),
   recommendationForYou('Recommendation For You', 104, 104),
   popularTraining('popular training', 200, 176);
 
@@ -25,6 +26,8 @@ class SharedSection extends StatefulWidget {
   final VoidCallback? onSeeAllPressed;
   final void Function(Map<String, dynamic> item, int index)? onItemPressed;
   final bool isLoading;
+  final List<String>? upcomingWorkoutsTabs;
+  final Function(int)? onUpcomingWorkoutsSelected;
 
   SharedSection({
     super.key,
@@ -35,6 +38,8 @@ class SharedSection extends StatefulWidget {
     this.onSeeAllPressed,
     required this.onItemPressed,
     this.isLoading = false,
+    this.upcomingWorkoutsTabs,
+    this.onUpcomingWorkoutsSelected,
   });
 
   SectionSize? sectionSizeFromTitle(String sectionTitle) {
@@ -101,145 +106,169 @@ class _SharedSectionState extends State<SharedSection> {
         Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r)),
           height: height.r + 10.r,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
+          child: Column(
+            children: [
+              widget.sectionTitle == 'Upcoming Workouts'
+                  ? UpcomingWorkoutTabBar(
+                    tabNames:
+                        widget.upcomingWorkoutsTabs ??
+                        ['Full Body', 'Chest', 'Arm', 'Leg', 'Abs'],
+                    onTabSelected: widget.onUpcomingWorkoutsSelected,
+                  )
+                  : SizedBox.shrink(),
 
-            itemCount: widget.recommendations.length,
-            separatorBuilder: (context, index) => SizedBox(width: 12.r),
-            itemBuilder: (context, index) {
-              final recommendation = widget.recommendations[index];
-              return GestureDetector(
-                onTap: () {
-                  widget.onItemPressed?.call(recommendation, index);
-                },
-                child: Container(
-                  width: width.r,
-                  height: height.r,
-                  margin: EdgeInsets.symmetric(vertical: 5.r),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 8.r,
-                        offset: Offset(0, 4.r),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20.r),
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: _buildImageWidget(recommendation['image']),
+              Expanded(
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+
+                  itemCount: widget.recommendations.length,
+                  separatorBuilder: (context, index) => SizedBox(width: 12.r),
+                  itemBuilder: (context, index) {
+                    final recommendation = widget.recommendations[index];
+                    return GestureDetector(
+                      onTap: () {
+                        widget.onItemPressed?.call(recommendation, index);
+                      },
+                      child: Container(
+                        width: width.r,
+                        height: height.r,
+                        margin: EdgeInsets.symmetric(vertical: 5.r),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.r),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 8.r,
+                              offset: Offset(0, 4.r),
+                            ),
+                          ],
                         ),
-
-                        if (!widget.isPopularTraining) ...[
-                          // ----------------------------------------------gray container with text
-                          Positioned(
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            child: Container(
-                              height: height.r * 0.4,
-                              decoration: BoxDecoration(
-                                color: AppColors.surfaceDark.withOpacity(0.5),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(height / 2.r),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.r),
+                          child: Stack(
+                            children: [
+                              Positioned.fill(
+                                child: _buildImageWidget(
+                                  recommendation['image'],
                                 ),
                               ),
-                            ),
-                          ),
 
-                          // Text at bottom
-                          Positioned(
-                            left: 0,
-                            right: 0,
-                            bottom: height.r * 0.1,
-                            child: Text(
-                              recommendation['name'].length > 10
-                                  ? '${recommendation['name'].substring(0, 10)}...'
-                                  : recommendation['name'],
-                              style: Theme.of(
-                                context,
-                              ).textTheme.bodyMedium?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ] else ...[
-                          //-------------------------------- Popular training
-                          Positioned(
-                            left: 0,
-                            right: 0,
-                            bottom: height.r * 0.4,
-                            child: Text(
-                              'Exercises That\nStrengthen Your ${recommendation['name']}',
-                              style: Theme.of(
-                                context,
-                              ).textTheme.titleLarge?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
+                              if (!widget.isPopularTraining) ...[
+                                // ----------------------------------------------gray container with text
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 0,
+                                  child: Container(
+                                    height: height.r * 0.4,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.surfaceDark.withOpacity(
+                                        0.5,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(height / 2.r),
+                                      ),
+                                    ),
+                                  ),
+                                ),
 
-                          Positioned(
-                            left: 16.r,
-                            bottom: 8.r,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12.r,
-                                vertical: 6.r,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.surfaceDark,
-                                borderRadius: BorderRadius.circular(20.r),
-                              ),
-                              child: Text(
-                                recommendation['tasks'],
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(color: Colors.white),
-                              ),
-                            ),
-                          ),
+                                // Text at bottom
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  bottom: height.r * 0.1,
+                                  child: Text(
+                                    recommendation['name'].length > 10
+                                        ? '${recommendation['name'].substring(0, 10)}...'
+                                        : recommendation['name'],
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium?.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ] else ...[
+                                //-------------------------------- Popular training
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  bottom: height.r * 0.4,
+                                  child: Text(
+                                    'Exercises That\nStrengthen Your ${recommendation['name']}',
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.titleLarge?.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
 
-                          Positioned(
-                            right: 16.r,
-                            bottom: 8.r,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12.r,
-                                vertical: 6.r,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.surfaceDark,
-                                borderRadius: BorderRadius.circular(20.r),
-                              ),
-                              child: Text(
-                                recommendation['level'],
-                                style: Theme.of(context).textTheme.bodyMedium
-                                    ?.copyWith(color: AppColors.primaryOrange),
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
+                                Positioned(
+                                  left: 16.r,
+                                  bottom: 8.r,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 12.r,
+                                      vertical: 6.r,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.surfaceDark,
+                                      borderRadius: BorderRadius.circular(20.r),
+                                    ),
+                                    child: Text(
+                                      recommendation['tasks'],
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+
+                                Positioned(
+                                  right: 16.r,
+                                  bottom: 8.r,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 12.r,
+                                      vertical: 6.r,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.surfaceDark,
+                                      borderRadius: BorderRadius.circular(20.r),
+                                    ),
+                                    child: Text(
+                                      recommendation['level'],
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.bodyMedium?.copyWith(
+                                        color: AppColors.primaryOrange,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
-                        ],
-                      ],
-                    ),
-                  ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ],
           ),
         ),
       ],

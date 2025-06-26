@@ -15,8 +15,6 @@ import 'package:fitness_app/features/home/domain/repo/home_repository_contract.d
 import 'package:fitness_app/features/home/domain/usecases/get_daily_recommendations_usecase.dart'
     as _i3;
 import 'package:fitness_app/features/home/domain/usecases/get_food_recommendations.dart'
-    as _i10;
-import 'package:fitness_app/features/home/domain/usecases/get_upcoming_workouts.dart'
     as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
@@ -75,47 +73,11 @@ class MockGetDailyRecommendationsUseCase extends _i1.Mock
           as _i4.Future<_i5.ApiResult<_i6.DailyRecommendationResponse>>);
 }
 
-/// A class which mocks [GetUpcomingWorkouts].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetUpcomingWorkouts extends _i1.Mock
-    implements _i8.GetUpcomingWorkouts {
-  MockGetUpcomingWorkouts() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i2.HomeRepository get repository =>
-      (super.noSuchMethod(
-            Invocation.getter(#repository),
-            returnValue: _FakeHomeRepository_0(
-              this,
-              Invocation.getter(#repository),
-            ),
-          )
-          as _i2.HomeRepository);
-
-  @override
-  _i4.Future<_i5.ApiResult<List<_i9.DailyRecommendationItem>>> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i4.Future<
-              _i5.ApiResult<List<_i9.DailyRecommendationItem>>
-            >.value(
-              _i7.dummyValue<_i5.ApiResult<List<_i9.DailyRecommendationItem>>>(
-                this,
-                Invocation.method(#call, []),
-              ),
-            ),
-          )
-          as _i4.Future<_i5.ApiResult<List<_i9.DailyRecommendationItem>>>);
-}
-
 /// A class which mocks [GetFoodRecommendations].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetFoodRecommendations extends _i1.Mock
-    implements _i10.GetFoodRecommendations {
+    implements _i8.GetFoodRecommendations {
   MockGetFoodRecommendations() {
     _i1.throwOnMissingStub(this);
   }

@@ -14,6 +14,7 @@ import 'package:fitness_app/features/food_recommendation/presentation/cubit/food
 import 'package:fitness_app/features/food_recommendation/presentation/pages/food_recommendation_screen.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/pages/home.dart';
+import 'package:fitness_app/features/home/presentation/widgets/upcoming-workout_tapbar.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:flutter/material.dart'
@@ -127,6 +128,8 @@ class AppRoutesGenerator {
             );
           },
         );
+      case AppRoutes.upcomingWorkoutTabBar:
+        return MaterialPageRoute(builder: (_) => const UpcomingWorkoutTabBar());
       default:
         return MaterialPageRoute(
           builder:

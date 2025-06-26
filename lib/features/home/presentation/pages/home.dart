@@ -2,6 +2,8 @@
 import 'package:fitness_app/core/base_states/base_state.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arguments.dart';
+import 'package:fitness_app/features/home/domain/entities/daily_recommendation_item.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/widgets/category_section.dart';
 import 'package:fitness_app/features/home/presentation/widgets/skeleton.dart';
@@ -19,10 +21,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // Track selected category index
+  int _selectedCategoryIndex = 0;
+
   @override
   void initState() {
     super.initState();
     context.read<HomeBloc>().add(const LoadHomeData());
+    // Explicitly fetch muscle groups for Arabic names
+    context.read<HomeBloc>().add(const FetchMuscleGroups());
   }
 
   List<Map<String, dynamic>> _getLocalizedCategories(BuildContext context) {
@@ -188,31 +195,72 @@ class _HomeState extends State<Home> {
                               SuccessState<HomeData>() =>
                                 (() {
                                   final data = (state).data;
-                                  final upcomingWorkouts =
-                                      data.upcomingWorkouts
-                                          .map(
-                                            (item) => {
-                                              'name': item.name,
-                                              'image': item.imageUrl,
-                                            },
-                                          )
-                                          .toList();
-
+                                  final muscleGroups = ['Full Body'];
+                                  final muscleGroupIds = ['all'];
+                                  
+                                  muscleGroups.addAll(
+                                    data.muscleGroups.map(
+                                      (group) => group.name ?? 'Other',
+                                    ),
+                                  );
+                                  
+                                  muscleGroupIds.addAll(
+                                    data.muscleGroups.map(
+                                      (group) => group.id ?? '',
+                                    ),
+                                  );
+                                  
+                                  if (data.workoutsByGroup.isEmpty && _selectedCategoryIndex == 0) {
+                                    context.read<HomeBloc>().add(
+                                      const FetchWorkoutsByMuscleGroupId(
+                                        muscleGroupId: 'all',
+                                      ),
+                                    );
+                                  }
+                                  
+                                  final workoutsToDisplay = data.workoutsByGroup.map(
+                                    (workout) => {
+                                      'name': workout.name,
+                                      'image': workout.image,
+                                    },
+                                  ).toList();
+                                  
                                   return SharedSection(
                                     sectionTitle:
                                         AppLocalizations.of(
                                           context,
                                         ).home_upcoming_workouts,
-                                    recommendations: upcomingWorkouts,
-                                    onSeeAllPressed: () {
-                                      debugPrint(
-                                        'See All pressed for Upcoming Workouts',
-                                      );
-                                    },
+                                    recommendations: workoutsToDisplay,
+                                    onSeeAllPressed: () {},
                                     onItemPressed: (item, index) {
-                                      debugPrint(
-                                        'Item pressed: ${item['name']} at index $index',
-                                      );
+                                      if (index < data.workoutsByGroup.length) {
+                                        Navigator.pushNamed(
+                                          context,
+                                          AppRoutes.exercisePage,
+                                          arguments: ExercisePageArguments(
+                                            muscleGroupId: data.workoutsByGroup[index].id,
+                                            muscleGroupName: data.workoutsByGroup[index].name,
+                                            muscleGroupImage: data.workoutsByGroup[index].image,
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    upcomingWorkoutsTabs: muscleGroups,
+
+                                    onUpcomingWorkoutsSelected: (index) {
+                                      setState(() {
+                                        _selectedCategoryIndex = index;
+                                      });
+                                      if (index >= 0 && index < muscleGroupIds.length) {
+                                        final muscleGroupId = muscleGroupIds[index];
+                                        
+                                        context.read<HomeBloc>().add(
+                                          FetchWorkoutsByMuscleGroupId(
+                                            muscleGroupId: muscleGroupId,
+                                          ),
+                                        );
+                                      }
+                                    
                                     },
                                   );
                                 })(),

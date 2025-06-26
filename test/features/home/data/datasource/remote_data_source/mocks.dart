@@ -35,14 +35,7 @@ void setupHomeTestDummies() {
     ApiFailure<DailyRecommendationResponse>('API error'),
   );
 
-  // Upcoming Workouts response
-  provideDummy<UpcomingWorkouts>(
-    UpcomingWorkouts(message: 'Success', exercises: []),
-  );
-
-  provideDummy<ApiResult<UpcomingWorkouts>>(
-    ApiFailure<UpcomingWorkouts>('API error'),
-  );
+ 
 
   // Food Recommendation response
   provideDummy<FoodRecomendation>(FoodRecomendation(categories: []));

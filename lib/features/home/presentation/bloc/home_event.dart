@@ -25,10 +25,25 @@ class FetchDailyRecommendations extends HomeEvent {
   List<Object> get props => [targetMuscleGroupId, difficultyLevelId];
 }
 
-class FetchUpcomingWorkouts extends HomeEvent {
-  const FetchUpcomingWorkouts();
-}
+
 
 class FetchFoodRecommendations extends HomeEvent {
   const FetchFoodRecommendations();
+}
+
+class FetchMuscleGroups extends HomeEvent {
+  const FetchMuscleGroups();
+}
+
+class FetchWorkoutsByMuscleGroupId extends HomeEvent {
+  final String muscleGroupId;
+
+  const FetchWorkoutsByMuscleGroupId({required this.muscleGroupId});
+
+  @override
+  List<Object> get props => [muscleGroupId];
+}
+
+class FetchFullBodyWorkouts extends HomeEvent {
+  const FetchFullBodyWorkouts();
 }

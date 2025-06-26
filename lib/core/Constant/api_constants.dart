@@ -1,3 +1,4 @@
+// core/Constant/api_constants.dart
 // ignore_for_file: file_names
 
 class ApiConstants {
@@ -14,4 +15,5 @@ class ApiConstants {
       'https://www.themealdb.com/api/json/v1/1/';
   static const String foodRecommendedCategoriesEndpoint = '/categories.php';
   static const String foodRecommendedMealsEndpoint = '/filter.php';
+  static const String muscles = '/muscles';
 }
