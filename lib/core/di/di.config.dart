@@ -1,4 +1,3 @@
-// core/di/di.config.dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -35,7 +34,6 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
-
 import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_impl.dart'
     as _i649;
 import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_interface.dart'
@@ -49,6 +47,18 @@ import '../../features/exercise/domain/use_cases/get_exercise_use_case.dart'
 import '../../features/exercise/domain/use_cases/get_levels_use_case.dart'
     as _i233;
 import '../../features/exercise/presentation/bloc/exercise_bloc.dart' as _i154;
+import '../../features/food_details/data/datasources/remote/food_details_api_remote_data_source.dart'
+    as _i479;
+import '../../features/food_details/data/datasources/remote/food_details_remote_data_source.dart'
+    as _i362;
+import '../../features/food_details/data/repositories/food_details_repo_impl.dart'
+    as _i958;
+import '../../features/food_details/domain/repositories/food_details_repo.dart'
+    as _i877;
+import '../../features/food_details/domain/usecases/get_food_details_use_case.dart'
+    as _i668;
+import '../../features/food_details/presentation/cubit/food_details_cubit.dart'
+    as _i535;
 import '../../features/food_recommendation/data/datasources/food_recommend_remote_data_source.dart'
     as _i483;
 import '../../features/food_recommendation/data/datasources/food_recommend_remote_data_source_impl.dart'
@@ -114,13 +124,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.singleton<_i668.AppNavigatorObserver>(
-        () => _i668.AppNavigatorObserver());
     gh.singleton<_i1052.AppNavigatorObserver>(
         () => _i1052.AppNavigatorObserver());
     gh.singleton<_i2.LocalizationManager>(() => _i2.LocalizationManager());
     gh.singleton<_i241.SharedPreferencesService>(
         () => _i241.SharedPreferencesService());
+    gh.singleton<_i668.AppNavigatorObserver>(
+        () => _i668.AppNavigatorObserver());
     gh.factory<_i849.AppLocalStorage>(
         () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()));
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
@@ -141,12 +151,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i758.ShowOnboardingUseCase>(
         () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()));
     gh.factory<_i792.OnboardingBloc>(
-
-      () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()),
-    );
+        () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()));
     gh.factory<_i139.ExerciseRemoteDsInterface>(
-      () => _i649.ExerciseRemoteDsImpl(gh<_i277.ApiClient>()),
-    );
+        () => _i649.ExerciseRemoteDsImpl(gh<_i277.ApiClient>()));
     gh.factory<_i352.HomeRemoteDataSource>(
         () => _i395.HomeRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
@@ -161,13 +168,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()));
     gh.factory<_i877.FoodDetailsRepo>(() =>
         _i958.FoodDetailsRepoImpl(gh<_i362.FoodDetailsRemoteDataSource>()));
-    gh.factory<_i183.GetUpcomingWorkouts>(
-
-      () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
-    );
+    gh.factory<_i208.GetMuscleGroupsUseCase>(
+        () => _i208.GetMuscleGroupsUseCase(gh<_i207.HomeRepository>()));
+    gh.factory<_i598.GetWorkoutsByMuscleGroupId>(
+        () => _i598.GetWorkoutsByMuscleGroupId(gh<_i207.HomeRepository>()));
+    gh.factory<_i588.GetFoodRecommendations>(
+        () => _i588.GetFoodRecommendations(gh<_i207.HomeRepository>()));
     gh.factory<_i822.ExerciseRepoInterface>(
-      () => _i824.ExerciseRepoImpl(gh<_i139.ExerciseRemoteDsInterface>()),
-    );
+        () => _i824.ExerciseRepoImpl(gh<_i139.ExerciseRemoteDsInterface>()));
     gh.factory<_i68.FoodRecommendationViewModel>(
         () => _i68.FoodRecommendationViewModel(
               gh<_i520.GetMealsCategoriesUseCase>(),
@@ -181,46 +189,39 @@ extension GetItInjectableX on _i174.GetIt {
         _i1029.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()));
     gh.factory<_i941.RegisterUseCase>(
         () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()));
+    gh.factory<_i202.HomeBloc>(() => _i202.HomeBloc(
+          gh<_i1029.GetDailyRecommendationsUseCase>(),
+          gh<_i588.GetFoodRecommendations>(),
+          gh<_i208.GetMuscleGroupsUseCase>(),
+          gh<_i598.GetWorkoutsByMuscleGroupId>(),
+        ));
     gh.factory<_i668.GetFoodDetailsUseCase>(
         () => _i668.GetFoodDetailsUseCase(gh<_i877.FoodDetailsRepo>()));
     gh.factory<_i535.FoodDetailsCubit>(
         () => _i535.FoodDetailsCubit(gh<_i668.GetFoodDetailsUseCase>()));
     gh.factory<_i1034.RegisterBloc>(
-
-      () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
-    );
+        () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()));
     gh.factory<_i182.GetExercisesUseCase>(
-      () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()),
-    );
+        () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()));
     gh.factory<_i233.GetLevelsUseCase>(
-      () => _i233.GetLevelsUseCase(gh<_i822.ExerciseRepoInterface>()),
-    );
+        () => _i233.GetLevelsUseCase(gh<_i822.ExerciseRepoInterface>()));
     gh.factory<_i18.ForgotPasswordUseCase>(
-      () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()),
-    );
+        () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i37.LoginUseCase>(
         () => _i37.LoginUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i825.ResetPasswordUseCase>(
         () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()));
-    gh.factory<_i18.ForgotPasswordUseCase>(
-        () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i509.VerifyOtpUseCase>(
-
-      () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()),
-    );
-    gh.singleton<_i885.ForgetPasswordBloc>(
-      () => _i885.ForgetPasswordBloc(
-        gh<_i18.ForgotPasswordUseCase>(),
-        gh<_i509.VerifyOtpUseCase>(),
-        gh<_i825.ResetPasswordUseCase>(),
-      ),
-    );
-    gh.factory<_i154.ExercisePageBloc>(
-      () => _i154.ExercisePageBloc(
-        getLevelsUseCase: gh<_i233.GetLevelsUseCase>(),
-        getExercisesUseCase: gh<_i182.GetExercisesUseCase>(),
-      ),
-    );
+        () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()));
+    gh.singleton<_i885.ForgetPasswordBloc>(() => _i885.ForgetPasswordBloc(
+          gh<_i18.ForgotPasswordUseCase>(),
+          gh<_i509.VerifyOtpUseCase>(),
+          gh<_i825.ResetPasswordUseCase>(),
+        ));
+    gh.factory<_i154.ExercisePageBloc>(() => _i154.ExercisePageBloc(
+          getLevelsUseCase: gh<_i233.GetLevelsUseCase>(),
+          getExercisesUseCase: gh<_i182.GetExercisesUseCase>(),
+        ));
     gh.factory<_i225.LoginViewModel>(
         () => _i225.LoginViewModel(gh<_i37.LoginUseCase>()));
     return this;
