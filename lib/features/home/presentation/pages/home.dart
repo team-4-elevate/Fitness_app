@@ -148,10 +148,9 @@ class _HomeState extends State<Home> {
                                           .toList();
 
                                   return SharedSection(
-                                    sectionTitle:
-                                        AppLocalizations.of(
-                                          context,
-                                        ).dailyToRecommendations,
+                                    sectionTitle: AppLocalizations.of(
+                                      context,
+                                    ).dailyToRecommendations,
                                     showSeeAll: false,
                                     recommendations: recommendations,
                                     onItemPressed: (item, index) {
@@ -164,21 +163,20 @@ class _HomeState extends State<Home> {
                                   );
                                 })(),
                               BaseErrorState() => Center(
-
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 20,
-                                  ),
-                                  child: Text(
-                                    AppLocalizations.of(
-                                      context,
-                                    ).home_error_loading_daily_recommendations(
-                                      (state as BaseErrorState).error,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20,
                                     ),
-                                    style: const TextStyle(color: Colors.red),
+                                    child: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      ).home_error_loading_daily_recommendations(
+                                        (state as BaseErrorState).error,
+                                      ),
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
                                   ),
                                 ),
-                              ),
                             };
                           },
                         ),
@@ -211,27 +209,25 @@ class _HomeState extends State<Home> {
                                   if (data.workoutsByGroup.isEmpty &&
                                       _selectedCategoryIndex == 0) {
                                     context.read<HomeBloc>().add(
-                                      const FetchWorkoutsByMuscleGroupId(
-                                        muscleGroupId: 'all',
-                                      ),
-                                    );
+                                          const FetchWorkoutsByMuscleGroupId(
+                                            muscleGroupId: 'all',
+                                          ),
+                                        );
                                   }
 
-                                  final workoutsToDisplay =
-                                      data.workoutsByGroup
-                                          .map(
-                                            (workout) => {
-                                              'name': workout.name,
-                                              'image': workout.image,
-                                            },
-                                          )
-                                          .toList();
+                                  final workoutsToDisplay = data.workoutsByGroup
+                                      .map(
+                                        (workout) => {
+                                          'name': workout.name,
+                                          'image': workout.image,
+                                        },
+                                      )
+                                      .toList();
 
                                   return SharedSection(
-                                    sectionTitle:
-                                        AppLocalizations.of(
-                                          context,
-                                        ).home_upcoming_workouts,
+                                    sectionTitle: AppLocalizations.of(
+                                      context,
+                                    ).home_upcoming_workouts,
                                     recommendations: workoutsToDisplay,
                                     onSeeAllPressed: () {},
                                     onItemPressed: (item, index) {
@@ -242,20 +238,15 @@ class _HomeState extends State<Home> {
                                           arguments: ExercisePageArguments(
                                             muscleGroupId:
                                                 data.workoutsByGroup[index].id,
-                                            muscleGroupName:
-                                                data
-                                                    .workoutsByGroup[index]
-                                                    .name,
-                                            muscleGroupImage:
-                                                data
-                                                    .workoutsByGroup[index]
-                                                    .image,
+                                            muscleGroupName: data
+                                                .workoutsByGroup[index].name,
+                                            muscleGroupImage: data
+                                                .workoutsByGroup[index].image,
                                           ),
                                         );
                                       }
                                     },
                                     upcomingWorkoutsTabs: muscleGroups,
-
                                     onUpcomingWorkoutsSelected: (index) {
                                       setState(() {
                                         _selectedCategoryIndex = index;
@@ -266,30 +257,29 @@ class _HomeState extends State<Home> {
                                             muscleGroupIds[index];
 
                                         context.read<HomeBloc>().add(
-                                          FetchWorkoutsByMuscleGroupId(
-                                            muscleGroupId: muscleGroupId,
-                                          ),
-                                        );
+                                              FetchWorkoutsByMuscleGroupId(
+                                                muscleGroupId: muscleGroupId,
+                                              ),
+                                            );
                                       }
                                     },
                                   );
                                 })(),
                               BaseErrorState() => Center(
-
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 20,
-                                  ),
-                                  child: Text(
-                                    AppLocalizations.of(
-                                      context,
-                                    ).home_error_loading_upcoming_workouts(
-                                      (state as BaseErrorState).error,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20,
                                     ),
-                                    style: const TextStyle(color: Colors.red),
+                                    child: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      ).home_error_loading_upcoming_workouts(
+                                        (state as BaseErrorState).error,
+                                      ),
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
                                   ),
                                 ),
-                              ),
                             };
                           },
                         ),
@@ -315,10 +305,9 @@ class _HomeState extends State<Home> {
                                           .toList();
 
                                   return SharedSection(
-                                    sectionTitle:
-                                        AppLocalizations.of(
-                                          context,
-                                        ).home_recommendations_for_you,
+                                    sectionTitle: AppLocalizations.of(
+                                      context,
+                                    ).home_recommendations_for_you,
                                     recommendations: foodRecommendations,
                                     onSeeAllPressed: () {
                                       debugPrint(
@@ -329,7 +318,6 @@ class _HomeState extends State<Home> {
                                         AppRoutes.foodRecommendationScreen,
                                       );
                                     },
-
                                     onItemPressed: (item, index) {
                                       Navigator.pushNamed(
                                         context,
@@ -340,20 +328,20 @@ class _HomeState extends State<Home> {
                                   );
                                 })(),
                               BaseErrorState() => Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 20,
-                                  ),
-                                  child: Text(
-                                    AppLocalizations.of(
-                                      context,
-                                    ).home_error_loading_food_recommendations(
-                                      (state as BaseErrorState).error,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20,
                                     ),
-                                    style: const TextStyle(color: Colors.red),
+                                    child: Text(
+                                      AppLocalizations.of(
+                                        context,
+                                      ).home_error_loading_food_recommendations(
+                                        (state as BaseErrorState).error,
+                                      ),
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
                                   ),
                                 ),
-                              ),
                             };
                           },
                         ),
@@ -361,10 +349,9 @@ class _HomeState extends State<Home> {
 
                         //--------------------------------------popular training
                         SharedSection(
-                          sectionTitle:
-                              AppLocalizations.of(
-                                context,
-                              ).home_popular_training,
+                          sectionTitle: AppLocalizations.of(
+                            context,
+                          ).home_popular_training,
                           showSeeAll: false,
                           isPopularTraining: true,
                           recommendations: _popularTrainings,

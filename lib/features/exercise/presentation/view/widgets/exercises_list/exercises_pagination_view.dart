@@ -44,17 +44,16 @@ class _ExercisesPaginationViewState extends State<ExercisesPaginationView> {
           builder: (context, state) {
             final currentExercises =
                 state.levelExerciseMap[state.levelExerciseMap.keys.firstWhere(
-                  (level) => level.id == widget.levelId,
-                  orElse: () => state.levelExerciseMap.keys.first,
-                )] ??
-                [];
+                      (level) => level.id == widget.levelId,
+                      orElse: () => state.levelExerciseMap.keys.first,
+                    )] ??
+                    [];
 
             return ListView.separated(
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.zero,
-              itemCount:
-                  currentExercises.length +
+              itemCount: currentExercises.length +
                   (state.isLoadingMore == true ? 1 : 0),
               itemBuilder: (context, index) {
                 if (index == currentExercises.length) {
@@ -84,16 +83,15 @@ class _ExercisesPaginationViewState extends State<ExercisesPaginationView> {
                   },
                 );
               },
-              separatorBuilder:
-                  (context, index) =>
-                      index == currentExercises.length - 1 &&
-                              state.isLoadingMore == true
-                          ? const SizedBox.shrink()
-                          : SizedBox(
-                            width: MediaQuery.sizeOf(context).width,
-                            height: 0.4,
-                            child: ColoredBox(color: Colors.grey),
-                          ),
+              separatorBuilder: (context, index) =>
+                  index == currentExercises.length - 1 &&
+                          state.isLoadingMore == true
+                      ? const SizedBox.shrink()
+                      : SizedBox(
+                          width: MediaQuery.sizeOf(context).width,
+                          height: 0.4,
+                          child: ColoredBox(color: Colors.grey),
+                        ),
             );
           },
         ),
@@ -105,11 +103,11 @@ class _ExercisesPaginationViewState extends State<ExercisesPaginationView> {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
       context.read<ExercisePageBloc>().add(
-        LoadMoreExercisesEvent(
-          muscleGroupId: widget.muscleGroupId,
-          levelId: widget.levelId,
-        ),
-      );
+            LoadMoreExercisesEvent(
+              muscleGroupId: widget.muscleGroupId,
+              levelId: widget.levelId,
+            ),
+          );
     }
   }
 

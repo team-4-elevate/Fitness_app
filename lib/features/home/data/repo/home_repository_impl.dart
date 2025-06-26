@@ -56,10 +56,9 @@ class HomeRepositoryImpl implements HomeRepository {
 
     return result.when(
       success: (muscleGroupResponse) {
-        final muscleGroups =
-            muscleGroupResponse.musclesGroup != null
-                ? muscleGroupResponse.musclesGroup!.toList()
-                : <MusclesGroup>[];
+        final muscleGroups = muscleGroupResponse.musclesGroup != null
+            ? muscleGroupResponse.musclesGroup!.toList()
+            : <MusclesGroup>[];
 
         return ApiSuccess(muscleGroups);
       },

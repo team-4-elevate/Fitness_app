@@ -110,17 +110,14 @@ class _SharedSectionState extends State<SharedSection> {
             children: [
               widget.sectionTitle == 'Upcoming Workouts'
                   ? UpcomingWorkoutTabBar(
-                    tabNames:
-                        widget.upcomingWorkoutsTabs ??
-                        ['Full Body', 'Chest', 'Arm', 'Leg', 'Abs'],
-                    onTabSelected: widget.onUpcomingWorkoutsSelected,
-                  )
+                      tabNames: widget.upcomingWorkoutsTabs ??
+                          ['Full Body', 'Chest', 'Arm', 'Leg', 'Abs'],
+                      onTabSelected: widget.onUpcomingWorkoutsSelected,
+                    )
                   : SizedBox.shrink(),
-
               Expanded(
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-
                   itemCount: widget.recommendations.length,
                   separatorBuilder: (context, index) => SizedBox(width: 12.r),
                   itemBuilder: (context, index) {
@@ -152,7 +149,6 @@ class _SharedSectionState extends State<SharedSection> {
                                   recommendation['image'],
                                 ),
                               ),
-
                               if (!widget.isPopularTraining) ...[
                                 // ----------------------------------------------gray container with text
                                 Positioned(
@@ -184,9 +180,9 @@ class _SharedSectionState extends State<SharedSection> {
                                     style: Theme.of(
                                       context,
                                     ).textTheme.bodyMedium?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -203,9 +199,9 @@ class _SharedSectionState extends State<SharedSection> {
                                     style: Theme.of(
                                       context,
                                     ).textTheme.titleLarge?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
@@ -251,8 +247,8 @@ class _SharedSectionState extends State<SharedSection> {
                                       style: Theme.of(
                                         context,
                                       ).textTheme.bodyMedium?.copyWith(
-                                        color: AppColors.primaryOrange,
-                                      ),
+                                            color: AppColors.primaryOrange,
+                                          ),
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,

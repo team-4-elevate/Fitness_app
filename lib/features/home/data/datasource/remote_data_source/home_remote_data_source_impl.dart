@@ -93,10 +93,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     String muscleGroupId,
   ) async {
     try {
-      final String endpoint =
-          muscleGroupId.toLowerCase() == 'all'
-              ? '/exercises/workouts'
-              : '/musclesGroup/by-muscle-group';
+      final String endpoint = muscleGroupId.toLowerCase() == 'all'
+          ? '/exercises/workouts'
+          : '/musclesGroup/by-muscle-group';
 
       final Map<String, dynamic>? queryParams =
           muscleGroupId.toLowerCase() != 'all'

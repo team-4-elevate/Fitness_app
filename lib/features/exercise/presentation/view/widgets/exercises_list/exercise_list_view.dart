@@ -31,20 +31,19 @@ class ExerciseListView extends StatelessWidget {
             state.getExercisesStatus.isSuccess) {
           final stateExercises =
               state.levelExerciseMap[state.levelExerciseMap.keys.firstWhere(
-                (k) => k.id == state.currentLevelId,
-              )];
+            (k) => k.id == state.currentLevelId,
+          )];
           return Expanded(
-            child:
-                stateExercises == null || stateExercises.isEmpty
-                    ? Text(
-                      context.l10n.no_exercises_found,
-                      textAlign: TextAlign.center,
-                    )
-                    : ExercisesPaginationView(
-                      stateExercises: stateExercises,
-                      levelId: state.currentLevelId!,
-                      muscleGroupId: muscleGroupId,
-                    ),
+            child: stateExercises == null || stateExercises.isEmpty
+                ? Text(
+                    context.l10n.no_exercises_found,
+                    textAlign: TextAlign.center,
+                  )
+                : ExercisesPaginationView(
+                    stateExercises: stateExercises,
+                    levelId: state.currentLevelId!,
+                    muscleGroupId: muscleGroupId,
+                  ),
           );
         }
         return Expanded(child: DummyExercisesListShimmer());

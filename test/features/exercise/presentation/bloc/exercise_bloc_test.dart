@@ -79,18 +79,17 @@ void main() {
         return bloc;
       },
       act: (bloc) => bloc.add(GetLevelsEvent()),
-      expect:
-          () => [
-            const ExercisePageState(getLevelsStatus: Status.loading),
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              levelExerciseMap: {
-                for (var level in mockLevels) level: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-            ),
-          ],
+      expect: () => [
+        const ExercisePageState(getLevelsStatus: Status.loading),
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          levelExerciseMap: {
+            for (var level in mockLevels) level: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+        ),
+      ],
       verify: (_) {
         verify(mockGetLevelsUseCase()).called(1);
         verifyNoMoreInteractions(mockGetLevelsUseCase);
@@ -107,14 +106,13 @@ void main() {
         return bloc;
       },
       act: (bloc) => bloc.add(GetLevelsEvent()),
-      expect:
-          () => [
-            const ExercisePageState(getLevelsStatus: Status.loading),
-            const ExercisePageState(
-              getLevelsStatus: Status.error,
-              errorMessage: 'Failed to load levels',
-            ),
-          ],
+      expect: () => [
+        const ExercisePageState(getLevelsStatus: Status.loading),
+        const ExercisePageState(
+          getLevelsStatus: Status.error,
+          errorMessage: 'Failed to load levels',
+        ),
+      ],
       verify: (_) {
         verify(mockGetLevelsUseCase()).called(1);
         verifyNoMoreInteractions(mockGetLevelsUseCase);
@@ -130,48 +128,45 @@ void main() {
         ).thenAnswer((_) async => ApiSuccess(mockExercises));
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            levelExerciseMap: {
-              for (var level in mockLevels) level: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-          ),
-      act:
-          (bloc) => bloc.add(
-            const GetExercisesEvent(
-              levelId: 'level1',
-              muscleGroupId: 'muscle1',
-              page: 1,
-              showLoading: true,
-            ),
-          ),
-      expect:
-          () => [
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.loading,
-              levelExerciseMap: {
-                for (var level in mockLevels) level: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-            ),
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.success,
-              levelExerciseMap: {
-                mockLevels[0]: mockExercises,
-                mockLevels[1]: <ExerciseEntity>[],
-                mockLevels[2]: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-              hasMoreExercises: true,
-            ),
-          ],
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        levelExerciseMap: {
+          for (var level in mockLevels) level: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+      ),
+      act: (bloc) => bloc.add(
+        const GetExercisesEvent(
+          levelId: 'level1',
+          muscleGroupId: 'muscle1',
+          page: 1,
+          showLoading: true,
+        ),
+      ),
+      expect: () => [
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.loading,
+          levelExerciseMap: {
+            for (var level in mockLevels) level: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+        ),
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.success,
+          levelExerciseMap: {
+            mockLevels[0]: mockExercises,
+            mockLevels[1]: <ExerciseEntity>[],
+            mockLevels[2]: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+          hasMoreExercises: true,
+        ),
+      ],
       verify: (_) {
         verify(mockGetExercisesUseCase('muscle1', 'level1', page: 1)).called(1);
         verifyNoMoreInteractions(mockGetExercisesUseCase);
@@ -187,55 +182,52 @@ void main() {
         ).thenAnswer((_) async => ApiSuccess(mockExercises));
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            getExercisesStatus: Status.success,
-            levelExerciseMap: {
-              mockLevels[0]: mockExercises,
-              mockLevels[1]: <ExerciseEntity>[],
-              mockLevels[2]: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-            hasMoreExercises: true,
-          ),
-      act:
-          (bloc) => bloc.add(
-            const LoadMoreExercisesEvent(
-              levelId: 'level1',
-              muscleGroupId: 'muscle1',
-            ),
-          ),
-      expect:
-          () => [
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.success,
-              levelExerciseMap: {
-                mockLevels[0]: mockExercises,
-                mockLevels[1]: <ExerciseEntity>[],
-                mockLevels[2]: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-              hasMoreExercises: true,
-              isLoadingMore: true,
-            ),
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.success,
-              levelExerciseMap: {
-                mockLevels[0]: [...mockExercises, ...mockExercises],
-                mockLevels[1]: <ExerciseEntity>[],
-                mockLevels[2]: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 2, 'level2': 1, 'level3': 1},
-              hasMoreExercises: true,
-              isLoadingMore: false,
-            ),
-          ],
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        getExercisesStatus: Status.success,
+        levelExerciseMap: {
+          mockLevels[0]: mockExercises,
+          mockLevels[1]: <ExerciseEntity>[],
+          mockLevels[2]: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+        hasMoreExercises: true,
+      ),
+      act: (bloc) => bloc.add(
+        const LoadMoreExercisesEvent(
+          levelId: 'level1',
+          muscleGroupId: 'muscle1',
+        ),
+      ),
+      expect: () => [
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.success,
+          levelExerciseMap: {
+            mockLevels[0]: mockExercises,
+            mockLevels[1]: <ExerciseEntity>[],
+            mockLevels[2]: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+          hasMoreExercises: true,
+          isLoadingMore: true,
+        ),
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.success,
+          levelExerciseMap: {
+            mockLevels[0]: [...mockExercises, ...mockExercises],
+            mockLevels[1]: <ExerciseEntity>[],
+            mockLevels[2]: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 2, 'level2': 1, 'level3': 1},
+          hasMoreExercises: true,
+          isLoadingMore: false,
+        ),
+      ],
       verify: (_) {
         verify(mockGetExercisesUseCase('muscle1', 'level1', page: 2)).called(1);
         verifyNoMoreInteractions(mockGetExercisesUseCase);
@@ -251,55 +243,52 @@ void main() {
         ).thenAnswer((_) async => const ApiSuccess<List<ExerciseEntity>>([]));
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            getExercisesStatus: Status.success,
-            levelExerciseMap: {
-              mockLevels[0]: mockExercises,
-              mockLevels[1]: <ExerciseEntity>[],
-              mockLevels[2]: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-            hasMoreExercises: true,
-          ),
-      act:
-          (bloc) => bloc.add(
-            const LoadMoreExercisesEvent(
-              levelId: 'level1',
-              muscleGroupId: 'muscle1',
-            ),
-          ),
-      expect:
-          () => [
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.success,
-              levelExerciseMap: {
-                mockLevels[0]: mockExercises,
-                mockLevels[1]: <ExerciseEntity>[],
-                mockLevels[2]: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-              hasMoreExercises: true,
-              isLoadingMore: true,
-            ),
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.success,
-              levelExerciseMap: {
-                mockLevels[0]: mockExercises,
-                mockLevels[1]: <ExerciseEntity>[],
-                mockLevels[2]: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 2, 'level2': 1, 'level3': 1},
-              hasMoreExercises: false,
-              isLoadingMore: false,
-            ),
-          ],
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        getExercisesStatus: Status.success,
+        levelExerciseMap: {
+          mockLevels[0]: mockExercises,
+          mockLevels[1]: <ExerciseEntity>[],
+          mockLevels[2]: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+        hasMoreExercises: true,
+      ),
+      act: (bloc) => bloc.add(
+        const LoadMoreExercisesEvent(
+          levelId: 'level1',
+          muscleGroupId: 'muscle1',
+        ),
+      ),
+      expect: () => [
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.success,
+          levelExerciseMap: {
+            mockLevels[0]: mockExercises,
+            mockLevels[1]: <ExerciseEntity>[],
+            mockLevels[2]: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+          hasMoreExercises: true,
+          isLoadingMore: true,
+        ),
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.success,
+          levelExerciseMap: {
+            mockLevels[0]: mockExercises,
+            mockLevels[1]: <ExerciseEntity>[],
+            mockLevels[2]: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 2, 'level2': 1, 'level3': 1},
+          hasMoreExercises: false,
+          isLoadingMore: false,
+        ),
+      ],
     );
 
     blocTest<ExercisePageBloc, ExercisePageState>(
@@ -310,94 +299,87 @@ void main() {
         );
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            getExercisesStatus: Status.success,
-            levelExerciseMap: {
-              mockLevels[0]: mockExercises,
-              mockLevels[1]: <ExerciseEntity>[],
-              mockLevels[2]: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-            hasMoreExercises: true,
-          ),
-      act:
-          (bloc) => bloc.add(
-            const LoadMoreExercisesEvent(
-              levelId: 'level1',
-              muscleGroupId: 'muscle1',
-            ),
-          ),
-      expect:
-          () => [
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.success,
-              levelExerciseMap: {
-                mockLevels[0]: mockExercises,
-                mockLevels[1]: <ExerciseEntity>[],
-                mockLevels[2]: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-              hasMoreExercises: true,
-              isLoadingMore: true,
-            ),
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.success,
-              levelExerciseMap: {
-                mockLevels[0]: mockExercises,
-                mockLevels[1]: <ExerciseEntity>[],
-                mockLevels[2]: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-              hasMoreExercises: true,
-              isLoadingMore: false,
-              errorMessage: 'Failed to load more exercises',
-            ),
-          ],
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        getExercisesStatus: Status.success,
+        levelExerciseMap: {
+          mockLevels[0]: mockExercises,
+          mockLevels[1]: <ExerciseEntity>[],
+          mockLevels[2]: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+        hasMoreExercises: true,
+      ),
+      act: (bloc) => bloc.add(
+        const LoadMoreExercisesEvent(
+          levelId: 'level1',
+          muscleGroupId: 'muscle1',
+        ),
+      ),
+      expect: () => [
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.success,
+          levelExerciseMap: {
+            mockLevels[0]: mockExercises,
+            mockLevels[1]: <ExerciseEntity>[],
+            mockLevels[2]: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+          hasMoreExercises: true,
+          isLoadingMore: true,
+        ),
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.success,
+          levelExerciseMap: {
+            mockLevels[0]: mockExercises,
+            mockLevels[1]: <ExerciseEntity>[],
+            mockLevels[2]: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+          hasMoreExercises: true,
+          isLoadingMore: false,
+          errorMessage: 'Failed to load more exercises',
+        ),
+      ],
     );
 
     blocTest<ExercisePageBloc, ExercisePageState>(
       'emits correct states when ShowYoutubeVideoEvent is added',
       build: () => bloc,
-      act:
-          (bloc) => bloc.add(
-            const ShowYoutubeVideoEvent(
-              link: 'https://youtube.com/watch?v=abc123',
-            ),
-          ),
-      expect:
-          () => [
-            const ExercisePageState(
-              shouldShowYoutubeVideo: true,
-              currentVideoLink: 'https://youtube.com/watch?v=abc123',
-            ),
-          ],
+      act: (bloc) => bloc.add(
+        const ShowYoutubeVideoEvent(
+          link: 'https://youtube.com/watch?v=abc123',
+        ),
+      ),
+      expect: () => [
+        const ExercisePageState(
+          shouldShowYoutubeVideo: true,
+          currentVideoLink: 'https://youtube.com/watch?v=abc123',
+        ),
+      ],
     );
 
     blocTest<ExercisePageBloc, ExercisePageState>(
       'emits correct states when CloseYoutubeVideoEvent is added',
       build: () => bloc,
-      seed:
-          () => const ExercisePageState(
-            currentVideoId: 'abc123',
-            shouldShowYoutubeVideo: true,
-            currentVideoLink: 'https://youtube.com/watch?v=abc123',
-          ),
+      seed: () => const ExercisePageState(
+        currentVideoId: 'abc123',
+        shouldShowYoutubeVideo: true,
+        currentVideoLink: 'https://youtube.com/watch?v=abc123',
+      ),
       act: (bloc) => bloc.add(CloseYoutubeVideoEvent()),
-      expect:
-          () => [
-            const ExercisePageState(
-              currentVideoId: null,
-              shouldShowYoutubeVideo: false,
-              currentVideoLink: null,
-            ),
-          ],
+      expect: () => [
+        const ExercisePageState(
+          currentVideoId: null,
+          shouldShowYoutubeVideo: false,
+          currentVideoLink: null,
+        ),
+      ],
     );
 
     blocTest<ExercisePageBloc, ExercisePageState>(
@@ -408,27 +390,25 @@ void main() {
         ).thenAnswer((_) async => ApiSuccess(mockExercises));
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            getExercisesStatus: Status.success,
-            levelExerciseMap: {
-              mockLevels[0]: mockExercises,
-              mockLevels[1]: <ExerciseEntity>[],
-              mockLevels[2]: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-          ),
-      act:
-          (bloc) => bloc.add(
-            const GetExercisesEvent(
-              levelId: 'level1',
-              muscleGroupId: 'muscle1',
-              page: 1,
-              showLoading: false,
-            ),
-          ),
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        getExercisesStatus: Status.success,
+        levelExerciseMap: {
+          mockLevels[0]: mockExercises,
+          mockLevels[1]: <ExerciseEntity>[],
+          mockLevels[2]: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+      ),
+      act: (bloc) => bloc.add(
+        const GetExercisesEvent(
+          levelId: 'level1',
+          muscleGroupId: 'muscle1',
+          page: 1,
+          showLoading: false,
+        ),
+      ),
       expect: () => [],
       verify: (_) {
         verifyZeroInteractions(mockGetExercisesUseCase);
@@ -444,27 +424,25 @@ void main() {
         ).thenAnswer((_) async => ApiSuccess([]));
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            getExercisesStatus: Status.success,
-            levelExerciseMap: {
-              mockLevels[0]: mockExercises,
-              mockLevels[1]: <ExerciseEntity>[],
-              mockLevels[2]: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-          ),
-      act:
-          (bloc) => bloc.add(
-            const GetExercisesEvent(
-              levelId: 'level2',
-              muscleGroupId: 'muscle1',
-              page: 1,
-              showLoading: false,
-            ),
-          ),
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        getExercisesStatus: Status.success,
+        levelExerciseMap: {
+          mockLevels[0]: mockExercises,
+          mockLevels[1]: <ExerciseEntity>[],
+          mockLevels[2]: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+      ),
+      act: (bloc) => bloc.add(
+        const GetExercisesEvent(
+          levelId: 'level2',
+          muscleGroupId: 'muscle1',
+          page: 1,
+          showLoading: false,
+        ),
+      ),
       skip: 1,
     );
 
@@ -477,46 +455,43 @@ void main() {
         ).thenAnswer((_) async => const ApiFailure('Failed to load exercises'));
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            levelExerciseMap: {
-              for (var level in mockLevels) level: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-          ),
-      act:
-          (bloc) => bloc.add(
-            const GetExercisesEvent(
-              levelId: 'level1',
-              muscleGroupId: 'muscle1',
-              page: 1,
-              showLoading: true,
-            ),
-          ),
-      expect:
-          () => [
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.loading,
-              levelExerciseMap: {
-                for (var level in mockLevels) level: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-            ),
-            ExercisePageState(
-              getLevelsStatus: Status.success,
-              getExercisesStatus: Status.error,
-              levelExerciseMap: {
-                for (var level in mockLevels) level: <ExerciseEntity>[],
-              },
-              currentLevelId: 'level1',
-              levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
-              errorMessage: 'Failed to load exercises',
-            ),
-          ],
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        levelExerciseMap: {
+          for (var level in mockLevels) level: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+      ),
+      act: (bloc) => bloc.add(
+        const GetExercisesEvent(
+          levelId: 'level1',
+          muscleGroupId: 'muscle1',
+          page: 1,
+          showLoading: true,
+        ),
+      ),
+      expect: () => [
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.loading,
+          levelExerciseMap: {
+            for (var level in mockLevels) level: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+        ),
+        ExercisePageState(
+          getLevelsStatus: Status.success,
+          getExercisesStatus: Status.error,
+          levelExerciseMap: {
+            for (var level in mockLevels) level: <ExerciseEntity>[],
+          },
+          currentLevelId: 'level1',
+          levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+          errorMessage: 'Failed to load exercises',
+        ),
+      ],
       verify: (_) {
         verify(mockGetExercisesUseCase('muscle1', 'level1', page: 1)).called(1);
         verifyNoMoreInteractions(mockGetExercisesUseCase);
@@ -544,34 +519,32 @@ void main() {
         );
         return bloc;
       },
-      seed:
-          () => ExercisePageState(
-            getLevelsStatus: Status.success,
-            levelExerciseMap: {
-              for (var level in mockLevels) level: <ExerciseEntity>[],
-            },
-            currentLevelId: 'level1',
-            levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+      seed: () => ExercisePageState(
+        getLevelsStatus: Status.success,
+        levelExerciseMap: {
+          for (var level in mockLevels) level: <ExerciseEntity>[],
+        },
+        currentLevelId: 'level1',
+        levelIdAndPagesMap: {'level1': 1, 'level2': 1, 'level3': 1},
+      ),
+      act: (bloc) => {
+        bloc.add(
+          const GetExercisesEvent(
+            levelId: 'level1',
+            muscleGroupId: 'muscle1',
+            page: 1,
+            showLoading: true,
           ),
-      act:
-          (bloc) => {
-            bloc.add(
-              const GetExercisesEvent(
-                levelId: 'level1',
-                muscleGroupId: 'muscle1',
-                page: 1,
-                showLoading: true,
-              ),
-            ),
-            bloc.add(
-              const GetExercisesEvent(
-                levelId: 'level2',
-                muscleGroupId: 'muscle1',
-                page: 1,
-                showLoading: true,
-              ),
-            ),
-          },
+        ),
+        bloc.add(
+          const GetExercisesEvent(
+            levelId: 'level2',
+            muscleGroupId: 'muscle1',
+            page: 1,
+            showLoading: true,
+          ),
+        ),
+      },
       skip: 5,
       verify: (_) {
         verify(mockGetExercisesUseCase('muscle1', 'level1', page: 1)).called(1);
@@ -584,20 +557,18 @@ void main() {
     blocTest<ExercisePageBloc, ExercisePageState>(
       'correctly extracts video ID from various YouTube URL formats',
       build: () => bloc,
-      act:
-          (bloc) => bloc.add(
-            const ShowYoutubeVideoEvent(
-              link: 'https://www.youtube.com/watch?v=abc123&feature=share',
-            ),
-          ),
-      expect:
-          () => [
-            const ExercisePageState(
-              shouldShowYoutubeVideo: true,
-              currentVideoLink:
-                  'https://www.youtube.com/watch?v=abc123&feature=share',
-            ),
-          ],
+      act: (bloc) => bloc.add(
+        const ShowYoutubeVideoEvent(
+          link: 'https://www.youtube.com/watch?v=abc123&feature=share',
+        ),
+      ),
+      expect: () => [
+        const ExercisePageState(
+          shouldShowYoutubeVideo: true,
+          currentVideoLink:
+              'https://www.youtube.com/watch?v=abc123&feature=share',
+        ),
+      ],
     );
   });
 }

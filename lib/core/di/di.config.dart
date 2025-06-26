@@ -141,7 +141,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i758.ShowOnboardingUseCase>(
         () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()));
     gh.factory<_i792.OnboardingBloc>(
-
       () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()),
     );
     gh.factory<_i139.ExerciseRemoteDsInterface>(
@@ -162,7 +161,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i877.FoodDetailsRepo>(() =>
         _i958.FoodDetailsRepoImpl(gh<_i362.FoodDetailsRemoteDataSource>()));
     gh.factory<_i183.GetUpcomingWorkouts>(
-
       () => _i183.GetUpcomingWorkouts(gh<_i207.HomeRepository>()),
     );
     gh.factory<_i822.ExerciseRepoInterface>(
@@ -186,7 +184,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i535.FoodDetailsCubit>(
         () => _i535.FoodDetailsCubit(gh<_i668.GetFoodDetailsUseCase>()));
     gh.factory<_i1034.RegisterBloc>(
-
       () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()),
     );
     gh.factory<_i182.GetExercisesUseCase>(
@@ -205,7 +202,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i18.ForgotPasswordUseCase>(
         () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i509.VerifyOtpUseCase>(
-
       () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()),
     );
     gh.singleton<_i885.ForgetPasswordBloc>(

@@ -139,11 +139,10 @@ void main() {
         return homeBloc;
       },
       //act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<SuccessState<HomeData>>(),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<SuccessState<HomeData>>(),
+      ],
       verify: (_) {
         verify(mockGetUpcomingWorkouts.call()).called(1);
       },
@@ -158,15 +157,14 @@ void main() {
         return homeBloc;
       },
       // act: (bloc) => bloc.add(const FetchUpcomingWorkouts()),
-      expect:
-          () => [
-            isA<BaseLoadingState<HomeData>>(),
-            isA<BaseErrorState<HomeData>>().having(
-              (state) => state.error,
-              'error message',
-              'Network error',
-            ),
-          ],
+      expect: () => [
+        isA<BaseLoadingState<HomeData>>(),
+        isA<BaseErrorState<HomeData>>().having(
+          (state) => state.error,
+          'error message',
+          'Network error',
+        ),
+      ],
     );
   });
 

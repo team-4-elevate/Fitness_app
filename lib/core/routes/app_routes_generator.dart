@@ -109,14 +109,12 @@ class AppRoutesGenerator {
         final selectedTabIndex = args?['selectedTabIndex'];
 
         return MaterialPageRoute(
-
-          builder:
-              (_) => BlocProvider(
-                create: (_) => getIt<FoodRecommendationViewModel>(),
-                child: FoodRecommendationScreen(
-                  selectedTabIndex: selectedTabIndex,
-                ),
-              ),
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<FoodRecommendationViewModel>(),
+            child: FoodRecommendationScreen(
+              selectedTabIndex: selectedTabIndex,
+            ),
+          ),
         );
 
       case AppRoutes.exercisePage:

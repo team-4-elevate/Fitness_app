@@ -9,8 +9,7 @@ class DifficultyLevelsResponse {
   factory DifficultyLevelsResponse.fromJson(Map<String, dynamic> json) {
     return DifficultyLevelsResponse(
       message: json['message'] ?? '',
-      levels:
-          (json['levels'] as List<dynamic>?)
+      levels: (json['levels'] as List<dynamic>?)
               ?.map((x) => DifficultyLevelDM.fromJson(x))
               .toList() ??
           [],
