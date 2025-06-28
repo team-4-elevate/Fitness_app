@@ -40,7 +40,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
       const ProfilePage(),
     ];
-    
+
     NavigationService().registerTabNavigationCallback(_onItemTapped);
   }
 

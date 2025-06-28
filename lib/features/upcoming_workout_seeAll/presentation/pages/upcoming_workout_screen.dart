@@ -184,27 +184,30 @@ class _FoodRecommendationScreen extends State<UpComingWorkoutScreen>
                                 onRefresh: refreshWorkouts,
                                 buildWorkoutItem: (workout, index) =>
                                     WorkoutGridItem(
-                                  workout: workout,
-                                  index: index,
-                                  onTap: () {
-                                      if (workout != null) {
-                                        Navigator.pushNamed(
-                                          context,
-                                          AppRoutes.exercisePage,
-                                          arguments: ExercisePageArguments(
-                                            muscleGroupId: workout.id,
-                                            muscleGroupName: workout.name ?? 'Workout',
-                                            muscleGroupImage: workout.image ?? '',
-                                          ),
-                                        );
-                                      } else {
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          const SnackBar(content: Text('Cannot open workout details')),
-                                        );
-                                      }
-                                    }
-                                  
-                                ),
+                                        workout: workout,
+                                        index: index,
+                                        onTap: () {
+                                          if (workout != null) {
+                                            Navigator.pushNamed(
+                                              context,
+                                              AppRoutes.exercisePage,
+                                              arguments: ExercisePageArguments(
+                                                muscleGroupId: workout.id,
+                                                muscleGroupName:
+                                                    workout.name ?? 'Workout',
+                                                muscleGroupImage:
+                                                    workout.image ?? '',
+                                              ),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                  content: Text(
+                                                      'Cannot open workout details')),
+                                            );
+                                          }
+                                        }),
                               )
                             : state is BaseErrorState
                                 ? WorkoutErrorView(
