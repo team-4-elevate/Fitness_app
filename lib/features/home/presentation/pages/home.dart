@@ -2,6 +2,7 @@
 import 'package:fitness_app/core/base_states/base_state.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:fitness_app/core/services/navigation_service.dart';
 import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arguments.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/widgets/category_section.dart';
@@ -231,7 +232,9 @@ class _HomeState extends State<Home> {
                                       context,
                                     ).home_upcoming_workouts,
                                     recommendations: workoutsToDisplay,
-                                    onSeeAllPressed: () {},
+                                    onSeeAllPressed: () {
+                                      NavigationService().navigateToTab(2);
+                                    },
                                     onItemPressed: (item, index) {
                                       if (index < data.workoutsByGroup.length) {
                                         Navigator.pushNamed(

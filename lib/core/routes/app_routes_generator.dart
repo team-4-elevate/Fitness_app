@@ -18,11 +18,10 @@ import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:fitness_app/features/home/presentation/widgets/upcoming-workout_tapbar.dart';
 import 'package:fitness_app/features/food_details/presentation/pages/food_details_page.dart';
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
+import 'package:fitness_app/features/upcoming_workout_seeAll/presentation/pages/upcoming_workout_screen.dart';
 import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../features/app_sections/AppSections.dart';
 import '../../features/auth/presentation/forget_password/bloc/forget_password_bloc.dart';
 import '../../features/auth/presentation/forget_password/view/create_new_password/create_new_password_page.dart';
 import '../../features/auth/presentation/forget_password/view/forget_password_view/forget_password_page.dart';
@@ -131,6 +130,19 @@ class AppRoutesGenerator {
         );
       case AppRoutes.upcomingWorkoutTabBar:
         return MaterialPageRoute(builder: (_) => const UpcomingWorkoutTabBar());
+
+      case AppRoutes.upcomingWorkoutSeeallPage:
+        final args = settings.arguments as Map<String, dynamic>?;
+        final selectedTabIndex = args?['selectedTabIndex'] as int?;
+        
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<HomeBloc>(
+            create: (_) => getIt<HomeBloc>()..add(const LoadHomeData()),
+            child: UpComingWorkoutScreen(selectedTabIndex: selectedTabIndex),
+          ),
+        );
+
+    
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
