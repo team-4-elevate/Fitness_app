@@ -7,6 +7,9 @@ import 'package:fitness_app/features/auth/presentation/login/login_view_model.da
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
+import 'package:fitness_app/features/edit_profile/pages/edit_profile_screen.dart';
+import 'package:fitness_app/features/edit_profile/pages/physical_info_page_view.dart';
+import 'package:fitness_app/features/edit_profile/pages/profile.dart';
 import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arguments.dart';
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_bloc.dart';
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_event.dart';
@@ -141,7 +144,33 @@ class AppRoutesGenerator {
             child: UpComingWorkoutScreen(selectedTabIndex: selectedTabIndex),
           ),
         );
+      case AppRoutes.physicalinfo:
+        InfoType selectedInfoType;
+        dynamic selectedPhysicalInfo = 90;
 
+        if (settings.arguments is Map<String, dynamic>) {
+          final args = settings.arguments as Map<String, dynamic>;
+          selectedInfoType = args['infoType'] as InfoType? ?? InfoType.weight;
+
+          if (args['physicalInfo'] != null) {
+            selectedPhysicalInfo = args['physicalInfo'];
+          }
+        } else {
+          selectedInfoType = settings.arguments as InfoType? ?? InfoType.weight;
+        }
+
+        return MaterialPageRoute(
+          builder: (_) => PhysicalInfoPageView(
+            initialPage: selectedInfoType,
+            initialInfo: selectedPhysicalInfo,
+          ),
+        );
+
+      case AppRoutes.editProfile:
+        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
+
+      case AppRoutes.profilePage:
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
