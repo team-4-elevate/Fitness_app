@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class WeightPage extends StatefulWidget {
   final int initialWeight;
   final Function(int)? onWeightChanged;
-  
+
   const WeightPage({
     super.key,
     required this.initialWeight,
@@ -18,9 +18,9 @@ class WeightPage extends StatefulWidget {
   State<WeightPage> createState() => _WeightPageState();
 }
 
-class _WeightPageState extends State<WeightPage> {  
+class _WeightPageState extends State<WeightPage> {
   late int _selectedWeight;
-  
+
   @override
   void initState() {
     super.initState();
