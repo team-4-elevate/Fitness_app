@@ -25,8 +25,7 @@ class WorkoutGridItem extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: onTap ?? () {
-      },
+      onTap: onTap ?? () {},
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
         child: Stack(

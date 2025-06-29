@@ -39,7 +39,8 @@ class WorkoutListGrid extends StatelessWidget {
           mainAxisSpacing: 12.h,
         ),
         itemCount: workouts.length,
-        itemBuilder: (context, index) => buildWorkoutItem(workouts[index], index),
+        itemBuilder: (context, index) =>
+            buildWorkoutItem(workouts[index], index),
       ),
     );
   }

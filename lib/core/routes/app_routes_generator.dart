@@ -134,7 +134,7 @@ class AppRoutesGenerator {
       case AppRoutes.upcomingWorkoutSeeallPage:
         final args = settings.arguments as Map<String, dynamic>?;
         final selectedTabIndex = args?['selectedTabIndex'] as int?;
-        
+
         return MaterialPageRoute(
           builder: (_) => BlocProvider<HomeBloc>(
             create: (_) => getIt<HomeBloc>()..add(const LoadHomeData()),
@@ -142,7 +142,6 @@ class AppRoutesGenerator {
           ),
         );
 
-    
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

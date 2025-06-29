@@ -11,7 +11,7 @@ class WorkoutTabController {
   final int? initialSelectedTabIndex;
 
   WorkoutTabController({
-    required this.vsync, 
+    required this.vsync,
     required this.context,
     this.initialSelectedTabIndex,
   });
@@ -20,17 +20,18 @@ class WorkoutTabController {
 
   void updateTabController(int tabCount) {
     if (tabCount <= 0) return;
-    
+
     final previousIndex = _tabController.length > 0 ? _tabController.index : 0;
     _tabController.dispose();
-    
+
     int initialIndex;
-    if (initialSelectedTabIndex != null && initialSelectedTabIndex! < tabCount) {
+    if (initialSelectedTabIndex != null &&
+        initialSelectedTabIndex! < tabCount) {
       initialIndex = initialSelectedTabIndex!;
     } else {
       initialIndex = previousIndex < tabCount ? previousIndex : 0;
     }
-    
+
     _tabController = TabController(
       length: tabCount,
       vsync: vsync,
@@ -48,9 +49,11 @@ class WorkoutTabController {
         final successState = state as SuccessState;
         final homeData = successState.data;
         final muscleGroups = homeData.muscleGroups;
-        
-        if (muscleGroups.isNotEmpty && _tabController.index < muscleGroups.length) {
-          final selectedMuscleGroupId = muscleGroups[_tabController.index].id ?? '';
+
+        if (muscleGroups.isNotEmpty &&
+            _tabController.index < muscleGroups.length) {
+          final selectedMuscleGroupId =
+              muscleGroups[_tabController.index].id ?? '';
           context.read<HomeBloc>().add(
                 FetchWorkoutsByMuscleGroupId(
                   muscleGroupId: selectedMuscleGroupId,
@@ -85,7 +88,7 @@ class WorkoutTabController {
 
   void dispose() {
     _tabController.dispose();
-    }
+  }
 
   void refreshCurrentTab() {
     if (_tabController.length > 0) {
