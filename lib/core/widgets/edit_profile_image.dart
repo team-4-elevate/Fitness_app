@@ -20,6 +20,7 @@ class EditprofileImage extends StatefulWidget {
 class _EditprofileImageState extends State<EditprofileImage> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
+  String? img;
 
   Future<void> _pickImage(ImageSource source) async {
     try {
@@ -34,6 +35,54 @@ class _EditprofileImageState extends State<EditprofileImage> {
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primaryOrange.withOpacity(0.3),
+                spreadRadius: 10,
+                blurRadius: 15,
+              ),
+            ],
+          ),
+          child: CircleAvatar(
+            radius: 60.r,
+            backgroundImage: _selectedImage != null
+                ? FileImage(_selectedImage!)
+                : AssetImage(img ?? '') as ImageProvider,
+          ),
+        ),
+        widget.isEditButton == true
+            ? GestureDetector(
+                onTap: () => _showImageSourceOptions(context),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: AppColors.primaryOrange,
+                        width: 3.r,
+                      )),
+                  child: Icon(
+                    Icons.edit_outlined,
+                    size: 24.r,
+                    color: AppColors.primaryOrange,
+                  ),
+                ),
+              )
+            : Container(),
+      ],
+    );
+  }
+
+  //------------------------------
   void _showImageSourceOptions(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -129,54 +178,6 @@ class _EditprofileImageState extends State<EditprofileImage> {
           ),
         ],
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primaryOrange.withOpacity(0.3),
-                spreadRadius: 10,
-                blurRadius: 15,
-              ),
-            ],
-          ),
-          child: CircleAvatar(
-            radius: 60.r,
-            backgroundImage: _selectedImage != null
-                ? FileImage(_selectedImage!)
-                : const AssetImage('assets/images/onboarding_vector_3.png')
-                    as ImageProvider,
-          ),
-        ),
-        widget.isEditButton == true
-            ? GestureDetector(
-                onTap: () => _showImageSourceOptions(context),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppColors.primaryOrange,
-                        width: 3.r,
-                      )),
-                  child: Icon(
-                    Icons.edit_outlined,
-                    size: 24.r,
-                    color: AppColors.primaryOrange,
-                  ),
-                ),
-              )
-            : Container(),
-      ],
     );
   }
 }
