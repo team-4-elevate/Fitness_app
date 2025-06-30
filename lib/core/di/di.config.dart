@@ -34,6 +34,22 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/edit_profile/data/datasource/local_data_source/edit_profile_local_data_source_impl.dart'
+    as _i295;
+import '../../features/edit_profile/data/datasource/local_data_source/edit_profile_local_data_source_interface.dart'
+    as _i899;
+import '../../features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_impl.dart'
+    as _i506;
+import '../../features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_interface.dart'
+    as _i624;
+import '../../features/edit_profile/data/repo/repo_impl.dart' as _i61;
+import '../../features/edit_profile/domain/repo/repo.dart' as _i553;
+import '../../features/edit_profile/domain/usecases/edit_profile_data_usecase.dart'
+    as _i29;
+import '../../features/edit_profile/domain/usecases/get_profile_data_usecase.dart'
+    as _i742;
+import '../../features/edit_profile/presentation/bloc/edit_profile_bloc.dart'
+    as _i84;
 import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_impl.dart'
     as _i649;
 import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_interface.dart'
@@ -134,6 +150,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i849.AppLocalStorage>(
         () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()));
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
+    gh.factory<_i899.EditProfileLocalDataSourceInterface>(() =>
+        _i295.EditProfileLocalDataSourceImpl(gh<_i304.AppSecureStorage>()));
     gh.factory<_i111.AuthLocalDataSourceContract>(
         () => _i812.AuthLocalDataSourceImpl(gh<_i304.AppSecureStorage>()));
     gh.lazySingleton<_i399.AppBloc>(() => _i399.AppBloc(
@@ -148,6 +166,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i740.FoodRecommendRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i362.FoodDetailsRemoteDataSource>(
         () => _i479.FoodDetailsApiRemoteDataSource(gh<_i277.ApiClient>()));
+    gh.factory<_i624.EditProfileRemoteDataSourceInterface>(
+        () => _i506.EditProfileRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i758.ShowOnboardingUseCase>(
         () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()));
     gh.factory<_i792.OnboardingBloc>(
@@ -158,6 +178,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i395.HomeRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
         () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i553.Repo>(() => _i61.RepoImpl(
+        remoteDataSource: gh<_i624.EditProfileRemoteDataSourceInterface>()));
     gh.factory<_i988.FoodRecommendRepo>(() =>
         _i190.FoodRecommendRepoImpl(gh<_i483.FoodRecommendRemoteDataSource>()));
     gh.factory<_i520.GetMealsCategoriesUseCase>(
@@ -187,6 +209,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i1029.GetDailyRecommendationsUseCase>(() =>
         _i1029.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()));
+    gh.factory<_i29.EditProfileDataUseCase>(
+        () => _i29.EditProfileDataUseCase(gh<_i553.Repo>()));
+    gh.factory<_i742.GetProfileDataUseCase>(
+        () => _i742.GetProfileDataUseCase(gh<_i553.Repo>()));
     gh.factory<_i941.RegisterUseCase>(
         () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i202.HomeBloc>(() => _i202.HomeBloc(
@@ -201,6 +227,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i535.FoodDetailsCubit(gh<_i668.GetFoodDetailsUseCase>()));
     gh.factory<_i1034.RegisterBloc>(
         () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()));
+    gh.factory<_i84.EditProfileBloc>(
+        () => _i84.EditProfileBloc(gh<_i742.GetProfileDataUseCase>()));
     gh.factory<_i182.GetExercisesUseCase>(
         () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()));
     gh.factory<_i233.GetLevelsUseCase>(

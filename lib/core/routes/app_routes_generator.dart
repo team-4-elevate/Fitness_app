@@ -7,9 +7,10 @@ import 'package:fitness_app/features/auth/presentation/login/login_view_model.da
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
-import 'package:fitness_app/features/edit_profile/pages/edit_profile_screen.dart';
-import 'package:fitness_app/features/edit_profile/pages/physical_info_page_view.dart';
-import 'package:fitness_app/features/edit_profile/pages/profile.dart';
+import 'package:fitness_app/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
+import 'package:fitness_app/features/edit_profile/presentation/view/pages/edit_profile_screen.dart';
+import 'package:fitness_app/features/edit_profile/presentation/view/pages/physical_info_page_view.dart';
+import 'package:fitness_app/features/edit_profile/presentation/view/pages/profile.dart';
 import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arguments.dart';
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_bloc.dart';
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_event.dart';
@@ -167,7 +168,12 @@ class AppRoutesGenerator {
         );
 
       case AppRoutes.editProfile:
-        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+           create: (_) => getIt<EditProfileBloc>(),
+            child: const EditProfileScreen(),
+          ),
+        );
 
       case AppRoutes.profilePage:
         return MaterialPageRoute(builder: (_) => const ProfilePage());
