@@ -14,7 +14,7 @@ part 'edit_profile_state.dart';
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   final GetProfileDataUseCase _getProfileDataUseCase;
   final EditProfileDataUseCase _editProfileDataUseCase;
-  
+
   Timer? _autoSaveDebouncer;
 
   EditProfileBloc(
@@ -110,16 +110,13 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-  
   Future<void> _onEditProfileData(
-    EditProfileDataEvent event, 
-    Emitter<EditProfileState> emit
-  ) async {
+      EditProfileDataEvent event, Emitter<EditProfileState> emit) async {
     emit(state.copyWith(
       updateProfileStatus: Status.loading,
       errorMessage: '',
     ));
-    
+
     try {
       final result = await _editProfileDataUseCase(
         firstName: event.firstName,
@@ -129,13 +126,13 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
         goal: event.goal,
         activityLevel: event.activityLevel,
       );
-      
+
       result.when(
         success: (data) => emit(state.copyWith(
-            updateProfileStatus: Status.success,
-            updatedData: data,
-            profileData: data, 
-          )),
+          updateProfileStatus: Status.success,
+          updatedData: data,
+          profileData: data,
+        )),
         failure: (error) => emit(state.copyWith(
           updateProfileStatus: Status.error,
           errorMessage: error.toString(),
