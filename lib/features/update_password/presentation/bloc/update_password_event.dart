@@ -31,18 +31,18 @@ class ToggleConfirmPasswordVisibilityEvent extends UpdatePasswordEvent {}
 
 class ValidateOldPasswordEvent extends UpdatePasswordEvent {
   final String password;
-  
+
   const ValidateOldPasswordEvent(this.password);
-  
+
   @override
   List<Object> get props => [password];
 }
 
 class ValidateNewPasswordEvent extends UpdatePasswordEvent {
   final String password;
-  
+
   const ValidateNewPasswordEvent(this.password);
-  
+
   @override
   List<Object> get props => [password];
 }
@@ -50,12 +50,12 @@ class ValidateNewPasswordEvent extends UpdatePasswordEvent {
 class ValidateConfirmPasswordEvent extends UpdatePasswordEvent {
   final String confirmPassword;
   final String newPassword;
-  
+
   const ValidateConfirmPasswordEvent({
     required this.confirmPassword,
     required this.newPassword,
   });
-  
+
   @override
   List<Object> get props => [confirmPassword, newPassword];
-} 
+}

@@ -8,7 +8,8 @@ import 'package:fitness_app/features/update_password/presentation/bloc/update_pa
 import 'package:injectable/injectable.dart';
 
 @injectable
-class UpdatePasswordBloc extends Bloc<UpdatePasswordEvent, UpdatePasswordState> {
+class UpdatePasswordBloc
+    extends Bloc<UpdatePasswordEvent, UpdatePasswordState> {
   final UpdatePasswordUseCase _updatePasswordUseCase;
 
   UpdatePasswordBloc(this._updatePasswordUseCase)
@@ -16,7 +17,8 @@ class UpdatePasswordBloc extends Bloc<UpdatePasswordEvent, UpdatePasswordState> 
     on<UpdatePasswordSubmitEvent>(_onUpdatePasswordSubmit);
     on<ToggleOldPasswordVisibilityEvent>(_onToggleOldPasswordVisibility);
     on<ToggleNewPasswordVisibilityEvent>(_onToggleNewPasswordVisibility);
-    on<ToggleConfirmPasswordVisibilityEvent>(_onToggleConfirmPasswordVisibility);
+    on<ToggleConfirmPasswordVisibilityEvent>(
+        _onToggleConfirmPasswordVisibility);
     on<ValidateConfirmPasswordEvent>(_onValidateConfirmPassword);
   }
 
@@ -26,15 +28,17 @@ class UpdatePasswordBloc extends Bloc<UpdatePasswordEvent, UpdatePasswordState> 
   ) async {
     final oldPasswordError = AppValidators.validatePassword(event.oldPassword);
     final newPasswordError = AppValidators.validatePassword(event.newPassword);
-    
-    if (oldPasswordError != null || newPasswordError != null || !state.arePasswordsMatching) {
+
+    if (oldPasswordError != null ||
+        newPasswordError != null ||
+        !state.arePasswordsMatching) {
       emit(state.copyWith(
         oldPasswordError: oldPasswordError,
         newPasswordError: newPasswordError,
       ));
       return;
     }
-    
+
     try {
       emit(state.copyWith(updatePasswordStatus: Status.loading));
       await _updatePasswordUseCase(
@@ -59,27 +63,29 @@ class UpdatePasswordBloc extends Bloc<UpdatePasswordEvent, UpdatePasswordState> 
       );
     }
   }
-  
+
   void _onToggleOldPasswordVisibility(
     ToggleOldPasswordVisibilityEvent event,
     Emitter<UpdatePasswordState> emit,
   ) {
     emit(state.copyWith(isOldPasswordVisible: !state.isOldPasswordVisible));
   }
-  
+
   void _onToggleNewPasswordVisibility(
     ToggleNewPasswordVisibilityEvent event,
     Emitter<UpdatePasswordState> emit,
   ) {
     emit(state.copyWith(isNewPasswordVisible: !state.isNewPasswordVisible));
   }
-  
+
   void _onToggleConfirmPasswordVisibility(
     ToggleConfirmPasswordVisibilityEvent event,
     Emitter<UpdatePasswordState> emit,
   ) {
-    emit(state.copyWith(isConfirmPasswordVisible: !state.isConfirmPasswordVisible));
+    emit(state.copyWith(
+        isConfirmPasswordVisible: !state.isConfirmPasswordVisible));
   }
+
   void _onValidateConfirmPassword(
     ValidateConfirmPasswordEvent event,
     Emitter<UpdatePasswordState> emit,
@@ -95,10 +101,10 @@ class UpdatePasswordBloc extends Bloc<UpdatePasswordEvent, UpdatePasswordState> 
       ));
       return;
     }
-    
+
     emit(state.copyWith(
       confirmPasswordError: error,
       arePasswordsMatching: true,
     ));
   }
-} 
+}

@@ -2,4 +2,4 @@ import 'package:fitness_app/features/update_password/data/models/update_password
 
 abstract class UpdatePasswordRemoteDsInterface {
   Future<void> updatePassword(UpdatePasswordRequest request);
-} 
+}

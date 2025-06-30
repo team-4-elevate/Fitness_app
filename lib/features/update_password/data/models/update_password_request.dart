@@ -18,4 +18,4 @@ class UpdatePasswordRequest {
         'oldPassword': oldPassword,
         'newPassword': newPassword,
       };
-} 
+}

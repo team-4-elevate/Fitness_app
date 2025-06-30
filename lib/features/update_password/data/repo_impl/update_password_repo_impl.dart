@@ -12,4 +12,4 @@ class UpdatePasswordRepoImpl implements UpdatePasswordRepoInterface {
   Future<void> updatePassword(UpdatePasswordRequest request) async {
     await _remoteDsInterface.updatePassword(request);
   }
-} 
+}

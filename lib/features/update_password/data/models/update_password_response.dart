@@ -12,4 +12,4 @@ class UpdatePasswordResponse {
   }
 
   Map<String, dynamic> toJson() => {'message': message, 'token': token};
-} 
+}

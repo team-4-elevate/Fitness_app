@@ -11,9 +11,7 @@ class UpdatePasswordRemoteDsImpl implements UpdatePasswordRemoteDsInterface {
 
   @override
   Future<void> updatePassword(UpdatePasswordRequest request) async {
-    await _apiClient.put(
-      ApiConstants.updatePasswordEndpoint,
-      data: request.toJson(),
-      requiresToken: true);
+    await _apiClient.put(ApiConstants.updatePasswordEndpoint,
+        data: request.toJson(), requiresToken: true);
   }
 }

@@ -10,4 +10,4 @@ class UpdatePasswordUseCase {
   Future<void> call(UpdatePasswordRequest request) async {
     return await _repo.updatePassword(request);
   }
-} 
+}

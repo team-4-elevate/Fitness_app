@@ -44,7 +44,8 @@ class UpdatePasswordState extends Equatable {
       updatePasswordStatus: updatePasswordStatus ?? this.updatePasswordStatus,
       isOldPasswordVisible: isOldPasswordVisible ?? this.isOldPasswordVisible,
       isNewPasswordVisible: isNewPasswordVisible ?? this.isNewPasswordVisible,
-      isConfirmPasswordVisible: isConfirmPasswordVisible ?? this.isConfirmPasswordVisible,
+      isConfirmPasswordVisible:
+          isConfirmPasswordVisible ?? this.isConfirmPasswordVisible,
       arePasswordsMatching: arePasswordsMatching ?? this.arePasswordsMatching,
       oldPasswordError: oldPasswordError,
       newPasswordError: newPasswordError,
@@ -65,4 +66,4 @@ class UpdatePasswordState extends Equatable {
         newPasswordError,
         confirmPasswordError,
       ];
-} 
+}

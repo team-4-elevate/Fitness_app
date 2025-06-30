@@ -100,7 +100,9 @@ class AppRoutesGenerator {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => getIt<UpdatePasswordBloc>(),
-            child: const UpdatePasswordPage(email: 'omar0elsaid00@gmail.com',),
+            child: const UpdatePasswordPage(
+              email: 'omar0elsaid00@gmail.com',
+            ),
           ),
         );
       case AppRoutes.onboarding:
