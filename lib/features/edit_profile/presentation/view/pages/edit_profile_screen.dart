@@ -193,7 +193,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           const SizedBox(height: 20),
 
                           //------------------------------------------- image
-                          const EditprofileImage(),
+                          const EditprofileImage(
+                            isEditButton: true,
+                          ),
                           const SizedBox(height: 15),
 
                           //------------------------------------------- name
