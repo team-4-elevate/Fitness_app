@@ -1,7 +1,6 @@
 // features/edit_profile/presentation/bloc/edit_profile_state.dart
 part of 'edit_profile_bloc.dart';
 
-
 class EditProfileState extends Equatable {
   final Status fetchProfileStatus;
   final Status updateProfileStatus;
@@ -42,4 +41,3 @@ class EditProfileState extends Equatable {
         errorMessage,
       ];
 }
-

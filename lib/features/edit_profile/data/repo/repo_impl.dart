@@ -4,6 +4,7 @@ import 'package:fitness_app/features/edit_profile/data/datasource/remote_data_so
 import 'package:fitness_app/features/edit_profile/data/models/edit_profile/response/edit_profile_response.dart';
 import 'package:fitness_app/features/edit_profile/domain/repo/repo.dart';
 import 'package:injectable/injectable.dart';
+
 @Injectable(as: Repo)
 class RepoImpl implements Repo {
   final EditProfileRemoteDataSourceInterface remoteDataSource;

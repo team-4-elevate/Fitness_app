@@ -5,12 +5,11 @@ import 'package:fitness_app/features/edit_profile/data/datasource/local_data_sou
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: EditProfileLocalDataSourceInterface)
-class EditProfileLocalDataSourceImpl implements  EditProfileLocalDataSourceInterface {
-
+class EditProfileLocalDataSourceImpl
+    implements EditProfileLocalDataSourceInterface {
   final AppSecureStorage _localStorageClient;
 
   EditProfileLocalDataSourceImpl(this._localStorageClient);
-
 
   @override
   Future<void> deleteToken() async {

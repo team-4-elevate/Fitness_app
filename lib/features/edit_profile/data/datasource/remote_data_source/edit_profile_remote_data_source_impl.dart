@@ -24,19 +24,19 @@ class EditProfileRemoteDataSourceImpl
   }) async {
     // Create payload with only non-null values
     final Map<String, dynamic> payload = {};
-    
+
     if (firstName != null) payload['firstName'] = firstName;
     if (lastName != null) payload['lastName'] = lastName;
     if (email != null) payload['email'] = email;
     if (weight != null) payload['weight'] = weight;
     if (goal != null) payload['goal'] = goal;
     if (activityLevel != null) payload['activityLevel'] = activityLevel;
-    
+
     final apiResult = await _apiClient.put(
       ApiConstants.editprofileEndpoint,
       data: payload,
     );
-    
+
     final responseData = apiResult.dataOrNull as Map<String, dynamic>;
     return EditProfileResponse.fromJson(responseData);
   }

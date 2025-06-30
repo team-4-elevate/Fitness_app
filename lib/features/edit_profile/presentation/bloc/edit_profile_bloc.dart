@@ -23,7 +23,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   ) : super(const EditProfileState()) {
     _mapEvents();
   }
-  
+
   bool hasProfileDataChanged({
     required String firstName,
     required String lastName,
@@ -34,15 +34,15 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   }) {
     if (state.profileData?.user == null) return false;
     final user = state.profileData!.user!;
-    
+
     return firstName != user.firstName ||
-           lastName != user.lastName ||
-           email != user.email ||
-           weight != (user.weight?.toString() ?? "") ||
-           goal != user.goal ||
-           activityLevel != user.activityLevel;
+        lastName != user.lastName ||
+        email != user.email ||
+        weight != (user.weight?.toString() ?? "") ||
+        goal != user.goal ||
+        activityLevel != user.activityLevel;
   }
-  
+
   void debouncedSaveProfile({
     required String firstName,
     required String lastName,
@@ -52,7 +52,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     required String activityLevel,
   }) {
     _autoSaveDebouncer?.cancel();
-    
+
     if (hasProfileDataChanged(
       firstName: firstName,
       lastName: lastName,
@@ -75,7 +75,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       });
     }
   }
-  
+
   @override
   Future<void> close() {
     _autoSaveDebouncer?.cancel();
@@ -83,22 +83,20 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   }
 
   Future<void> _onFetchProfileData(
-    FetchProfileDataEvent event, 
-    Emitter<EditProfileState> emit
-  ) async {
+      FetchProfileDataEvent event, Emitter<EditProfileState> emit) async {
     emit(state.copyWith(
       fetchProfileStatus: Status.loading,
       errorMessage: '',
     ));
-    
+
     try {
       final result = await _getProfileDataUseCase();
-      
+
       result.when(
         success: (data) => emit(state.copyWith(
-            fetchProfileStatus: Status.success,
-            profileData: data,
-          )),
+          fetchProfileStatus: Status.success,
+          profileData: data,
+        )),
         failure: (error) => emit(state.copyWith(
           fetchProfileStatus: Status.error,
           errorMessage: error.toString(),
