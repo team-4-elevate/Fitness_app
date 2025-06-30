@@ -9,7 +9,7 @@ class EditprofileImage extends StatefulWidget {
   final bool? isEditButton;
   final String? img;
 
-   const EditprofileImage({
+  const EditprofileImage({
     super.key,
     this.isEditButton,
     this.img,
@@ -22,7 +22,6 @@ class EditprofileImage extends StatefulWidget {
 class _EditprofileImageState extends State<EditprofileImage> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
-  
 
   Future<void> _pickImage(ImageSource source) async {
     try {
