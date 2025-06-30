@@ -1,9 +1,8 @@
-// features/edit_profile/pages/physical_info_page_view.dart
+// features/edit_profile/presentation/view/pages/physical_info_page_view.dart
 import 'dart:ui' as ui;
 
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
-import 'package:fitness_app/features/auth/presentation/register/widget/number_picker_step.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/activity_level_page.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/goal_page.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/weight_page.dart';

@@ -227,8 +227,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i535.FoodDetailsCubit(gh<_i668.GetFoodDetailsUseCase>()));
     gh.factory<_i1034.RegisterBloc>(
         () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()));
-    gh.factory<_i84.EditProfileBloc>(
-        () => _i84.EditProfileBloc(gh<_i742.GetProfileDataUseCase>()));
+    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
+          gh<_i742.GetProfileDataUseCase>(),
+          gh<_i29.EditProfileDataUseCase>(),
+        ));
     gh.factory<_i182.GetExercisesUseCase>(
         () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()));
     gh.factory<_i233.GetLevelsUseCase>(

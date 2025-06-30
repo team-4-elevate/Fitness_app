@@ -1,4 +1,4 @@
-// features/edit_profile/widgets/activity_level_page.dart
+// features/edit_profile/presentation/view/widgets/activity_level_page.dart
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/auth/domain/entities/activity_level_option.dart';
@@ -29,6 +29,14 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context);
+    final activityLevelOptions =
+        ActivityLevelOption.getActivityLevelOptions(localization: localization);
+
+    final optionItems = activityLevelOptions
+        .map((option) => OptionItem(id: option.id, label: option.label))
+        .toList();
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.r),
       child: Column(
@@ -53,19 +61,21 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
           ),
           SizedBox(height: 30.r),
           SelectionOptionStep(
-            options: ActivityLevelOption.getActivityLevelOptions(
-              localization: AppLocalizations.of(context),
-            )
-                .map(
-                  (option) => OptionItem(id: option.id, label: option.label),
-                )
-                .toList(),
+            options: optionItems,
             selectedOptionId: _selectedActivityLevelId,
-            onOptionSelected: (id) {},
+            onOptionSelected: (id) {
+              setState(() {
+                _selectedActivityLevelId = id;
+              });
+            },
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pop(context);
+              if (_selectedActivityLevelId != null) {
+                Navigator.pop(context, _selectedActivityLevelId);
+              } else {
+                Navigator.pop(context);
+              }
             },
             child: const Text('Done'),
           ),

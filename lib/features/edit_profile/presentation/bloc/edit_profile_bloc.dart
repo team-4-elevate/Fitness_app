@@ -1,7 +1,5 @@
 // features/edit_profile/presentation/bloc/edit_profile_bloc.dart
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
@@ -15,11 +13,13 @@ part 'edit_profile_state.dart';
 @injectable
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   final GetProfileDataUseCase _getProfileDataUseCase;
+  final EditProfileDataUseCase _editProfileDataUseCase;
   
   Timer? _autoSaveDebouncer;
 
   EditProfileBloc(
     this._getProfileDataUseCase,
+    this._editProfileDataUseCase,
   ) : super(const EditProfileState()) {
     _mapEvents();
   }
@@ -113,7 +113,46 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   }
 
   
+  Future<void> _onEditProfileData(
+    EditProfileDataEvent event, 
+    Emitter<EditProfileState> emit
+  ) async {
+    emit(state.copyWith(
+      updateProfileStatus: Status.loading,
+      errorMessage: '',
+    ));
+    
+    try {
+      final result = await _editProfileDataUseCase(
+        firstName: event.firstName,
+        lastName: event.lastName,
+        email: event.email,
+        weight: event.weight,
+        goal: event.goal,
+        activityLevel: event.activityLevel,
+      );
+      
+      result.when(
+        success: (data) => emit(state.copyWith(
+            updateProfileStatus: Status.success,
+            updatedData: data,
+            profileData: data, 
+          )),
+        failure: (error) => emit(state.copyWith(
+          updateProfileStatus: Status.error,
+          errorMessage: error.toString(),
+        )),
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        updateProfileStatus: Status.error,
+        errorMessage: e.toString(),
+      ));
+    }
+  }
+
   void _mapEvents() {
     on<FetchProfileDataEvent>(_onFetchProfileData);
+    on<EditProfileDataEvent>(_onEditProfileData);
   }
 }

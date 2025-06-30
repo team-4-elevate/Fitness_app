@@ -31,12 +31,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController _activityLevelController =
       TextEditingController();
 
-  String _currentFirstName = "";
-  String _currentLastName = "";
-  String _currentEmail = "";
-  bool _formChanged = false;
+  bool formChanged = false;
 
   late final EditProfileBloc _bloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _setupControllerListeners();
+  }
 
   @override
   void didChangeDependencies() {
@@ -49,22 +52,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     if (state.fetchProfileStatus == Status.success &&
         state.profileData != null &&
         state.profileData.user != null) {
-      _formChanged = false;
+      if (state.updateProfileStatus != Status.success) {
+        if (_firstnameController.text.isEmpty) {
+          _firstnameController.text = state.profileData.user!.firstName ?? "";
+        }
+        if (_lastnameController.text.isEmpty) {
+          _lastnameController.text = state.profileData.user!.lastName ?? "";
+        }
+        if (_emailController.text.isEmpty) {
+          _emailController.text = state.profileData.user!.email ?? "";
+        }
+        if (_weightController.text.isEmpty) {
+          _weightController.text =
+              state.profileData.user!.weight?.toString() ?? "";
+        }
+        if (_goalController.text.isEmpty) {
+          _goalController.text = state.profileData.user!.goal ?? "";
+        }
+        if (_activityLevelController.text.isEmpty) {
+          _activityLevelController.text =
+              state.profileData.user!.activityLevel ?? "";
+        }
 
-      _firstnameController.text = state.profileData.user!.firstName ?? "";
-      _lastnameController.text = state.profileData.user!.lastName ?? "";
-      _emailController.text = state.profileData.user!.email ?? "";
-      _weightController.text = state.profileData.user!.weight?.toString() ?? "";
-      _goalController.text = state.profileData.user!.goal ?? "";
-      _activityLevelController.text =
-          state.profileData.user!.activityLevel ?? "";
-
-      setState(() {
-        _currentFirstName = state.profileData.user!.firstName ?? "";
-        _currentLastName = state.profileData.user!.lastName ?? "";
-        _currentEmail = state.profileData.user!.email ?? "";
-      });
-      _setupControllerListeners();
+        setState(() {
+          formChanged = false;
+        });
+        _setupControllerListeners();
+      }
     }
   }
 
@@ -84,13 +98,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _activityLevelController.addListener(_onTextFieldChanged);
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void _onTextFieldChanged() {
-    setState(() {
-      _currentFirstName = _firstnameController.text;
-      _currentLastName = _lastnameController.text;
-      _currentEmail = _emailController.text;
-      _formChanged = true;
-    });
+    formChanged = true;
 
     if (_formKey.currentState?.validate() == true) {
       _bloc.debouncedSaveProfile(
@@ -101,6 +115,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         goal: _goalController.text,
         activityLevel: _activityLevelController.text,
       );
+    }
+  }
+
+  String activitylabel(String activityLevel) {
+    switch (activityLevel) {
+      case 'level1':
+        return 'Rookie';
+      case 'level2':
+        return 'Beginner';
+      case 'level3':
+        return 'Intermediate';
+      case 'level4':
+        return 'Advanced';
+      default:
+        return 'True Beast';
     }
   }
 
@@ -118,7 +147,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           }
           if (state.updateProfileStatus == Status.success) {
             setState(() {
-              _formChanged = false;
+              formChanged = false;
             });
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -169,10 +198,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
                           //------------------------------------------- name
                           Text(
-                            _currentFirstName.isEmpty &&
-                                    _currentLastName.isEmpty
+                            _firstnameController.text.isEmpty &&
+                                    _lastnameController.text.isEmpty
                                 ? 'Loading...'
-                                : '$_currentFirstName $_currentLastName',
+                                : '${_firstnameController.text} ${_lastnameController.text}',
                             style: TextStyle(
                               color: AppColors.white,
                               fontSize: 22.r,
@@ -284,7 +313,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             readOnly: true,
-                            enabled: false,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: 30.r,
@@ -323,7 +351,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           TextFormField(
                             controller: _goalController,
                             readOnly: true,
-                            enabled: false,
                             keyboardType: TextInputType.name,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
@@ -363,17 +390,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                           SizedBox(height: 8.r),
                           TextFormField(
-                            controller: _activityLevelController,
+                            //controller: _activityLevelController,
                             keyboardType: TextInputType.name,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             readOnly: true,
-                            enabled: false,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: 30.r,
                               ),
-                              hintText: 'Rookie',
+                              hintText:
+                                  activitylabel(_activityLevelController.text),
                               hintStyle: TextStyle(
                                   color: AppColors.white,
                                   fontWeight: FontWeight.w700),
