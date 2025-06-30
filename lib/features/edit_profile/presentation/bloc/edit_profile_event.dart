@@ -6,7 +6,7 @@ sealed class EditProfileEvent extends Equatable {
 
 class FetchProfileDataEvent extends EditProfileEvent {
   const FetchProfileDataEvent();
-  
+
   @override
   List<Object> get props => [];
 }
@@ -18,7 +18,7 @@ class EditProfileDataEvent extends EditProfileEvent {
   final String? weight;
   final String? goal;
   final String? activityLevel;
-  
+
   const EditProfileDataEvent({
     this.firstName,
     this.lastName,
@@ -27,7 +27,8 @@ class EditProfileDataEvent extends EditProfileEvent {
     this.goal,
     this.activityLevel,
   });
-  
+
   @override
-  List<Object?> get props => [firstName, lastName, email, weight, goal, activityLevel];
+  List<Object?> get props =>
+      [firstName, lastName, email, weight, goal, activityLevel];
 }

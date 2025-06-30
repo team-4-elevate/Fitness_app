@@ -170,7 +170,7 @@ class AppRoutesGenerator {
       case AppRoutes.editProfile:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-           create: (_) => getIt<EditProfileBloc>(),
+            create: (_) => getIt<EditProfileBloc>(),
             child: const EditProfileScreen(),
           ),
         );
