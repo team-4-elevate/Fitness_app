@@ -7,10 +7,12 @@ import 'package:image_picker/image_picker.dart';
 
 class EditprofileImage extends StatefulWidget {
   final bool? isEditButton;
+  final String? img;
 
   const EditprofileImage({
     super.key,
     this.isEditButton,
+    this.img,
   });
 
   @override
@@ -20,7 +22,6 @@ class EditprofileImage extends StatefulWidget {
 class _EditprofileImageState extends State<EditprofileImage> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
-  String? img;
 
   Future<void> _pickImage(ImageSource source) async {
     try {
@@ -55,7 +56,7 @@ class _EditprofileImageState extends State<EditprofileImage> {
             radius: 60.r,
             backgroundImage: _selectedImage != null
                 ? FileImage(_selectedImage!)
-                : AssetImage(img ?? '') as ImageProvider,
+                : AssetImage(widget.img ?? '') as ImageProvider,
           ),
         ),
         widget.isEditButton == true
