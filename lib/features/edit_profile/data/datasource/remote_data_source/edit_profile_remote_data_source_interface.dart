@@ -13,6 +13,6 @@ abstract class EditProfileRemoteDataSourceInterface {
     String? goal,
     String? activityLevel,
   });
-  
+
   Future<UploadImageResponse> uploadProfileImage(File imageFile);
 }

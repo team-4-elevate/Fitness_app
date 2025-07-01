@@ -150,7 +150,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-
   Future<void> _onUploadProfileImage(
       UploadProfileImageEvent event, Emitter<EditProfileState> emit) async {
     emit(state.copyWith(
@@ -167,7 +166,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
             uploadImageStatus: Status.success,
             uploadedImageData: data,
           ));
-          
+
           add(const FetchProfileDataEvent());
         },
         failure: (error) => emit(state.copyWith(
@@ -183,10 +182,9 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-    void _mapEvents() {
+  void _mapEvents() {
     on<FetchProfileDataEvent>(_onFetchProfileData);
     on<EditProfileDataEvent>(_onEditProfileData);
     on<UploadProfileImageEvent>(_onUploadProfileImage);
   }
-  
 }

@@ -148,7 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           if (state.fetchProfileStatus == Status.success) {
             _updateFormFields(state);
           }
-          
+
           if (state.uploadImageStatus == Status.loading) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
@@ -157,20 +157,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 duration: Duration(seconds: 1),
               ),
             );
-          } else if (state.uploadImageStatus == Status.success && 
-                    previousState.uploadImageStatus != Status.success) {
+          } else if (state.uploadImageStatus == Status.success &&
+              previousState.uploadImageStatus != Status.success) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Profile image updated successfully'),
               ),
             );
-          } else if (state.uploadImageStatus == Status.error && 
-                    previousState.uploadImageStatus != Status.error) {
+          } else if (state.uploadImageStatus == Status.error &&
+              previousState.uploadImageStatus != Status.error) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Error updating profile image: ${state.errorMessage}'),
+                content:
+                    Text('Error updating profile image: ${state.errorMessage}'),
                 backgroundColor: Colors.red,
               ),
             );
@@ -228,7 +229,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             img: state.profileData?.user?.photo ?? '',
                             onImageSelected: (File selectedImage) {
                               context.read<EditProfileBloc>().add(
-                                    UploadProfileImageEvent(photo: selectedImage),
+                                    UploadProfileImageEvent(
+                                        photo: selectedImage),
                                   );
                             },
                           ),

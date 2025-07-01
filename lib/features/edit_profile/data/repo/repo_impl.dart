@@ -50,7 +50,8 @@ class RepoImpl implements Repo {
   }
 
   @override
-  Future<ApiResult<UploadImageResponse>> uploadProfileImage(File imageFile) async {
+  Future<ApiResult<UploadImageResponse>> uploadProfileImage(
+      File imageFile) async {
     try {
       final result = await remoteDataSource.uploadProfileImage(imageFile);
       return ApiSuccess(result);
