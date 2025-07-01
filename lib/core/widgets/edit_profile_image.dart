@@ -8,11 +8,13 @@ import 'package:image_picker/image_picker.dart';
 class EditprofileImage extends StatefulWidget {
   final bool? isEditButton;
   final String? img;
+  final Function(File)? onImageSelected;
 
   const EditprofileImage({
     super.key,
     this.isEditButton,
     this.img,
+    this.onImageSelected,
   });
 
   @override
@@ -30,6 +32,9 @@ class _EditprofileImageState extends State<EditprofileImage> {
         setState(() {
           _selectedImage = File(pickedImage.path);
         });
+        if (widget.onImageSelected != null) {
+          widget.onImageSelected!(_selectedImage!);
+        }
       }
     } catch (e) {
       debugPrint('Error picking image: $e');
@@ -52,12 +57,26 @@ class _EditprofileImageState extends State<EditprofileImage> {
               ),
             ],
           ),
-          child: CircleAvatar(
-            radius: 60.r,
-            backgroundImage: _selectedImage != null
-                ? FileImage(_selectedImage!)
-                : AssetImage(widget.img ?? '') as ImageProvider,
-          ),
+          child: _selectedImage != null
+              ? CircleAvatar(
+                  radius: 60.r,
+                  backgroundImage: FileImage(_selectedImage!),
+                )
+              : (widget.img != null &&
+                      widget.img!.isNotEmpty &&
+                      (widget.img!.startsWith('http://') ||
+                          widget.img!.startsWith('https://')))
+                  ? _buildNetworkImage()
+                  : CircleAvatar(
+                      radius: 60.r,
+                      foregroundColor: AppColors.white,
+                      backgroundColor: AppColors.surfaceDark,
+                      child: Icon(
+                        Icons.person,
+                        size: 60.r,
+                        color: AppColors.white,
+                      ),
+                    ),
         ),
         widget.isEditButton == true
             ? GestureDetector(
@@ -142,6 +161,44 @@ class _EditprofileImageState extends State<EditprofileImage> {
             SizedBox(height: 20.r),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildNetworkImage() {
+    bool isSvg =
+        widget.img != null && widget.img!.toLowerCase().endsWith('.svg');
+
+    if (isSvg) {
+      return CircleAvatar(
+        radius: 60.r,
+        backgroundColor: AppColors.surfaceDark,
+        child: Icon(
+          Icons.image,
+          size: 40.r,
+          //color: AppColors.primaryOrange,
+        ),
+      );
+    }
+
+    return ClipOval(
+      child: Image.network(
+        widget.img!,
+        width: 120.r,
+        height: 120.r,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          print('Error loading image: $error');
+          return CircleAvatar(
+            radius: 60.r,
+            //backgroundColor: AppColors.surfaceDark,
+            child: Icon(
+              Icons.person,
+              size: 60.r,
+              //color: AppColors.primaryOrange,
+            ),
+          );
+        },
       ),
     );
   }
