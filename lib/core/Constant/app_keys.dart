@@ -6,10 +6,10 @@ class AppKeys {
   static const String showOnboarding = 'showOnboarding';
 
   //-----------------------------editprofile
-  static const String firstName='firstName';
-  static const String lastName='lastName';
-  static const String email='email';
-  static const String weight='weight';
-  static const String goal='goal';
-  static const String activityLevel='activityLevel';
+  static const String firstName = 'firstName';
+  static const String lastName = 'lastName';
+  static const String email = 'email';
+  static const String weight = 'weight';
+  static const String goal = 'goal';
+  static const String activityLevel = 'activityLevel';
 }

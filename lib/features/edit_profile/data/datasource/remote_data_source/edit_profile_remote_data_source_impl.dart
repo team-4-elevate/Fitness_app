@@ -26,7 +26,6 @@ class EditProfileRemoteDataSourceImpl
     String? goal,
     String? activityLevel,
   }) async {
-   
     final Map<String, dynamic> payload = {};
 
     if (firstName != null) payload[AppKeys.firstName] = firstName;

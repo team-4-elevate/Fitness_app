@@ -338,9 +338,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               );
 
                               if (result != null && result is int) {
-                               
-                                  _weightController.text = result.toString();
-                              
+                                _weightController.text = result.toString();
                               }
                             },
                           ),
