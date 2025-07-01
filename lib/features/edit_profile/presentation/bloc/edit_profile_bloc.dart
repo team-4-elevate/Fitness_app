@@ -137,7 +137,9 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
 //--------------------------------------------------------------handle profile updates
   Future<void> _onUpdateProfile(
       UpdateProfileEvent event, Emitter<EditProfileState> emit) async {
-    if (event.fieldName != null && event.fieldValue != null && !event.submitToApi) {
+    if (event.fieldName != null &&
+        event.fieldValue != null &&
+        !event.submitToApi) {
       final currentValues = state.fieldValues ?? {};
       final updatedValues = Map<String, String>.from(currentValues);
       updatedValues[event.fieldName!] = event.fieldValue!;
@@ -168,12 +170,19 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       final weight = event.weight;
       final goal = event.goal;
       final activityLevel = event.activityLevel;
-      
-      if (firstName == null || lastName == null || email == null || 
-          weight == null || goal == null || activityLevel == null ||
-          firstName.isEmpty || lastName.isEmpty || email.isEmpty ||
-          weight.isEmpty || goal.isEmpty || activityLevel.isEmpty) {
-        
+
+      if (firstName == null ||
+          lastName == null ||
+          email == null ||
+          weight == null ||
+          goal == null ||
+          activityLevel == null ||
+          firstName.isEmpty ||
+          lastName.isEmpty ||
+          email.isEmpty ||
+          weight.isEmpty ||
+          goal.isEmpty ||
+          activityLevel.isEmpty) {
         emit(state.copyWith(
           updateProfileStatus: Status.error,
           errorMessage: 'Please fill in all required fields',
@@ -303,8 +312,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       ));
     }
   }
-
-
 
   void _triggerDebouncedSaveWithFieldValues(Map<String, String> fieldValues) {
     final firstName = fieldValues[AppKeys.firstName] ??

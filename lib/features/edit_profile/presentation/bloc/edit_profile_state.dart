@@ -10,7 +10,7 @@ class EditProfileState extends Equatable {
   final dynamic uploadedImageData;
   final String errorMessage;
   final Map<String, String>? fieldValues;
-  final String? snackbarMessage; 
+  final String? snackbarMessage;
   final bool isErrorSnackbar;
 
   const EditProfileState({
@@ -47,7 +47,7 @@ class EditProfileState extends Equatable {
       uploadedImageData: uploadedImageData ?? this.uploadedImageData,
       errorMessage: errorMessage ?? '',
       fieldValues: fieldValues ?? this.fieldValues,
-      snackbarMessage: snackbarMessage, 
+      snackbarMessage: snackbarMessage,
       isErrorSnackbar: isErrorSnackbar ?? this.isErrorSnackbar,
     );
   }
