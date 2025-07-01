@@ -21,10 +21,10 @@ void main() {
     mockRemoteDs = MockUpdatePasswordRemoteDsInterface();
     mockLocalDs = MockAuthLocalDataSourceContract();
     repo = UpdatePasswordRepoImpl(mockRemoteDs, mockLocalDs);
-    
+
     provideDummy<ApiResult<ResetPasswordResponse>>(
-      ApiSuccess<ResetPasswordResponse>(ResetPasswordResponse(token: 'dummy-token'))
-    );
+        ApiSuccess<ResetPasswordResponse>(
+            ResetPasswordResponse(token: 'dummy-token')));
   });
 
   group('updatePasswordRepoImpl', () {
@@ -34,9 +34,11 @@ void main() {
     );
     final successResponse = ResetPasswordResponse(token: 'new-token');
 
-    test('should call updatePassword on the remote data source and cache token on success', () async {
-      when(mockRemoteDs.updatePassword(request))
-          .thenAnswer((_) async => ApiSuccess<ResetPasswordResponse>(successResponse));
+    test(
+        'should call updatePassword on the remote data source and cache token on success',
+        () async {
+      when(mockRemoteDs.updatePassword(request)).thenAnswer(
+          (_) async => ApiSuccess<ResetPasswordResponse>(successResponse));
       when(mockLocalDs.cacheToken(any)).thenAnswer((_) async {});
       await repo.updatePassword(request);
       verify(mockRemoteDs.updatePassword(request)).called(1);
@@ -44,4 +46,4 @@ void main() {
       verifyNoMoreInteractions(mockRemoteDs);
     });
   });
-} 
+}

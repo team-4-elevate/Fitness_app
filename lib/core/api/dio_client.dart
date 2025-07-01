@@ -25,15 +25,16 @@ class DioApiClient implements ApiClient {
             responseType: ResponseType.json,
           ),
         ) {
-    _dio.interceptors.add(InterceptorsWrapper(onRequest:
-    (options, handler) {
-      log('kkkkk');
-      log(options.headers.toString());
-      log(options.path);
-      log(options.queryParameters.toString());
-      log(options.data.toString());
-      return handler.next(options);
-    },));
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        log('kkkkk');
+        log(options.headers.toString());
+        log(options.path);
+        log(options.queryParameters.toString());
+        log(options.data.toString());
+        return handler.next(options);
+      },
+    ));
     _dio.interceptors.add(PrettyDioLogger());
   }
 

@@ -205,4 +205,4 @@ void main() {
       expect(capturedRequest.newPassword, equals(newPassword));
     });
   });
-} 
+}

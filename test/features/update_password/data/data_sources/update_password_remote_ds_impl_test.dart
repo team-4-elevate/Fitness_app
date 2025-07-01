@@ -18,11 +18,11 @@ void main() {
   setUp(() {
     mockApiClient = MockApiClient();
     dataSource = UpdatePasswordRemoteDsImpl(mockApiClient);
-    
+
     provideDummy<ApiResult<dynamic>>(const ApiSuccess<dynamic>(null));
     provideDummy<ApiResult<ResetPasswordResponse>>(
-      ApiSuccess<ResetPasswordResponse>(ResetPasswordResponse(token: 'dummy-token'))
-    );
+        ApiSuccess<ResetPasswordResponse>(
+            ResetPasswordResponse(token: 'dummy-token')));
   });
 
   group('UpdatePasswordRemoteDsImpl', () {
@@ -32,7 +32,8 @@ void main() {
     );
     final mockResponse = {'token': 'new-token'};
 
-    test('should call patch on the API client with correct parameters', () async {
+    test('should call patch on the API client with correct parameters',
+        () async {
       when(mockApiClient.patch(
         ApiConstants.updatePassEndpoint,
         data: request.toJson(),
@@ -68,7 +69,8 @@ void main() {
         requiresToken: true,
       )).thenAnswer((_) async => const ApiFailure('API error'));
 
-      expect(() => dataSource.updatePassword(request), throwsA(equals('API error')));
+      expect(() => dataSource.updatePassword(request),
+          throwsA(equals('API error')));
       verify(mockApiClient.patch(
         ApiConstants.updatePassEndpoint,
         data: request.toJson(),
@@ -76,4 +78,4 @@ void main() {
       )).called(1);
     });
   });
-} 
+}

@@ -25,18 +25,12 @@ class UpdatePasswordBloc
     if (!_validateUpdateSubmit(event, emit)) return;
     try {
       emit(state.copyWith(updatePasswordStatus: Status.loading));
-      await _updatePasswordUseCase(
-        UpdatePasswordRequest(
-          oldPassword: event.oldPassword,
-          newPassword: event.newPassword));
-      emit(
-        state.copyWith(
-          updatePasswordStatus: Status.success));
+      await _updatePasswordUseCase(UpdatePasswordRequest(
+          oldPassword: event.oldPassword, newPassword: event.newPassword));
+      emit(state.copyWith(updatePasswordStatus: Status.success));
     } catch (e) {
-      emit(
-        state.copyWith(
-          updatePasswordStatus: Status.error,
-          errorMessage: e.toString()));
+      emit(state.copyWith(
+          updatePasswordStatus: Status.error, errorMessage: e.toString()));
     }
   }
 
@@ -56,29 +50,26 @@ class UpdatePasswordBloc
   }
 
   void _onValidatePasswordsMatch(
-    ValidateConfirmPasswordEvent event,
-    Emitter<UpdatePasswordState> emit) {
+      ValidateConfirmPasswordEvent event, Emitter<UpdatePasswordState> emit) {
     String? confirmError;
     if (event.confirmPassword.isEmpty) {
       confirmError = 'Please confirm your password';
     } else if (event.confirmPassword != event.newPassword) {
       confirmError = 'Passwords do not match';
       emit(state.copyWith(
-        confirmPasswordError: confirmError,
-        arePasswordsMatching: false));
+          confirmPasswordError: confirmError, arePasswordsMatching: false));
       return;
     }
     emit(state.copyWith(
-      confirmPasswordError: confirmError,
-      arePasswordsMatching: true));
+        confirmPasswordError: confirmError, arePasswordsMatching: true));
   }
 
   bool _validateUpdateSubmit(UpdatePasswordSubmitEvent event, Emitter emit) {
     final oldPasswordError = AppValidators.validatePassword(event.oldPassword);
     final newPasswordError = AppValidators.validatePassword(event.newPassword);
     emit(state.copyWith(
-      oldPasswordError: oldPasswordError,
-      newPasswordError: newPasswordError));
+        oldPasswordError: oldPasswordError,
+        newPasswordError: newPasswordError));
     return (oldPasswordError == null &&
         newPasswordError == null &&
         state.arePasswordsMatching);
