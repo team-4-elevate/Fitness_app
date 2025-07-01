@@ -1,8 +1,8 @@
 // features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_impl.dart
-
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:fitness_app/core/Constant/api_constants.dart';
+import 'package:fitness_app/core/Constant/app_keys.dart';
 import 'package:fitness_app/core/api/api_client.dart';
 import 'package:fitness_app/features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_interface.dart';
 import 'package:fitness_app/features/edit_profile/data/models/edit_profile/response/edit_profile_response.dart';
@@ -26,30 +26,36 @@ class EditProfileRemoteDataSourceImpl
     String? goal,
     String? activityLevel,
   }) async {
-    // Create payload with only non-null values
+   
     final Map<String, dynamic> payload = {};
 
-    if (firstName != null) payload['firstName'] = firstName;
-    if (lastName != null) payload['lastName'] = lastName;
-    if (email != null) payload['email'] = email;
-    if (weight != null) payload['weight'] = weight;
-    if (goal != null) payload['goal'] = goal;
-    if (activityLevel != null) payload['activityLevel'] = activityLevel;
+    if (firstName != null) payload[AppKeys.firstName] = firstName;
+    if (lastName != null) payload[AppKeys.lastName] = lastName;
+    if (email != null) payload[AppKeys.email] = email;
+    if (weight != null) payload[AppKeys.weight] = weight;
+    if (goal != null) payload[AppKeys.goal] = goal;
+    if (activityLevel != null) payload[AppKeys.activityLevel] = activityLevel;
 
     final apiResult = await _apiClient.put(
       ApiConstants.editprofileEndpoint,
       data: payload,
     );
 
-    final responseData = apiResult.dataOrNull as Map<String, dynamic>;
-    return EditProfileResponse.fromJson(responseData);
+    final responseData = apiResult.dataOrNull;
+    if (responseData == null) {
+      throw Exception('Failed to edit profile: No data returned from server');
+    }
+    return EditProfileResponse.fromJson(responseData as Map<String, dynamic>);
   }
 
   @override
   Future<EditProfileResponse> getProfileData() async {
     final apiResult = await _apiClient.get(ApiConstants.getprofileEndpoint);
-    final responseData = apiResult.dataOrNull as Map<String, dynamic>;
-    return EditProfileResponse.fromJson(responseData);
+    final responseData = apiResult.dataOrNull;
+    if (responseData == null) {
+      throw Exception('Failed to get profile data');
+    }
+    return EditProfileResponse.fromJson(responseData as Map<String, dynamic>);
   }
 
   @override
@@ -85,10 +91,12 @@ class EditProfileRemoteDataSourceImpl
         requiresToken: true,
       );
 
-      final responseData = apiResult.dataOrNull as Map<String, dynamic>;
-      return UploadImageResponse.fromJson(responseData);
+      final responseData = apiResult.dataOrNull;
+      if (responseData == null) {
+        throw Exception('Failed to upload profile image');
+      }
+      return UploadImageResponse.fromJson(responseData as Map<String, dynamic>);
     } catch (e) {
-      print('Error uploading profile image: $e');
       rethrow;
     }
   }

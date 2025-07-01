@@ -75,9 +75,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               state.profileData.user!.activityLevel ?? "";
         }
 
-        setState(() {
-          formChanged = false;
-        });
+        formChanged = false;
+
         _setupControllerListeners();
       }
     }
@@ -260,7 +259,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 AutovalidateMode.onUserInteraction,
                             validator: AppValidators.validateFirstName,
                             decoration: InputDecoration(
-                                hintText: 'Ahmed',
+                                hintText: 'First Name',
                                 hintStyle: TextStyle(color: AppColors.white),
                                 prefixIcon: Padding(
                                   padding:
@@ -281,7 +280,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 AutovalidateMode.onUserInteraction,
                             validator: AppValidators.validateLastName,
                             decoration: InputDecoration(
-                                hintText: 'Mohamed',
+                                hintText: 'Second Name',
                                 hintStyle: TextStyle(color: AppColors.white),
                                 prefixIcon: Padding(
                                   padding:
@@ -310,7 +309,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   color: AppColors.white,
                                 ),
                               ),
-                              hintText: 'Email',
+                              hintText: 'user@mail.co',
                               hintStyle: TextStyle(color: AppColors.white),
                             ),
                           ),
@@ -339,9 +338,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               );
 
                               if (result != null && result is int) {
-                                setState(() {
+                               
                                   _weightController.text = result.toString();
-                                });
+                              
                               }
                             },
                           ),
@@ -430,7 +429,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                           SizedBox(height: 8.r),
                           TextFormField(
-                            //controller: _activityLevelController,
                             keyboardType: TextInputType.name,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
