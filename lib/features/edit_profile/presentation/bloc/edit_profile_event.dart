@@ -21,6 +21,7 @@ class UpdateProfileEvent extends EditProfileEvent {
   final String? activityLevel;
   final String? fieldName;
   final String? fieldValue;
+  final bool submitToApi;
 
   const UpdateProfileEvent({
     this.firstName,
@@ -35,7 +36,6 @@ class UpdateProfileEvent extends EditProfileEvent {
   });
 
   @override
-      [firstName, lastName, email, weight, goal, activityLevel];
   List<Object?> get props => [
         firstName,
         lastName,
