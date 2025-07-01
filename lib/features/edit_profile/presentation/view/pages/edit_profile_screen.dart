@@ -227,8 +227,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             isEditButton: true,
                             img: state.profileData?.user?.photo ?? '',
                             onImageSelected: (File selectedImage) {
-                              print('Image selected: ${selectedImage.path}');
-                              // Upload the image using the bloc
                               context.read<EditProfileBloc>().add(
                                     UploadProfileImageEvent(photo: selectedImage),
                                   );
