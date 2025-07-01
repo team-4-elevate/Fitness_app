@@ -27,7 +27,6 @@ class TogglePassVisibilityEvent extends UpdatePasswordEvent {
   const TogglePassVisibilityEvent({
     required this.type,
   });
-
 }
 
 class ValidateConfirmPasswordEvent extends UpdatePasswordEvent {

@@ -12,10 +12,11 @@ class UpdatePasswordRemoteDsImpl implements UpdatePasswordRemoteDsInterface {
   UpdatePasswordRemoteDsImpl(this._apiClient);
 
   @override
-  Future<ApiResult<ResetPasswordResponse>> updatePassword(UpdatePasswordRequest request) async {
+  Future<ApiResult<ResetPasswordResponse>> updatePassword(
+      UpdatePasswordRequest request) async {
     final res = await _apiClient.patch(ApiConstants.updatePassEndpoint,
         data: request.toJson(), requiresToken: true);
-    if (res.isFailure) throw((res as ApiFailure).message);
+    if (res.isFailure) throw ((res as ApiFailure).message);
     return res.map((json) => ResetPasswordResponse.fromJson(json));
   }
 }

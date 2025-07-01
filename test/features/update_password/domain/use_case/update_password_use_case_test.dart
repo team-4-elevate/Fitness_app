@@ -40,4 +40,4 @@ void main() {
       verifyNoMoreInteractions(mockRepo);
     });
   });
-} 
+}

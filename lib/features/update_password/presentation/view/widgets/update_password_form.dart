@@ -19,80 +19,79 @@ class UpdatePasswordForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<UpdatePasswordBloc>();
     final state = bloc.state;
-    return Column(
-      children: [
-        SizedBox(height: 16.r),
-        TextFormField(
-          controller: oldPasswordController,
-          obscureText: !state.isOldPasswordVisible,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(size: 20, Icons.lock_outline),
-            hintText: context.l10n.current_password,
-            errorText: state.oldPasswordError,
-            suffixIcon: IconButton(
-              icon: Icon(
-                state.isOldPasswordVisible
-                    ? Icons.visibility_outlined
-                    : Icons.visibility_off_outlined,
-                size: 20,
-              ),
-              onPressed: () {
-                bloc.add(
-                    TogglePassVisibilityEvent(type: UpdatePassUiType.oldPass));
-              },
+    return Column(children: [
+      SizedBox(height: 16.r),
+      TextFormField(
+        controller: oldPasswordController,
+        obscureText: !state.isOldPasswordVisible,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(size: 20, Icons.lock_outline),
+          hintText: context.l10n.current_password,
+          errorText: state.oldPasswordError,
+          suffixIcon: IconButton(
+            icon: Icon(
+              state.isOldPasswordVisible
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+              size: 20,
             ),
+            onPressed: () {
+              bloc.add(
+                  TogglePassVisibilityEvent(type: UpdatePassUiType.oldPass));
+            },
           ),
         ),
-        SizedBox(height: 16.r),
-        TextFormField(
-          controller: newPasswordController,
-          obscureText: !state.isNewPasswordVisible,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(size: 20, Icons.lock_outline),
-            hintText: context.l10n.new_password,
-            errorText: state.newPasswordError,
-            suffixIcon: IconButton(
-              icon: Icon(
-                state.isNewPasswordVisible
-                    ? Icons.visibility_outlined
-                    : Icons.visibility_off_outlined,
-                size: 20,
-              ),
-              onPressed: () {
-                bloc.add(
-                    TogglePassVisibilityEvent(type: UpdatePassUiType.newPass));
-              },
+      ),
+      SizedBox(height: 16.r),
+      TextFormField(
+        controller: newPasswordController,
+        obscureText: !state.isNewPasswordVisible,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(size: 20, Icons.lock_outline),
+          hintText: context.l10n.new_password,
+          errorText: state.newPasswordError,
+          suffixIcon: IconButton(
+            icon: Icon(
+              state.isNewPasswordVisible
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+              size: 20,
             ),
+            onPressed: () {
+              bloc.add(
+                  TogglePassVisibilityEvent(type: UpdatePassUiType.newPass));
+            },
           ),
         ),
-        SizedBox(height: 16.r),
-        TextFormField(
-          controller: confirmPasswordController,
-          obscureText: !state.isConfirmPasswordVisible,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(size: 20, Icons.lock_outline),
-            hintText: context.l10n.confirm_new_password,
-            errorText: state.confirmPasswordError,
-            suffixIcon: IconButton(
-              icon: Icon(
-                state.isConfirmPasswordVisible
-                    ? Icons.visibility_outlined
-                    : Icons.visibility_off_outlined,
-                size: 20,
-              ),
-              onPressed: () {
-                bloc.add(TogglePassVisibilityEvent(
-                    type: UpdatePassUiType.confirmPass));
-              },
+      ),
+      SizedBox(height: 16.r),
+      TextFormField(
+        controller: confirmPasswordController,
+        obscureText: !state.isConfirmPasswordVisible,
+        decoration: InputDecoration(
+          prefixIcon: const Icon(size: 20, Icons.lock_outline),
+          hintText: context.l10n.confirm_new_password,
+          errorText: state.confirmPasswordError,
+          suffixIcon: IconButton(
+            icon: Icon(
+              state.isConfirmPasswordVisible
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+              size: 20,
             ),
+            onPressed: () {
+              bloc.add(TogglePassVisibilityEvent(
+                  type: UpdatePassUiType.confirmPass));
+            },
           ),
-          onChanged: (value) {
-            bloc.add(ValidateConfirmPasswordEvent(
-              confirmPassword: value,
-              newPassword: newPasswordController.text,
-            ));
-          },
         ),
-      ]);
+        onChanged: (value) {
+          bloc.add(ValidateConfirmPasswordEvent(
+            confirmPassword: value,
+            newPassword: newPasswordController.text,
+          ));
+        },
+      ),
+    ]);
   }
 }
