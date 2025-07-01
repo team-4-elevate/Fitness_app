@@ -1,3 +1,5 @@
+// features/edit_profile/domain/entities/physical_info_arguments.dart
+import 'package:fitness_app/core/Constant/app_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
@@ -20,26 +22,35 @@ class PhysicalInfoArguments {
       arguments: this,
     );
     
-    if (result != null) {
+    if (result != null && context.mounted) {
       switch (infoType) {
         case InfoType.weight:
           if (result is int) {
             controller.text = result.toString();
-            context.read<EditProfileBloc>().add(EditProfileDataEvent(weight: result.toString()));
+            context.read<EditProfileBloc>().add(UpdateProfileEvent(
+              fieldName: AppKeys.weight,
+              fieldValue: result.toString(),
+            ));
           }
           break;
           
         case InfoType.goal:
           if (result is String) {
             controller.text = result;
-            context.read<EditProfileBloc>().add(EditProfileDataEvent(goal: result));
+            context.read<EditProfileBloc>().add(UpdateProfileEvent(
+              fieldName: AppKeys.goal,
+              fieldValue: result,
+            ));
           }
           break;
           
         case InfoType.activityLevel:
           if (result is String) {
             controller.text = result;
-            context.read<EditProfileBloc>().add(EditProfileDataEvent(activityLevel: result));
+            context.read<EditProfileBloc>().add(UpdateProfileEvent(
+              fieldName: AppKeys.activityLevel,
+              fieldValue: result,
+            ));
           }
           break;
       }

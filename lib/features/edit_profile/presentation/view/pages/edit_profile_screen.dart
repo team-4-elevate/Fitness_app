@@ -2,6 +2,8 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
+import 'package:fitness_app/core/Constant/app_keys.dart';
+import 'package:fitness_app/features/edit_profile/domain/entities/activity_level_constants.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
@@ -32,14 +34,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController _activityLevelController =
       TextEditingController();
 
-  bool formChanged = false;
-
   late final EditProfileBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-    _setupControllerListeners();
   }
 
   @override
@@ -49,88 +48,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     _bloc.add(const FetchProfileDataEvent());
   }
 
-  void _updateFormFields(EditProfileState state) {
-    if (state.fetchProfileStatus == Status.success &&
-        state.profileData != null &&
-        state.profileData.user != null) {
-      if (state.updateProfileStatus != Status.success) {
-        if (_firstnameController.text.isEmpty) {
-          _firstnameController.text = state.profileData.user!.firstName ?? "";
-        }
-        if (_lastnameController.text.isEmpty) {
-          _lastnameController.text = state.profileData.user!.lastName ?? "";
-        }
-        if (_emailController.text.isEmpty) {
-          _emailController.text = state.profileData.user!.email ?? "";
-        }
-        if (_weightController.text.isEmpty) {
-          _weightController.text =
-              state.profileData.user!.weight?.toString() ?? "";
-        }
-        if (_goalController.text.isEmpty) {
-          _goalController.text = state.profileData.user!.goal ?? "";
-        }
-        if (_activityLevelController.text.isEmpty) {
-          _activityLevelController.text =
-              state.profileData.user!.activityLevel ?? "";
-        }
-
-        formChanged = false;
-
-        _setupControllerListeners();
-      }
-    }
-  }
-
-  void _setupControllerListeners() {
-    _firstnameController.removeListener(_onTextFieldChanged);
-    _lastnameController.removeListener(_onTextFieldChanged);
-    _emailController.removeListener(_onTextFieldChanged);
-    _weightController.removeListener(_onTextFieldChanged);
-    _goalController.removeListener(_onTextFieldChanged);
-    _activityLevelController.removeListener(_onTextFieldChanged);
-
-    _firstnameController.addListener(_onTextFieldChanged);
-    _lastnameController.addListener(_onTextFieldChanged);
-    _emailController.addListener(_onTextFieldChanged);
-    _weightController.addListener(_onTextFieldChanged);
-    _goalController.addListener(_onTextFieldChanged);
-    _activityLevelController.addListener(_onTextFieldChanged);
-  }
-
   @override
   void dispose() {
+    _firstnameController.dispose();
+    _lastnameController.dispose();
+    _emailController.dispose();
+    _weightController.dispose();
+    _goalController.dispose();
+    _activityLevelController.dispose();
     super.dispose();
-  }
-
-  void _onTextFieldChanged() {
-    formChanged = true;
-
-    if (_formKey.currentState?.validate() == true) {
-      _bloc.debouncedSaveProfile(
-        firstName: _firstnameController.text,
-        lastName: _lastnameController.text,
-        email: _emailController.text,
-        weight: _weightController.text,
-        goal: _goalController.text,
-        activityLevel: _activityLevelController.text,
-      );
-    }
-  }
-
-  String activitylabel(String activityLevel) {
-    switch (activityLevel) {
-      case 'level1':
-        return 'Rookie';
-      case 'level2':
-        return 'Beginner';
-      case 'level3':
-        return 'Intermediate';
-      case 'level4':
-        return 'Advanced';
-      default:
-        return 'True Beast';
-    }
   }
 
   @override
@@ -141,55 +67,39 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         listenWhen: (previous, current) =>
             previous.updateProfileStatus != current.updateProfileStatus ||
             previous.fetchProfileStatus != current.fetchProfileStatus ||
-            previous.uploadImageStatus != current.uploadImageStatus,
+            previous.uploadImageStatus != current.uploadImageStatus ||
+            previous.snackbarMessage != current.snackbarMessage,
         listener: (context, state) {
-          final previousState = context.read<EditProfileBloc>().state;
+          if (state.snackbarMessage != null) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.snackbarMessage!),
+                backgroundColor:
+                    state.isErrorSnackbar ? Colors.red : Colors.green,
+              ),
+            );
+          }
           if (state.fetchProfileStatus == Status.success) {
-            _updateFormFields(state);
+            context.read<EditProfileBloc>().add(
+                  UpdateControllersEvent(
+                    controllers: {
+                      AppKeys.firstName: _firstnameController,
+                      AppKeys.lastName: _lastnameController,
+                      AppKeys.email: _emailController,
+                      AppKeys.weight: _weightController,
+                      AppKeys.goal: _goalController,
+                      AppKeys.activityLevel: _activityLevelController,
+                    },
+                  ),
+                );
           }
 
           if (state.uploadImageStatus == Status.loading) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Uploading profile image...'),
-                duration: Duration(seconds: 1),
-              ),
-            );
-          } else if (state.uploadImageStatus == Status.success &&
-              previousState.uploadImageStatus != Status.success) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Profile image updated successfully'),
-              ),
-            );
-          } else if (state.uploadImageStatus == Status.error &&
-              previousState.uploadImageStatus != Status.error) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content:
-                    Text('Error updating profile image: ${state.errorMessage}'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-          if (state.updateProfileStatus == Status.success) {
-            setState(() {
-              formChanged = false;
-            });
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Profile updated successfully!'),
-                backgroundColor: Colors.green,
-              ),
-            );
-          } else if (state.updateProfileStatus == Status.error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Error: ${state.errorMessage}'),
-                backgroundColor: Colors.red,
+                content: Text('Uploading image...'),
+                duration: Duration(seconds: 2),
               ),
             );
           }
@@ -197,12 +107,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         builder: (context, state) {
           return Stack(
             children: [
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                        AssetImage('assets/images/exercise_btm_background.png'),
-                    fit: BoxFit.cover,
+              Positioned.fill(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          'assets/images/exercise_btm_background.png'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -258,6 +170,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: AppValidators.validateFirstName,
+                            onChanged: (value) {
+                              if (value.isNotEmpty &&
+                                  _formKey.currentState?.validate() == true) {
+                                _bloc.add(UpdateProfileEvent(
+                                  fieldName: AppKeys.firstName,
+                                  fieldValue: value,
+                                ));
+                              }
+                            },
                             decoration: InputDecoration(
                                 hintText: 'First Name',
                                 hintStyle: TextStyle(color: AppColors.white),
@@ -279,6 +200,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: AppValidators.validateLastName,
+                            onChanged: (value) {
+                              if (value.isNotEmpty &&
+                                  _formKey.currentState?.validate() == true) {
+                                _bloc.add(UpdateProfileEvent(
+                                  fieldName: AppKeys.lastName,
+                                  fieldValue: value,
+                                ));
+                              }
+                            },
                             decoration: InputDecoration(
                                 hintText: 'Second Name',
                                 hintStyle: TextStyle(color: AppColors.white),
@@ -300,6 +230,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             controller: _emailController,
+                            onChanged: (value) {
+                              if (value.isNotEmpty &&
+                                  _formKey.currentState?.validate() == true) {
+                                _bloc.add(UpdateProfileEvent(
+                                  fieldName: AppKeys.email,
+                                  fieldValue: value,
+                                ));
+                              }
+                            },
                             decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding:
@@ -321,8 +260,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           PhysicalInfoText(
                             title: "Your Weight",
                             onTap: () {
-                              PhysicalInfoArguments.forWeight(_weightController.text)
-                                .navigateAndUpdateProfile(context, _weightController);
+                              PhysicalInfoArguments.forWeight(
+                                      _weightController.text)
+                                  .navigateAndUpdateProfile(
+                                      context, _weightController);
                             },
                           ),
                           SizedBox(height: 8.r),
@@ -337,10 +278,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: 30.r,
                               ),
-                              hintText: _weightController.text,
-                              hintStyle: TextStyle(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.w700),
+                              hintText: "70",
                             ),
                           ),
                           SizedBox(height: 16.r),
@@ -349,8 +287,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           PhysicalInfoText(
                             title: "Your Goal",
                             onTap: () {
-                              PhysicalInfoArguments.forGoal(_goalController.text)
-                                .navigateAndUpdateProfile(context, _goalController);
+                              PhysicalInfoArguments.forGoal(
+                                      _goalController.text)
+                                  .navigateAndUpdateProfile(
+                                      context, _goalController);
                             },
                           ),
                           SizedBox(height: 8.r),
@@ -365,9 +305,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 horizontal: 30.r,
                               ),
                               hintText: 'Gain weight',
-                              hintStyle: TextStyle(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                           SizedBox(height: 16.r),
@@ -376,8 +313,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           PhysicalInfoText(
                             title: "Your Activity Level",
                             onTap: () {
-                              PhysicalInfoArguments.forActivityLevel(_activityLevelController.text)
-                                .navigateAndUpdateProfile(context, _activityLevelController);
+                              PhysicalInfoArguments.forActivityLevel(
+                                      _activityLevelController.text)
+                                  .navigateAndUpdateProfile(
+                                      context, _activityLevelController);
                             },
                           ),
                           SizedBox(height: 8.r),
@@ -390,11 +329,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: 30.r,
                               ),
-                              hintText:
-                                  activitylabel(_activityLevelController.text),
-                              hintStyle: TextStyle(
-                                  color: AppColors.white,
-                                  fontWeight: FontWeight.w700),
+                              hintText: ActivityLevelConstants.getLabel(
+                                  _activityLevelController.text),
                             ),
                           ),
                           SizedBox(height: 30.r),

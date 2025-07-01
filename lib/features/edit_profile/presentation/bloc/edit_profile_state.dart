@@ -9,6 +9,9 @@ class EditProfileState extends Equatable {
   final dynamic updatedData;
   final dynamic uploadedImageData;
   final String errorMessage;
+  final Map<String, String>? fieldValues;
+  final String? snackbarMessage; 
+  final bool isErrorSnackbar;
 
   const EditProfileState({
     this.fetchProfileStatus = Status.initial,
@@ -18,6 +21,9 @@ class EditProfileState extends Equatable {
     this.updatedData,
     this.uploadedImageData,
     this.errorMessage = '',
+    this.fieldValues,
+    this.snackbarMessage,
+    this.isErrorSnackbar = false,
   });
 
   EditProfileState copyWith({
@@ -28,6 +34,9 @@ class EditProfileState extends Equatable {
     dynamic updatedData,
     dynamic uploadedImageData,
     String? errorMessage,
+    Map<String, String>? fieldValues,
+    String? snackbarMessage,
+    bool? isErrorSnackbar,
   }) {
     return EditProfileState(
       fetchProfileStatus: fetchProfileStatus ?? this.fetchProfileStatus,
@@ -37,6 +46,9 @@ class EditProfileState extends Equatable {
       updatedData: updatedData ?? this.updatedData,
       uploadedImageData: uploadedImageData ?? this.uploadedImageData,
       errorMessage: errorMessage ?? '',
+      fieldValues: fieldValues ?? this.fieldValues,
+      snackbarMessage: snackbarMessage, 
+      isErrorSnackbar: isErrorSnackbar ?? this.isErrorSnackbar,
     );
   }
 
@@ -49,5 +61,8 @@ class EditProfileState extends Equatable {
         updatedData,
         uploadedImageData,
         errorMessage,
+        fieldValues,
+        snackbarMessage,
+        isErrorSnackbar,
       ];
 }
