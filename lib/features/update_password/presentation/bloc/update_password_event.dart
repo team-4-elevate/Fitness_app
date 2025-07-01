@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:fitness_app/features/update_password/domain/enums/update_password_ui_fields.dart';
 import 'package:flutter/material.dart';
 
 sealed class UpdatePasswordEvent extends Equatable {
@@ -9,42 +10,24 @@ sealed class UpdatePasswordEvent extends Equatable {
 }
 
 class UpdatePasswordSubmitEvent extends UpdatePasswordEvent {
-  final String email;
   final String oldPassword;
   final String newPassword;
 
   const UpdatePasswordSubmitEvent({
-    required this.email,
     required this.oldPassword,
     required this.newPassword,
   });
 
   @override
-  List<Object> get props => [email, oldPassword, newPassword];
+  List<Object> get props => [oldPassword, newPassword];
 }
 
-class ToggleOldPasswordVisibilityEvent extends UpdatePasswordEvent {}
+class TogglePassVisibilityEvent extends UpdatePasswordEvent {
+  final UpdatePassUiType type;
+  const TogglePassVisibilityEvent({
+    required this.type,
+  });
 
-class ToggleNewPasswordVisibilityEvent extends UpdatePasswordEvent {}
-
-class ToggleConfirmPasswordVisibilityEvent extends UpdatePasswordEvent {}
-
-class ValidateOldPasswordEvent extends UpdatePasswordEvent {
-  final String password;
-
-  const ValidateOldPasswordEvent(this.password);
-
-  @override
-  List<Object> get props => [password];
-}
-
-class ValidateNewPasswordEvent extends UpdatePasswordEvent {
-  final String password;
-
-  const ValidateNewPasswordEvent(this.password);
-
-  @override
-  List<Object> get props => [password];
 }
 
 class ValidateConfirmPasswordEvent extends UpdatePasswordEvent {

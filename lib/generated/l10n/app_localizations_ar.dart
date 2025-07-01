@@ -18,8 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحباً بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError =>
-      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.';
@@ -80,22 +79,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onBoardingTitle1 => 'ثمن التميز\nهو الانضباط';
 
   @override
-  String get onBoardingDesc1 =>
-      'ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك';
+  String get onBoardingDesc1 => 'ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك';
 
   @override
   String get onBoardingTitle2 => 'اللياقة البدنية لم تكن\nممتعة هكذا من قبل';
 
   @override
-  String get onBoardingDesc2 =>
-      'اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية';
+  String get onBoardingDesc2 => 'اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية';
 
   @override
   String get onBoardingTitle3 => 'لا مزيد من الأعذار\nافعلها الآن';
 
   @override
-  String get onBoardingDesc3 =>
-      'حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك';
+  String get onBoardingDesc3 => 'حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك';
 
   @override
   String get login_heyThere => 'أهلاً بك';
@@ -246,8 +242,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get failed_to_parse_upcoming_workouts =>
-      'فشل في تحليل التمارين القادمة: ';
+  String get failed_to_parse_upcoming_workouts => 'فشل في تحليل التمارين القادمة: ';
 
   @override
   String get let_s_start_your_day => 'لنبدأ يومك';
@@ -379,8 +374,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get food_Recommendation_no_categories => 'لا توجد فئات';
 
   @override
-  String get food_food_Recommendation_fail_to_loadCategories =>
-      'فشل في تحميل الفئات';
+  String get food_food_Recommendation_fail_to_loadCategories => 'فشل في تحميل الفئات';
 
   @override
   String get retry => 'إعادة المحاولة';
@@ -437,4 +431,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get motivational_quote => 'اقتباس تحفيزي';
+
+  @override
+  String get enter_old_new_passwords => 'أدخل كلمات المرور القديمة والجديدة';
+
+  @override
+  String get update_password => 'تحديث كلمة المرور';
+
+  @override
+  String get password_updated_successfully => 'تم تحديث كلمة المرور بنجاح';
+
+  @override
+  String get current_password => 'كلمة المرور الحالية';
+
+  @override
+  String get new_password => 'كلمة المرور الجديدة';
+
+  @override
+  String get confirm_new_password => 'تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get please_confirm_password => 'يرجى تأكيد كلمة المرور';
+
+  @override
+  String get passwords_do_not_match => 'كلمات المرور غير متطابقة';
 }

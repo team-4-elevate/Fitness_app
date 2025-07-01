@@ -17,23 +17,23 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSourceContract {
   //-----------------------------Token-----------------------------------
   @override
   Future<void> cacheToken(String token) async {
-    await _localStorageClient.saveUserData('token', token);
+    await _localStorageClient.saveToken(token);
   }
 
   @override
   Future<String?> getToken() async {
-    return await _localStorageClient.getUserData('token');
+    return await _localStorageClient.getToken();
   }
 
   @override
   Future<void> deleteToken() async {
-    await _localStorageClient.removeUserData('token');
+    await _localStorageClient.removeToken();
   }
 
   @override
   Future<String?> checkSavedToken() async {
     try {
-      return await _localStorageClient.getUserData('token');
+      return await _localStorageClient.getToken();
     } catch (e) {
       log('Error checking saved token: $e');
       return null;

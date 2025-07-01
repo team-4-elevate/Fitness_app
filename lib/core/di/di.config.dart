@@ -162,19 +162,25 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i64.UpdatePasswordRemoteDsImpl(gh<_i277.ApiClient>()));
     gh.factory<_i362.FoodDetailsRemoteDataSource>(
         () => _i479.FoodDetailsApiRemoteDataSource(gh<_i277.ApiClient>()));
+    gh.factory<_i775.UpdatePasswordRepoInterface>(
+        () => _i541.UpdatePasswordRepoImpl(
+              gh<_i91.UpdatePasswordRemoteDsInterface>(),
+              gh<_i111.AuthLocalDataSourceContract>(),
+            ));
     gh.factory<_i758.ShowOnboardingUseCase>(
         () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()));
     gh.factory<_i792.OnboardingBloc>(
         () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()));
     gh.factory<_i139.ExerciseRemoteDsInterface>(
         () => _i649.ExerciseRemoteDsImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i942.UpdatePasswordUseCase>(() =>
+        _i942.UpdatePasswordUseCase(gh<_i775.UpdatePasswordRepoInterface>()));
     gh.factory<_i352.HomeRemoteDataSource>(
         () => _i395.HomeRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
         () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()));
-    gh.factory<_i775.UpdatePasswordRepoInterface>(() =>
-        _i541.UpdatePasswordRepoImpl(
-            gh<_i91.UpdatePasswordRemoteDsInterface>()));
+    gh.factory<_i304.UpdatePasswordBloc>(
+        () => _i304.UpdatePasswordBloc(gh<_i942.UpdatePasswordUseCase>()));
     gh.factory<_i988.FoodRecommendRepo>(() =>
         _i190.FoodRecommendRepoImpl(gh<_i483.FoodRecommendRemoteDataSource>()));
     gh.factory<_i520.GetMealsCategoriesUseCase>(
@@ -202,12 +208,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1029.AuthRemoteDataSourceContract>(),
           gh<_i304.AppSecureStorage>(),
         ));
-    gh.factory<_i942.UpdatePasswordUseCase>(() =>
-        _i942.UpdatePasswordUseCase(gh<_i775.UpdatePasswordRepoInterface>()));
     gh.factory<_i1029.GetDailyRecommendationsUseCase>(() =>
         _i1029.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()));
-    gh.factory<_i304.UpdatePasswordBloc>(
-        () => _i304.UpdatePasswordBloc(gh<_i942.UpdatePasswordUseCase>()));
     gh.factory<_i941.RegisterUseCase>(
         () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i202.HomeBloc>(() => _i202.HomeBloc(

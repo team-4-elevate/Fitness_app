@@ -20,7 +20,7 @@ import 'package:fitness_app/features/food_details/presentation/pages/food_detail
 import 'package:fitness_app/features/onboarding/presentation/pages/on_boarding_page.dart';
 import 'package:fitness_app/features/upcoming_workout_seeAll/presentation/pages/upcoming_workout_screen.dart';
 import 'package:fitness_app/features/update_password/presentation/bloc/update_password_bloc.dart';
-import 'package:fitness_app/features/update_password/presentation/view/update_password_page.dart';
+import 'package:fitness_app/features/update_password/presentation/view/page/update_password_page.dart';
 import 'package:flutter/material.dart'
     show Center, MaterialPageRoute, Route, RouteSettings, Scaffold, Text;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,9 +100,7 @@ class AppRoutesGenerator {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => getIt<UpdatePasswordBloc>(),
-            child: const UpdatePasswordPage(
-              email: 'omar0elsaid00@gmail.com',
-            ),
+            child: const UpdatePasswordPage(),
           ),
         );
       case AppRoutes.onboarding:

@@ -641,5 +641,13 @@
   "motivational_quote": "Motivational Quote",
   "@motivational_quote": {
     "description": "Title for the motivational quote section"
-  }
+  },
+  "enter_old_new_passwords": "Enter your old, new passwords",
+      "update_password": "Update Password",
+      "password_updated_successfully": "Password updated successfully",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password",
+      "please_confirm_password": "Please confirm your password",
+      "passwords_do_not_match": "Passwords do not match"
 }

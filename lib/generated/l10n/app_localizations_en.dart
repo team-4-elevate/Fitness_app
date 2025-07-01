@@ -18,8 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome to Fitness App';
 
   @override
-  String get networkError =>
-      'No internet connection. Please check your network and try again.';
+  String get networkError => 'No internet connection. Please check your network and try again.';
 
   @override
   String get serverError => 'Server error. Please try again later.';
@@ -52,8 +51,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connectionError => 'Connection error. Please check your network.';
 
   @override
-  String get socketException =>
-      'Connection problem. Please check your internet.';
+  String get socketException => 'Connection problem. Please check your internet.';
 
   @override
   String get formatException => 'Could not read the received data.';
@@ -81,22 +79,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onBoardingTitle1 => 'The Price Of Excellence\n is Discipline';
 
   @override
-  String get onBoardingDesc1 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingDesc1 => 'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get onBoardingTitle2 => 'Fitness Has Never Been So\n Much Fun';
 
   @override
-  String get onBoardingDesc2 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingDesc2 => 'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get onBoardingTitle3 => 'NO MORE EXCUSES\n Do It Now';
 
   @override
-  String get onBoardingDesc3 =>
-      'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
+  String get onBoardingDesc3 => 'Lorem ipsum dolor sit amet consectetur. Eu urna ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get login_heyThere => 'Hey There';
@@ -178,8 +173,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle2 => 'HOW OLD ARE YOU?';
 
   @override
-  String get registrationSubtitle2 =>
-      'This Helps Us Create Your Personalized Plan';
+  String get registrationSubtitle2 => 'This Helps Us Create Your Personalized Plan';
 
   @override
   String get registrationTitle3 => 'WHAT IS YOUR WEIGHT?';
@@ -248,8 +242,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get failed_to_parse_upcoming_workouts =>
-      'Failed to parse upcoming workouts:';
+  String get failed_to_parse_upcoming_workouts => 'Failed to parse upcoming workouts:';
 
   @override
   String get let_s_start_your_day => 'Let\'s Start Your Day';
@@ -297,8 +290,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle6 => 'HOW ACTIVE ARE YOU?';
 
   @override
-  String get registrationSubtitle6 =>
-      'Your Activity Level Helps Us Set Targets';
+  String get registrationSubtitle6 => 'Your Activity Level Helps Us Set Targets';
 
   @override
   String get year => 'Year';
@@ -382,8 +374,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get food_Recommendation_no_categories => 'No categories found';
 
   @override
-  String get food_food_Recommendation_fail_to_loadCategories =>
-      'Failed to load categories';
+  String get food_food_Recommendation_fail_to_loadCategories => 'Failed to load categories';
 
   @override
   String get retry => 'retry';
@@ -419,8 +410,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sendOtp => 'Send OTP';
 
   @override
-  String get didntReceiveVerificationCode =>
-      'Didn\'t Receive Verification Code?';
+  String get didntReceiveVerificationCode => 'Didn\'t Receive Verification Code?';
 
   @override
   String get resend => 'Resend';
@@ -441,4 +431,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get motivational_quote => 'Motivational Quote';
+
+  @override
+  String get enter_old_new_passwords => 'Enter your old, new passwords';
+
+  @override
+  String get update_password => 'Update Password';
+
+  @override
+  String get password_updated_successfully => 'Password updated successfully';
+
+  @override
+  String get current_password => 'Current Password';
+
+  @override
+  String get new_password => 'New Password';
+
+  @override
+  String get confirm_new_password => 'Confirm New Password';
+
+  @override
+  String get please_confirm_password => 'Please confirm your password';
+
+  @override
+  String get passwords_do_not_match => 'Passwords do not match';
 }
