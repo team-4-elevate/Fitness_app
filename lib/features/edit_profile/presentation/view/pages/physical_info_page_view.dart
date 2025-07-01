@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
+import 'package:fitness_app/features/edit_profile/domain/entities/physical_info_arguments.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/activity_level_page.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/goal_page.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/weight_page.dart';
@@ -19,6 +20,13 @@ class PhysicalInfoPageView extends StatefulWidget {
     required this.initialPage,
     required this.initialInfo,
   });
+  
+  factory PhysicalInfoPageView.fromArguments(PhysicalInfoArguments args) {
+    return PhysicalInfoPageView(
+      initialPage: args.infoType,
+      initialInfo: args.physicalInfo,
+    );
+  }
 
   @override
   State<PhysicalInfoPageView> createState() => _PhysicalInfoPageViewState();
@@ -93,7 +101,6 @@ class _PhysicalInfoPageViewState extends State<PhysicalInfoPageView> {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back button and title
               Padding(
                 padding: EdgeInsets.all(16.r),
                 child: Row(

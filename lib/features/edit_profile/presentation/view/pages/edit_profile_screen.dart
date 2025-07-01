@@ -7,8 +7,8 @@ import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/utils/app_validator.dart';
 import 'package:fitness_app/core/widgets/edit_profile_image.dart';
+import 'package:fitness_app/features/edit_profile/domain/entities/physical_info_arguments.dart';
 import 'package:fitness_app/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
-import 'package:fitness_app/features/edit_profile/presentation/view/pages/physical_info_page_view.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/editprofile_text.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/physical_info_text.dart';
 import 'package:flutter/material.dart';
@@ -320,28 +320,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ///your weight
                           PhysicalInfoText(
                             title: "Your Weight",
-                            onTap: () async {
-                              int currentWeight = 90;
-                              if (_weightController.text.isNotEmpty) {
-                                currentWeight =
-                                    int.tryParse(_weightController.text) ?? 90;
-                              }
-                              final args = {
-                                'infoType': InfoType.weight,
-                                'physicalInfo': currentWeight,
-                              };
-
-                              final result = await Navigator.pushNamed(
-                                context,
-                                AppRoutes.physicalinfo,
-                                arguments: args,
-                              );
-
-                              if (result != null && result is int) {
-                               
-                                  _weightController.text = result.toString();
-                              
-                              }
+                            onTap: () {
+                              PhysicalInfoArguments.forWeight(_weightController.text)
+                                .navigateAndUpdateProfile(context, _weightController);
                             },
                           ),
                           SizedBox(height: 8.r),
@@ -367,23 +348,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ///your goal
                           PhysicalInfoText(
                             title: "Your Goal",
-                            onTap: () async {
-                              final args = {
-                                'infoType': InfoType.goal,
-                                'physicalInfo': _goalController.text,
-                              };
-
-                              final result = await Navigator.pushNamed(
-                                context,
-                                AppRoutes.physicalinfo,
-                                arguments: args,
-                              );
-
-                              if (result != null && result is String) {
-                                setState(() {
-                                  _goalController.text = result;
-                                });
-                              }
+                            onTap: () {
+                              PhysicalInfoArguments.forGoal(_goalController.text)
+                                .navigateAndUpdateProfile(context, _goalController);
                             },
                           ),
                           SizedBox(height: 8.r),
@@ -408,23 +375,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ///your activity level
                           PhysicalInfoText(
                             title: "Your Activity Level",
-                            onTap: () async {
-                              final args = {
-                                'infoType': InfoType.activityLevel,
-                                'physicalInfo': _activityLevelController.text,
-                              };
-
-                              final result = await Navigator.pushNamed(
-                                context,
-                                AppRoutes.physicalinfo,
-                                arguments: args,
-                              );
-
-                              if (result != null && result is String) {
-                                setState(() {
-                                  _activityLevelController.text = result;
-                                });
-                              }
+                            onTap: () {
+                              PhysicalInfoArguments.forActivityLevel(_activityLevelController.text)
+                                .navigateAndUpdateProfile(context, _activityLevelController);
                             },
                           ),
                           SizedBox(height: 8.r),

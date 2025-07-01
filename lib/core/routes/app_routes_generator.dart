@@ -2,6 +2,7 @@
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/features/app_sections/AppSections.dart';
+import 'package:fitness_app/features/edit_profile/domain/entities/physical_info_arguments.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
@@ -149,7 +150,12 @@ class AppRoutesGenerator {
         InfoType selectedInfoType;
         dynamic selectedPhysicalInfo = 90;
 
-        if (settings.arguments is Map<String, dynamic>) {
+        if (settings.arguments is PhysicalInfoArguments) {
+          final args = settings.arguments as PhysicalInfoArguments;
+          return MaterialPageRoute(
+            builder: (_) => PhysicalInfoPageView.fromArguments(args),
+          );
+        } else if (settings.arguments is Map<String, dynamic>) {
           final args = settings.arguments as Map<String, dynamic>;
           selectedInfoType = args['infoType'] as InfoType? ?? InfoType.weight;
 
