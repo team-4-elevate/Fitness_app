@@ -321,8 +321,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           PhysicalInfoText(
                             title: "Your Weight",
                             onTap: () {
-                              PhysicalInfoArguments.forWeight(_weightController.text)
-                                .navigateAndUpdateProfile(context, _weightController);
+                              PhysicalInfoArguments.forWeight(
+                                      _weightController.text)
+                                  .navigateAndUpdateProfile(
+                                      context, _weightController);
                             },
                           ),
                           SizedBox(height: 8.r),
@@ -349,8 +351,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           PhysicalInfoText(
                             title: "Your Goal",
                             onTap: () {
-                              PhysicalInfoArguments.forGoal(_goalController.text)
-                                .navigateAndUpdateProfile(context, _goalController);
+                              PhysicalInfoArguments.forGoal(
+                                      _goalController.text)
+                                  .navigateAndUpdateProfile(
+                                      context, _goalController);
                             },
                           ),
                           SizedBox(height: 8.r),
@@ -376,8 +380,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           PhysicalInfoText(
                             title: "Your Activity Level",
                             onTap: () {
-                              PhysicalInfoArguments.forActivityLevel(_activityLevelController.text)
-                                .navigateAndUpdateProfile(context, _activityLevelController);
+                              PhysicalInfoArguments.forActivityLevel(
+                                      _activityLevelController.text)
+                                  .navigateAndUpdateProfile(
+                                      context, _activityLevelController);
                             },
                           ),
                           SizedBox(height: 8.r),

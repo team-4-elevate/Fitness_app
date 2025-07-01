@@ -20,7 +20,7 @@ class PhysicalInfoPageView extends StatefulWidget {
     required this.initialPage,
     required this.initialInfo,
   });
-  
+
   factory PhysicalInfoPageView.fromArguments(PhysicalInfoArguments args) {
     return PhysicalInfoPageView(
       initialPage: args.infoType,
@@ -122,7 +122,6 @@ class _PhysicalInfoPageViewState extends State<PhysicalInfoPageView> {
                   ],
                 ),
               ),
-
               Expanded(
                 child: PageView(
                   controller: _pageController,
