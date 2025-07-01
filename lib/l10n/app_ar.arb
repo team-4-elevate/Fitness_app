@@ -612,5 +612,12 @@
   "motivational_quote": "اقتباس تحفيزي",
   "@motivational_quote": {
     "description": "تسمية قسم الاقتباسات التحفيزية"
-  }
+  },"enter_old_new_passwords": "أدخل كلمات المرور القديمة والجديدة",
+        "update_password": "تحديث كلمة المرور",
+        "password_updated_successfully": "تم تحديث كلمة المرور بنجاح",
+        "current_password": "كلمة المرور الحالية",
+        "new_password": "كلمة المرور الجديدة",
+        "confirm_new_password": "تأكيد كلمة المرور الجديدة",
+        "please_confirm_password": "يرجى تأكيد كلمة المرور",
+        "passwords_do_not_match": "كلمات المرور غير متطابقة"
 }
