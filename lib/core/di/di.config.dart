@@ -48,6 +48,8 @@ import '../../features/edit_profile/domain/usecases/edit_profile_data_usecase.da
     as _i29;
 import '../../features/edit_profile/domain/usecases/get_profile_data_usecase.dart'
     as _i742;
+import '../../features/edit_profile/domain/usecases/upload_profile_image_usecase.dart'
+    as _i774;
 import '../../features/edit_profile/presentation/bloc/edit_profile_bloc.dart'
     as _i84;
 import '../../features/exercise/data/data_sources/remote/exercise_remote_ds_impl.dart'
@@ -182,6 +184,8 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i624.EditProfileRemoteDataSourceInterface>()));
     gh.factory<_i988.FoodRecommendRepo>(() =>
         _i190.FoodRecommendRepoImpl(gh<_i483.FoodRecommendRemoteDataSource>()));
+    gh.lazySingleton<_i774.UploadProfileImageUseCase>(
+        () => _i774.UploadProfileImageUseCase(gh<_i553.Repo>()));
     gh.factory<_i520.GetMealsCategoriesUseCase>(
         () => _i520.GetMealsCategoriesUseCase(gh<_i988.FoodRecommendRepo>()));
     gh.factory<_i420.GetMealsOnCategoryUseCase>(
@@ -215,6 +219,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i742.GetProfileDataUseCase(gh<_i553.Repo>()));
     gh.factory<_i941.RegisterUseCase>(
         () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()));
+    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
+          gh<_i742.GetProfileDataUseCase>(),
+          gh<_i29.EditProfileDataUseCase>(),
+          gh<_i774.UploadProfileImageUseCase>(),
+        ));
     gh.factory<_i202.HomeBloc>(() => _i202.HomeBloc(
           gh<_i1029.GetDailyRecommendationsUseCase>(),
           gh<_i588.GetFoodRecommendations>(),
@@ -227,10 +236,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i535.FoodDetailsCubit(gh<_i668.GetFoodDetailsUseCase>()));
     gh.factory<_i1034.RegisterBloc>(
         () => _i1034.RegisterBloc(gh<_i941.RegisterUseCase>()));
-    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
-          gh<_i742.GetProfileDataUseCase>(),
-          gh<_i29.EditProfileDataUseCase>(),
-        ));
     gh.factory<_i182.GetExercisesUseCase>(
         () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()));
     gh.factory<_i233.GetLevelsUseCase>(

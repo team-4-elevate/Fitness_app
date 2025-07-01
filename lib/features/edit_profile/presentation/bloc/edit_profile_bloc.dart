@@ -1,10 +1,12 @@
 // features/edit_profile/presentation/bloc/edit_profile_bloc.dart
 import 'dart:async';
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
 import 'package:fitness_app/features/edit_profile/domain/usecases/edit_profile_data_usecase.dart';
 import 'package:fitness_app/features/edit_profile/domain/usecases/get_profile_data_usecase.dart';
+import 'package:fitness_app/features/edit_profile/domain/usecases/upload_profile_image_usecase.dart';
 import 'package:injectable/injectable.dart';
 
 part 'edit_profile_event.dart';
@@ -14,12 +16,14 @@ part 'edit_profile_state.dart';
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   final GetProfileDataUseCase _getProfileDataUseCase;
   final EditProfileDataUseCase _editProfileDataUseCase;
+  final UploadProfileImageUseCase _uploadProfileImageUseCase;
 
   Timer? _autoSaveDebouncer;
 
   EditProfileBloc(
     this._getProfileDataUseCase,
     this._editProfileDataUseCase,
+    this._uploadProfileImageUseCase,
   ) : super(const EditProfileState()) {
     _mapEvents();
   }
@@ -146,8 +150,43 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-  void _mapEvents() {
+
+  Future<void> _onUploadProfileImage(
+      UploadProfileImageEvent event, Emitter<EditProfileState> emit) async {
+    emit(state.copyWith(
+      uploadImageStatus: Status.loading,
+      errorMessage: '',
+    ));
+
+    try {
+      final result = await _uploadProfileImageUseCase(event.photo);
+
+      result.when(
+        success: (data) {
+          emit(state.copyWith(
+            uploadImageStatus: Status.success,
+            uploadedImageData: data,
+          ));
+          
+          add(const FetchProfileDataEvent());
+        },
+        failure: (error) => emit(state.copyWith(
+          uploadImageStatus: Status.error,
+          errorMessage: error.toString(),
+        )),
+      );
+    } catch (e) {
+      emit(state.copyWith(
+        uploadImageStatus: Status.error,
+        errorMessage: e.toString(),
+      ));
+    }
+  }
+
+    void _mapEvents() {
     on<FetchProfileDataEvent>(_onFetchProfileData);
     on<EditProfileDataEvent>(_onEditProfileData);
+    on<UploadProfileImageEvent>(_onUploadProfileImage);
   }
+  
 }

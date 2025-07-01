@@ -1,4 +1,6 @@
+// features/edit_profile/presentation/bloc/edit_profile_event.dart
 part of 'edit_profile_bloc.dart';
+
 
 sealed class EditProfileEvent extends Equatable {
   const EditProfileEvent();
@@ -32,3 +34,13 @@ class EditProfileDataEvent extends EditProfileEvent {
   List<Object?> get props =>
       [firstName, lastName, email, weight, goal, activityLevel];
 }
+
+class UploadProfileImageEvent extends EditProfileEvent {
+  final File photo;
+
+  const UploadProfileImageEvent({required this.photo});
+
+  @override
+  List<Object> get props => [photo];
+}
+

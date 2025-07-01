@@ -1,13 +1,14 @@
 // features/edit_profile/presentation/view/pages/edit_profile_screen.dart
+import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/utils/app_validator.dart';
+import 'package:fitness_app/core/widgets/edit_profile_image.dart';
 import 'package:fitness_app/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/pages/physical_info_page_view.dart';
-import 'package:fitness_app/features/edit_profile/presentation/view/widgets/editprofile_image.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/editprofile_text.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/widgets/physical_info_text.dart';
 import 'package:flutter/material.dart';
@@ -140,10 +141,39 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       body: BlocConsumer<EditProfileBloc, EditProfileState>(
         listenWhen: (previous, current) =>
             previous.updateProfileStatus != current.updateProfileStatus ||
-            previous.fetchProfileStatus != current.fetchProfileStatus,
+            previous.fetchProfileStatus != current.fetchProfileStatus ||
+            previous.uploadImageStatus != current.uploadImageStatus,
         listener: (context, state) {
+          final previousState = context.read<EditProfileBloc>().state;
           if (state.fetchProfileStatus == Status.success) {
             _updateFormFields(state);
+          }
+          
+          if (state.uploadImageStatus == Status.loading) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Uploading profile image...'),
+                duration: Duration(seconds: 1),
+              ),
+            );
+          } else if (state.uploadImageStatus == Status.success && 
+                    previousState.uploadImageStatus != Status.success) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Profile image updated successfully'),
+              ),
+            );
+          } else if (state.uploadImageStatus == Status.error && 
+                    previousState.uploadImageStatus != Status.error) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Error updating profile image: ${state.errorMessage}'),
+                backgroundColor: Colors.red,
+              ),
+            );
           }
           if (state.updateProfileStatus == Status.success) {
             setState(() {
@@ -193,8 +223,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           const SizedBox(height: 20),
 
                           //------------------------------------------- image
-                          const EditprofileImage(
+                          EditprofileImage(
                             isEditButton: true,
+                            img: state.profileData?.user?.photo ?? '',
+                            onImageSelected: (File selectedImage) {
+                              print('Image selected: ${selectedImage.path}');
+                              // Upload the image using the bloc
+                              context.read<EditProfileBloc>().add(
+                                    UploadProfileImageEvent(photo: selectedImage),
+                                  );
+                            },
                           ),
                           const SizedBox(height: 15),
 
