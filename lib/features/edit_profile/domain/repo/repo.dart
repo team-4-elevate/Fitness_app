@@ -14,6 +14,6 @@ abstract interface class Repo {
     String? goal,
     String? activityLevel,
   });
-  
+
   Future<ApiResult<UploadImageResponse>> uploadProfileImage(File imageFile);
 }

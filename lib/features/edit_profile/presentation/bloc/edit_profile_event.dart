@@ -1,7 +1,6 @@
 // features/edit_profile/presentation/bloc/edit_profile_event.dart
 part of 'edit_profile_bloc.dart';
 
-
 sealed class EditProfileEvent extends Equatable {
   const EditProfileEvent();
 }
@@ -43,4 +42,3 @@ class UploadProfileImageEvent extends EditProfileEvent {
   @override
   List<Object> get props => [photo];
 }
-
