@@ -39,15 +39,14 @@ class _ProfileCustomRowState extends State<ProfileCustomRow> {
     return Column(
       children: [
         GestureDetector(
-          onTap:
-              widget.isToggleSwitch
-                  ? () {
-                    setState(() {
-                      _isToggled = !_isToggled;
-                    });
-                    widget.onToggleChanged?.call(_isToggled);
-                  }
-                  : () => widget.onTap?.call(),
+          onTap: widget.isToggleSwitch
+              ? () {
+                  setState(() {
+                    _isToggled = !_isToggled;
+                  });
+                  widget.onToggleChanged?.call(_isToggled);
+                }
+              : () => widget.onTap?.call(),
           behavior: HitTestBehavior.opaque,
           child: Row(
             children: [
@@ -63,20 +62,20 @@ class _ProfileCustomRowState extends State<ProfileCustomRow> {
               ),
               widget.isToggleSwitch
                   ? IgnorePointer(
-                    child: Switch(
-                      value: _isToggled,
-                      onChanged: null,
-                      activeColor: AppColors.primaryOrange,
-                      activeTrackColor: AppColors.white,
-                      inactiveThumbColor: AppColors.primaryOrange,
-                      inactiveTrackColor: Colors.grey.withOpacity(0.3),
-                    ),
-                  )
+                      child: Switch(
+                        value: _isToggled,
+                        onChanged: null,
+                        activeColor: AppColors.primaryOrange,
+                        activeTrackColor: AppColors.white,
+                        inactiveThumbColor: AppColors.primaryOrange,
+                        inactiveTrackColor: Colors.grey.withOpacity(0.3),
+                      ),
+                    )
                   : Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: AppColors.primaryOrange,
-                    size: 25.r,
-                  ),
+                      Icons.arrow_forward_ios_rounded,
+                      color: AppColors.primaryOrange,
+                      size: 25.r,
+                    ),
             ],
           ),
         ).paddingSymmetric(vertical: 8.r),

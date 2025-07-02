@@ -79,7 +79,7 @@
 //     when(mockLocalizationManager.isEnglish).thenReturn(true);
 
 //     return MaterialApp(
-//       key: UniqueKey(), 
+//       key: UniqueKey(),
 //       home: SingleChildScrollView(
 //         child: MultiProvider(
 //           providers: [

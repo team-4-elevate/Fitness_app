@@ -178,7 +178,6 @@ void main() {
       );
     });
     group('Complex Scenarios', () {
-
       blocTest<ProfileBloc, ProfileState>(
         'should update navigation state when called multiple times',
         build: () => profileBloc,
@@ -225,7 +224,6 @@ void main() {
         expect(updatedState.languageChangedState, const SuccessState());
         expect(updatedState.navigationState, isA<ToEditProfile>());
       });
-
     });
 
     group('Error Handling', () {

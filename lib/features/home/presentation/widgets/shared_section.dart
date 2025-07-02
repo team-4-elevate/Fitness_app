@@ -29,7 +29,7 @@ class SharedSection extends StatefulWidget {
   final List<String>? upcomingWorkoutsTabs;
   final Function(int)? onUpcomingWorkoutsSelected;
 
- const SharedSection({
+  const SharedSection({
     super.key,
     required this.sectionTitle,
     this.showSeeAll = true,

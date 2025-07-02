@@ -35,11 +35,12 @@ class ProfileView extends StatelessWidget {
           case ToEditProfile():
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => Scaffold(
-                body: Center(
-                  child: Text('edit profile page content goes here'),
-                ),
-              )),
+              MaterialPageRoute(
+                  builder: (_) => Scaffold(
+                        body: Center(
+                          child: Text('edit profile page content goes here'),
+                        ),
+                      )),
             );
             break;
           case ToUpdatePassword():
