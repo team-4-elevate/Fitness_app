@@ -141,9 +141,12 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+
+
   - sqflite_darwin (0.0.4):
     - Flutter
     - FlutterMacOS
+
 
 DEPENDENCIES:
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
@@ -155,7 +158,10 @@ DEPENDENCIES:
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+
+
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
+
 
 SPEC REPOS:
   trunk:
@@ -194,8 +200,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+
+
   sqflite_darwin:
     :path: ".symlinks/plugins/sqflite_darwin/darwin"
+
 
 SPEC CHECKSUMS:
   connectivity_plus: 2a701ffec2c0ae28a48cf7540e279787e77c447d
@@ -212,7 +221,11 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfigInterop: 7b74ceaa54e28863ed17fa39da8951692725eced
   FirebaseSessions: eaa8ec037e7793769defe4201c20bd4d976f9677
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_native_splash: f71420956eb811e6d310720fee915f1d42852e7a
+
+  flutter_native_splash: df59bb2e1421aa0282cb2e95618af4dcb0c56c29
+
+
+
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
   GoogleAppMeasurement: 0dfca1a4b534d123de3945e28f77869d10d0d600
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
@@ -222,8 +235,13 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+
+
+
+
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
 
 PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
+
 
 COCOAPODS: 1.16.2

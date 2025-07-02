@@ -6,6 +6,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fitness_app/core/app_bloc_observer.dart';
 import 'package:fitness_app/core/app_local_storage/app_local_storage.dart';
 import 'package:fitness_app/core/di/di.dart';
+import 'package:fitness_app/core/hive/hive_config.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_theme.dart';
@@ -24,13 +25,20 @@ bool isShowOnboarding = false;
 bool shouldAutoLogin = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+
+ 
+
   await configureDependencies();
   await Future.wait([
     _setAutoLogin(),
     ApiLocalizationService().init(),
+   getIt<HiveService>().init();
+    
     LocalizationManager().initialize(),
     _configureFirebase(),
   ]);
+
 
   Bloc.observer = AppBlocObserver();
   runApp(const MyApp());
@@ -63,7 +71,12 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
+
+
+
+
               initialRoute: _setInitialRoute(),
+
             ),
           );
         },

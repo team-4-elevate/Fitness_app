@@ -5,6 +5,9 @@ class AppKeys {
   static const String userData = 'userData';
   static const String showOnboarding = 'showOnboarding';
 
+  static const String conversationsKey = 'conversations';
+
+
   //-----------------------------editprofile
   static const String firstName = 'firstName';
   static const String lastName = 'lastName';
@@ -12,4 +15,5 @@ class AppKeys {
   static const String weight = 'weight';
   static const String goal = 'goal';
   static const String activityLevel = 'activityLevel';
+
 }
