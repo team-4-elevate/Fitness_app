@@ -1,4 +1,3 @@
-// generated/l10n/app_localizations_ar.dart
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
@@ -19,8 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحباً بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError =>
-      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.';
@@ -81,22 +79,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onBoardingTitle1 => 'ثمن التميز\nهو الانضباط';
 
   @override
-  String get onBoardingDesc1 =>
-      'ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك';
+  String get onBoardingDesc1 => 'ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك';
 
   @override
   String get onBoardingTitle2 => 'اللياقة البدنية لم تكن\nممتعة هكذا من قبل';
 
   @override
-  String get onBoardingDesc2 =>
-      'اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية';
+  String get onBoardingDesc2 => 'اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية';
 
   @override
   String get onBoardingTitle3 => 'لا مزيد من الأعذار\nافعلها الآن';
 
   @override
-  String get onBoardingDesc3 =>
-      'حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك';
+  String get onBoardingDesc3 => 'حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك';
 
   @override
   String get login_heyThere => 'أهلاً بك';
@@ -228,7 +223,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String home_error_loading_upcoming_workouts(String error) {
-    return 'Error loading upcoming workouts: $error';
+    return 'خطأ في تحميل التمارين القادمة: $error';
   }
 
   @override
@@ -238,17 +233,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String home_error_loading_food_recommendations(String error) {
-    return 'Error loading food recommendations: $error';
+    return 'خطأ في تحميل توصيات الطعام: $error';
   }
 
   @override
   String home_error_loading_daily_recommendations(String error) {
-    return 'Error loading daily recommendations: $error';
+    return 'خطأ في تحميل التوصيات اليومية: $error';
   }
 
   @override
-  String get failed_to_parse_upcoming_workouts =>
-      'فشل في تحليل التمارين القادمة: ';
+  String get failed_to_parse_upcoming_workouts => 'فشل في تحليل التمارين القادمة: ';
 
   @override
   String get let_s_start_your_day => 'لنبدأ يومك';
@@ -380,8 +374,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get food_Recommendation_no_categories => 'لا توجد فئات';
 
   @override
-  String get food_food_Recommendation_fail_to_loadCategories =>
-      'فشل في تحميل الفئات';
+  String get food_food_Recommendation_fail_to_loadCategories => 'فشل في تحميل الفئات';
 
   @override
   String get retry => 'إعادة المحاولة';
@@ -482,8 +475,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get what_is_your_activity_level => 'ما هو مستوى نشاطك؟';
 
   @override
-  String get activity_level_help_text =>
-      'هذا يساعدنا في حساب احتياجاتك اليومية من السعرات الحرارية';
+  String get activity_level_help_text => 'هذا يساعدنا في حساب احتياجاتك اليومية من السعرات الحرارية';
 
   @override
   String get done => 'تم';
@@ -508,4 +500,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get kg_unit => 'كجم';
+
+  @override
+  String get enter_old_new_passwords => 'أدخل كلمات المرور القديمة والجديدة';
+
+  @override
+  String get update_password => 'تحديث كلمة المرور';
+
+  @override
+  String get password_updated_successfully => 'تم تحديث كلمة المرور بنجاح';
+
+  @override
+  String get current_password => 'كلمة المرور الحالية';
+
+  @override
+  String get new_password => 'كلمة المرور الجديدة';
+
+  @override
+  String get confirm_new_password => 'تأكيد كلمة المرور الجديدة';
+
+  @override
+  String get please_confirm_password => 'يرجى تأكيد كلمة المرور';
+
+  @override
+  String get passwords_do_not_match => 'كلمات المرور غير متطابقة';
 }
