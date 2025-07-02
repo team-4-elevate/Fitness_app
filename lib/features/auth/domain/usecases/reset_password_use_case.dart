@@ -1,6 +1,6 @@
 import 'package:fitness_app/core/helper/api_result.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart';
-import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_response.dart';
+import 'package:fitness_app/core/app_data/common_response/reset_password_response.dart';
 import 'package:fitness_app/features/auth/domain/repo/auth_repo.dart';
 import 'package:injectable/injectable.dart';
 

@@ -1,3 +1,4 @@
+// generated/l10n/app_localizations_ar.dart
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';

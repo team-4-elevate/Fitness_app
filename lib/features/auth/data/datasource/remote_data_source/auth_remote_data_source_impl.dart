@@ -5,7 +5,7 @@ import 'package:fitness_app/features/auth/data/datasource/remote_data_source/aut
 import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_request.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_response.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart';
-import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_response.dart';
+import 'package:fitness_app/core/app_data/common_response/reset_password_response.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_request.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_response.dart';
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart';
@@ -70,7 +70,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
   }
 
   @override
-  Future<ApiResult<ResetpasswordResponse>> resetPassword(
+  Future<ApiResult<ResetPasswordResponse>> resetPassword(
     ResetpasswordRequest request,
   ) async {
     try {
@@ -80,7 +80,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSourceContract {
         requiresToken: false,
       );
 
-      return response.map((data) => ResetpasswordResponse.fromJson(data));
+      return response.map((data) => ResetPasswordResponse.fromJson(data));
     } catch (e) {
       return ApiFailure('Failed to reset password: $e');
     }

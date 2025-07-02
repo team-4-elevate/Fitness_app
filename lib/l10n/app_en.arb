@@ -642,96 +642,12 @@
   "@motivational_quote": {
     "description": "Title for the motivational quote section"
   },
-  "upload_image": "Uploading image...",
-  "@upload_image": {
-    "description": "Message shown when uploading a profile image"
-  },
-  "loading": "Loading...",
-  "@loading": {
-    "description": "Generic loading text"
-  },
-  "first_name": "First Name",
-  "@first_name": {
-    "description": "Label for first name field in edit profile"
-  },
-  "second_name": "Second Name",
-  "@second_name": {
-    "description": "Label for second/last name field in edit profile"
-  },
-  "email_hint": "user@mail.co",
-  "@email_hint": {
-    "description": "Hint for email field"
-  },
-  "your_weight": "Your Weight",
-  "@your_weight": {
-    "description": "Label for weight field in edit profile"
-  },
-  "weight_hint": "70",
-  "@weight_hint": {
-    "description": "Hint for weight field in edit profile"
-  },
-  "your_goal": "Your Goal",
-  "@your_goal": {
-    "description": "Label for goal field in edit profile"
-  },
-  "gain_weight": "Gain weight",
-  "@gain_weight": {
-    "description": "Goal option to gain weight"
-  },
-  "your_activity_level": "Your Activity Level",
-  "@your_activity_level": {
-    "description": "Label for activity level field in edit profile"
-  },
-  "edit_weight": "Edit Weight",
-  "@edit_weight": {
-    "description": "Title for edit weight page"
-  },
-  "edit_goal": "Edit Goal",
-  "@edit_goal": {
-    "description": "Title for edit goal page"
-  },
-  "edit_activity_level": "Edit Activity Level",
-  "@edit_activity_level": {
-    "description": "Title for edit activity level page"
-  },
-  "what_is_your_activity_level": "WHAT IS YOUR ACTIVITY LEVEL?",
-  "@what_is_your_activity_level": {
-    "description": "Title for activity level selection"
-  },
-  "activity_level_help_text": "This helps us calculate your daily calorie needs",
-  "@activity_level_help_text": {
-    "description": "Help text for activity level selection"
-  },
-  "done": "Done",
-  "@done": {
-    "description": "Button text for completing an action"
-  },
-  "edit_profile": "Edit Profile",
-  "@edit_profile": {
-    "description": "Title for the edit profile screen"
-  },
-  "what_is_your_goal": "WHAT IS YOUR GOAL?",
-  "@what_is_your_goal": {
-    "description": "Title for goal selection"
-  },
-  "goal_help_text": "This helps us create your personalized plan",
-  "@goal_help_text": {
-    "description": "Help text for goal selection"
-  },
-  "tap_to_edit": "tap to Edit",
-  "@tap_to_edit": {
-    "description": "Text indicating a field can be edited by tapping"
-  },
-  "what_is_your_weight": "WHAT IS YOUR WEIGHT?",
-  "@what_is_your_weight": {
-    "description": "Title for weight selection"
-  },
-  "weight_help_text": "This helps us create your personalized plan",
-  "@weight_help_text": {
-    "description": "Help text for weight selection"
-  },
-  "kg_unit": "Kg",
-  "@kg_unit": {
-    "description": "Kilogram unit abbreviation"
-  }
+  "enter_old_new_passwords": "Enter your old, new passwords",
+      "update_password": "Update Password",
+      "password_updated_successfully": "Password updated successfully",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password",
+      "please_confirm_password": "Please confirm your password",
+      "passwords_do_not_match": "Passwords do not match"
 }

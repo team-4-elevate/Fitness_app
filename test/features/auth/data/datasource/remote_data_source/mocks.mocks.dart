@@ -14,7 +14,7 @@ import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpasswo
     as _i10;
 import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart'
     as _i13;
-import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_response.dart'
+import 'package:fitness_app/core/app_data/common_response/reset_password_response.dart'
     as _i12;
 import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_request.dart'
     as _i11;
@@ -115,7 +115,7 @@ class MockAuthRemoteDataSourceContract extends _i1.Mock
       ) as _i3.Future<void>);
 
   @override
-  _i3.Future<_i4.ApiResult<_i12.ResetpasswordResponse>> resetPassword(
+  _i3.Future<_i4.ApiResult<_i12.ResetPasswordResponse>> resetPassword(
           _i13.ResetpasswordRequest? request) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -123,15 +123,15 @@ class MockAuthRemoteDataSourceContract extends _i1.Mock
           [request],
         ),
         returnValue:
-            _i3.Future<_i4.ApiResult<_i12.ResetpasswordResponse>>.value(
-                _i7.dummyValue<_i4.ApiResult<_i12.ResetpasswordResponse>>(
+            _i3.Future<_i4.ApiResult<_i12.ResetPasswordResponse>>.value(
+                _i7.dummyValue<_i4.ApiResult<_i12.ResetPasswordResponse>>(
           this,
           Invocation.method(
             #resetPassword,
             [request],
           ),
         )),
-      ) as _i3.Future<_i4.ApiResult<_i12.ResetpasswordResponse>>);
+      ) as _i3.Future<_i4.ApiResult<_i12.ResetPasswordResponse>>);
 }
 
 /// A class which mocks [AppSecureStorage].

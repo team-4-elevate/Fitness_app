@@ -1,4 +1,6 @@
 // core/api/dio_client.dart
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:fitness_app/core/Constant/api_constants.dart';
 import 'package:fitness_app/core/api/api_client.dart';
@@ -23,6 +25,16 @@ class DioApiClient implements ApiClient {
             responseType: ResponseType.json,
           ),
         ) {
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        log('kkkkk');
+        log(options.headers.toString());
+        log(options.path);
+        log(options.queryParameters.toString());
+        log(options.data.toString());
+        return handler.next(options);
+      },
+    ));
     _dio.interceptors.add(PrettyDioLogger());
   }
 
@@ -171,7 +183,9 @@ class DioApiClient implements ApiClient {
     try {
       final token = await localStorage.getToken();
       if (token != null) {
+        log('1- null ${token}');
         _dio.options.headers['Authorization'] = 'Bearer $token';
+        log(_dio.options.headers.toString());
       } else {
         throw ServerFailure(errorMessage: 'User token is null');
       }

@@ -9,4 +9,5 @@ class AppConstants {
   static const String foodBgImage = 'assets/images/foodBgImage.png';
   static const String customBackIcon = 'assets/icons/Back.svg';
   static const String backIconSVG = 'assets/icons/back-icon.svg';
+  static const String nullTokenMsg = 'null api token';
 }

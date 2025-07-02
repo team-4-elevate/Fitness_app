@@ -11,6 +11,7 @@ class AppRoutes {
   static const String forgetPassOtpPage = '/otpPage';
   static const String createNewPasswordPage = '/createNewPass';
   static const String resetPasswordPage = '/resetPasswordPage';
+  static const String updatePasswordPage = '/updatePasswordPage';
   static const String profilePage = '/profilePage';
   static const String homeScreen = '/homeScreen';
   static const String exercisePage = '/exercisePage';
