@@ -1,11 +1,12 @@
-// features/home/widgets/category_section.dart
+// features/home/presentation/widgets/category_section.dart
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 
 class CategorySection extends StatelessWidget {
   final List<Map<String, dynamic>> categories;
+  void Function()? onTap;
 
-  const CategorySection({super.key, required this.categories});
+   CategorySection({super.key, required this.categories, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -50,35 +51,38 @@ class CategorySection extends StatelessWidget {
                   final String name = categories[index]['name'];
                   final String iconPath = categories[index]['icon'];
 
-                  return SizedBox(
-                    width: 70.r,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Spacer(flex: 1),
-                        //------------------------------------------ Category icon
-                        Expanded(
-                          flex: 10,
-                          child: Image.asset(iconPath, fit: BoxFit.contain),
-                        ),
-
-                        const Spacer(flex: 1),
-
-                        //------------------------------------------ Category name
-                        Flexible(
-                          flex: 3,
-                          child: Text(
-                            name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: Colors.white),
-                            textAlign: TextAlign.center,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
+                  return GestureDetector(
+                    onTap: onTap,
+                    child: SizedBox(
+                      width: 70.r,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Spacer(flex: 1),
+                          //------------------------------------------ Category icon
+                          Expanded(
+                            flex: 10,
+                            child: Image.asset(iconPath, fit: BoxFit.contain),
                           ),
-                        ),
-                      ],
+                    
+                          const Spacer(flex: 1),
+                    
+                          //------------------------------------------ Category name
+                          Flexible(
+                            flex: 3,
+                            child: Text(
+                              name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(color: Colors.white),
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

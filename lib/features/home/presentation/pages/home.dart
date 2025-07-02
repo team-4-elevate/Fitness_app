@@ -85,11 +85,6 @@ class _HomeState extends State<Home> {
     },
   ];
 
-  Future<void> _loadUserData() async {
-    final appSecureStorage = GetIt.instance<AppSecureStorage>();
-    final firstName = await appSecureStorage.getUserData('firstName');
-    final photoUrl = await appSecureStorage.getUserData('photo');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +125,7 @@ class _HomeState extends State<Home> {
                         //------------------------------------ Categories
                         CategorySection(
                           categories: _getLocalizedCategories(context),
+                          onTap: () => NavigationService().navigateToTab(1),
                         ),
 
                         SizedBox(height: 16.r),
