@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:fitness_app/core/app_bloc_observer.dart';
+import 'package:fitness_app/core/app_data/app_bloc.dart';
+import 'package:fitness_app/core/app_data/app_events.dart';
 import 'package:fitness_app/core/app_local_storage/app_local_storage.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes_generator.dart';
@@ -28,12 +30,14 @@ void main() async {
   await Future.wait([
     _setAutoLogin(),
     ApiLocalizationService().init(),
-    LocalizationManager().initialize(),
+    getIt<LocalizationManager>().initialize(),
     _configureFirebase(),
   ]);
 
   Bloc.observer = AppBlocObserver();
-  runApp(const MyApp());
+  runApp(BlocProvider(
+      create: (context) => getIt<AppBloc>()..add(GetCachedUserDataEvent()),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => LocalizationManager(),
+      create: (_) => getIt<LocalizationManager>(),
       child: Consumer<LocalizationManager>(
         builder: (context, localizationManager, child) {
           return ResponsiveWrapper(

@@ -649,5 +649,28 @@
       "new_password": "New Password",
       "confirm_new_password": "Confirm New Password",
       "please_confirm_password": "Please confirm your password",
-      "passwords_do_not_match": "Passwords do not match"
+      "passwords_do_not_match": "Passwords do not match",
+  "profile_title": "Profile",
+  "edit_profile": "Edit Profile",
+  "change_password": "Change Password",
+  "settings": "Settings",
+  "language": "Language",
+  "notification": "Notifications",
+  "privacy": "Privacy",
+  "help": "Help",
+  "about": "About",
+  "logout": "Logout",
+  "selectedLanguageValue": "Selected Language ({lang})",
+  "@selectedLanguageValue": {
+    "description": "User value of the Language",
+    "placeholders": {
+      "lang": {
+        "type": "String",
+        "description": "The value of the Language"
+      }
+    }
+  },
+  "logout_confirmation_title": "Logout Confirmation",
+  "logout_message_body": "Are you sure you want to logout from your account?",
+  "cancel": "Cancel"
 }

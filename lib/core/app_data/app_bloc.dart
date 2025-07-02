@@ -1,4 +1,5 @@
 // core/app_data/app_bloc.dart
+import 'package:fitness_app/core/Constant/app_keys.dart';
 import 'package:fitness_app/core/app_data/app_events.dart';
 import 'package:fitness_app/core/app_data/app_states.dart';
 import 'package:fitness_app/core/app_local_storage/app_local_storage.dart';
@@ -8,6 +9,7 @@ import 'package:fitness_app/features/auth/data/datasource/local_data_source/auth
 import 'package:fitness_app/features/auth/data/model/login_models/login_response/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'dart:convert';
 
 @lazySingleton
 class AppBloc extends Bloc<AppEvent, AppState> {
@@ -22,11 +24,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<CheckUserLoginStatusEvent>(_onCheckUserLoginStatus);
     on<UserLoggedInEvent>(_onUserLoggedIn);
     on<UserLoggedOutEvent>(_onUserLoggedOut);
-    on<SaveUserProfileEvent>(_onSaveUserProfile);
-    on<ClearProfileDataEvent>(_onClearProfileData);
-    on<GetAppLocaleEvent>(_onGetAppLocale);
-    on<ChangeAppLocaleEvent>(_onChangeAppLocale);
+    // on<SaveUserProfileEvent>(_onSaveUserProfile);
+    // on<ClearProfileDataEvent>(_onClearProfileData);
+    // on<GetAppLocaleEvent>(_onGetAppLocale);
+    // on<ChangeAppLocaleEvent>(_onChangeAppLocale);
     on<CheckOnboardingStatusEvent>(_onCheckOnboardingStatus);
+    on<CacheUserDataEvent>(_onCacheUserDataEvent);
+    on<GetCachedUserDataEvent>(_onGetCachedUserDataEvent);
   }
 
   User? get cachedUserProfileData => _cachedUserProfileData;
@@ -77,47 +81,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     emit(state.copyWith(isLoggedIn: false, hasProfileData: false));
   }
 
-  void _onSaveUserProfile(SaveUserProfileEvent event, Emitter<AppState> emit) {
-    _cachedUserProfileData = event.profileData;
-    _lastProfileFetchTime = DateTime.now();
-    emit(state.copyWith(hasProfileData: true));
-  }
-
-  void _onClearProfileData(
-    ClearProfileDataEvent event,
-    Emitter<AppState> emit,
-  ) {
-    _cachedUserProfileData = null;
-    _lastProfileFetchTime = null;
-    emit(state.copyWith(hasProfileData: false));
-  }
-
-  Future<void> _onGetAppLocale(
-    GetAppLocaleEvent event,
-    Emitter<AppState> emit,
-  ) async {
-    final locale = await _appSecureStorage.getLanguage() ?? 'en';
-    emit(state.copyWith(appLocale: locale));
-  }
-
-  Future<void> _onChangeAppLocale(
-    ChangeAppLocaleEvent event,
-    Emitter<AppState> emit,
-  ) async {
-    String newLocale;
-    if (event.locale != null) {
-      newLocale = event.locale!;
-    } else {
-      newLocale = state.appLocale == 'en' ? 'ar' : 'en';
-    }
-
-    await _appSecureStorage.setLanguage(newLocale);
-
-    if (newLocale != state.appLocale) {
-      emit(state.copyWith(appLocale: newLocale));
-    }
-  }
-
   Future<void> _onCheckOnboardingStatus(
     CheckOnboardingStatusEvent event,
     Emitter<AppState> emit,
@@ -125,5 +88,27 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     final appLocalStorage = getIt<AppLocalStorage>();
     final hasCompletedOnboarding = await appLocalStorage.isShowOnboarding();
     emit(state.copyWith(isShowOnboarding: hasCompletedOnboarding));
+  }
+
+  Future<void> _onCacheUserDataEvent(
+    CacheUserDataEvent event,
+    Emitter<AppState> emit,
+  ) async {
+    await _appSecureStorage.saveUserData(
+        AppKeys.userData, jsonEncode(event.userInfo.toJson()));
+    emit(state.copyWith(
+      cachedUserData: event.userInfo,
+    ));
+  }
+
+  Future<void> _onGetCachedUserDataEvent(
+    GetCachedUserDataEvent event,
+    Emitter<AppState> emit,
+  ) async {
+    final userData = await _appSecureStorage.getUserData(AppKeys.userData);
+    if (userData != null) {
+      final userInfo = User.fromJson(jsonDecode(userData));
+      emit(state.copyWith(cachedUserData: userInfo));
+    }
   }
 }
