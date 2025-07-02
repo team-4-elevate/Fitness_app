@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/core/Constant/app_keys.dart';
+import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
 import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
 import 'package:fitness_app/features/edit_profile/domain/entities/activity_level_constants.dart';
 import 'package:fitness_app/features/edit_profile/data/models/edit_profile/response/edit_profile_response.dart';
@@ -23,15 +24,19 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   final EditProfileDataUseCase _editProfileDataUseCase;
   final UploadProfileImageUseCase _uploadProfileImageUseCase;
 
+  final AppSecureStorage _securestorage;
+
   Timer? _autoSaveDebouncer;
 
   EditProfileBloc({
     required GetProfileDataUseCase getProfileDataUseCase,
     required EditProfileDataUseCase editProfileDataUseCase,
     required UploadProfileImageUseCase uploadProfileImageUseCase,
+    required AppSecureStorage securestorage,
   })  : _getProfileDataUseCase = getProfileDataUseCase,
         _editProfileDataUseCase = editProfileDataUseCase,
         _uploadProfileImageUseCase = uploadProfileImageUseCase,
+        _securestorage = securestorage,
         super(const EditProfileState()) {
     on<FetchProfileDataEvent>(_onFetchProfileData);
     on<UpdateProfileEvent>(_onUpdateProfile);
@@ -111,11 +116,18 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       final result = await _getProfileDataUseCase();
 
       result.when(
-        success: (data) {
+        success: (data) async {
           emit(state.copyWith(
             fetchProfileStatus: Status.success,
             profileData: data,
           ));
+          if (data.user != null) {
+            await _securestorage.saveUserData(
+                'firstName', data.user!.firstName ?? '');
+            if (data.user!.photo != null && data.user!.photo!.isNotEmpty) {
+              await _securestorage.saveUserData('photo', data.user!.photo!);
+            }
+          }
 
           add(const InitializeFormFieldsEvent());
         },
@@ -236,7 +248,21 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
           activityLevel: event.activityLevel ?? currentUser.activityLevel,
         );
 
-        result.when(success: (data) {
+        result.when(success: (data) async {
+          // Save user data to local storage when profile is updated
+          if (data.user != null) {
+            // If first name was updated, save it to local storage
+            if (event.fieldName == AppKeys.firstName ||
+                event.firstName != null) {
+              await _securestorage.saveUserData(
+                  'firstName', data.user!.firstName ?? '');
+            }
+            // If photo is available, save it too
+            if (data.user!.photo != null && data.user!.photo!.isNotEmpty) {
+              await _securestorage.saveUserData('photo', data.user!.photo!);
+            }
+          }
+
           emit(state.copyWith(
             updateProfileStatus: Status.success,
             errorMessage: '',
@@ -292,6 +318,8 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
             isErrorSnackbar: false,
           ));
 
+          // We need to fetch updated profile data to get the new photo URL
+          // The photo URL will be saved in the _onFetchProfileData method
           add(const FetchProfileDataEvent());
         },
         failure: (error) => emit(state.copyWith(

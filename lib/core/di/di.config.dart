@@ -1,4 +1,3 @@
-// core/di/di.config.dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -152,13 +151,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.singleton<_i668.AppNavigatorObserver>(
-        () => _i668.AppNavigatorObserver());
     gh.singleton<_i1052.AppNavigatorObserver>(
         () => _i1052.AppNavigatorObserver());
     gh.singleton<_i2.LocalizationManager>(() => _i2.LocalizationManager());
     gh.singleton<_i241.SharedPreferencesService>(
         () => _i241.SharedPreferencesService());
+    gh.singleton<_i668.AppNavigatorObserver>(
+        () => _i668.AppNavigatorObserver());
     gh.factory<_i849.AppLocalStorage>(
         () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()));
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
@@ -180,6 +179,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i479.FoodDetailsApiRemoteDataSource(gh<_i277.ApiClient>()));
     gh.factory<_i624.EditProfileRemoteDataSourceInterface>(
         () => _i506.EditProfileRemoteDataSourceImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i775.UpdatePasswordRepoInterface>(
+        () => _i541.UpdatePasswordRepoImpl(
+              gh<_i91.UpdatePasswordRemoteDsInterface>(),
+              gh<_i111.AuthLocalDataSourceContract>(),
+            ));
     gh.factory<_i758.ShowOnboardingUseCase>(
         () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()));
     gh.factory<_i792.OnboardingBloc>(
@@ -192,6 +196,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i395.HomeRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
         () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i304.UpdatePasswordBloc>(
+        () => _i304.UpdatePasswordBloc(gh<_i942.UpdatePasswordUseCase>()));
     gh.factory<_i260.EditProfileRepo>(() => _i245.EditProfileRepoImpl(
         remoteDataSource: gh<_i624.EditProfileRemoteDataSourceInterface>()));
     gh.factory<_i988.FoodRecommendRepo>(() =>
@@ -210,6 +216,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i742.GetProfileDataUseCase(gh<_i260.EditProfileRepo>()));
     gh.lazySingleton<_i774.UploadProfileImageUseCase>(
         () => _i774.UploadProfileImageUseCase(gh<_i260.EditProfileRepo>()));
+    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
+          getProfileDataUseCase: gh<_i742.GetProfileDataUseCase>(),
+          editProfileDataUseCase: gh<_i29.EditProfileDataUseCase>(),
+          uploadProfileImageUseCase: gh<_i774.UploadProfileImageUseCase>(),
+          securestorage: gh<_i304.AppSecureStorage>(),
+        ));
     gh.factory<_i208.GetMuscleGroupsUseCase>(
         () => _i208.GetMuscleGroupsUseCase(gh<_i207.HomeRepository>()));
     gh.factory<_i598.GetWorkoutsByMuscleGroupId>(
@@ -229,11 +241,6 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i1029.GetDailyRecommendationsUseCase>(() =>
         _i1029.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()));
-    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
-          getProfileDataUseCase: gh<_i742.GetProfileDataUseCase>(),
-          editProfileDataUseCase: gh<_i29.EditProfileDataUseCase>(),
-          uploadProfileImageUseCase: gh<_i774.UploadProfileImageUseCase>(),
-        ));
     gh.factory<_i941.RegisterUseCase>(
         () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i202.HomeBloc>(() => _i202.HomeBloc(
@@ -252,12 +259,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()));
     gh.factory<_i233.GetLevelsUseCase>(
         () => _i233.GetLevelsUseCase(gh<_i822.ExerciseRepoInterface>()));
+    gh.factory<_i18.ForgotPasswordUseCase>(
+        () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i37.LoginUseCase>(
         () => _i37.LoginUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i825.ResetPasswordUseCase>(
         () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()));
-    gh.factory<_i18.ForgotPasswordUseCase>(
-        () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i509.VerifyOtpUseCase>(
         () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()));
     gh.singleton<_i885.ForgetPasswordBloc>(() => _i885.ForgetPasswordBloc(

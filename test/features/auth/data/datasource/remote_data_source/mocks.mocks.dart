@@ -5,6 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
+import 'package:fitness_app/core/app_data/common_response/reset_password_response.dart'
+    as _i12;
 import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart'
     as _i14;
 import 'package:fitness_app/core/helper/api_result.dart' as _i4;
@@ -14,8 +16,6 @@ import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpasswo
     as _i10;
 import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart'
     as _i13;
-import 'package:fitness_app/core/app_data/common_response/reset_password_response.dart'
-    as _i12;
 import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_request.dart'
     as _i11;
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart'
