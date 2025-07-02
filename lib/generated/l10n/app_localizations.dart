@@ -889,6 +889,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Motivational Quote'**
   String get motivational_quote;
+
+  /// Message shown when uploading a profile image
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading image...'**
+  String get upload_image;
+
+  /// Generic loading text
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Label for first name field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get first_name;
+
+  /// Label for second/last name field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Second Name'**
+  String get second_name;
+
+  /// Hint for email field
+  ///
+  /// In en, this message translates to:
+  /// **'user@mail.co'**
+  String get email_hint;
+
+  /// Label for weight field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Weight'**
+  String get your_weight;
+
+  /// Hint for weight field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'70'**
+  String get weight_hint;
+
+  /// Label for goal field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Goal'**
+  String get your_goal;
+
+  /// Goal option to gain weight
+  ///
+  /// In en, this message translates to:
+  /// **'Gain weight'**
+  String get gain_weight;
+
+  /// Label for activity level field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Activity Level'**
+  String get your_activity_level;
+
+  /// Title for edit weight page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Weight'**
+  String get edit_weight;
+
+  /// Title for edit goal page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Goal'**
+  String get edit_goal;
+
+  /// Title for edit activity level page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Activity Level'**
+  String get edit_activity_level;
+
+  /// Title for activity level selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR ACTIVITY LEVEL?'**
+  String get what_is_your_activity_level;
+
+  /// Help text for activity level selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us calculate your daily calorie needs'**
+  String get activity_level_help_text;
+
+  /// Button text for completing an action
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// Title for the edit profile screen
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile;
+
+  /// Title for goal selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR GOAL?'**
+  String get what_is_your_goal;
+
+  /// Help text for goal selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get goal_help_text;
+
+  /// Text indicating a field can be edited by tapping
+  ///
+  /// In en, this message translates to:
+  /// **'tap to Edit'**
+  String get tap_to_edit;
+
+  /// Title for weight selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR WEIGHT?'**
+  String get what_is_your_weight;
+
+  /// Help text for weight selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get weight_help_text;
+
+  /// Kilogram unit abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Kg'**
+  String get kg_unit;
 }
 
 class _AppLocalizationsDelegate

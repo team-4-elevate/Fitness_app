@@ -441,4 +441,74 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get motivational_quote => 'Motivational Quote';
+
+  @override
+  String get upload_image => 'Uploading image...';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get first_name => 'First Name';
+
+  @override
+  String get second_name => 'Second Name';
+
+  @override
+  String get email_hint => 'user@mail.co';
+
+  @override
+  String get your_weight => 'Your Weight';
+
+  @override
+  String get weight_hint => '70';
+
+  @override
+  String get your_goal => 'Your Goal';
+
+  @override
+  String get gain_weight => 'Gain weight';
+
+  @override
+  String get your_activity_level => 'Your Activity Level';
+
+  @override
+  String get edit_weight => 'Edit Weight';
+
+  @override
+  String get edit_goal => 'Edit Goal';
+
+  @override
+  String get edit_activity_level => 'Edit Activity Level';
+
+  @override
+  String get what_is_your_activity_level => 'WHAT IS YOUR ACTIVITY LEVEL?';
+
+  @override
+  String get activity_level_help_text =>
+      'This helps us calculate your daily calorie needs';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get edit_profile => 'Edit Profile';
+
+  @override
+  String get what_is_your_goal => 'WHAT IS YOUR GOAL?';
+
+  @override
+  String get goal_help_text => 'This helps us create your personalized plan';
+
+  @override
+  String get tap_to_edit => 'tap to Edit';
+
+  @override
+  String get what_is_your_weight => 'WHAT IS YOUR WEIGHT?';
+
+  @override
+  String get weight_help_text => 'This helps us create your personalized plan';
+
+  @override
+  String get kg_unit => 'Kg';
 }
