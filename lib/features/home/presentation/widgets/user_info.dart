@@ -32,9 +32,9 @@ class _UserInfoState extends State<UserInfo> {
     try {
       final firstName = await _secureStorage.getUserData('firstName');
       final photo = await _secureStorage.getUserData('photo');
-      
+
       debugPrint('Loaded user data: firstName=$firstName, photo=$photo');
-      
+
       if (mounted) {
         setState(() {
           _userName = firstName;
@@ -81,8 +81,8 @@ class _UserInfoState extends State<UserInfo> {
             border: Border.all(color: Colors.white, width: 1),
             image: DecorationImage(
               image: _profileImageUrl != null && _profileImageUrl!.isNotEmpty
-                ? NetworkImage(_profileImageUrl!) as ImageProvider
-                : const AssetImage('assets/images/onboarding_vector_1.png'),
+                  ? NetworkImage(_profileImageUrl!) as ImageProvider
+                  : const AssetImage('assets/images/onboarding_vector_1.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -90,5 +90,4 @@ class _UserInfoState extends State<UserInfo> {
       ],
     );
   }
-  }
-
+}
