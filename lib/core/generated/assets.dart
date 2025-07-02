@@ -1,26 +1,31 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for fontsBalooThambi2Bold
   /// assets/fonts/BalooThambi2-Bold.ttf
-  static const String fontsBalooThambi2Bold = "assets/fonts/BalooThambi2-Bold.ttf";
+  static const String fontsBalooThambi2Bold =
+      "assets/fonts/BalooThambi2-Bold.ttf";
 
   /// Assets for fontsBalooThambi2ExtraBold
   /// assets/fonts/BalooThambi2-ExtraBold.ttf
-  static const String fontsBalooThambi2ExtraBold = "assets/fonts/BalooThambi2-ExtraBold.ttf";
+  static const String fontsBalooThambi2ExtraBold =
+      "assets/fonts/BalooThambi2-ExtraBold.ttf";
 
   /// Assets for fontsBalooThambi2Medium
   /// assets/fonts/BalooThambi2-Medium.ttf
-  static const String fontsBalooThambi2Medium = "assets/fonts/BalooThambi2-Medium.ttf";
+  static const String fontsBalooThambi2Medium =
+      "assets/fonts/BalooThambi2-Medium.ttf";
 
   /// Assets for fontsBalooThambi2Regular
   /// assets/fonts/BalooThambi2-Regular.ttf
-  static const String fontsBalooThambi2Regular = "assets/fonts/BalooThambi2-Regular.ttf";
+  static const String fontsBalooThambi2Regular =
+      "assets/fonts/BalooThambi2-Regular.ttf";
 
   /// Assets for fontsBalooThambi2SemiBold
   /// assets/fonts/BalooThambi2-SemiBold.ttf
-  static const String fontsBalooThambi2SemiBold = "assets/fonts/BalooThambi2-SemiBold.ttf";
+  static const String fontsBalooThambi2SemiBold =
+      "assets/fonts/BalooThambi2-SemiBold.ttf";
 
   /// Assets for iconsAppIcon
   /// assets/icons/app_icon.png
@@ -96,11 +101,13 @@ class Assets {
 
   /// Assets for imagesAppSuucessAnimation
   /// assets/images/app_suucess_animation.json
-  static const String imagesAppSuucessAnimation = "assets/images/app_suucess_animation.json";
+  static const String imagesAppSuucessAnimation =
+      "assets/images/app_suucess_animation.json";
 
   /// Assets for imagesAppfailAnimation
   /// assets/images/appfailAnimation.json
-  static const String imagesAppfailAnimation = "assets/images/appfailAnimation.json";
+  static const String imagesAppfailAnimation =
+      "assets/images/appfailAnimation.json";
 
   /// Assets for imagesAppleCircle
   /// assets/images/apple_circle.png
@@ -120,7 +127,8 @@ class Assets {
 
   /// Assets for imagesFacebookCircle
   /// assets/images/facebook_circle.png
-  static const String imagesFacebookCircle = "assets/images/facebook_circle.png";
+  static const String imagesFacebookCircle =
+      "assets/images/facebook_circle.png";
 
   /// Assets for imagesFit1
   /// assets/images/fit1.png
@@ -136,7 +144,8 @@ class Assets {
 
   /// Assets for imagesLoginRectangle
   /// assets/images/login_rectangle.png
-  static const String imagesLoginRectangle = "assets/images/login_rectangle.png";
+  static const String imagesLoginRectangle =
+      "assets/images/login_rectangle.png";
 
   /// Assets for imagesLogo
   /// assets/images/logo.png
@@ -144,19 +153,23 @@ class Assets {
 
   /// Assets for imagesOnboardingRectangle
   /// assets/images/onboarding_rectangle.png
-  static const String imagesOnboardingRectangle = "assets/images/onboarding_rectangle.png";
+  static const String imagesOnboardingRectangle =
+      "assets/images/onboarding_rectangle.png";
 
   /// Assets for imagesOnboardingVector1
   /// assets/images/onboarding_vector_1.png
-  static const String imagesOnboardingVector1 = "assets/images/onboarding_vector_1.png";
+  static const String imagesOnboardingVector1 =
+      "assets/images/onboarding_vector_1.png";
 
   /// Assets for imagesOnboardingVector2
   /// assets/images/onboarding_vector_2.png
-  static const String imagesOnboardingVector2 = "assets/images/onboarding_vector_2.png";
+  static const String imagesOnboardingVector2 =
+      "assets/images/onboarding_vector_2.png";
 
   /// Assets for imagesOnboardingVector3
   /// assets/images/onboarding_vector_3.png
-  static const String imagesOnboardingVector3 = "assets/images/onboarding_vector_3.png";
+  static const String imagesOnboardingVector3 =
+      "assets/images/onboarding_vector_3.png";
 
   /// Assets for imagesRobot
   /// assets/images/robot.png
@@ -168,10 +181,10 @@ class Assets {
 
   /// Assets for splashAndroid12splash
   /// assets/splash/android12splash.png
-  static const String splashAndroid12splash = "assets/splash/android12splash.png";
+  static const String splashAndroid12splash =
+      "assets/splash/android12splash.png";
 
   /// Assets for splashSplashLogo
   /// assets/splash/splash_logo.png
   static const String splashSplashLogo = "assets/splash/splash_logo.png";
 }
-

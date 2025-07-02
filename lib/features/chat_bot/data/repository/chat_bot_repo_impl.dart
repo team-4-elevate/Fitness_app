@@ -15,7 +15,6 @@ class ChatBotRepoImpl implements ChatBotRepo {
 
   ChatBotRepoImpl(this._remoteDataSource, this._localDataSource);
 
-
   @override
   Future<List<ConversationEntity>> getAllConversations() async {
     try {
