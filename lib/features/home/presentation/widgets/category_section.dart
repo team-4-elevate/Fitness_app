@@ -6,7 +6,7 @@ class CategorySection extends StatelessWidget {
   final List<Map<String, dynamic>> categories;
   void Function()? onTap;
 
-   CategorySection({super.key, required this.categories, this.onTap});
+  CategorySection({super.key, required this.categories, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +64,9 @@ class CategorySection extends StatelessWidget {
                             flex: 10,
                             child: Image.asset(iconPath, fit: BoxFit.contain),
                           ),
-                    
+
                           const Spacer(flex: 1),
-                    
+
                           //------------------------------------------ Category name
                           Flexible(
                             flex: 3,
