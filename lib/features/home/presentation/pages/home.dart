@@ -86,17 +86,13 @@ class _HomeState extends State<Home> {
   ];
 
   Future<void> _loadUserData() async {
-  final appSecureStorage = GetIt.instance<AppSecureStorage>();
-   final firstName = await appSecureStorage.getUserData('firstName');
-  final photoUrl = await appSecureStorage.getUserData('photo');
-  
-  
-}
+    final appSecureStorage = GetIt.instance<AppSecureStorage>();
+    final firstName = await appSecureStorage.getUserData('firstName');
+    final photoUrl = await appSecureStorage.getUserData('photo');
+  }
 
   @override
   Widget build(BuildContext context) {
-
-
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -124,10 +120,10 @@ class _HomeState extends State<Home> {
                       children: [
                         //------------------------------------ User info
                         const UserInfo(
-                         /*  userName: 'John Doe',
+                            /*  userName: 'John Doe',
                           profileImagePath:
                               'assets/images/onboarding_vector_1.png', */
-                        ),
+                            ),
 
                         SizedBox(height: 16.r),
 

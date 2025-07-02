@@ -144,7 +144,7 @@ class LoginViewModel extends Cubit<LoginState> {
         ),
       ),
       emit: (newState) {
-       emit(state.copyWith(loginState: newState));
+        emit(state.copyWith(loginState: newState));
       },
     );
   }

@@ -26,12 +26,13 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var response = await _authRemoteDataSource.login(loginRequest);
       return handleRepoResponse(response).thenDoAsync((data) async {
-       // await _secureStorage.saveToken(data.token ?? '');
+        // await _secureStorage.saveToken(data.token ?? '');
         if (data.user != null) {
-        await _secureStorage.saveToken(data.token ?? '');
-        await _secureStorage.saveUserData('firstName', data.user!.firstName ?? '');
-        await _secureStorage.saveUserData('photo', data.user!.photo ?? '');
-      }
+          await _secureStorage.saveToken(data.token ?? '');
+          await _secureStorage.saveUserData(
+              'firstName', data.user!.firstName ?? '');
+          await _secureStorage.saveUserData('photo', data.user!.photo ?? '');
+        }
       });
     } catch (e) {
       return ApiFailure(e.toString());
