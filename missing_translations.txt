@@ -2,6 +2,15 @@
   "ar": [
     "home_error_loading_upcoming_workouts",
     "home_error_loading_food_recommendations",
-    "home_error_loading_daily_recommendations"
+    "home_error_loading_daily_recommendations",
+    "smartCoachTitle",
+    "smartCoachAppBarDesc",
+    "smartCoachGreeting",
+    "drawerTitle",
+    "noConversations",
+    "smartCoachHintTxt",
+    "typingMsg",
+    "welcomeTitle",
+    "welcomeBtn"
   ]
 }

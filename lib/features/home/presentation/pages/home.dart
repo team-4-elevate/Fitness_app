@@ -11,6 +11,7 @@ import 'package:fitness_app/features/home/presentation/widgets/skeleton.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import '../widgets/user_info.dart';
 import '../widgets/shared_section.dart';
 
@@ -113,17 +114,18 @@ class _HomeState extends State<Home> {
                     children: [
                       //------------------------------------ User info
                       UserInfo(
+                        profileImagePath: userData?.photo,
                         userName:
-                            '${userData?.firstName ?? ''} ${userData?.lastName ?? ''}',
-                        profileImagePath:
-                            'assets/images/onboarding_vector_1.png',
+                            '${userData?.firstName ?? 'User'} ${userData?.lastName ?? ''},',
                       ),
-
                       SizedBox(height: 16.r),
 
                       //------------------------------------ Categories
                       CategorySection(
                         categories: _getLocalizedCategories(context),
+                        onTap: () {
+                          debugPrint('Category tapped');
+                        },
                       ),
 
                       SizedBox(height: 16.r),

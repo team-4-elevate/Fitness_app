@@ -21,4 +21,9 @@ class AppRoutes {
   static const String upcomingWorkoutTabBar = '/UpcomingWorkoutTabBar';
   static const String foodDetailsScreen = '/foodDetailsScreen';
   static const String upcomingWorkoutSeeallPage = '/upcomingWorkoutSeeallPage';
+  static const String physicalinfo = '/physicalinfo';
+  static const String editProfile = '/editProfile';
+  static const String chatWithAiScreen = '/chatWithAiScreen';
+  // static const String upcomingWorkoutSeeallPage = '/upcomingWorkoutSeeallPage';  
+  static const String chatScreen = '/chatScreen';
 }

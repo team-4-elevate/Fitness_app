@@ -24,10 +24,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<CheckUserLoginStatusEvent>(_onCheckUserLoginStatus);
     on<UserLoggedInEvent>(_onUserLoggedIn);
     on<UserLoggedOutEvent>(_onUserLoggedOut);
-    // on<SaveUserProfileEvent>(_onSaveUserProfile);
-    // on<ClearProfileDataEvent>(_onClearProfileData);
-    // on<GetAppLocaleEvent>(_onGetAppLocale);
-    // on<ChangeAppLocaleEvent>(_onChangeAppLocale);
     on<CheckOnboardingStatusEvent>(_onCheckOnboardingStatus);
     on<CacheUserDataEvent>(_onCacheUserDataEvent);
     on<GetCachedUserDataEvent>(_onGetCachedUserDataEvent);

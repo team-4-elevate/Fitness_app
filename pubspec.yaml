@@ -46,7 +46,7 @@ dependencies:
   flutter_secure_storage:
   provider:
   retrofit:
-  json_annotation:
+  json_annotation: ^4.9.0
   injectable:
   logger:
   connectivity_plus:
@@ -67,20 +67,27 @@ dependencies:
   icons_plus: 
   skeletonizer: 
   smooth_page_indicator: 
-
   cached_network_image: ^3.2.0
   youtube_player_flutter: ^9.1.1
   image_picker: ^1.1.2
+  google_generative_ai:
+  flutter_svg_provider: ^1.0.7
+  freezed_annotation: ^3.0.0
+  hive_ce:
+  hive_ce_flutter:
+  uuid:
+  path_provider:
+  flutter_markdown: ^0.7.7+1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
-  retrofit_generator: '>=8.0.0 <10.0.0'
+  build_runner: ^2.5.3
+  retrofit_generator: ">=8.0.0 <10.0.0"
   injectable_generator:
   json_serializable:
   mockito: 
-  
 
   flutter_native_splash: 
   flutter_launcher_icons: 
@@ -90,7 +97,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: 
+  flutter_lints: ^5.0.0
+  freezed: ^3.0.6
+  hive_ce_generator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

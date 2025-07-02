@@ -56,6 +56,36 @@
   "@connectionError": {
     "description": "رسالة خطأ لأخطاء الاتصال"
   },
+  "home_error_loading_upcoming_workouts": "خطأ في تحميل التمارين القادمة: {error}",
+  "@home_error_loading_upcoming_workouts": {
+    "description": "رسالة خطأ عند فشل تحميل التمارين القادمة",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "خطأ في الشبكة"
+      }
+    }
+  },
+  "home_error_loading_food_recommendations": "خطأ في تحميل توصيات الطعام: {error}",
+  "@home_error_loading_food_recommendations": {
+    "description": "رسالة خطأ عند فشل تحميل توصيات الطعام",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "خطأ في الشبكة"
+      }
+    }
+  },
+  "home_error_loading_daily_recommendations": "خطأ في تحميل التوصيات اليومية: {error}",
+  "@home_error_loading_daily_recommendations": {
+    "description": "رسالة خطأ عند فشل تحميل التوصيات اليومية",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "خطأ في الشبكة"
+      }
+    }
+  },
   "socketException": "مشكلة في الاتصال. يرجى التحقق من الإنترنت.",
   "@socketException": {
     "description": "رسالة خطأ لاستثناءات المقبس"
@@ -612,7 +642,101 @@
   "motivational_quote": "اقتباس تحفيزي",
   "@motivational_quote": {
     "description": "تسمية قسم الاقتباسات التحفيزية"
-  },"enter_old_new_passwords": "أدخل كلمات المرور القديمة والجديدة",
+  },
+  "upload_image": "جاري رفع الصورة...",
+  "@upload_image": {
+    "description": "رسالة تظهر عند رفع صورة الملف الشخصي"
+  },
+  "loading": "جاري التحميل...",
+  "@loading": {
+    "description": "نص التحميل العام"
+  },
+  "first_name": "الاسم الأول",
+  "@first_name": {
+    "description": "تسمية حقل الاسم الأول في تعديل الملف الشخصي"
+  },
+  "second_name": "الاسم الثاني",
+  "@second_name": {
+    "description": "تسمية حقل الاسم الثاني في تعديل الملف الشخصي"
+  },
+  "email_hint": "user@mail.co",
+  "@email_hint": {
+    "description": "تلميح لحقل البريد الإلكتروني"
+  },
+  "your_weight": "وزنك",
+  "@your_weight": {
+    "description": "تسمية حقل الوزن في تعديل الملف الشخصي"
+  },
+  "weight_hint": "70",
+  "@weight_hint": {
+    "description": "تلميح لحقل الوزن في تعديل الملف الشخصي"
+  },
+  "your_goal": "هدفك",
+  "@your_goal": {
+    "description": "تسمية حقل الهدف في تعديل الملف الشخصي"
+  },
+  "gain_weight": "زيادة الوزن",
+  "@gain_weight": {
+    "description": "خيار الهدف لزيادة الوزن"
+  },
+  "your_activity_level": "مستوى نشاطك",
+  "@your_activity_level": {
+    "description": "تسمية حقل مستوى النشاط في تعديل الملف الشخصي"
+  },
+  "edit_weight": "تعديل الوزن",
+  "@edit_weight": {
+    "description": "عنوان صفحة تعديل الوزن"
+  },
+  "edit_goal": "تعديل الهدف",
+  "@edit_goal": {
+    "description": "عنوان صفحة تعديل الهدف"
+  },
+  "edit_activity_level": "تعديل مستوى النشاط",
+  "@edit_activity_level": {
+    "description": "عنوان صفحة تعديل مستوى النشاط"
+  },
+  "what_is_your_activity_level": "ما هو مستوى نشاطك؟",
+  "@what_is_your_activity_level": {
+    "description": "عنوان اختيار مستوى النشاط"
+  },
+  "activity_level_help_text": "هذا يساعدنا في حساب احتياجاتك اليومية من السعرات الحرارية",
+  "@activity_level_help_text": {
+    "description": "نص مساعد لاختيار مستوى النشاط"
+  },
+  "done": "تم",
+  "@done": {
+    "description": "نص زر إكمال الإجراء"
+  },
+  "edit_profile": "تعديل الملف الشخصي",
+  "@edit_profile": {
+    "description": "عنوان شاشة تعديل الملف الشخصي"
+  },
+  "what_is_your_goal": "ما هو هدفك؟",
+  "@what_is_your_goal": {
+    "description": "عنوان اختيار الهدف"
+  },
+  "goal_help_text": "هذا يساعدنا في إنشاء خطة مخصصة لك",
+  "@goal_help_text": {
+    "description": "نص مساعد لاختيار الهدف"
+  },
+  "tap_to_edit": "اضغط للتعديل",
+  "@tap_to_edit": {
+    "description": "نص يشير إلى أنه يمكن تعديل الحقل بالضغط عليه"
+  },
+  "what_is_your_weight": "ما هو وزنك؟",
+  "@what_is_your_weight": {
+    "description": "عنوان اختيار الوزن"
+  },
+  "weight_help_text": "هذا يساعدنا في إنشاء خطة مخصصة لك",
+  "@weight_help_text": {
+    "description": "نص مساعد لاختيار الوزن"
+  },
+  "kg_unit": "كجم",
+  "@kg_unit": {
+    "description": "اختصار وحدة الكيلوجرام"
+  },
+
+  "enter_old_new_passwords": "أدخل كلمات المرور القديمة والجديدة",
         "update_password": "تحديث كلمة المرور",
         "password_updated_successfully": "تم تحديث كلمة المرور بنجاح",
         "current_password": "كلمة المرور الحالية",

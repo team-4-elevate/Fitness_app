@@ -1,10 +1,9 @@
 // features/app_sections/AppSections.dart
-import 'package:fitness_app/core/app_data/app_bloc.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/services/navigation_service.dart';
-import 'package:fitness_app/features/app_sections/ChatAipage.dart';
-import 'package:fitness_app/features/app_sections/ProfilePage.dart';
+import 'package:fitness_app/features/chat_bot/presentation/bloc/chat_bloc.dart';
+import 'package:fitness_app/features/chat_bot/presentation/pages/chat_bot_page.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/pages/home.dart';
 import 'package:fitness_app/features/profile/presentation/bloc/profile_bloc.dart';
@@ -36,7 +35,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
 
       //---------------------------------------------------chat ai page
-      const ChatAipage(),
+      BlocProvider(
+        create: (context) => getIt<ChatBloc>(),
+        child: const ChatBotPage()),
       BlocProvider<HomeBloc>(
         create: (_) => getIt<HomeBloc>()..add(const LoadHomeData()),
         child: const UpComingWorkoutScreen(),

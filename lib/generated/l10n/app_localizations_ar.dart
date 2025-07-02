@@ -18,8 +18,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get welcome => 'مرحباً بك في تطبيق اللياقة البدنية';
 
   @override
-  String get networkError =>
-      'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
+  String get networkError => 'لا يوجد اتصال بالإنترنت. يرجى التحقق من الشبكة والمحاولة مرة أخرى.';
 
   @override
   String get serverError => 'خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.';
@@ -80,22 +79,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onBoardingTitle1 => 'ثمن التميز\nهو الانضباط';
 
   @override
-  String get onBoardingDesc1 =>
-      'ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك';
+  String get onBoardingDesc1 => 'ابدأ رحلتك نحو اللياقة والصحة مع أفضل التمارين والبرامج المصممة خصيصاً لك';
 
   @override
   String get onBoardingTitle2 => 'اللياقة البدنية لم تكن\nممتعة هكذا من قبل';
 
   @override
-  String get onBoardingDesc2 =>
-      'اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية';
+  String get onBoardingDesc2 => 'اكتشف طرق جديدة ومثيرة للحفاظ على لياقتك البدنية مع تمارين متنوعة ومسلية';
 
   @override
   String get onBoardingTitle3 => 'لا مزيد من الأعذار\nافعلها الآن';
 
   @override
-  String get onBoardingDesc3 =>
-      'حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك';
+  String get onBoardingDesc3 => 'حان الوقت لتحقيق أهدافك في اللياقة البدنية، ابدأ اليوم ولا تؤجل أحلامك';
 
   @override
   String get login_heyThere => 'أهلاً بك';
@@ -227,7 +223,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String home_error_loading_upcoming_workouts(String error) {
-    return 'Error loading upcoming workouts: $error';
+    return 'خطأ في تحميل التمارين القادمة: $error';
   }
 
   @override
@@ -237,17 +233,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String home_error_loading_food_recommendations(String error) {
-    return 'Error loading food recommendations: $error';
+    return 'خطأ في تحميل توصيات الطعام: $error';
   }
 
   @override
   String home_error_loading_daily_recommendations(String error) {
-    return 'Error loading daily recommendations: $error';
+    return 'خطأ في تحميل التوصيات اليومية: $error';
   }
 
   @override
-  String get failed_to_parse_upcoming_workouts =>
-      'فشل في تحليل التمارين القادمة: ';
+  String get failed_to_parse_upcoming_workouts => 'فشل في تحليل التمارين القادمة: ';
 
   @override
   String get let_s_start_your_day => 'لنبدأ يومك';
@@ -379,8 +374,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get food_Recommendation_no_categories => 'لا توجد فئات';
 
   @override
-  String get food_food_Recommendation_fail_to_loadCategories =>
-      'فشل في تحميل الفئات';
+  String get food_food_Recommendation_fail_to_loadCategories => 'فشل في تحميل الفئات';
 
   @override
   String get retry => 'إعادة المحاولة';
@@ -439,6 +433,75 @@ class AppLocalizationsAr extends AppLocalizations {
   String get motivational_quote => 'اقتباس تحفيزي';
 
   @override
+  String get upload_image => 'جاري رفع الصورة...';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get first_name => 'الاسم الأول';
+
+  @override
+  String get second_name => 'الاسم الثاني';
+
+  @override
+  String get email_hint => 'user@mail.co';
+
+  @override
+  String get your_weight => 'وزنك';
+
+  @override
+  String get weight_hint => '70';
+
+  @override
+  String get your_goal => 'هدفك';
+
+  @override
+  String get gain_weight => 'زيادة الوزن';
+
+  @override
+  String get your_activity_level => 'مستوى نشاطك';
+
+  @override
+  String get edit_weight => 'تعديل الوزن';
+
+  @override
+  String get edit_goal => 'تعديل الهدف';
+
+  @override
+  String get edit_activity_level => 'تعديل مستوى النشاط';
+
+  @override
+  String get what_is_your_activity_level => 'ما هو مستوى نشاطك؟';
+
+  @override
+  String get activity_level_help_text => 'هذا يساعدنا في حساب احتياجاتك اليومية من السعرات الحرارية';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get edit_profile => 'تعديل الملف الشخصي';
+
+  @override
+  String get what_is_your_goal => 'ما هو هدفك؟';
+
+  @override
+  String get goal_help_text => 'هذا يساعدنا في إنشاء خطة مخصصة لك';
+
+  @override
+  String get tap_to_edit => 'اضغط للتعديل';
+
+  @override
+  String get what_is_your_weight => 'ما هو وزنك؟';
+
+  @override
+  String get weight_help_text => 'هذا يساعدنا في إنشاء خطة مخصصة لك';
+
+  @override
+  String get kg_unit => 'كجم';
+
+  @override
   String get enter_old_new_passwords => 'أدخل كلمات المرور القديمة والجديدة';
 
   @override
@@ -464,9 +527,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile_title => 'الملف الشخصي';
-
-  @override
-  String get edit_profile => 'تعديل الملف الشخصي';
 
   @override
   String get change_password => 'تغيير كلمة المرور';
@@ -505,4 +565,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cancel => 'الغاء';
+
+  @override
+  String get smartCoachTitle => 'Smart coach';
+
+  @override
+  String get smartCoachAppBarDesc => 'I am your smart coach';
+
+  @override
+  String get smartCoachGreeting => 'Hi ';
+
+  @override
+  String get drawerTitle => 'Previous Conversations';
+
+  @override
+  String get noConversations => 'No conversations found';
+
+  @override
+  String get smartCoachHintTxt => 'Ask anything...';
+
+  @override
+  String get typingMsg => 'Typing';
+
+  @override
+  String get welcomeTitle => 'How Can I Assist You Today ?';
+
+  @override
+  String get welcomeBtn => 'Get Started';
 }

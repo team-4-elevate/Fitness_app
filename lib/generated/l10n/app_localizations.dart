@@ -62,8 +62,7 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,8 +82,7 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -890,6 +887,144 @@ abstract class AppLocalizations {
   /// **'Motivational Quote'**
   String get motivational_quote;
 
+  /// Message shown when uploading a profile image
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading image...'**
+  String get upload_image;
+
+  /// Generic loading text
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Label for first name field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get first_name;
+
+  /// Label for second/last name field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Second Name'**
+  String get second_name;
+
+  /// Hint for email field
+  ///
+  /// In en, this message translates to:
+  /// **'user@mail.co'**
+  String get email_hint;
+
+  /// Label for weight field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Weight'**
+  String get your_weight;
+
+  /// Hint for weight field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'70'**
+  String get weight_hint;
+
+  /// Label for goal field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Goal'**
+  String get your_goal;
+
+  /// Goal option to gain weight
+  ///
+  /// In en, this message translates to:
+  /// **'Gain weight'**
+  String get gain_weight;
+
+  /// Label for activity level field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Activity Level'**
+  String get your_activity_level;
+
+  /// Title for edit weight page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Weight'**
+  String get edit_weight;
+
+  /// Title for edit goal page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Goal'**
+  String get edit_goal;
+
+  /// Title for edit activity level page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Activity Level'**
+  String get edit_activity_level;
+
+  /// Title for activity level selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR ACTIVITY LEVEL?'**
+  String get what_is_your_activity_level;
+
+  /// Help text for activity level selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us calculate your daily calorie needs'**
+  String get activity_level_help_text;
+
+  /// Button text for completing an action
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// Title for the edit profile screen
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile;
+
+  /// Title for goal selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR GOAL?'**
+  String get what_is_your_goal;
+
+  /// Help text for goal selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get goal_help_text;
+
+  /// Text indicating a field can be edited by tapping
+  ///
+  /// In en, this message translates to:
+  /// **'tap to Edit'**
+  String get tap_to_edit;
+
+  /// Title for weight selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR WEIGHT?'**
+  String get what_is_your_weight;
+
+  /// Help text for weight selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get weight_help_text;
+
+  /// Kilogram unit abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Kg'**
+  String get kg_unit;
+
   /// No description provided for @enter_old_new_passwords.
   ///
   /// In en, this message translates to:
@@ -943,12 +1078,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile_title;
-
-  /// No description provided for @edit_profile.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit Profile'**
-  String get edit_profile;
 
   /// No description provided for @change_password.
   ///
@@ -1021,10 +1150,63 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// Title for the smart coach section
+  ///
+  /// In en, this message translates to:
+  /// **'Smart coach'**
+  String get smartCoachTitle;
+
+  /// App bar description for the smart coach
+  ///
+  /// In en, this message translates to:
+  /// **'I am your smart coach'**
+  String get smartCoachAppBarDesc;
+
+  /// Greeting used by the smart coach
+  ///
+  /// In en, this message translates to:
+  /// **'Hi '**
+  String get smartCoachGreeting;
+
+  /// No description provided for @drawerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Conversations'**
+  String get drawerTitle;
+
+  /// No description provided for @noConversations.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations found'**
+  String get noConversations;
+
+  /// No description provided for @smartCoachHintTxt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask anything...'**
+  String get smartCoachHintTxt;
+
+  /// No description provided for @typingMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Typing'**
+  String get typingMsg;
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How Can I Assist You Today ?'**
+  String get welcomeTitle;
+
+  /// No description provided for @welcomeBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get welcomeBtn;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -1033,25 +1215,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar':
-      return AppLocalizationsAr();
-    case 'en':
-      return AppLocalizationsEn();
+    case 'ar': return AppLocalizationsAr();
+    case 'en': return AppLocalizationsEn();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }
