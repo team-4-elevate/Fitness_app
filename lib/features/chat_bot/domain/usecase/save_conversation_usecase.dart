@@ -3,12 +3,11 @@ import 'package:fitness_app/features/chat_bot/domain/repository/chat_bot_repo.da
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetAllConversationUsecase {
+class SaveConversationUsecase {
   final ChatBotRepo _chatBotRepo;
+  SaveConversationUsecase(this._chatBotRepo);
 
-  GetAllConversationUsecase(this._chatBotRepo);
-
-  Future<List<ConversationEntity>> call() async {
-    return await _chatBotRepo.getAllConversations();
+  Future<void> call(ConversationEntity conversation) async {
+    return await _chatBotRepo.saveConversation(conversation);
   }
 }

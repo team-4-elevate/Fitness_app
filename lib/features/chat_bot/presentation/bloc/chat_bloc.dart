@@ -1,10 +1,16 @@
+import 'dart:async';
+import 'package:equatable/equatable.dart';
+import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/features/chat_bot/domain/entity/conversations_entity.dart';
 import 'package:fitness_app/features/chat_bot/domain/entity/message_entity.dart';
-import 'package:fitness_app/features/chat_bot/domain/repository/chat_bot_repo.dart';
+import 'package:fitness_app/features/chat_bot/domain/usecase/delete_conversation_usecase.dart';
+import 'package:fitness_app/features/chat_bot/domain/usecase/get_all_conversation_usecase.dart';
+import 'package:fitness_app/features/chat_bot/domain/usecase/new_conversation_usecase.dart';
+import 'package:fitness_app/features/chat_bot/domain/usecase/save_conversation_usecase.dart';
+import 'package:fitness_app/features/chat_bot/domain/usecase/select_conversation_usecase.dart';
 import 'package:fitness_app/features/chat_bot/domain/usecase/send_message_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -12,38 +18,46 @@ part 'chat_state.dart';
 @injectable
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final SendMessageUsecase _sendMessageUsecase;
-  final ChatBotRepo _chatBotRepo;
+  final NewConversationUsecase _newConversationUsecase;
+  final SelectConversationUsecase _selectConversationUsecase;
+  final GetAllConversationUsecase _getAllConversationUsecase;
+  final SaveConversationUsecase _saveConversationUsecase;
+  final DeleteConversationUsecase _deleteConversationUsecase;
 
-  ConversationEntity? currentConversation;
-  final List<MessageEntity> messages = [];
-
-  ChatBloc(this._sendMessageUsecase, this._chatBotRepo) : super(ChatWelcome()) {
+  ChatBloc(
+    this._sendMessageUsecase,
+    this._newConversationUsecase,
+    this._selectConversationUsecase,
+    this._getAllConversationUsecase,
+    this._saveConversationUsecase,
+    this._deleteConversationUsecase,
+  ) : super(
+        ChatState(
+          uiState: InitialState(),
+          messageState: InitialState(),
+          conversationsState: InitialState(),
+        ),
+      ) {
     on<StartChatPressed>(_onStartChatPressed);
     on<SendUserMessage>(_onSendUserMessage);
-    on<LoadConversation>(_onLoadConversation);
+    on<SelectConversation>(_onSelectConversation);
     on<SaveConversation>(_onSaveConversation);
     on<LoadAllConversations>(_onLoadAllConversations);
+    on<DeleteConversation>(_onDeleteConversation);
   }
 
   Future<void> _onStartChatPressed(
     StartChatPressed event,
     Emitter<ChatState> emit,
   ) async {
-    final uuid = Uuid();
-    currentConversation = ConversationEntity(
-      id: uuid.v4(),
-      title: "New Conversation",
-      messages: [
-        MessageEntity(
-          isUser: false,
-          message: "Hello How Can I Assist You Today?",
-          date: DateTime.now(),
-        ),
-      ],
+    final currentConversation = await _newConversationUsecase();
+    emit(
+      state.copyWith(
+        uiState: SuccessState(),
+        currentConversations: currentConversation,
+        messages: currentConversation.messages,
+      ),
     );
-    messages.clear();
-    messages.addAll(currentConversation!.messages);
-    emit(ChatLoaded(messages));
   }
 
   Future<void> _onSendUserMessage(
@@ -52,65 +66,118 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ) async {
     if (event.message.isEmpty) return;
 
-    emit(ChatLoading());
-
     final userMessage = MessageEntity(
       isUser: true,
       message: event.message,
       date: DateTime.now(),
+      type: MessageType.normal,
     );
-    messages.add(userMessage);
-    currentConversation?.messages.add(userMessage);
+
+    final oldMessages = List<MessageEntity>.from(state.messages ?? []);
+    final updatedMessages = [...oldMessages, userMessage];
+
+    emit(
+      state.copyWith(messageState: LoadingState(), messages: updatedMessages),
+    );
 
     final typingMessage = MessageEntity(
       isUser: false,
-      message: 'Typing',
-      date: DateTime.now(),
+      type: MessageType.typing,
     );
-    messages.add(typingMessage);
-    emit(ChatLoaded(messages));
+
+    updatedMessages.add(typingMessage);
+
+    emit(
+      state.copyWith(messageState: LoadingState(), messages: updatedMessages),
+    );
 
     try {
-      final response = await _sendMessageUsecase(event.message);
+      final response = await _sendMessageUsecase(
+        history: oldMessages,
+        message: event.message,
+      );
       response.when(
-        success: (MessageEntity response) {
-          messages.remove(typingMessage);
-          messages.add(response);
-          currentConversation?.messages.add(response);
-          final lastMessage = response.message.split('\n').first;
-          currentConversation?.title =
-              lastMessage.length > 30
-                  ? lastMessage.substring(0, 30)
-                  : lastMessage;
-          emit(ChatLoaded(messages));
+        success: (msg) {
+          updatedMessages.remove(typingMessage);
+          updatedMessages.add(msg);
+
+          final updatedConversation = state.currentConversations?.copyWith(
+            messages: updatedMessages,
+            title: msg.message!.split('\n').first.substring(0, 30),
+          );
+          _saveConversationUsecase.call(updatedConversation!);
+
+          emit(
+            state.copyWith(
+              messages: updatedMessages,
+              messageState: SuccessState(msg),
+              currentConversations: updatedConversation,
+            ),
+          );
         },
-        failure: (String error) {
-          messages.remove(typingMessage);
-          emit(ChatError(error));
+        failure: (error) {
+          updatedMessages.remove(typingMessage);
+
+          final errorMessage = MessageEntity(
+            isUser: false,
+            message: 'Something went wrong, please try again later.',
+            type: MessageType.error,
+          );
+
+          updatedMessages.add(errorMessage);
+
+          emit(
+            state.copyWith(
+              messageState: ErrorState(error),
+              messages: updatedMessages,
+            ),
+          );
         },
       );
     } catch (e) {
-      messages.remove(typingMessage);
-      emit(ChatError(e.toString()));
+      updatedMessages.remove(typingMessage);
+
+      final errorMessage = MessageEntity(
+        isUser: false,
+        message: 'Something went wrong, please try again later.',
+        type: MessageType.error,
+      );
+
+      updatedMessages.add(errorMessage);
+
+      emit(
+        state.copyWith(
+          messageState: ErrorState(e.toString()),
+          messages: updatedMessages,
+        ),
+      );
     }
   }
 
-  Future<void> _onLoadConversation(
-    LoadConversation event,
+  Future<void> _onSelectConversation(
+    SelectConversation event,
     Emitter<ChatState> emit,
   ) async {
     try {
-      final conversation = await _chatBotRepo.getConversationById(event.id);
-      if (conversation != null) {
-        currentConversation = conversation;
-        messages.clear();
-        messages.addAll(conversation.messages);
-        emit(ChatLoaded(messages));
-      } else {
-        emit(ChatError("Conversation not found"));
-      }
+      emit(state.copyWith(conversationsState: LoadingState()));
+
+      final conversation = await _selectConversationUsecase.call(event.id);
+
+      emit(
+        state.copyWith(
+          uiState: SuccessState(),
+          currentConversations: conversation,
+          messages: conversation.messages,
+          messageState: SuccessState(),
+          conversationsState: SuccessState([conversation]),
+        ),
+      );
     } catch (e) {
-      emit(ChatError(e.toString()));
+      emit(
+        state.copyWith(
+          conversationsState: ErrorState('Conversation not found'),
+        ),
+      );
     }
   }
 
@@ -118,13 +185,15 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     SaveConversation event,
     Emitter<ChatState> emit,
   ) async {
+    emit(state.copyWith(conversationsState: LoadingState()));
     try {
-      if (currentConversation != null &&
-          currentConversation!.messages.isNotEmpty) {
-        await _chatBotRepo.saveConversation(currentConversation!);
+      final conversation = state.currentConversations;
+      if (conversation != null && conversation.messages.isNotEmpty) {
+        await _saveConversationUsecase.call(conversation);
       }
+      emit(state.copyWith(conversationsState: SuccessState()));
     } catch (e) {
-      emit(ChatError("Failed to save conversation: $e"));
+      emit(state.copyWith(conversationsState: ErrorState(e.toString())));
     }
   }
 
@@ -132,11 +201,37 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     LoadAllConversations event,
     Emitter<ChatState> emit,
   ) async {
+    emit(state.copyWith(conversationsState: LoadingState()));
     try {
-      final conversations = await _chatBotRepo.getAllConversations();
-      emit(ConversationsLoaded(conversations));
+      final conversations = await _getAllConversationUsecase.call();
+      emit(state.copyWith(conversationsState: SuccessState(conversations)));
     } catch (e) {
-      emit(ChatError("Failed to load conversations: $e"));
+      emit(state.copyWith(conversationsState: ErrorState(e.toString())));
+    }
+  }
+
+  Future<void> _onDeleteConversation(
+    DeleteConversation event,
+    Emitter<ChatState> emit,
+  ) async {
+    emit(state.copyWith(conversationsState: LoadingState()));
+    try {
+      await _deleteConversationUsecase.call(event.id);
+      final conversations = await _getAllConversationUsecase.call();
+      if (state.currentConversations?.id == event.id) {
+        final currentConversation = await _newConversationUsecase.call();
+        emit(
+          state.copyWith(
+            uiState: SuccessState(),
+            currentConversations: currentConversation,
+            messages: currentConversation.messages,
+            messageState: SuccessState(),
+          ),
+        );
+      }
+      emit(state.copyWith(conversationsState: SuccessState(conversations)));
+    } catch (e) {
+      emit(state.copyWith(conversationsState: ErrorState(e.toString())));
     }
   }
 }

@@ -613,6 +613,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// Title for the smart coach section
+  ///
+  /// In en, this message translates to:
+  /// **'Smart coach'**
+  String get smartCoachTitle;
+
+  /// App bar description for the smart coach
+  ///
+  /// In en, this message translates to:
+  /// **'I am your smart coach'**
+  String get smartCoachAppBarDesc;
+
+  /// Greeting used by the smart coach
+  ///
+  /// In en, this message translates to:
+  /// **'Hi '**
+  String get smartCoachGreeting;
+
+  /// No description provided for @drawerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Conversations'**
+  String get drawerTitle;
+
+  /// No description provided for @noConversations.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations found'**
+  String get noConversations;
+
+  /// No description provided for @smartCoachHintTxt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask anything...'**
+  String get smartCoachHintTxt;
+
+  /// No description provided for @typingMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Typing'**
+  String get typingMsg;
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How Can I Assist You Today ?'**
+  String get welcomeTitle;
+
+  /// No description provided for @welcomeBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get welcomeBtn;
 }
 
 class _AppLocalizationsDelegate

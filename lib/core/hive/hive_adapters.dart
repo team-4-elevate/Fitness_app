@@ -5,5 +5,6 @@ import 'package:hive_ce/hive.dart';
 @GenerateAdapters([
   AdapterSpec<ConversationEntity>(),
   AdapterSpec<MessageEntity>(),
+  AdapterSpec<MessageType>(),
 ])
 part 'hive_adapters.g.dart';

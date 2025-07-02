@@ -10,12 +10,18 @@ class SendUserMessage extends ChatEvent {
 
 class StartChatPressed extends ChatEvent {}
 
-class LoadConversation extends ChatEvent {
+class SelectConversation extends ChatEvent {
   final String id;
 
-  LoadConversation(this.id);
+  SelectConversation(this.id);
 }
 
 class SaveConversation extends ChatEvent {}
 
 class LoadAllConversations extends ChatEvent {}
+
+class DeleteConversation extends ChatEvent {
+  final String id;
+
+  DeleteConversation(this.id);
+}

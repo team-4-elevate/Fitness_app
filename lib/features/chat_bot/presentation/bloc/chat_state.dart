@@ -1,24 +1,42 @@
 part of 'chat_bloc.dart';
 
-sealed class ChatState {}
+class ChatState extends Equatable {
+  final AppStates uiState;
+  final AppStates<MessageEntity> messageState;
+  final AppStates<List<ConversationEntity>> conversationsState;
+  final ConversationEntity? currentConversations;
+  final List<MessageEntity>? messages;
 
-class ChatWelcome extends ChatState {}
+  const ChatState({
+    required this.uiState,
+    required this.messageState,
+    required this.conversationsState,
+    this.messages,
+    this.currentConversations,
+  });
 
-class ChatInitial extends ChatState {}
+  ChatState copyWith({
+    AppStates? uiState,
+    AppStates<MessageEntity>? messageState,
+    AppStates<List<ConversationEntity>>? conversationsState,
+    ConversationEntity? currentConversations,
+    List<MessageEntity>? messages,
+  }) {
+    return ChatState(
+      uiState: uiState ?? this.uiState,
+      messageState: messageState ?? this.messageState,
+      conversationsState: conversationsState ?? this.conversationsState,
+      currentConversations: currentConversations ?? this.currentConversations,
+      messages: messages ?? this.messages,
+    );
+  }
 
-class ChatLoading extends ChatState {}
-
-class ChatLoaded extends ChatState {
-  final List<MessageEntity> message;
-  ChatLoaded(this.message);
-}
-
-class ChatError extends ChatState {
-  final String error;
-  ChatError(this.error);
-}
-
-class ConversationsLoaded extends ChatState {
-  final List<ConversationEntity> conversations;
-  ConversationsLoaded(this.conversations);
+  @override
+  List<Object?> get props => [
+    uiState,
+    messageState,
+    conversationsState,
+    currentConversations,
+    messages,
+  ];
 }

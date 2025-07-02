@@ -1,3 +1,4 @@
+import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/chat_bot/presentation/bloc/chat_bloc.dart';
@@ -15,7 +16,6 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
-
   final TextEditingController userMessageController = TextEditingController();
 
   void _scrollToBottom() {
@@ -41,30 +41,33 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<ChatBloc, ChatState>(
       listener: (context, state) {
-        if (state is ChatLoaded) {
+        if (state.messageState is SuccessState) {
           _scrollToBottom();
         }
       },
       builder: (context, state) {
-        final messages = context.read<ChatBloc>().messages;
+        final messages = state.messages ?? [];
+
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: context.topPadding),
             Expanded(
-              child: ListView.separated(
+              child: ListView.builder(
                 controller: _scrollController,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 physics: const BouncingScrollPhysics(),
                 itemCount: messages.length,
-                separatorBuilder:
-                    (context, index) => const SizedBox(height: 16),
                 itemBuilder: (context, index) {
                   final message = messages[index];
+
                   return MessageWidget(
                     isUser: message.isUser,
-                    message: message.message,
-                    date: DateFormat('HH:mm').format(message.date),
+                    message: message.message ?? '',
+                    date: DateFormat(
+                      'HH:mm',
+                    ).format(message.date ?? DateTime.now()),
+                    type: message.type,
                   );
                 },
               ),
@@ -80,7 +83,7 @@ class _ChatPageState extends State<ChatPage> {
                       controller: userMessageController,
                       decoration: InputDecoration(
                         floatingLabelBehavior: FloatingLabelBehavior.never,
-                        hint: const Text("Ask anything..."),
+                        hint: Text(context.l10n.smartCoachHintTxt),
                       ),
                     ),
                   ),
@@ -95,13 +98,16 @@ class _ChatPageState extends State<ChatPage> {
                       shape: WidgetStateProperty.all(const CircleBorder()),
                     ),
                     onPressed:
-                        state is ChatLoading
+                        state.messageState is LoadingState
                             ? null
                             : () {
-                              context.read<ChatBloc>().add(
-                                SendUserMessage(userMessageController.text),
-                              );
-                              userMessageController.clear();
+                              final message = userMessageController.text.trim();
+                              if (message.isNotEmpty) {
+                                context.read<ChatBloc>().add(
+                                  SendUserMessage(message),
+                                );
+                                userMessageController.clear();
+                              }
                             },
                     iconSize: 30,
                     icon: const Icon(

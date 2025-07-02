@@ -20,7 +20,6 @@ class WelcomePage extends StatelessWidget {
         BlurredContainer(
           width: double.infinity,
           backgroundBlur: 15,
-
           backgroundColor: AppColors.blurBackground.withValues(alpha: .2),
           borderRadius: 50,
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 40.h),
@@ -29,7 +28,7 @@ class WelcomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'How Can I Assist You Today ?',
+                context.l10n.welcomeTitle,
                 style: context.textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.w900,
                 ),
@@ -40,12 +39,11 @@ class WelcomePage extends StatelessWidget {
                 onPressed: () {
                   context.read<ChatBloc>().add(StartChatPressed());
                 },
-                child: Text('Ger Started'),
+                child: Text(context.l10n.welcomeBtn),
               ),
             ],
           ),
         ),
-        Spacer(),
       ],
     );
   }

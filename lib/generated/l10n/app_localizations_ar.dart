@@ -276,4 +276,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
+
+  @override
+  String get smartCoachTitle => 'Smart coach';
+
+  @override
+  String get smartCoachAppBarDesc => 'I am your smart coach';
+
+  @override
+  String get smartCoachGreeting => 'Hi ';
+
+  @override
+  String get drawerTitle => 'Previous Conversations';
+
+  @override
+  String get noConversations => 'No conversations found';
+
+  @override
+  String get smartCoachHintTxt => 'Ask anything...';
+
+  @override
+  String get typingMsg => 'Typing';
+
+  @override
+  String get welcomeTitle => 'How Can I Assist You Today ?';
+
+  @override
+  String get welcomeBtn => 'Get Started';
 }

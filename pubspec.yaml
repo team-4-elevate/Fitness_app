@@ -71,6 +71,7 @@ dependencies:
   hive_ce_flutter:
   uuid:
   path_provider:
+  flutter_markdown: ^0.7.7+1
 
 dev_dependencies:
   flutter_test:

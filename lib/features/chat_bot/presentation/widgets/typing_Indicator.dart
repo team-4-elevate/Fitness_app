@@ -43,26 +43,12 @@ class _TypingIndicatorState extends State<TypingIndicator>
         final dots = '.' * _dotCountAnimation.value;
         return Align(
           alignment: Alignment.centerLeft,
-          child: Container(
-            // width: 90.w,
-            margin: const EdgeInsets.all(8),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColors.backgroundDark.withAlpha(120),
-              borderRadius: const BorderRadiusDirectional.only(
-                topStart: Radius.zero,
-                bottomStart: Radius.circular(30),
-                topEnd: Radius.circular(30),
-                bottomEnd: Radius.circular(30),
-              ),
-            ),
-            child: Text(
-              'Typing $dots',
-              style: context.textTheme.bodyMedium?.copyWith(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: AppColors.primaryOrange,
-              ),
+          child: Text(
+            '${context.l10n.typingMsg} $dots',
+            style: context.textTheme.bodyMedium?.copyWith(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: AppColors.primaryOrange,
             ),
           ),
         );
