@@ -41,7 +41,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     on<ShowSnackbarEvent>(_onShowSnackbar);
   }
 
-  bool hasProfileDataChanged({
+  bool _hasProfileDataChanged({
     required String firstName,
     required String lastName,
     required String email,
@@ -60,8 +60,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
         activityLevel != user.activityLevel;
   }
 
-//-----------------------------------------------------------------autosave
-  void debouncedSaveProfile({
+  void _debouncedSaveProfile({
     required String firstName,
     required String lastName,
     required String email,
@@ -71,7 +70,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   }) {
     _autoSaveDebouncer?.cancel();
 
-    if (hasProfileDataChanged(
+    if (_hasProfileDataChanged(
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -101,7 +100,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     return super.close();
   }
 
-//--------------------------------------------------------fetch user data
   Future<void> _onFetchProfileData(
       FetchProfileDataEvent event, Emitter<EditProfileState> emit) async {
     emit(state.copyWith(
@@ -134,7 +132,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-//--------------------------------------------------------------handle profile updates
   Future<void> _onUpdateProfile(
       UpdateProfileEvent event, Emitter<EditProfileState> emit) async {
     if (event.fieldName != null && event.fieldValue != null && !event.submitToApi) {
@@ -267,7 +264,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-//------------------------------------------------------------uploaad image
   Future<void> _onUploadProfileImage(
       UploadProfileImageEvent event, Emitter<EditProfileState> emit) async {
     emit(state.copyWith(
@@ -330,7 +326,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     if (!ActivityLevelConstants.validLevels.contains(activityLevel)) {
       return;
     }
-    debouncedSaveProfile(
+    _debouncedSaveProfile(
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -358,7 +354,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-//-------------------------------------------------------update controllers
   void _onUpdateControllers(
       UpdateControllersEvent event, Emitter<EditProfileState> emit) {
     if (state.profileData != null) {
@@ -375,7 +370,6 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     }
   }
 
-//---------------------------------------------------------------show snackbar
   void _onShowSnackbar(
       ShowSnackbarEvent event, Emitter<EditProfileState> emit) {}
 }

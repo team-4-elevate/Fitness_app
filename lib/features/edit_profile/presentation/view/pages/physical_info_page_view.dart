@@ -71,11 +71,11 @@ class _PhysicalInfoPageViewState extends State<PhysicalInfoPageView> {
   String _getTitle() {
     switch (_currentInfoType) {
       case InfoType.weight:
-        return 'Edit Weight';
+        return context.l10n.edit_weight;
       case InfoType.goal:
-        return 'Edit Goal';
+        return context.l10n.edit_goal;
       case InfoType.activityLevel:
-        return 'Edit Activity Level';
+        return context.l10n.edit_activity_level;
     }
   }
 

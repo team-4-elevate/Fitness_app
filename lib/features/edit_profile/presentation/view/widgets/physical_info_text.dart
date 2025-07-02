@@ -40,7 +40,7 @@ class _PhysicalInfoTextState extends State<PhysicalInfoText> {
                   ),
                 ),
                 TextSpan(
-                  text: "tap to Edit",
+                  text: context.l10n.tap_to_edit,
                   style: TextStyle(
                     color: AppColors.primaryOrange,
                     fontSize: 14.r,

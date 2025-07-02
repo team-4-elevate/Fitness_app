@@ -46,7 +46,7 @@ class _GoalPageState extends State<GoalPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "WHAT IS YOUR GOAL?",
+            context.l10n.what_is_your_goal,
             style: TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.w800,
@@ -55,7 +55,7 @@ class _GoalPageState extends State<GoalPage> {
           ),
           SizedBox(height: 8.r),
           Text(
-            "This helps us create your personalized plan",
+            context.l10n.goal_help_text,
             style: TextStyle(
               color: AppColors.white.withOpacity(0.8),
               fontSize: 14.r,
@@ -76,7 +76,7 @@ class _GoalPageState extends State<GoalPage> {
             onPressed: () {
               Navigator.pop(context, _selectedGoalId);
             },
-            child: const Text('Done'),
+            child: Text(context.l10n.done),
           ),
         ],
       ),

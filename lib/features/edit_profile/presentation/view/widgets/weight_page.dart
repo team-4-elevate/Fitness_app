@@ -36,7 +36,7 @@ class _WeightPageState extends State<WeightPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "WHAT IS YOUR WEIGHT?",
+            context.l10n.what_is_your_weight,
             style: TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.w800,
@@ -45,7 +45,7 @@ class _WeightPageState extends State<WeightPage> {
           ),
           SizedBox(height: 8.r),
           Text(
-            "This helps us create your personalized plan",
+            context.l10n.weight_help_text,
             style: TextStyle(
               color: AppColors.white.withOpacity(0.8),
               fontSize: 14.r,
@@ -55,7 +55,7 @@ class _WeightPageState extends State<WeightPage> {
           NumberPickerStep(
             minValue: 10,
             maxValue: 300,
-            label: "Kg",
+            label: context.l10n.kg_unit,
             onChanged: (value) {
               setState(() {
                 _selectedWeight = value;
@@ -73,7 +73,7 @@ class _WeightPageState extends State<WeightPage> {
             onPressed: () {
               Navigator.pop(context, _selectedWeight);
             },
-            child: const Text('Done'),
+            child: Text(context.l10n.done),
           ),
         ],
       ),

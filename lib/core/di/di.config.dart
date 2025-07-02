@@ -38,8 +38,9 @@ import '../../features/edit_profile/data/datasource/remote_data_source/edit_prof
     as _i506;
 import '../../features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_interface.dart'
     as _i624;
-import '../../features/edit_profile/data/repo/repo_impl.dart' as _i61;
-import '../../features/edit_profile/domain/repo/repo.dart' as _i553;
+import '../../features/edit_profile/data/repo/editprofile_repo_impl.dart'
+    as _i245;
+import '../../features/edit_profile/domain/repo/editprofile_repo.dart' as _i260;
 import '../../features/edit_profile/domain/usecases/edit_profile_data_usecase.dart'
     as _i29;
 import '../../features/edit_profile/domain/usecases/get_profile_data_usecase.dart'
@@ -174,12 +175,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i395.HomeRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
         () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()));
-    gh.factory<_i553.Repo>(() => _i61.RepoImpl(
+    gh.factory<_i260.EditProfileRepo>(() => _i245.EditProfileRepoImpl(
         remoteDataSource: gh<_i624.EditProfileRemoteDataSourceInterface>()));
     gh.factory<_i988.FoodRecommendRepo>(() =>
         _i190.FoodRecommendRepoImpl(gh<_i483.FoodRecommendRemoteDataSource>()));
-    gh.lazySingleton<_i774.UploadProfileImageUseCase>(
-        () => _i774.UploadProfileImageUseCase(gh<_i553.Repo>()));
     gh.factory<_i520.GetMealsCategoriesUseCase>(
         () => _i520.GetMealsCategoriesUseCase(gh<_i988.FoodRecommendRepo>()));
     gh.factory<_i420.GetMealsOnCategoryUseCase>(
@@ -188,6 +187,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()));
     gh.factory<_i877.FoodDetailsRepo>(() =>
         _i958.FoodDetailsRepoImpl(gh<_i362.FoodDetailsRemoteDataSource>()));
+    gh.factory<_i29.EditProfileDataUseCase>(
+        () => _i29.EditProfileDataUseCase(gh<_i260.EditProfileRepo>()));
+    gh.factory<_i742.GetProfileDataUseCase>(
+        () => _i742.GetProfileDataUseCase(gh<_i260.EditProfileRepo>()));
+    gh.lazySingleton<_i774.UploadProfileImageUseCase>(
+        () => _i774.UploadProfileImageUseCase(gh<_i260.EditProfileRepo>()));
     gh.factory<_i208.GetMuscleGroupsUseCase>(
         () => _i208.GetMuscleGroupsUseCase(gh<_i207.HomeRepository>()));
     gh.factory<_i598.GetWorkoutsByMuscleGroupId>(
@@ -207,10 +212,11 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i1029.GetDailyRecommendationsUseCase>(() =>
         _i1029.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()));
-    gh.factory<_i29.EditProfileDataUseCase>(
-        () => _i29.EditProfileDataUseCase(gh<_i553.Repo>()));
-    gh.factory<_i742.GetProfileDataUseCase>(
-        () => _i742.GetProfileDataUseCase(gh<_i553.Repo>()));
+    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
+          getProfileDataUseCase: gh<_i742.GetProfileDataUseCase>(),
+          editProfileDataUseCase: gh<_i29.EditProfileDataUseCase>(),
+          uploadProfileImageUseCase: gh<_i774.UploadProfileImageUseCase>(),
+        ));
     gh.factory<_i941.RegisterUseCase>(
         () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i202.HomeBloc>(() => _i202.HomeBloc(
@@ -245,11 +251,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i154.ExercisePageBloc>(() => _i154.ExercisePageBloc(
           getLevelsUseCase: gh<_i233.GetLevelsUseCase>(),
           getExercisesUseCase: gh<_i182.GetExercisesUseCase>(),
-        ));
-    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
-          getProfileDataUseCase: gh<_i742.GetProfileDataUseCase>(),
-          editProfileDataUseCase: gh<_i29.EditProfileDataUseCase>(),
-          uploadProfileImageUseCase: gh<_i774.UploadProfileImageUseCase>(),
         ));
     gh.factory<_i225.LoginViewModel>(
         () => _i225.LoginViewModel(gh<_i37.LoginUseCase>()));

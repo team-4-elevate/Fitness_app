@@ -44,7 +44,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "WHAT IS YOUR ACTIVITY LEVEL?",
+            context.l10n.what_is_your_activity_level,
             style: TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.w800,
@@ -53,7 +53,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
           ),
           SizedBox(height: 8.r),
           Text(
-            "This helps us calculate your daily calorie needs",
+            context.l10n.activity_level_help_text,
             style: TextStyle(
               color: AppColors.white.withOpacity(0.8),
               fontSize: 14.r,
@@ -77,7 +77,7 @@ class _ActivityLevelPageState extends State<ActivityLevelPage> {
                 Navigator.pop(context);
               }
             },
-            child: const Text('Done'),
+            child: Text(context.l10n.done),
           ),
         ],
       ),

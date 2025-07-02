@@ -23,7 +23,7 @@ class EditprofileText extends StatelessWidget {
           },
         ),
         Text(
-          "Edit Profile",
+          context.l10n.edit_profile,
           style: TextStyle(
               color: AppColors.white,
               fontSize: 20.sp,

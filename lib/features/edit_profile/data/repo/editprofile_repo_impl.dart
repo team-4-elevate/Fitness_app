@@ -1,17 +1,16 @@
-// features/edit_profile/data/repo/repo_impl.dart
 import 'dart:io';
 import 'package:fitness_app/core/helper/api_result.dart';
 import 'package:fitness_app/features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_interface.dart';
 import 'package:fitness_app/features/edit_profile/data/models/edit_profile/response/edit_profile_response.dart';
 import 'package:fitness_app/features/edit_profile/data/models/upload_image/upload_image_response.dart';
-import 'package:fitness_app/features/edit_profile/domain/repo/repo.dart';
+import 'package:fitness_app/features/edit_profile/domain/repo/editprofile_repo.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: Repo)
-class RepoImpl implements Repo {
+@Injectable(as: EditProfileRepo)
+class EditProfileRepoImpl implements EditProfileRepo {
   final EditProfileRemoteDataSourceInterface remoteDataSource;
 
-  RepoImpl({
+  EditProfileRepoImpl({
     required this.remoteDataSource,
   });
 

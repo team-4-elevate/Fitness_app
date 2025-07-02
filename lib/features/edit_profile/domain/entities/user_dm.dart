@@ -1,8 +1,7 @@
-// features/edit_profile/domain/entities/user_data.dart
 
 import 'package:equatable/equatable.dart';
 
-class UserData extends Equatable {
+class UserDm extends Equatable {
   final String? id;
   final String? firstName;
   final String? lastName;
@@ -11,7 +10,7 @@ class UserData extends Equatable {
   final String? goal;
   final String? photo;
 
-  const UserData({
+  const UserDm({
     this.id,
     this.firstName,
     this.lastName,
@@ -32,7 +31,7 @@ class UserData extends Equatable {
         photo,
       ];
 
-  UserData copyWith({
+  UserDm copyWith({
     String? id,
     String? firstName,
     String? lastName,
@@ -41,7 +40,7 @@ class UserData extends Equatable {
     String? goal,
     String? photo,
   }) {
-    return UserData(
+    return UserDm(
       id: id ?? this.id,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
