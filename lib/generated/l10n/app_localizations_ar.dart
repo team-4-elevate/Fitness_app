@@ -227,7 +227,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String home_error_loading_upcoming_workouts(String error) {
-    return 'Error loading upcoming workouts: $error';
+    return 'خطأ في تحميل التمارين القادمة: $error';
   }
 
   @override
@@ -237,12 +237,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String home_error_loading_food_recommendations(String error) {
-    return 'Error loading food recommendations: $error';
+    return 'خطأ في تحميل توصيات الطعام: $error';
   }
 
   @override
   String home_error_loading_daily_recommendations(String error) {
-    return 'Error loading daily recommendations: $error';
+    return 'خطأ في تحميل التوصيات اليومية: $error';
   }
 
   @override
@@ -437,6 +437,76 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get motivational_quote => 'اقتباس تحفيزي';
+
+  @override
+  String get upload_image => 'جاري رفع الصورة...';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get first_name => 'الاسم الأول';
+
+  @override
+  String get second_name => 'الاسم الثاني';
+
+  @override
+  String get email_hint => 'user@mail.co';
+
+  @override
+  String get your_weight => 'وزنك';
+
+  @override
+  String get weight_hint => '70';
+
+  @override
+  String get your_goal => 'هدفك';
+
+  @override
+  String get gain_weight => 'زيادة الوزن';
+
+  @override
+  String get your_activity_level => 'مستوى نشاطك';
+
+  @override
+  String get edit_weight => 'تعديل الوزن';
+
+  @override
+  String get edit_goal => 'تعديل الهدف';
+
+  @override
+  String get edit_activity_level => 'تعديل مستوى النشاط';
+
+  @override
+  String get what_is_your_activity_level => 'ما هو مستوى نشاطك؟';
+
+  @override
+  String get activity_level_help_text =>
+      'هذا يساعدنا في حساب احتياجاتك اليومية من السعرات الحرارية';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get edit_profile => 'تعديل الملف الشخصي';
+
+  @override
+  String get what_is_your_goal => 'ما هو هدفك؟';
+
+  @override
+  String get goal_help_text => 'هذا يساعدنا في إنشاء خطة مخصصة لك';
+
+  @override
+  String get tap_to_edit => 'اضغط للتعديل';
+
+  @override
+  String get what_is_your_weight => 'ما هو وزنك؟';
+
+  @override
+  String get weight_help_text => 'هذا يساعدنا في إنشاء خطة مخصصة لك';
+
+  @override
+  String get kg_unit => 'كجم';
 
   @override
   String get enter_old_new_passwords => 'أدخل كلمات المرور القديمة والجديدة';

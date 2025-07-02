@@ -33,6 +33,8 @@ final class BaseErrorState<T> extends BaseState<T> {
 
   @override
   List<Object?> get props => [error];
+
+  get message => null;
 }
 
 // extension BaseStateExtensions<T> on BaseState<T> {

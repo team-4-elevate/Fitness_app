@@ -1,3 +1,4 @@
+// core/helper/api_result.dart
 import 'package:equatable/equatable.dart';
 
 sealed class ApiResult<T> extends Equatable {

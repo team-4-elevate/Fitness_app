@@ -2,11 +2,16 @@
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/features/app_sections/AppSections.dart';
+import 'package:fitness_app/features/edit_profile/domain/entities/physical_info_arguments.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
 import 'package:fitness_app/features/auth/presentation/register/bloc/register_bloc.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_details_view.dart';
 import 'package:fitness_app/features/auth/presentation/register/pages/register_view.dart';
+import 'package:fitness_app/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
+import 'package:fitness_app/features/edit_profile/presentation/view/pages/edit_profile_screen.dart';
+import 'package:fitness_app/features/edit_profile/presentation/view/pages/physical_info_page_view.dart';
+import 'package:fitness_app/features/edit_profile/presentation/view/pages/profile.dart';
 import 'package:fitness_app/features/exercise/domain/arguments/exercise_page_arguments.dart';
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_bloc.dart';
 import 'package:fitness_app/features/exercise/presentation/bloc/exercise_event.dart';
@@ -150,7 +155,43 @@ class AppRoutesGenerator {
             child: UpComingWorkoutScreen(selectedTabIndex: selectedTabIndex),
           ),
         );
+      case AppRoutes.physicalinfo:
+        InfoType selectedInfoType;
+        dynamic selectedPhysicalInfo = 90;
 
+        if (settings.arguments is PhysicalInfoArguments) {
+          final args = settings.arguments as PhysicalInfoArguments;
+          return MaterialPageRoute(
+            builder: (_) => PhysicalInfoPageView.fromArguments(args),
+          );
+        } else if (settings.arguments is Map<String, dynamic>) {
+          final args = settings.arguments as Map<String, dynamic>;
+          selectedInfoType = args['infoType'] as InfoType? ?? InfoType.weight;
+
+          if (args['physicalInfo'] != null) {
+            selectedPhysicalInfo = args['physicalInfo'];
+          }
+        } else {
+          selectedInfoType = settings.arguments as InfoType? ?? InfoType.weight;
+        }
+
+        return MaterialPageRoute(
+          builder: (_) => PhysicalInfoPageView(
+            initialPage: selectedInfoType,
+            initialInfo: selectedPhysicalInfo,
+          ),
+        );
+
+      case AppRoutes.editProfile:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<EditProfileBloc>(),
+            child: const EditProfileScreen(),
+          ),
+        );
+
+      case AppRoutes.profilePage:
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
