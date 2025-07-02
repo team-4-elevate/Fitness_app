@@ -34,14 +34,14 @@ void main() {
     const weight = '70';
     const goal = 'Gain weight';
     const activityLevel = 'Moderate';
-    
-    final responseMap = {
-      'message': 'Profile updated successfully'
-    };
-    
+
+    final responseMap = {'message': 'Profile updated successfully'};
+
     final mockResponse = ApiSuccess(EditProfileResponse.fromJson(responseMap));
 
-    test('should call editProfileData on the repository with correct parameters', () async {
+    test(
+        'should call editProfileData on the repository with correct parameters',
+        () async {
       // Arrange
       when(mockRepo.editProfileData(
         firstName: firstName,
@@ -112,9 +112,7 @@ void main() {
 
   group('UploadProfileImageUseCase', () {
     final imageFile = File('path/to/image.jpg');
-    final responseMap = {
-      'message': 'Image uploaded successfully'
-    };
+    final responseMap = {'message': 'Image uploaded successfully'};
     final mockResponse = ApiSuccess(UploadImageResponse.fromJson(responseMap));
 
     test('should call uploadProfileImage on the repository', () async {
@@ -162,8 +160,7 @@ void main() {
 
     test('should call getProfileData on the repository', () async {
       // Arrange
-      when(mockRepo.getProfileData())
-          .thenAnswer((_) async => mockResponse);
+      when(mockRepo.getProfileData()).thenAnswer((_) async => mockResponse);
 
       // Act
       final result = await getProfileDataUseCase();

@@ -79,7 +79,7 @@ void main() {
             state.fetchProfileStatus == Status.success &&
             state.profileData != null),
         predicate<EditProfileState>((state) =>
-            state.fetchProfileStatus == Status.success && 
+            state.fetchProfileStatus == Status.success &&
             state.fieldValues != null),
       ],
       verify: (_) {
@@ -162,8 +162,9 @@ void main() {
             'activityLevel': 'Moderate'
           }
         };
-        final profileResponse = EditProfileResponse.fromJson(profileResponseMap);
-        
+        final profileResponse =
+            EditProfileResponse.fromJson(profileResponseMap);
+
         return EditProfileState(
           profileData: profileResponse,
         );
@@ -241,7 +242,6 @@ void main() {
           activityLevel: anyNamed('activityLevel'),
         ));
       },
-    
     );
 
     blocTest<EditProfileBloc, EditProfileState>(
@@ -284,8 +284,8 @@ void main() {
             state.snackbarMessage != null &&
             state.snackbarMessage!
                 .contains('Profile image uploaded successfully')),
-        predicate<EditProfileState>((state) =>
-            state.fetchProfileStatus == Status.loading),
+        predicate<EditProfileState>(
+            (state) => state.fetchProfileStatus == Status.loading),
         predicate<EditProfileState>((state) =>
             state.fetchProfileStatus == Status.error &&
             state.errorMessage == 'No auto-fetch in test'),
