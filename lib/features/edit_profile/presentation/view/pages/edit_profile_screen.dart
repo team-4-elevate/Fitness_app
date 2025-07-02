@@ -97,7 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
           if (state.uploadImageStatus == Status.loading) {
             ScaffoldMessenger.of(context).showSnackBar(
-               SnackBar(
+              SnackBar(
                 content: Text(context.l10n.upload_image),
                 duration: Duration(seconds: 2),
               ),
@@ -132,7 +132,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         children: [
                           EditprofileText(),
                           const SizedBox(height: 20),
-
                           EditprofileImage(
                             isEditButton: true,
                             img: state.profileData?.user?.photo ?? '',
@@ -144,7 +143,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             },
                           ),
                           const SizedBox(height: 15),
-
                           Text(
                             _firstnameController.text.isEmpty &&
                                     _lastnameController.text.isEmpty
@@ -157,7 +155,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                           const SizedBox(height: 30),
-
                           TextFormField(
                             controller: _firstnameController,
                             keyboardType: TextInputType.name,
@@ -175,7 +172,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             },
                             decoration: InputDecoration(
                                 hintText: context.l10n.first_name,
-                               // hintStyle: TextStyle(color: AppColors.white),
+                                // hintStyle: TextStyle(color: AppColors.white),
                                 prefixIcon: Padding(
                                   padding:
                                       EdgeInsets.only(left: 16.r, right: 8.r),
@@ -186,7 +183,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 )),
                           ),
                           SizedBox(height: 16.r),
-
                           TextFormField(
                             controller: _lastnameController,
                             keyboardType: TextInputType.name,
@@ -204,7 +200,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             },
                             decoration: InputDecoration(
                                 hintText: context.l10n.second_name,
-                               // hintStyle: TextStyle(color: AppColors.white),
+                                // hintStyle: TextStyle(color: AppColors.white),
                                 prefixIcon: Padding(
                                   padding:
                                       EdgeInsets.only(left: 16.r, right: 8.r),
@@ -215,7 +211,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 )),
                           ),
                           SizedBox(height: 16.r),
-
                           TextFormField(
                             keyboardType: TextInputType.emailAddress,
                             validator: AppValidators.validateEmail,
@@ -241,12 +236,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                               ),
                               hintText: context.l10n.email_hint,
-                            //  hintStyle: TextStyle(color: AppColors.white),
+                              //  hintStyle: TextStyle(color: AppColors.white),
                             ),
                           ),
                           SizedBox(height: 40.r),
-
-
                           PhysicalInfoText(
                             title: context.l10n.your_weight,
                             onTap: () {
@@ -257,7 +250,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             },
                           ),
                           SizedBox(height: 8.r),
-
                           TextFormField(
                             controller: _weightController,
                             keyboardType: TextInputType.number,
@@ -272,7 +264,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                           SizedBox(height: 16.r),
-
                           PhysicalInfoText(
                             title: context.l10n.your_goal,
                             onTap: () {
@@ -297,7 +288,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                           SizedBox(height: 16.r),
-
                           PhysicalInfoText(
                             title: context.l10n.your_activity_level,
                             onTap: () {
