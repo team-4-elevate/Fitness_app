@@ -22,16 +22,16 @@ class PhysicalInfoArguments {
       AppRoutes.physicalinfo,
       arguments: this,
     );
-    
+
     if (result != null && context.mounted) {
       switch (infoType) {
         case InfoType.weight:
           if (result is int) {
             controller.text = result.toString();
             context.read<EditProfileBloc>().add(UpdateProfileEvent(
-              fieldName: AppKeys.weight,
-              fieldValue: result.toString(),
-            ));
+                  fieldName: AppKeys.weight,
+                  fieldValue: result.toString(),
+                ));
           }
           break;
 
@@ -39,9 +39,9 @@ class PhysicalInfoArguments {
           if (result is String) {
             controller.text = result;
             context.read<EditProfileBloc>().add(UpdateProfileEvent(
-              fieldName: AppKeys.goal,
-              fieldValue: result,
-            ));
+                  fieldName: AppKeys.goal,
+                  fieldValue: result,
+                ));
           }
           break;
 
@@ -49,9 +49,9 @@ class PhysicalInfoArguments {
           if (result is String) {
             controller.text = result;
             context.read<EditProfileBloc>().add(UpdateProfileEvent(
-              fieldName: AppKeys.activityLevel,
-              fieldValue: result,
-            ));
+                  fieldName: AppKeys.activityLevel,
+                  fieldValue: result,
+                ));
           }
           break;
       }
