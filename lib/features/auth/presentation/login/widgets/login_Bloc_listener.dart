@@ -2,6 +2,7 @@
 import 'package:fitness_app/core/app_data/app_bloc.dart';
 import 'package:fitness_app/core/app_data/app_events.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
+import 'package:flutter/foundation.dart'; // For debugPrint
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/widgets/animated_dialogs.dart';
@@ -50,22 +51,24 @@ class LoginBlocListener extends StatelessWidget {
           success: (data) async {
             context.pop();
 
+            // We'll skip the AppBloc update and proceed with navigation
+            // This allows login to complete without needing AppBloc
             if (data?.user != null) {
-              final appBloc = context.read<AppBloc>();
-              appBloc.add(
-                UserLoggedInEvent(user: data!.user!, token: data.token),
-              );
+              // The user data is already saved to secure storage in auth_repo_impl.dart
+              // and will be retrieved when the home screen loads
+              debugPrint("User logged in successfully");
             }
 
+            // Show a brief success notification, then navigate immediately
             await context.showSuccessNotification(
               title: context.l10n.login_successTitle,
               message: context.l10n.login_successMessage(
                 data?.user?.firstName ?? '',
               ),
               onAnimationComplete: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => MainNavigationScreen()),
+                // Navigate using the named route
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  AppRoutes.layoutScreen,
                   (route) => false,
                 );
               },

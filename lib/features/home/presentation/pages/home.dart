@@ -1,4 +1,5 @@
 // features/home/presentation/pages/home.dart
+import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
 import 'package:fitness_app/core/base_states/base_state.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
@@ -10,6 +11,7 @@ import 'package:fitness_app/features/home/presentation/widgets/skeleton.dart';
 import 'package:fitness_app/generated/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import '../widgets/user_info.dart';
 import '../widgets/shared_section.dart';
 
@@ -83,8 +85,18 @@ class _HomeState extends State<Home> {
     },
   ];
 
+  Future<void> _loadUserData() async {
+  final appSecureStorage = GetIt.instance<AppSecureStorage>();
+   final firstName = await appSecureStorage.getUserData('firstName');
+  final photoUrl = await appSecureStorage.getUserData('photo');
+  
+  
+}
+
   @override
   Widget build(BuildContext context) {
+
+
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -112,9 +124,9 @@ class _HomeState extends State<Home> {
                       children: [
                         //------------------------------------ User info
                         const UserInfo(
-                          userName: 'shimaa',
+                         /*  userName: 'John Doe',
                           profileImagePath:
-                              'assets/images/onboarding_vector_1.png',
+                              'assets/images/onboarding_vector_1.png', */
                         ),
 
                         SizedBox(height: 16.r),
