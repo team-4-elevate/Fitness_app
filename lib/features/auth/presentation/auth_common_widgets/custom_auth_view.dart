@@ -103,10 +103,9 @@ class CustomAuthScreensView extends StatelessWidget {
                             fontSize:
                                 args.firstTitleArguments!.isBold ? 20 : 18,
                             color: Colors.white,
-                            fontWeight:
-                                args.firstTitleArguments!.isBold
-                                    ? FontWeight.w800
-                                    : FontWeight.w400,
+                            fontWeight: args.firstTitleArguments!.isBold
+                                ? FontWeight.w800
+                                : FontWeight.w400,
                           ),
                         ),
                         SizedBox(height: 6.r),
@@ -116,10 +115,9 @@ class CustomAuthScreensView extends StatelessWidget {
                             fontSize:
                                 args.secondTitleArguments!.isBold ? 20 : 18,
                             color: Colors.white,
-                            fontWeight:
-                                args.secondTitleArguments!.isBold
-                                    ? FontWeight.w800
-                                    : FontWeight.w400,
+                            fontWeight: args.secondTitleArguments!.isBold
+                                ? FontWeight.w800
+                                : FontWeight.w400,
                           ),
                         ),
                       ],

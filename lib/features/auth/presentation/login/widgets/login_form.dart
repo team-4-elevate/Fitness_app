@@ -32,8 +32,8 @@ class LoginForm extends StatelessWidget {
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   keyboardType: TextInputType.emailAddress,
                   controller: viewModel.emailController,
-                  onChanged:
-                      (_) => viewModel.loginIntent(LoginIntent.validateEmail),
+                  onChanged: (_) =>
+                      viewModel.loginIntent(LoginIntent.validateEmail),
                   decoration: InputDecoration(
                     labelText: context.l10n.login_emailLabel,
                     hintText: context.l10n.login_emailHint,
@@ -48,10 +48,9 @@ class LoginForm extends StatelessWidget {
                       controller: viewModel.passwordController,
                       onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       keyboardType: TextInputType.visiblePassword,
-                      onChanged:
-                          (_) => viewModel.loginIntent(
-                            LoginIntent.validatePassword,
-                          ),
+                      onChanged: (_) => viewModel.loginIntent(
+                        LoginIntent.validatePassword,
+                      ),
                       decoration: InputDecoration(
                         labelText: context.l10n.login_passwordLabel,
                         hintText: context.l10n.login_passwordHint,
@@ -131,14 +130,13 @@ class LoginForm extends StatelessWidget {
                 ),
                 R.spaceH16,
                 ElevatedButton(
-                  onPressed:
-                      state.isFormValid
-                          ? () async {
-                            viewModel.loginIntent(
-                              LoginIntent.loginButtonPressed,
-                            );
-                          }
-                          : null,
+                  onPressed: state.isFormValid
+                      ? () async {
+                          viewModel.loginIntent(
+                            LoginIntent.loginButtonPressed,
+                          );
+                        }
+                      : null,
                   child: Text(
                     context.l10n.login_title,
                     style: AppFontStyle.customAppFont.copyWith(fontSize: 18.sp),

@@ -6,7 +6,7 @@ import 'package:fitness_app/features/auth/data/datasource/remote_data_source/aut
 import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_request.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/forgetpassword_response.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_request.dart';
-import 'package:fitness_app/features/auth/data/model/forgetPassword/resetpassword_response.dart';
+import 'package:fitness_app/core/app_data/common_response/reset_password_response.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_request.dart';
 import 'package:fitness_app/features/auth/data/model/forgetPassword/verify_otp_response.dart';
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart';
@@ -26,7 +26,13 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var response = await _authRemoteDataSource.login(loginRequest);
       return handleRepoResponse(response).thenDoAsync((data) async {
-        await _secureStorage.saveToken(data.token ?? '');
+        // await _secureStorage.saveToken(data.token ?? '');
+        if (data.user != null) {
+          await _secureStorage.saveToken(data.token ?? '');
+          await _secureStorage.saveUserData(
+              'firstName', data.user!.firstName ?? '');
+          await _secureStorage.saveUserData('photo', data.user!.photo ?? '');
+        }
       });
     } catch (e) {
       return ApiFailure(e.toString());
@@ -54,7 +60,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<ApiResult<ResetpasswordResponse>> resetPassword(
+  Future<ApiResult<ResetPasswordResponse>> resetPassword(
     ResetpasswordRequest request,
   ) async {
     try {

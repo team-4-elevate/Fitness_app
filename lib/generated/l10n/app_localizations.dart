@@ -63,7 +63,7 @@ import 'app_localizations_en.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -86,16 +86,16 @@ abstract class AppLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en'),
+    Locale('en')
   ];
 
   /// The title of the application
@@ -428,6 +428,156 @@ abstract class AppLocalizations {
   /// **'We Use This For Calorie Calculations'**
   String get registrationSubtitle3;
 
+  /// Error message when parsing upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to parse upcoming workouts: {error}'**
+  String data_parse_error_upcoming_workouts(String error);
+
+  /// Error message when parsing food recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to parse food recommendations: {error}'**
+  String data_parse_error_food_recommendations(String error);
+
+  /// Error message for network issues
+  ///
+  /// In en, this message translates to:
+  /// **'Network error: {error}'**
+  String data_network_error(String error);
+
+  /// Generic error message for domain layer
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading data: {message}'**
+  String domain_error_loading_data(String message);
+
+  /// Title for Daily To Recommendations section
+  ///
+  /// In en, this message translates to:
+  /// **'Daily To Recommendations'**
+  String get dailyToRecommendations;
+
+  /// Title for upcoming workouts section
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Workouts'**
+  String get home_upcoming_workouts;
+
+  /// Title for food recommendations section
+  ///
+  /// In en, this message translates to:
+  /// **'Recommendations For You'**
+  String get home_recommendations_for_you;
+
+  /// Title for popular training section
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Training'**
+  String get home_popular_training;
+
+  /// Button to see all items in a section
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get home_see_all;
+
+  /// Error message when loading upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading upcoming workouts: {error}'**
+  String home_error_upcoming_workouts(String error);
+
+  /// Error message when loading upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading upcoming workouts: {error}'**
+  String home_error_loading_upcoming_workouts(String error);
+
+  /// Error message when loading food recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading food recommendations: {error}'**
+  String home_error_food_recommendations(String error);
+
+  /// Error message when loading food recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading food recommendations: {error}'**
+  String home_error_loading_food_recommendations(String error);
+
+  /// Error message when loading daily recommendations fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading daily recommendations: {error}'**
+  String home_error_loading_daily_recommendations(String error);
+
+  /// Error message when parsing upcoming workouts fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to parse upcoming workouts:'**
+  String get failed_to_parse_upcoming_workouts;
+
+  /// Greeting message to start the day
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Start Your Day'**
+  String get let_s_start_your_day;
+
+  /// Gym category name
+  ///
+  /// In en, this message translates to:
+  /// **'Gym'**
+  String get category_gym;
+
+  /// Fitness category name
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness'**
+  String get category_fitness;
+
+  /// Yoga category name
+  ///
+  /// In en, this message translates to:
+  /// **'Yoga'**
+  String get category_yoga;
+
+  /// Aerobics category name
+  ///
+  /// In en, this message translates to:
+  /// **'Aerobics'**
+  String get category_aerobics;
+
+  /// Trainer category name
+  ///
+  /// In en, this message translates to:
+  /// **'Trainer'**
+  String get category_trainer;
+
+  /// Full body workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Full Body'**
+  String get workout_category_full_body;
+
+  /// Chest workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Chest'**
+  String get workout_category_chest;
+
+  /// Arm workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Arm'**
+  String get workout_category_arm;
+
+  /// Leg workout category
+  ///
+  /// In en, this message translates to:
+  /// **'Leg'**
+  String get workout_category_leg;
+
   /// Title for height selection step
   ///
   /// In en, this message translates to:
@@ -614,6 +764,7 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
+
   /// Title for the smart coach section
   ///
   /// In en, this message translates to:
@@ -667,6 +818,319 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Get Started'**
   String get welcomeBtn;
+
+  /// Title for the food recommendation section
+  ///
+  /// In en, this message translates to:
+  /// **'Food Recommendation'**
+  String get food_Recommendation_title;
+
+  /// Message displayed when no food categories are found
+  ///
+  /// In en, this message translates to:
+  /// **'No categories found'**
+  String get food_Recommendation_no_categories;
+
+  /// Error message displayed when failing to load food categories
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load categories'**
+  String get food_food_Recommendation_fail_to_loadCategories;
+
+  /// Retry button text
+  ///
+  /// In en, this message translates to:
+  /// **'retry'**
+  String get retry;
+
+  /// Label for confirm password input field
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get confirmPassword;
+
+  /// Error message when passwords do not match
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
+
+  /// Label for entering a four-digit code
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter 4 digit code'**
+  String get enterFourDigitCode;
+
+  /// Button text to confirm an action
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// Label for entering OTP (One Time Password)
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your OTP'**
+  String get enterYourOtp;
+
+  /// Label for checking email
+  ///
+  /// In en, this message translates to:
+  /// **'Check Your Email'**
+  String get checkYourEmail;
+
+  /// Label for entering OTP code
+  ///
+  /// In en, this message translates to:
+  /// **'OTP CODE'**
+  String get otpCode;
+
+  /// Label for forget password
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get forgetPassword;
+
+  /// Label for entering email
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your Email'**
+  String get enterYourEmail;
+
+  /// Button text to send OTP
+  ///
+  /// In en, this message translates to:
+  /// **'Send OTP'**
+  String get sendOtp;
+
+  /// Text asking if user didn't receive verification code
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t Receive Verification Code?'**
+  String get didntReceiveVerificationCode;
+
+  /// Button text to resend verification code
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// Message displayed when a video is not available
+  ///
+  /// In en, this message translates to:
+  /// **'Video not available'**
+  String get video_not_available;
+
+  /// Label for exercise section
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise'**
+  String get exercise;
+
+  /// Message displayed when no exercises are found
+  ///
+  /// In en, this message translates to:
+  /// **'No exercises found'**
+  String get no_exercises_found;
+
+  /// Error message displayed when failing to load exercises
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load exercises'**
+  String failed_to_load_exercises(Object error);
+
+  /// Title for the motivational quote section
+  ///
+  /// In en, this message translates to:
+  /// **'Motivational Quote'**
+  String get motivational_quote;
+
+  /// Message shown when uploading a profile image
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading image...'**
+  String get upload_image;
+
+  /// Generic loading text
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Label for first name field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get first_name;
+
+  /// Label for second/last name field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Second Name'**
+  String get second_name;
+
+  /// Hint for email field
+  ///
+  /// In en, this message translates to:
+  /// **'user@mail.co'**
+  String get email_hint;
+
+  /// Label for weight field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Weight'**
+  String get your_weight;
+
+  /// Hint for weight field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'70'**
+  String get weight_hint;
+
+  /// Label for goal field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Goal'**
+  String get your_goal;
+
+  /// Goal option to gain weight
+  ///
+  /// In en, this message translates to:
+  /// **'Gain weight'**
+  String get gain_weight;
+
+  /// Label for activity level field in edit profile
+  ///
+  /// In en, this message translates to:
+  /// **'Your Activity Level'**
+  String get your_activity_level;
+
+  /// Title for edit weight page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Weight'**
+  String get edit_weight;
+
+  /// Title for edit goal page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Goal'**
+  String get edit_goal;
+
+  /// Title for edit activity level page
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Activity Level'**
+  String get edit_activity_level;
+
+  /// Title for activity level selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR ACTIVITY LEVEL?'**
+  String get what_is_your_activity_level;
+
+  /// Help text for activity level selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us calculate your daily calorie needs'**
+  String get activity_level_help_text;
+
+  /// Button text for completing an action
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// Title for the edit profile screen
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get edit_profile;
+
+  /// Title for goal selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR GOAL?'**
+  String get what_is_your_goal;
+
+  /// Help text for goal selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get goal_help_text;
+
+  /// Text indicating a field can be edited by tapping
+  ///
+  /// In en, this message translates to:
+  /// **'tap to Edit'**
+  String get tap_to_edit;
+
+  /// Title for weight selection
+  ///
+  /// In en, this message translates to:
+  /// **'WHAT IS YOUR WEIGHT?'**
+  String get what_is_your_weight;
+
+  /// Help text for weight selection
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get weight_help_text;
+
+  /// Kilogram unit abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'Kg'**
+  String get kg_unit;
+
+  /// No description provided for @enter_old_new_passwords.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your old, new passwords'**
+  String get enter_old_new_passwords;
+
+  /// No description provided for @update_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Password'**
+  String get update_password;
+
+  /// No description provided for @password_updated_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated successfully'**
+  String get password_updated_successfully;
+
+  /// No description provided for @current_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
+  String get current_password;
+
+  /// No description provided for @new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get new_password;
+
+  /// No description provided for @confirm_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirm_new_password;
+
+  /// No description provided for @please_confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get please_confirm_password;
+
+  /// No description provided for @passwords_do_not_match.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwords_do_not_match;
+
 }
 
 class _AppLocalizationsDelegate
@@ -696,9 +1160,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

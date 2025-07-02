@@ -1,3 +1,4 @@
+// core/routes/app_routes.dart
 class AppRoutes {
   AppRoutes._();
   static const String onboarding = '/onboarding';
@@ -10,8 +11,20 @@ class AppRoutes {
   static const String forgetPassOtpPage = '/otpPage';
   static const String createNewPasswordPage = '/createNewPass';
   static const String resetPasswordPage = '/resetPasswordPage';
+  static const String updatePasswordPage = '/updatePasswordPage';
   static const String profilePage = '/profilePage';
   static const String homeScreen = '/homeScreen';
+  static const String exercisePage = '/exercisePage';
+  static const String exerciseDetailsPage = '/exerciseDetailsPage';
   static const String changePasswordScreen = '/changePasswordScreen';
+
   static const String chatScreen = '/chatScreen';
+
+  static const String foodRecommendationScreen = '/foodRecommendationScreen';
+  static const String upcomingWorkoutTabBar = '/UpcomingWorkoutTabBar';
+  static const String foodDetailsScreen = '/foodDetailsScreen';
+  static const String upcomingWorkoutSeeallPage = '/upcomingWorkoutSeeallPage';
+  static const String physicalinfo = '/physicalinfo';
+  static const String editProfile = '/editProfile';
+
 }

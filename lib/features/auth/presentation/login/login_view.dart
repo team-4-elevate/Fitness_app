@@ -14,35 +14,42 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<LoginViewModel>();
-    return Scaffold(
-      body: LoginBlocListener(
-        child: BlurredBackground(
-          isScrollable: true,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(
-                AppConstants.appLogo,
-                width: 80.w,
-                height: 55.h,
-              ).center.paddingOnly(top: 40.h),
-              R.spaceH24,
-              Text(
-                context.l10n.login_heyThere,
-                style: AppFontStyle.customAppFont.copyWith(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
+    return BlocProvider.value(
+      value: context.read<LoginViewModel>(),
+      child: Scaffold(
+        body: LoginBlocListener(
+          child: BlurredBackground(
+            isScrollable: true,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  AppConstants.appLogo,
+                  width: 80.w,
+                  height: 55.h,
+                ).center.paddingOnly(top: 40.h),
+                R.spaceH24,
+                Text(
+                  context.l10n.login_heyThere,
+                  style: AppFontStyle.customAppFont.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ).paddingOnly(left: R.paddingSMValue),
+                R.spaceH4,
+                Text(
+                  context.l10n.login_welcomeBack,
+                  style: AppFontStyle.customAppFont.copyWith(fontSize: 20.sp),
+                ).paddingOnly(left: R.paddingSMValue),
+                R.spaceH24,
+                Builder(
+                  builder: (context) {
+                    final viewModel = context.read<LoginViewModel>();
+                    return LoginForm(viewModel: viewModel);
+                  },
                 ),
-              ).paddingOnly(left: R.paddingSMValue),
-              R.spaceH4,
-              Text(
-                context.l10n.login_welcomeBack,
-                style: AppFontStyle.customAppFont.copyWith(fontSize: 20.sp),
-              ).paddingOnly(left: R.paddingSMValue),
-              R.spaceH24,
-              LoginForm(viewModel: viewModel),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+// features/auth/presentation/login/login_view_model.dart
 import 'package:fitness_app/core/helper/handle_cubit_states.dart';
 import 'package:fitness_app/core/utils/app_validator.dart';
 import 'package:fitness_app/features/auth/data/model/login_models/login_request/login_request.dart';
@@ -136,13 +137,12 @@ class LoginViewModel extends Cubit<LoginState> {
 
   Future<void> _doLogin() async {
     return await handleCubitStates(
-      request:
-          () => _loginUseCase.call(
-            LoginRequest(
-              email: emailController.text.trim(),
-              password: passwordController.text,
-            ),
-          ),
+      request: () => _loginUseCase.call(
+        LoginRequest(
+          email: emailController.text.trim(),
+          password: passwordController.text,
+        ),
+      ),
       emit: (newState) {
         emit(state.copyWith(loginState: newState));
       },

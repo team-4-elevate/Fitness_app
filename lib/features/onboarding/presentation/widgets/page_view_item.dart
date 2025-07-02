@@ -37,7 +37,7 @@ class PageViewItem extends StatelessWidget {
           height: 272.h,
           padding: EdgeInsets.all(R.paddingMDValue),
           decoration: BoxDecoration(
-            color: Colors.black.withValues(alpha: 0.4),
+            color: Colors.black.withOpacity(0.4),
             borderRadius: const BorderRadius.vertical(top: Radius.circular(50)),
           ),
           child: Column(
@@ -48,9 +48,9 @@ class PageViewItem extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
               ),
               SizedBox(height: 12.h),
               Text(

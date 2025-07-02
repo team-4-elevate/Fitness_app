@@ -1,3 +1,4 @@
+// core/helper/api_result.dart
 import 'package:equatable/equatable.dart';
 
 sealed class ApiResult<T> extends Equatable {
@@ -21,19 +22,19 @@ sealed class ApiResult<T> extends Equatable {
   }
 
   T? get dataOrNull => switch (this) {
-    ApiSuccess<T>(data: var data) => data,
-    ApiFailure<T>() => null,
-  };
+        ApiSuccess<T>(data: var data) => data,
+        ApiFailure<T>() => null,
+      };
 
   T getDataOr(T defaultValue) => switch (this) {
-    ApiSuccess<T>(data: var data) => data,
-    ApiFailure<T>() => defaultValue,
-  };
+        ApiSuccess<T>(data: var data) => data,
+        ApiFailure<T>() => defaultValue,
+      };
 
   String? get errorOrNull => switch (this) {
-    ApiSuccess<T>() => null,
-    ApiFailure<T>(message: var message) => message,
-  };
+        ApiSuccess<T>() => null,
+        ApiFailure<T>(message: var message) => message,
+      };
 
   bool get isSuccess => this is ApiSuccess<T>;
 

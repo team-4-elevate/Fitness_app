@@ -7,8 +7,8 @@ import 'package:fitness_app/features/auth/data/model/login_models/login_response
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../food_recommendation/data/datasources/food_recommend_remote_data_source_impl_test.mocks.dart';
 import 'mocks.dart';
-import 'mocks.mocks.dart';
 
 void main() {
   // Setup dummy values before running tests
@@ -94,8 +94,8 @@ void main() {
             );
             expect(data.user?.email, equals(expectedLoginResponse.user?.email));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         verify(
@@ -215,8 +215,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -247,8 +247,8 @@ void main() {
             expect(data.token, equals('invalid_token_string'));
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -300,8 +300,8 @@ void main() {
             expect(data.token, equals('mock_jwt_token_12345'));
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -330,8 +330,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user, isNotNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
 
@@ -357,8 +357,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
       });
     });

@@ -22,7 +22,6 @@ class GenderStep extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 40.r),
-
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -30,20 +29,19 @@ class GenderStep extends StatelessWidget {
                 label: AppLocalizations.of(context).male,
                 icon: Icons.male,
                 isSelected: userData.gender == Gender.male,
-                onTap:
-                    () => onGenderSelected(AppLocalizations.of(context).male),
+                onTap: () =>
+                    onGenderSelected(AppLocalizations.of(context).male),
               ),
               SizedBox(height: 40.r),
               _buildGenderOption(
                 label: AppLocalizations.of(context).female,
                 icon: Icons.female,
                 isSelected: userData.gender == Gender.female,
-                onTap:
-                    () => onGenderSelected(AppLocalizations.of(context).female),
+                onTap: () =>
+                    onGenderSelected(AppLocalizations.of(context).female),
               ),
             ],
           ),
-
           SizedBox(height: 60.r),
         ],
       ),
@@ -64,16 +62,14 @@ class GenderStep extends StatelessWidget {
             width: 100.r,
             height: 100.r,
             decoration: BoxDecoration(
-              color:
-                  isSelected
-                      ? Colors.deepOrange
-                      : Colors.black.withOpacity(0.3),
+              color: isSelected
+                  ? Colors.deepOrange
+                  : Colors.black.withOpacity(0.3),
               shape: BoxShape.circle,
               border: Border.all(
-                color:
-                    isSelected
-                        ? Colors.deepOrange
-                        : Colors.white.withOpacity(0.5),
+                color: isSelected
+                    ? Colors.deepOrange
+                    : Colors.white.withOpacity(0.5),
                 width: 2.r,
               ),
             ),

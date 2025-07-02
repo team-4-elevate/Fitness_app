@@ -79,8 +79,8 @@ void main() {
               );
               expect(data.user?.email, equals(mockLoginResponse.user?.email));
             },
-            failure:
-                (message) => fail('Expected success but got failure: $message'),
+            failure: (message) =>
+                fail('Expected success but got failure: $message'),
           );
 
           verify(mockAuthRemoteDataSource.login(loginRequest)).called(1);
@@ -113,8 +113,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user?.id, equals(responseWithoutToken.user?.id));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         // Verify that empty string was saved when token is null
@@ -164,8 +164,8 @@ void main() {
             expect(data.token, equals(mockLoginResponse.token));
             expect(data.user?.id, equals(mockLoginResponse.user?.id));
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         // Verify both were called despite storage failure
@@ -241,8 +241,8 @@ void main() {
             expect(data.token, isNull);
             expect(data.user, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         // Verify empty string was saved for null token
@@ -313,8 +313,8 @@ void main() {
             expect(data.user?.gender, isNull);
             expect(data.user?.age, isNull);
           },
-          failure:
-              (message) => fail('Expected success but got failure: $message'),
+          failure: (message) =>
+              fail('Expected success but got failure: $message'),
         );
 
         verify(mockAuthRemoteDataSource.login(loginRequest)).called(1);

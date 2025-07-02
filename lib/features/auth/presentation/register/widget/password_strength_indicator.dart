@@ -35,10 +35,9 @@ class PasswordStrengthIndicator extends StatelessWidget {
             height: 4.r,
             margin: EdgeInsets.symmetric(horizontal: 2.r),
             decoration: BoxDecoration(
-              color:
-                  index < strength
-                      ? _getStrengthColor(strength)
-                      : Colors.grey.withOpacity(0.3),
+              color: index < strength
+                  ? _getStrengthColor(strength)
+                  : Colors.grey.withOpacity(0.3),
               borderRadius: BorderRadius.circular(2.r),
             ),
           ),

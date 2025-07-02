@@ -1,10 +1,14 @@
+import 'package:fitness_app/core/di/di.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@singleton
 class LocalizationManager extends ChangeNotifier {
   static final LocalizationManager _instance = LocalizationManager._internal();
   factory LocalizationManager() => _instance;
   LocalizationManager._internal();
+  final sharedPrefs = getIt<SharedPreferences>();
 
   static const String _languageKey = 'selected_language';
 
@@ -19,8 +23,7 @@ class LocalizationManager extends ChangeNotifier {
 
   /// Initialize the localization manager
   Future<void> initialize() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedLanguage = prefs.getString(_languageKey) ?? 'en';
+    final savedLanguage = sharedPrefs.getString(_languageKey) ?? 'en';
     _currentLocale = Locale(savedLanguage);
     notifyListeners();
   }
@@ -30,8 +33,7 @@ class LocalizationManager extends ChangeNotifier {
     if (!supportedLocales.contains(locale)) return;
 
     _currentLocale = locale;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_languageKey, locale.languageCode);
+    await sharedPrefs.setString(_languageKey, locale.languageCode);
     notifyListeners();
   }
 

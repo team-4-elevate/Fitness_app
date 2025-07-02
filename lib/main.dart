@@ -16,24 +16,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'core/app_local_storage/app_secure_storage.dart';
 import 'core/services/api_localization_service.dart';
 import 'core/services/localization_manager.dart';
 import 'core/responsive/responsive.dart';
 
-// global variable
 bool isShowOnboarding = false;
+bool shouldAutoLogin = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await ApiLocalizationService().init();
-  await LocalizationManager().initialize();
-  await configureDependencies().then((_) async {
-    isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
-  });
-  await _configureFirebase();
-  await getIt<HiveService>().init();
-  Bloc.observer = AppBlocObserver();
 
+ 
+
+  await configureDependencies();
+  await Future.wait([
+    _setAutoLogin(),
+    ApiLocalizationService().init(),
+   getIt<HiveService>().init();
+    
+    LocalizationManager().initialize(),
+    _configureFirebase(),
+  ]);
+
+
+  Bloc.observer = AppBlocObserver();
   runApp(const MyApp());
 }
 
@@ -48,8 +55,6 @@ class MyApp extends StatelessWidget {
           return ResponsiveWrapper(
             child: MaterialApp(
               title: 'Fitness App',
-
-              // navigatorKey: getIt<NavigationService>().navigatorKey,
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -59,7 +64,6 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               supportedLocales: localizationManager.supportedLocales,
               locale: localizationManager.currentLocale,
-
               theme: AppTheme.lightTheme,
               onGenerateRoute: AppRoutesGenerator.generateRoute,
               builder: (context, child) {
@@ -67,13 +71,22 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-              initialRoute: AppRoutes.chatScreen,
-              // isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding,
+
+
+
+
+              initialRoute: _setInitialRoute(),
+
             ),
           );
         },
       ),
     );
+  }
+
+  String _setInitialRoute() {
+    if (shouldAutoLogin) return AppRoutes.layoutScreen;
+    return isShowOnboarding ? AppRoutes.loginPage : AppRoutes.onboarding;
   }
 }
 
@@ -96,4 +109,12 @@ Future<void> _configureFirebase() async {
       );
     }).sendPort,
   );
+}
+
+Future<void> _setAutoLogin() async {
+  if (await getIt<AppSecureStorage>().getToken() != null) {
+    shouldAutoLogin = true;
+    return;
+  }
+  isShowOnboarding = await getIt<AppLocalStorage>().isShowOnboarding();
 }

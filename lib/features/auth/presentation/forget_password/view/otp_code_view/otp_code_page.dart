@@ -6,6 +6,7 @@ import 'package:fitness_app/features/auth/presentation/forget_password/view/otp_
 import 'package:fitness_app/features/auth/presentation/forget_password/view/otp_code_view/widgets/otp_text_footer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../../generated/l10n/app_localizations.dart';
 import '../../../../domain/arguments/auth_pages_ui_arguments.dart';
 import '../../../auth_common_widgets/custom_auth_view.dart';
 import '../../bloc/forget_password_event.dart';
@@ -46,23 +47,23 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
   Widget build(BuildContext context) {
     return CustomAuthScreensView(
       args: AuthPagesUiArguments(
-        firstTitleArguments: const AuthPageTitleArguments(
+        firstTitleArguments: AuthPageTitleArguments(
           isBold: true,
-          text: 'OTP CODE',
+          text: context.l10n.otpCode,
         ),
-        secondTitleArguments: const AuthPageTitleArguments(
+        secondTitleArguments: AuthPageTitleArguments(
           isBold: false,
-          text: 'Enter Your OTP Check Your Email',
+          text: context.l10n.enterYourOtp,
         ),
         isRegister: false,
-        primaryButtonText: 'Confirm',
+        primaryButtonText: context.l10n.confirm,
         footerContent: OtpFooterTextWidget(
-          onResendCode:
-              () => _bloc.add(ForgetPasswordSubmitEvent(_bloc.state.userEmail)),
+          onResendCode: () =>
+              _bloc.add(ForgetPasswordSubmitEvent(_bloc.state.userEmail)),
         ),
         primaryButtonAction: () {
           if (_pinController.text.length != 6) {
-            context.showSnackBar('please enter 4 digit code');
+            context.showSnackBar(context.l10n.forgetPassword);
             return;
           }
           _bloc.add(VerifyResetCodeEvent(_pinController.text));
@@ -77,8 +78,9 @@ class _ForgetPassOtpCodePage extends State<ForgetPassOtpCodePage> {
             state.verifyResetCodeStatus.isError
                 ? context.showSnackBar(state.errorMessage)
                 : Navigator.of(
-                  context,
-                ).pushNamed(AppRoutes.createNewPasswordPage, arguments: _bloc);
+                    context,
+                  ).pushNamed(AppRoutes.createNewPasswordPage,
+                    arguments: _bloc);
           },
           child: OtpTextField(pinController: _pinController),
         ),

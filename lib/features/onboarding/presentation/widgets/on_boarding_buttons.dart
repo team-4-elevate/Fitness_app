@@ -55,7 +55,6 @@ class OnboardingButtons extends StatelessWidget {
               width: 100.w,
               child: ElevatedButton(
                 key: const Key('second_page_next_button'),
-
                 style: AppTheme.getPrimaryButtonStyle(),
                 onPressed: () {
                   pageController.nextPage(

@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.0
+  sdk: ^3.5.3
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -27,6 +27,8 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+dependency_overrides:
+  shared_preferences_android: 2.4.0
 dependencies:
   flutter:
     sdk: flutter
@@ -60,6 +62,7 @@ dependencies:
   blur:
   flutter_svg:
   pinput:
+
   google_fonts: ^6.2.1
   numberpicker: ^2.1.2
   icons_plus: ^5.0.0
@@ -73,26 +76,47 @@ dependencies:
   path_provider:
   flutter_markdown: ^0.7.7+1
 
+  google_fonts: 
+  numberpicker: 
+  icons_plus: 
+  skeletonizer: 
+  smooth_page_indicator: 
+
+  cached_network_image: ^3.2.0
+  youtube_player_flutter: ^9.1.1
+  image_picker: ^1.1.2
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.5.3
   retrofit_generator: ">=8.0.0 <10.0.0"
   injectable_generator:
-  json_serializable: ^6.9.5
-  mockito: ^5.4.3
 
-  flutter_native_splash: ^2.4.6
-  flutter_launcher_icons: ^0.14.4
+
+
+
+  json_serializable:
+  mockito: 
+  
+
+
+  flutter_native_splash: 
+  flutter_launcher_icons: 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+
+
   freezed: ^3.0.6
   hive_ce_generator:
+
+  flutter_lints: 
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
