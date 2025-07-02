@@ -11,7 +11,6 @@ import 'package:fitness_app/features/auth/presentation/register/pages/register_v
 
 import 'package:fitness_app/features/chat_bot/presentation/bloc/chat_bloc.dart';
 import 'package:fitness_app/features/chat_bot/presentation/pages/chat_bot_page.dart';
-import 'package:fitness_app/features/home/home.dart';
 
 import 'package:fitness_app/features/edit_profile/presentation/bloc/edit_profile_bloc.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/pages/edit_profile_screen.dart';
@@ -116,14 +115,6 @@ class AppRoutesGenerator {
         );
       case AppRoutes.onboarding:
         return MaterialPageRoute(builder: (_) => OnBoardingPage());
-
-      case AppRoutes.chatScreen:
-        return MaterialPageRoute(
-          builder:
-              (_) => BlocProvider(
-                create: (context) => getIt<ChatBloc>(),
-                child: ChatBotPage(),
-              ),
 
       case AppRoutes.foodDetailsScreen:
         return MaterialPageRoute(

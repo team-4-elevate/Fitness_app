@@ -26,19 +26,14 @@ bool shouldAutoLogin = false;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-
- 
-
   await configureDependencies();
   await Future.wait([
     _setAutoLogin(),
     ApiLocalizationService().init(),
-   getIt<HiveService>().init();
-    
+    getIt<HiveService>().init(),
     LocalizationManager().initialize(),
     _configureFirebase(),
   ]);
-
 
   Bloc.observer = AppBlocObserver();
   runApp(const MyApp());
@@ -71,12 +66,7 @@ class MyApp extends StatelessWidget {
                 ApiLocalizationService().setLocalizations(localizations);
                 return child!;
               },
-
-
-
-
               initialRoute: _setInitialRoute(),
-
             ),
           );
         },

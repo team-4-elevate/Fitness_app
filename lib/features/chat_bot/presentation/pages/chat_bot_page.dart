@@ -1,5 +1,6 @@
 import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/core/generated/assets.dart';
+import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/chat_bot/presentation/bloc/chat_bloc.dart';
@@ -56,18 +57,17 @@ class _BotScreenState extends State<ChatBotPage> {
         leading: IconButton(
           icon: SvgPicture.asset(Assets.iconsBackIcon, height: 30),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pushReplacementNamed(AppRoutes.layoutScreen);
           },
         ),
         actions: [
           Builder(
-            builder:
-                (context) => IconButton(
-                  icon: SvgPicture.asset(Assets.iconsMenuIcon, height: 30),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  },
-                ),
+            builder: (context) => IconButton(
+              icon: SvgPicture.asset(Assets.iconsMenuIcon, height: 30),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
           ),
         ],
       ),

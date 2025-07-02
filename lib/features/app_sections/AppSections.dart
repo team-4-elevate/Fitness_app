@@ -3,6 +3,8 @@ import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/services/navigation_service.dart';
 import 'package:fitness_app/features/app_sections/ChatAipage.dart';
+import 'package:fitness_app/features/chat_bot/presentation/bloc/chat_bloc.dart';
+import 'package:fitness_app/features/chat_bot/presentation/pages/chat_bot_page.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/pages/edit_profile_screen.dart';
 import 'package:fitness_app/features/edit_profile/presentation/view/pages/profile.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
@@ -34,11 +36,18 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
 
       //---------------------------------------------------chat ai page
-      const ChatAipage(),
+      BlocProvider(
+        create: (context) => getIt<ChatBloc>(),
+        child: ChatBotPage(),
+      ),
+
+      //---------------------------------------------------gym page
       BlocProvider<HomeBloc>(
         create: (_) => getIt<HomeBloc>()..add(const LoadHomeData()),
         child: const UpComingWorkoutScreen(),
       ),
+
+      //---------------------------------------------------profile page
       const ProfilePage(),
     ];
 
@@ -122,10 +131,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       body: Stack(
         children: [
           _pages[_selectedIndex],
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: _buildFloatingNavBar(),
-          ),
+          _selectedIndex == 1
+              ? SizedBox()
+              : Align(
+                  alignment: Alignment.bottomCenter,
+                  child: _buildFloatingNavBar(),
+                ),
         ],
       ),
     );
