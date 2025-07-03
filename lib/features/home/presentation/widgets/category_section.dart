@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class CategorySection extends StatelessWidget {
   final List<Map<String, dynamic>> categories;
- final void Function()? onTap;
+  final void Function()? onTap;
 
- const CategorySection({super.key, required this.categories, this.onTap});
+  const CategorySection({super.key, required this.categories, this.onTap});
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -33,10 +33,10 @@ class ChatState extends Equatable {
 
   @override
   List<Object?> get props => [
-    uiState,
-    messageState,
-    conversationsState,
-    currentConversations,
-    messages,
-  ];
+        uiState,
+        messageState,
+        conversationsState,
+        currentConversations,
+        messages,
+      ];
 }

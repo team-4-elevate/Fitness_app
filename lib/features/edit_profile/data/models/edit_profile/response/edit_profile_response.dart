@@ -1,7 +1,6 @@
 // features/edit_profile/domain/models/edit_profile/edit_profile_response.dart
 import 'package:fitness_app/features/auth/data/model/login_models/login_response/user.dart';
 
-
 class EditProfileResponse {
   String? message;
   User? user;

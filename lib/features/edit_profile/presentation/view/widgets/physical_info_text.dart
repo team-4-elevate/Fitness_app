@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class PhysicalInfoText extends StatefulWidget {
   final String title;
- final void Function()? onTap;
+  final void Function()? onTap;
 
-const PhysicalInfoText({super.key, required this.title, required this.onTap});
+  const PhysicalInfoText({super.key, required this.title, required this.onTap});
 
   @override
   State<PhysicalInfoText> createState() => _PhysicalInfoTextState();

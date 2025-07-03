@@ -200,7 +200,6 @@ class AppRoutesGenerator {
             create: (_) => getIt<EditProfileBloc>(),
             child: const EditProfileScreen(),
           ),
-
         );
 
       case AppRoutes.profilePage:

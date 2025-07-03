@@ -60,7 +60,7 @@ class ChatWithCoachScreen extends StatelessWidget {
           ),
         ),
         child: ChatPage(
-           chatBloc: context.read<ChatBloc>(),
+          chatBloc: context.read<ChatBloc>(),
         ),
       ),
     );

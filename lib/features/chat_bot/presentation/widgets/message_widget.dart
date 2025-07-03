@@ -24,12 +24,11 @@ class MessageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final avatar = CircleAvatar(
       backgroundColor: AppColors.backgroundDark,
-      backgroundImage:
-          isUser
-              ? Image.network(
-                'https://mir-s3-cdn-cf.behance.net/user/276/6f4f341119178147.66e08d23e23a4.png',
-              ).image
-              : Image.asset(Assets.imagesBotEllipse).image,
+      backgroundImage: isUser
+          ? Image.network(
+              'https://mir-s3-cdn-cf.behance.net/user/276/6f4f341119178147.66e08d23e23a4.png',
+            ).image
+          : Image.asset(Assets.imagesBotEllipse).image,
       radius: 20.r,
     );
 
@@ -48,28 +47,28 @@ class MessageWidget extends StatelessWidget {
           return isUser
               ? Text(message.trim(), style: context.textTheme.titleMedium)
               : MarkdownBody(
-                data: message.trim(),
-                selectable: true,
-                styleSheet: MarkdownStyleSheet.fromTheme(
-                  Theme.of(context),
-                ).copyWith(
-                  p: context.textTheme.titleMedium?.copyWith(
-                    color: Colors.white,
+                  data: message.trim(),
+                  selectable: true,
+                  styleSheet: MarkdownStyleSheet.fromTheme(
+                    Theme.of(context),
+                  ).copyWith(
+                    p: context.textTheme.titleMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+                    h1: context.textTheme.headlineMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+                    codeblockDecoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    code: context.textTheme.bodyMedium?.copyWith(
+                      fontFamily: 'monospace',
+                      color: Colors.cyanAccent,
+                      backgroundColor: Colors.transparent,
+                    ),
                   ),
-                  h1: context.textTheme.headlineMedium?.copyWith(
-                    color: Colors.white,
-                  ),
-                  codeblockDecoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  code: context.textTheme.bodyMedium?.copyWith(
-                    fontFamily: 'monospace',
-                    color: Colors.cyanAccent,
-                    backgroundColor: Colors.transparent,
-                  ),
-                ),
-              );
+                );
       }
     }
 
@@ -80,10 +79,9 @@ class MessageWidget extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           decoration: BoxDecoration(
-            color:
-                isUser
-                    ? AppColors.primaryOrange.withAlpha(120)
-                    : AppColors.backgroundDark.withAlpha(120),
+            color: isUser
+                ? AppColors.primaryOrange.withAlpha(120)
+                : AppColors.backgroundDark.withAlpha(120),
             borderRadius: BorderRadiusDirectional.only(
               topStart: isUser ? const Radius.circular(30) : Radius.zero,
               bottomStart: const Radius.circular(30),
@@ -115,10 +113,9 @@ class MessageWidget extends StatelessWidget {
       mainAxisAlignment:
           isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:
-          isUser
-              ? [messageBubble, const SizedBox(width: 8), avatar]
-              : [avatar, const SizedBox(width: 8), messageBubble],
+      children: isUser
+          ? [messageBubble, const SizedBox(width: 8), avatar]
+          : [avatar, const SizedBox(width: 8), messageBubble],
     );
   }
 }

@@ -36,8 +36,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
       //---------------------------------------------------chat ai page
       BlocProvider(
-        create: (context) => getIt<ChatBloc>(),
-        child: const ChatBotPage()),
+          create: (context) => getIt<ChatBloc>(), child: const ChatBotPage()),
       BlocProvider<HomeBloc>(
         create: (_) => getIt<HomeBloc>()..add(const LoadHomeData()),
         child: const UpComingWorkoutScreen(),

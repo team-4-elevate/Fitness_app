@@ -32,12 +32,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     this._saveConversationUsecase,
     this._deleteConversationUsecase,
   ) : super(
-        ChatState(
-          uiState: InitialState(),
-          messageState: InitialState(),
-          conversationsState: InitialState(),
-        ),
-      ) {
+          ChatState(
+            uiState: InitialState(),
+            messageState: InitialState(),
+            conversationsState: InitialState(),
+          ),
+        ) {
     on<StartChatPressed>(_onStartChatPressed);
     on<SendUserMessage>(_onSendUserMessage);
     on<SelectConversation>(_onSelectConversation);
