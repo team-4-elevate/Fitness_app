@@ -1,4 +1,4 @@
-// core/di/di.config.dart
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:google_generative_ai/google_generative_ai.dart' as _i656;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
@@ -35,6 +36,30 @@ import '../../features/auth/presentation/forget_password/bloc/forget_password_bl
 import '../../features/auth/presentation/login/login_view_model.dart' as _i225;
 import '../../features/auth/presentation/register/bloc/register_bloc.dart'
     as _i1034;
+import '../../features/chat_bot/data/data_sources/local/chat_bot_local_data_source.dart'
+    as _i1027;
+import '../../features/chat_bot/data/data_sources/local/chat_bot_local_data_source_impl.dart'
+    as _i638;
+import '../../features/chat_bot/data/data_sources/remote/chat_bot_remote_data_source.dart'
+    as _i1003;
+import '../../features/chat_bot/data/data_sources/remote/chat_bot_remote_data_source_impl.dart'
+    as _i734;
+import '../../features/chat_bot/data/repository/chat_bot_repo_impl.dart'
+    as _i195;
+import '../../features/chat_bot/domain/repository/chat_bot_repo.dart' as _i361;
+import '../../features/chat_bot/domain/usecase/delete_conversation_usecase.dart'
+    as _i349;
+import '../../features/chat_bot/domain/usecase/get_all_conversation_usecase.dart'
+    as _i343;
+import '../../features/chat_bot/domain/usecase/new_conversation_usecase.dart'
+    as _i991;
+import '../../features/chat_bot/domain/usecase/save_conversation_usecase.dart'
+    as _i416;
+import '../../features/chat_bot/domain/usecase/select_conversation_usecase.dart'
+    as _i399;
+import '../../features/chat_bot/domain/usecase/send_message_usecase.dart'
+    as _i94;
+import '../../features/chat_bot/presentation/bloc/chat_bloc.dart' as _i821;
 import '../../features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_impl.dart'
     as _i506;
 import '../../features/edit_profile/data/datasource/remote_data_source/edit_profile_remote_data_source_interface.dart'
@@ -111,6 +136,15 @@ import '../../features/onboarding/domain/usecase/show_onboarding_use_case.dart'
     as _i758;
 import '../../features/onboarding/presentation/bloc/onboarding_bloc.dart'
     as _i792;
+import '../../features/profile/data/datasources/profile_remote_ds.dart'
+    as _i320;
+import '../../features/profile/data/datasources/profile_remote_ds_impl.dart'
+    as _i177;
+import '../../features/profile/data/repositories/profile_repo_impl.dart'
+    as _i988;
+import '../../features/profile/domain/repositories/profile_repo.dart' as _i790;
+import '../../features/profile/domain/usecases/logout_use_case.dart' as _i154;
+import '../../features/profile/presentation/bloc/profile_bloc.dart' as _i469;
 import '../../features/update_password/data/data_sources/update_password_remote_ds_impl.dart'
     as _i64;
 import '../../features/update_password/data/data_sources/update_password_remote_ds_interface.dart'
@@ -130,6 +164,8 @@ import '../app_local_storage/app_local_storage.dart' as _i849;
 import '../app_local_storage/app_local_storage_imp.dart' as _i458;
 import '../app_local_storage/app_secure_storage.dart' as _i304;
 import '../app_local_storage/app_secure_storage_impl.dart' as _i988;
+import '../gemini/gemini_module.dart' as _i810;
+import '../hive/hive_config.dart' as _i515;
 import '../routes/navigation_obsevation.dart' as _i1052;
 import '../services/localization_manager.dart' as _i2;
 import '../services/shared_prefs.dart' as _i241;
@@ -148,25 +184,43 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    final geminiModule = _$GeminiModule();
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.singleton<_i668.AppNavigatorObserver>(
-        () => _i668.AppNavigatorObserver());
+    gh.factory<_i991.NewConversationUsecase>(
+        () => _i991.NewConversationUsecase());
+    gh.singleton<_i515.HiveService>(() => _i515.HiveService());
     gh.singleton<_i1052.AppNavigatorObserver>(
         () => _i1052.AppNavigatorObserver());
     gh.singleton<_i2.LocalizationManager>(() => _i2.LocalizationManager());
     gh.singleton<_i241.SharedPreferencesService>(
         () => _i241.SharedPreferencesService());
+    gh.singleton<_i668.AppNavigatorObserver>(
+        () => _i668.AppNavigatorObserver());
+    gh.factory<String>(
+      () => geminiModule.apiKey,
+      instanceName: 'geminiApiKey',
+    );
     gh.factory<_i849.AppLocalStorage>(
         () => _i458.AppLocalStorageImpl(gh<_i460.SharedPreferences>()));
     gh.factory<_i304.AppSecureStorage>(() => _i988.AppSecureStorageImpl());
+    gh.factory<String>(
+      () => geminiModule.modelId,
+      instanceName: 'geminiModelId',
+    );
+    gh.factory<_i1027.ChatBotLocalDataSource>(
+        () => _i638.ChatBotLocalDataSourceImpl(gh<_i515.HiveService>()));
     gh.factory<_i111.AuthLocalDataSourceContract>(
         () => _i812.AuthLocalDataSourceImpl(gh<_i304.AppSecureStorage>()));
     gh.lazySingleton<_i399.AppBloc>(() => _i399.AppBloc(
           gh<_i111.AuthLocalDataSourceContract>(),
           gh<_i304.AppSecureStorage>(),
+        ));
+    gh.lazySingleton<_i656.GenerativeModel>(() => geminiModule.generativeModel(
+          gh<String>(instanceName: 'geminiApiKey'),
+          gh<String>(instanceName: 'geminiModelId'),
         ));
     gh.factory<_i768.OnboardingRepo>(
         () => _i371.OnboardingRepoImp(gh<_i849.AppLocalStorage>()));
@@ -180,10 +234,17 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i479.FoodDetailsApiRemoteDataSource(gh<_i277.ApiClient>()));
     gh.factory<_i624.EditProfileRemoteDataSourceInterface>(
         () => _i506.EditProfileRemoteDataSourceImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i775.UpdatePasswordRepoInterface>(
+        () => _i541.UpdatePasswordRepoImpl(
+              gh<_i91.UpdatePasswordRemoteDsInterface>(),
+              gh<_i111.AuthLocalDataSourceContract>(),
+            ));
     gh.factory<_i758.ShowOnboardingUseCase>(
         () => _i758.ShowOnboardingUseCase(gh<_i768.OnboardingRepo>()));
     gh.factory<_i792.OnboardingBloc>(
         () => _i792.OnboardingBloc(gh<_i758.ShowOnboardingUseCase>()));
+    gh.factory<_i1003.ChatBotRemoteDataSource>(
+        () => _i734.ChatBotRemoteDataSourceImpl(gh<_i656.GenerativeModel>()));
     gh.factory<_i139.ExerciseRemoteDsInterface>(
         () => _i649.ExerciseRemoteDsImpl(gh<_i277.ApiClient>()));
     gh.factory<_i942.UpdatePasswordUseCase>(() =>
@@ -192,6 +253,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i395.HomeRemoteDataSourceImpl(gh<_i277.ApiClient>()));
     gh.factory<_i1029.AuthRemoteDataSourceContract>(
         () => _i189.AuthRemoteDataSourceImpl(gh<_i277.ApiClient>()));
+    gh.factory<_i304.UpdatePasswordBloc>(
+        () => _i304.UpdatePasswordBloc(gh<_i942.UpdatePasswordUseCase>()));
+    gh.factory<_i320.ProfileRemoteDs>(
+        () => _i177.ProfileRemoteDsImpl(gh<_i277.ApiClient>()));
     gh.factory<_i260.EditProfileRepo>(() => _i245.EditProfileRepoImpl(
         remoteDataSource: gh<_i624.EditProfileRemoteDataSourceInterface>()));
     gh.factory<_i988.FoodRecommendRepo>(() =>
@@ -202,6 +267,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i420.GetMealsOnCategoryUseCase(gh<_i988.FoodRecommendRepo>()));
     gh.factory<_i207.HomeRepository>(
         () => _i779.HomeRepositoryImpl(gh<_i352.HomeRemoteDataSource>()));
+    gh.factory<_i361.ChatBotRepo>(() => _i195.ChatBotRepoImpl(
+          gh<_i1003.ChatBotRemoteDataSource>(),
+          gh<_i1027.ChatBotLocalDataSource>(),
+        ));
     gh.factory<_i877.FoodDetailsRepo>(() =>
         _i958.FoodDetailsRepoImpl(gh<_i362.FoodDetailsRemoteDataSource>()));
     gh.factory<_i29.EditProfileDataUseCase>(
@@ -210,6 +279,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i742.GetProfileDataUseCase(gh<_i260.EditProfileRepo>()));
     gh.lazySingleton<_i774.UploadProfileImageUseCase>(
         () => _i774.UploadProfileImageUseCase(gh<_i260.EditProfileRepo>()));
+    gh.factory<_i349.DeleteConversationUsecase>(
+        () => _i349.DeleteConversationUsecase(gh<_i361.ChatBotRepo>()));
+    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
+          getProfileDataUseCase: gh<_i742.GetProfileDataUseCase>(),
+          editProfileDataUseCase: gh<_i29.EditProfileDataUseCase>(),
+          uploadProfileImageUseCase: gh<_i774.UploadProfileImageUseCase>(),
+          securestorage: gh<_i304.AppSecureStorage>(),
+        ));
     gh.factory<_i208.GetMuscleGroupsUseCase>(
         () => _i208.GetMuscleGroupsUseCase(gh<_i207.HomeRepository>()));
     gh.factory<_i598.GetWorkoutsByMuscleGroupId>(
@@ -227,15 +304,22 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1029.AuthRemoteDataSourceContract>(),
           gh<_i304.AppSecureStorage>(),
         ));
+    gh.factory<_i790.ProfileRepo>(() => _i988.ProfileRepoImpl(
+          gh<_i320.ProfileRemoteDs>(),
+          gh<_i304.AppSecureStorage>(),
+        ));
     gh.factory<_i1029.GetDailyRecommendationsUseCase>(() =>
         _i1029.GetDailyRecommendationsUseCase(gh<_i207.HomeRepository>()));
-    gh.factory<_i84.EditProfileBloc>(() => _i84.EditProfileBloc(
-          getProfileDataUseCase: gh<_i742.GetProfileDataUseCase>(),
-          editProfileDataUseCase: gh<_i29.EditProfileDataUseCase>(),
-          uploadProfileImageUseCase: gh<_i774.UploadProfileImageUseCase>(),
-        ));
     gh.factory<_i941.RegisterUseCase>(
         () => _i941.RegisterUseCase(gh<_i170.AuthRepo>()));
+    gh.factory<_i343.GetAllConversationUsecase>(
+        () => _i343.GetAllConversationUsecase(gh<_i361.ChatBotRepo>()));
+    gh.factory<_i416.SaveConversationUsecase>(
+        () => _i416.SaveConversationUsecase(gh<_i361.ChatBotRepo>()));
+    gh.factory<_i399.SelectConversationUsecase>(
+        () => _i399.SelectConversationUsecase(gh<_i361.ChatBotRepo>()));
+    gh.factory<_i94.SendMessageUsecase>(
+        () => _i94.SendMessageUsecase(gh<_i361.ChatBotRepo>()));
     gh.factory<_i202.HomeBloc>(() => _i202.HomeBloc(
           gh<_i1029.GetDailyRecommendationsUseCase>(),
           gh<_i588.GetFoodRecommendations>(),
@@ -252,12 +336,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i182.GetExercisesUseCase(gh<_i822.ExerciseRepoInterface>()));
     gh.factory<_i233.GetLevelsUseCase>(
         () => _i233.GetLevelsUseCase(gh<_i822.ExerciseRepoInterface>()));
+    gh.factory<_i18.ForgotPasswordUseCase>(
+        () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i37.LoginUseCase>(
         () => _i37.LoginUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i825.ResetPasswordUseCase>(
         () => _i825.ResetPasswordUseCase(gh<_i170.AuthRepo>()));
-    gh.factory<_i18.ForgotPasswordUseCase>(
-        () => _i18.ForgotPasswordUseCase(gh<_i170.AuthRepo>()));
     gh.factory<_i509.VerifyOtpUseCase>(
         () => _i509.VerifyOtpUseCase(gh<_i170.AuthRepo>()));
     gh.singleton<_i885.ForgetPasswordBloc>(() => _i885.ForgetPasswordBloc(
@@ -269,6 +353,20 @@ extension GetItInjectableX on _i174.GetIt {
           getLevelsUseCase: gh<_i233.GetLevelsUseCase>(),
           getExercisesUseCase: gh<_i182.GetExercisesUseCase>(),
         ));
+    gh.factory<_i154.LogoutUseCase>(
+        () => _i154.LogoutUseCase(gh<_i790.ProfileRepo>()));
+    gh.factory<_i821.ChatBloc>(() => _i821.ChatBloc(
+          gh<_i94.SendMessageUsecase>(),
+          gh<_i991.NewConversationUsecase>(),
+          gh<_i399.SelectConversationUsecase>(),
+          gh<_i343.GetAllConversationUsecase>(),
+          gh<_i416.SaveConversationUsecase>(),
+          gh<_i349.DeleteConversationUsecase>(),
+        ));
+    gh.factory<_i469.ProfileBloc>(() => _i469.ProfileBloc(
+          gh<_i154.LogoutUseCase>(),
+          gh<_i2.LocalizationManager>(),
+        ));
     gh.factory<_i225.LoginViewModel>(
         () => _i225.LoginViewModel(gh<_i37.LoginUseCase>()));
     return this;
@@ -276,3 +374,5 @@ extension GetItInjectableX on _i174.GetIt {
 }
 
 class _$RegisterModule extends _i291.RegisterModule {}
+
+class _$GeminiModule extends _i810.GeminiModule {}

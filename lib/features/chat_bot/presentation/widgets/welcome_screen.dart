@@ -1,5 +1,4 @@
 import 'package:fitness_app/core/generated/assets.dart';
-import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/widgets/blurred_container.dart';

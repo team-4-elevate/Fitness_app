@@ -2,7 +2,6 @@ import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/auth/domain/arguments/auth_pages_ui_arguments.dart';
 import 'package:fitness_app/features/auth/presentation/auth_common_widgets/custom_auth_view.dart';
-import 'package:fitness_app/features/update_password/domain/enums/update_password_ui_fields.dart';
 import 'package:fitness_app/features/update_password/presentation/bloc/update_password_bloc.dart';
 import 'package:fitness_app/features/update_password/presentation/bloc/update_password_event.dart';
 import 'package:fitness_app/features/update_password/presentation/bloc/update_password_state.dart';

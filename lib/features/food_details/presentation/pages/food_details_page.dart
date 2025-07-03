@@ -1,24 +1,18 @@
-import 'package:fitness_app/core/Constant/app_constants.dart';
 import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/routes/app_routes.dart';
-import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/theme/app_font_style.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/widgets/blurred_background.dart';
 import 'package:fitness_app/core/widgets/grid_view_custom_container.dart';
 import 'package:fitness_app/core/widgets/grid_view_custom_widget.dart';
-import 'package:fitness_app/features/food_details/domain/entities/ingredient_entity.dart';
 import 'package:fitness_app/features/food_details/presentation/cubit/food_details_cubit.dart';
 import 'package:fitness_app/features/food_details/presentation/cubit/food_details_intent.dart';
 import 'package:fitness_app/features/food_details/presentation/widgets/header_details_widget.dart';
 import 'package:fitness_app/features/food_details/presentation/widgets/ingredient_list_widget.dart';
-import 'package:fitness_app/features/food_details/presentation/widgets/ingredient_widget_item.dart';
-import 'package:fitness_app/features/food_details/presentation/widgets/nutrition_info_widget.dart';
 import 'package:fitness_app/features/food_recommendation/data/models/meals_on_category_response/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class FoodDetailsPage extends StatelessWidget {
@@ -41,7 +35,6 @@ class FoodDetailsPage extends StatelessWidget {
           child: BlocConsumer<FoodDetailsCubit, FoodDetailsState>(
             listener: (context, state) {},
             builder: (context, state) {
-              final cubit = context.read<FoodDetailsCubit>();
               switch (state.getDetails) {
                 case LoadingState():
                 case SuccessState():

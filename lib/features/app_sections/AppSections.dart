@@ -126,10 +126,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       body: Stack(
         children: [
           _pages[_selectedIndex],
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: _buildFloatingNavBar(),
-          ),
+          _selectedIndex == 1
+              ? SizedBox()
+              : Align(
+                  alignment: Alignment.bottomCenter,
+                  child: _buildFloatingNavBar(),
+                ),
         ],
       ),
     );

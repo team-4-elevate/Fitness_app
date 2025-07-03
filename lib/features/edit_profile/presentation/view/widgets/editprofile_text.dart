@@ -5,8 +5,8 @@ import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class EditprofileText extends StatelessWidget {
-  const EditprofileText({super.key});
+class EditProfileText extends StatelessWidget {
+  const EditProfileText({super.key});
 
   @override
   Widget build(BuildContext context) {

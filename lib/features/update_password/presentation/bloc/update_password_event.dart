@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/features/update_password/domain/enums/update_password_ui_fields.dart';
-import 'package:flutter/material.dart';
 
 sealed class UpdatePasswordEvent extends Equatable {
   const UpdatePasswordEvent();

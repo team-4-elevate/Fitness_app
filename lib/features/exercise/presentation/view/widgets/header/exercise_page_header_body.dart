@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../domain/arguments/exercise_page_arguments.dart';
 import '../../../bloc/exercise_bloc.dart';
-import '../../../bloc/exercise_event.dart';
 import '../../../bloc/exercise_state.dart';
 import 'exercise_page_tab_bar.dart';
 

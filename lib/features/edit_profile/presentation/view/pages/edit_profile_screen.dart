@@ -4,7 +4,6 @@ import 'dart:ui' as ui;
 import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
 import 'package:fitness_app/core/Constant/app_keys.dart';
 import 'package:fitness_app/features/edit_profile/domain/entities/activity_level_constants.dart';
-import 'package:fitness_app/core/routes/app_routes.dart';
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/utils/app_validator.dart';
@@ -130,7 +129,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          EditprofileText(),
+                          EditProfileText(),
                           const SizedBox(height: 20),
                           EditprofileImage(
                             isEditButton: true,

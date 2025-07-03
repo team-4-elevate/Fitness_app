@@ -8,7 +8,7 @@ part of 'hive_adapters.dart';
 
 class ConversationEntityAdapter extends TypeAdapter<ConversationEntity> {
   @override
-  final typeId = 2;
+  final typeId = 0;
 
   @override
   ConversationEntity read(BinaryReader reader) {
@@ -48,7 +48,7 @@ class ConversationEntityAdapter extends TypeAdapter<ConversationEntity> {
 
 class MessageEntityAdapter extends TypeAdapter<MessageEntity> {
   @override
-  final typeId = 3;
+  final typeId = 1;
 
   @override
   MessageEntity read(BinaryReader reader) {
@@ -91,7 +91,7 @@ class MessageEntityAdapter extends TypeAdapter<MessageEntity> {
 
 class MessageTypeAdapter extends TypeAdapter<MessageType> {
   @override
-  final typeId = 4;
+  final typeId = 2;
 
   @override
   MessageType read(BinaryReader reader) {
