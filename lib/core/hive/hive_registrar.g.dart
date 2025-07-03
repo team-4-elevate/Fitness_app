@@ -9,6 +9,7 @@ extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(ConversationEntityAdapter());
     registerAdapter(MessageEntityAdapter());
+    registerAdapter(MessageTypeAdapter());
   }
 }
 
@@ -16,5 +17,6 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(ConversationEntityAdapter());
     registerAdapter(MessageEntityAdapter());
+    registerAdapter(MessageTypeAdapter());
   }
 }

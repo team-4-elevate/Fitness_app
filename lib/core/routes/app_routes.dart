@@ -17,14 +17,13 @@ class AppRoutes {
   static const String exercisePage = '/exercisePage';
   static const String exerciseDetailsPage = '/exerciseDetailsPage';
   static const String changePasswordScreen = '/changePasswordScreen';
-
   static const String chatScreen = '/chatScreen';
-
   static const String foodRecommendationScreen = '/foodRecommendationScreen';
   static const String upcomingWorkoutTabBar = '/UpcomingWorkoutTabBar';
   static const String foodDetailsScreen = '/foodDetailsScreen';
   static const String upcomingWorkoutSeeallPage = '/upcomingWorkoutSeeallPage';
   static const String physicalinfo = '/physicalinfo';
   static const String editProfile = '/editProfile';
-
+  static const String chatWithAiScreen = '/chatWithAiScreen';
+  // static const String upcomingWorkoutSeeallPage = '/upcomingWorkoutSeeallPage';
 }

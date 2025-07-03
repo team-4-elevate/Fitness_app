@@ -8,7 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+  final ChatBloc chatBloc;
+  const ChatPage({super.key, required this.chatBloc});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -82,9 +83,8 @@ class _ChatPageState extends State<ChatPage> {
                     child: TextFormField(
                       controller: userMessageController,
                       decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
-                        hint: Text(context.l10n.smartCoachHintTxt),
-                      ),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          hintText: context.l10n.smartCoachHintTxt),
                     ),
                   ),
                   const Spacer(),
@@ -97,18 +97,17 @@ class _ChatPageState extends State<ChatPage> {
                       foregroundColor: WidgetStateProperty.all(Colors.white),
                       shape: WidgetStateProperty.all(const CircleBorder()),
                     ),
-                    onPressed:
-                        state.messageState is LoadingState
-                            ? null
-                            : () {
-                              final message = userMessageController.text.trim();
-                              if (message.isNotEmpty) {
-                                context.read<ChatBloc>().add(
-                                  SendUserMessage(message),
-                                );
-                                userMessageController.clear();
-                              }
-                            },
+                    onPressed: state.messageState is LoadingState
+                        ? null
+                        : () {
+                            final message = userMessageController.text.trim();
+                            if (message.isNotEmpty) {
+                              context.read<ChatBloc>().add(
+                                    SendUserMessage(message),
+                                  );
+                              userMessageController.clear();
+                            }
+                          },
                     iconSize: 30,
                     icon: const Icon(
                       Icons.send,

@@ -10,4 +10,5 @@ class AppConstants {
   static const String customBackIcon = 'assets/icons/Back.svg';
   static const String backIconSVG = 'assets/icons/back-icon.svg';
   static const String nullTokenMsg = 'null api token';
+  static const String profileCustomBg = 'assets/images/profile_custom_bg.png';
 }

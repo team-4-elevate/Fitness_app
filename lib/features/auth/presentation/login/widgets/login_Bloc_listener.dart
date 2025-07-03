@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart'; // For debugPrint
 import 'package:fitness_app/core/theme/app_colors.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/widgets/animated_dialogs.dart';
-import 'package:fitness_app/features/app_sections/AppSections.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_intent.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_state.dart';
 import 'package:fitness_app/features/auth/presentation/login/login_view_model.dart';
@@ -20,8 +19,23 @@ class LoginBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginViewModel, LoginState>(
+      listenWhen: (previous, current) {
+        return (previous.showSocialLoginMessage !=
+                    current.showSocialLoginMessage &&
+                current.showSocialLoginMessage) ||
+            (previous.navigateToResetPassword !=
+                    current.navigateToResetPassword &&
+                current.navigateToResetPassword) ||
+            (previous.navigateToSignUp != current.navigateToSignUp &&
+                current.navigateToSignUp) ||
+            (previous.loginState != current.loginState);
+      },
       listener: (context, state) async {
+        final loginViewModel = context.read<LoginViewModel>();
+
         if (state.showSocialLoginMessage) {
+          loginViewModel.loginIntent(LoginIntent.resetSocialMessage);
+
           await context.showFailureAction(
             buttonText: context.l10n.login_socialButton,
             onButtonPressed: () {
@@ -35,39 +49,35 @@ class LoginBlocListener extends StatelessWidget {
         }
 
         if (state.navigateToResetPassword) {
+          loginViewModel.loginIntent(LoginIntent.resetNavigationFlags);
           Navigator.pushNamed(context, AppRoutes.forgotPass);
-          context.read<LoginViewModel>().loginIntent(LoginIntent.resetStates);
           return;
         }
 
         if (state.navigateToSignUp) {
+          loginViewModel.loginIntent(LoginIntent.resetNavigationFlags);
           Navigator.pushReplacementNamed(context, AppRoutes.registerPage);
           return;
         }
+
         await state.loginState?.whenOrNull(
           loading: () {
             context.showLoadingIndicator();
           },
           success: (data) async {
             context.pop();
-
-            // We'll skip the AppBloc update and proceed with navigation
-            // This allows login to complete without needing AppBloc
             if (data?.user != null) {
-              // The user data is already saved to secure storage in auth_repo_impl.dart
-              // and will be retrieved when the home screen loads
-              debugPrint("User logged in successfully");
+              final appBloc = context.read<AppBloc>();
+              appBloc.add(CacheUserDataEvent(data!.user!));
             }
-
-            // Show a brief success notification, then navigate immediately
             await context.showSuccessNotification(
               title: context.l10n.login_successTitle,
               message: context.l10n.login_successMessage(
                 data?.user?.firstName ?? '',
               ),
               onAnimationComplete: () {
-                // Navigate using the named route
-                Navigator.of(context).pushNamedAndRemoveUntil(
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
                   AppRoutes.layoutScreen,
                   (route) => false,
                 );
@@ -82,9 +92,6 @@ class LoginBlocListener extends StatelessWidget {
               buttonText: context.l10n.login_failedButton,
               onButtonPressed: () {
                 context.pop();
-                context.read<LoginViewModel>().loginIntent(
-                      LoginIntent.resetStates,
-                    );
               },
             );
           },

@@ -5,9 +5,11 @@ import 'package:dio/dio.dart';
 import 'package:fitness_app/core/Constant/api_constants.dart';
 import 'package:fitness_app/core/api/api_client.dart';
 import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
+import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/exceptions/failure.dart';
 import 'package:fitness_app/core/helper/error_handler.dart';
 import 'package:fitness_app/core/helper/api_result.dart';
+import 'package:fitness_app/core/services/localization_manager.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -27,6 +29,8 @@ class DioApiClient implements ApiClient {
         ) {
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
+        options.headers['Accept-Language'] =
+            getIt<LocalizationManager>().currentLocale.languageCode;
         log('kkkkk');
         log(options.headers.toString());
         log(options.path);

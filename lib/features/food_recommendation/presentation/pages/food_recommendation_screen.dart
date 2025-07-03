@@ -1,6 +1,5 @@
 // features/food_recommendation/presentation/pages/food_recommendation_screen.dart
 import 'package:fitness_app/core/Constant/app_constants.dart';
-import 'package:fitness_app/core/base_states/app_states.dart';
 import 'package:fitness_app/core/responsive/responsive_design.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/features/food_recommendation/presentation/cubit/food_intent.dart';

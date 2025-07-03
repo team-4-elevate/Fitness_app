@@ -21,11 +21,11 @@ class MessageEntity {
   }
 
   Map<String, dynamic> toJson() => {
-    'isUser': isUser,
-    'message': message,
-    'date': date?.toIso8601String() ?? DateTime.now().toIso8601String(),
-    'type': type,
-  };
+        'isUser': isUser,
+        'message': message,
+        'date': date?.toIso8601String() ?? DateTime.now().toIso8601String(),
+        'type': type,
+      };
 }
 
 enum MessageType { normal, typing, error }

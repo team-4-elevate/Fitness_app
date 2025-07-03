@@ -64,6 +64,17 @@ class LoginViewModel extends Cubit<LoginState> {
       case LoginIntent.resetStates:
         _resetStates();
         break;
+
+      case LoginIntent.resetSocialMessage:
+        emit(state.copyWith(showSocialLoginMessage: false));
+        break;
+
+      case LoginIntent.resetNavigationFlags:
+        emit(state.copyWith(
+          navigateToResetPassword: false,
+          navigateToSignUp: false,
+        ));
+        break;
     }
   }
 

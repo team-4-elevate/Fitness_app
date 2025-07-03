@@ -19,7 +19,7 @@ enum SectionSize {
 }
 
 class SharedSection extends StatefulWidget {
-  String sectionTitle;
+  final String sectionTitle;
   final bool showSeeAll;
   final bool isPopularTraining;
   final List<Map<String, dynamic>> recommendations;
@@ -29,7 +29,7 @@ class SharedSection extends StatefulWidget {
   final List<String>? upcomingWorkoutsTabs;
   final Function(int)? onUpcomingWorkoutsSelected;
 
-  SharedSection({
+  const SharedSection({
     super.key,
     required this.sectionTitle,
     this.showSeeAll = true,

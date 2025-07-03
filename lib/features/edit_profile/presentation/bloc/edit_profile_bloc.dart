@@ -4,17 +4,19 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fitness_app/core/Constant/app_keys.dart';
-import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
+import 'package:fitness_app/core/app_data/app_bloc.dart';
+import 'package:fitness_app/core/app_data/app_events.dart';
 import 'package:fitness_app/core/app_manger/bloc_handler_mixin.dart';
+import 'package:fitness_app/core/di/di.dart';
+import 'package:fitness_app/features/auth/data/model/login_models/login_response/user.dart';
 import 'package:fitness_app/features/edit_profile/domain/entities/activity_level_constants.dart';
 import 'package:fitness_app/features/edit_profile/data/models/edit_profile/response/edit_profile_response.dart';
-import 'package:fitness_app/features/edit_profile/data/models/edit_profile/response/user.dart';
 import 'package:flutter/material.dart' show TextEditingController;
 import 'package:fitness_app/features/edit_profile/domain/usecases/edit_profile_data_usecase.dart';
 import 'package:fitness_app/features/edit_profile/domain/usecases/get_profile_data_usecase.dart';
 import 'package:fitness_app/features/edit_profile/domain/usecases/upload_profile_image_usecase.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:fitness_app/core/app_local_storage/app_secure_storage.dart';
 part 'edit_profile_event.dart';
 part 'edit_profile_state.dart';
 
@@ -248,21 +250,10 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
           activityLevel: event.activityLevel ?? currentUser.activityLevel,
         );
 
-        result.when(success: (data) async {
-          // Save user data to local storage when profile is updated
-          if (data.user != null) {
-            // If first name was updated, save it to local storage
-            if (event.fieldName == AppKeys.firstName ||
-                event.firstName != null) {
-              await _securestorage.saveUserData(
-                  'firstName', data.user!.firstName ?? '');
-            }
-            // If photo is available, save it too
-            if (data.user!.photo != null && data.user!.photo!.isNotEmpty) {
-              await _securestorage.saveUserData('photo', data.user!.photo!);
-            }
-          }
-
+        result.when(success: (data) {
+          getIt<AppBloc>().add(
+            CacheUserDataEvent(data.user ?? User()),
+          );
           emit(state.copyWith(
             updateProfileStatus: Status.success,
             errorMessage: '',

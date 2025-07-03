@@ -8,4 +8,6 @@ enum LoginIntent {
   validatePassword,
   clearValidationErrors,
   resetStates,
+  resetSocialMessage,
+  resetNavigationFlags,
 }

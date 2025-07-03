@@ -51,3 +51,16 @@ class GetAppLocaleEvent extends AppEvent {}
 
 //------------------------------------------------------onboarding status
 class CheckOnboardingStatusEvent extends AppEvent {}
+
+class CacheUserDataEvent extends AppEvent {
+  final User userInfo;
+  const CacheUserDataEvent(this.userInfo);
+  @override
+  List<Object?> get props => [userInfo];
+}
+
+class GetCachedUserDataEvent extends AppEvent {
+  const GetCachedUserDataEvent();
+  @override
+  List<Object?> get props => [];
+}

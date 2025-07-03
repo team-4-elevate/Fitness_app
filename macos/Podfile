@@ -28,9 +28,15 @@ flutter_macos_podfile_setup
 
 target 'Runner' do
   use_frameworks!
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> origin/development
   use_modular_headers!
+=======
+>>>>>>> origin/feature/chat-bot
 
 
   flutter_install_all_macos_pods File.dirname(File.realpath(__FILE__))

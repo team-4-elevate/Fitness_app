@@ -743,5 +743,20 @@
         "new_password": "كلمة المرور الجديدة",
         "confirm_new_password": "تأكيد كلمة المرور الجديدة",
         "please_confirm_password": "يرجى تأكيد كلمة المرور",
-        "passwords_do_not_match": "كلمات المرور غير متطابقة"
+        "passwords_do_not_match": "كلمات المرور غير متطابقة",
+        "profile_title": "الملف الشخصي",
+  "edit_profile": "تعديل الملف الشخصي",
+  "change_password": "تغيير كلمة المرور",
+  "settings": "الإعدادات",
+  "language": "اللغة",
+  "notification": "الإشعارات",
+  "privacy": "الخصوصية",
+  "help": "المساعدة",
+  "about": "حول التطبيق",
+  "logout": "تسجيل الخروج",
+  "selectedLanguageValue": "اللغة المحددة ({lang})",
+  "logout_confirmation_title": "تسجيل الخروج",
+  "logout_message_body" : "اتريد تسجيل الخروج من حسابك؟",
+  "cancel": "الغاء"
+
 }

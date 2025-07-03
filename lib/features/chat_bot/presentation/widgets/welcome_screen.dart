@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+  final ChatBloc chatBloc;
+  const WelcomePage({super.key, required this.chatBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,7 @@ class WelcomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   context.read<ChatBloc>().add(StartChatPressed());
+                  // Navigator.of(context).pushNamed(AppRoutes.chatWithAiScreen, arguments: chatBloc);
                 },
                 child: Text(context.l10n.welcomeBtn),
               ),

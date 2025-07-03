@@ -15,18 +15,17 @@ class ConversationEntity {
     return ConversationEntity(
       id: json['id'],
       title: json['title'],
-      messages:
-          (json['messages'] as List)
-              .map((m) => MessageEntity.fromJson(m))
-              .toList(),
+      messages: (json['messages'] as List)
+          .map((m) => MessageEntity.fromJson(m))
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'title': title,
-    'messages': messages.map((m) => m.toJson()).toList(),
-  };
+        'id': id,
+        'title': title,
+        'messages': messages.map((m) => m.toJson()).toList(),
+      };
 
   ConversationEntity copyWith({
     String? id,

@@ -18,6 +18,7 @@ class ApiConstants {
   static const String foodRecommendedMealsEndpoint = '/filter.php';
   static const String muscles = '/muscles';
   static const String getFoodDetailsEndpoint = '/lookup.php';
+  static const String logoutEndPoint = '/auth/logout';
   static const String getprofileEndpoint = '/auth/profile-data';
   static const String editprofileEndpoint = '/auth/editProfile';
   static const String uploadProfilePhotoEndpoint = '/auth/upload-photo';

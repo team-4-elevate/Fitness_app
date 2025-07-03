@@ -1,0 +1,13 @@
+{
+  "ar": [
+    "smartCoachTitle",
+    "smartCoachAppBarDesc",
+    "smartCoachGreeting",
+    "drawerTitle",
+    "noConversations",
+    "smartCoachHintTxt",
+    "typingMsg",
+    "welcomeTitle",
+    "welcomeBtn"
+  ]
+}

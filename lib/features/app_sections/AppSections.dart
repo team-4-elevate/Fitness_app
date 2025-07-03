@@ -2,13 +2,12 @@
 import 'package:fitness_app/core/di/di.dart';
 import 'package:fitness_app/core/utils/app_extensions.dart';
 import 'package:fitness_app/core/services/navigation_service.dart';
-import 'package:fitness_app/features/app_sections/ChatAipage.dart';
 import 'package:fitness_app/features/chat_bot/presentation/bloc/chat_bloc.dart';
 import 'package:fitness_app/features/chat_bot/presentation/pages/chat_bot_page.dart';
-import 'package:fitness_app/features/edit_profile/presentation/view/pages/edit_profile_screen.dart';
-import 'package:fitness_app/features/edit_profile/presentation/view/pages/profile.dart';
 import 'package:fitness_app/features/home/presentation/bloc/home_bloc.dart';
 import 'package:fitness_app/features/home/presentation/pages/home.dart';
+import 'package:fitness_app/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:fitness_app/features/profile/presentation/pages/profile_view.dart';
 import 'package:fitness_app/features/upcoming_workout_seeAll/presentation/pages/upcoming_workout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,18 +36,13 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
       //---------------------------------------------------chat ai page
       BlocProvider(
-        create: (context) => getIt<ChatBloc>(),
-        child: ChatBotPage(),
-      ),
-
-      //---------------------------------------------------gym page
+          create: (context) => getIt<ChatBloc>(), child: const ChatBotPage()),
       BlocProvider<HomeBloc>(
         create: (_) => getIt<HomeBloc>()..add(const LoadHomeData()),
         child: const UpComingWorkoutScreen(),
       ),
-
-      //---------------------------------------------------profile page
-      const ProfilePage(),
+      BlocProvider(
+          create: (context) => getIt<ProfileBloc>(), child: ProfileView()),
     ];
 
     NavigationService().registerTabNavigationCallback(_onItemTapped);

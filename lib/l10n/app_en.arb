@@ -558,29 +558,7 @@
   "@login": {
     "description": "Login text for buttons and links"
   },
-
-
-"smartCoachTitle": "Smart coach",
-"@smartCoachTitle": {
-  "description": "Title for the smart coach section"
-},
-"smartCoachAppBarDesc": "I am your smart coach",
-"@smartCoachAppBarDesc": {
-  "description": "App bar description for the smart coach"
-},
-"smartCoachGreeting": "Hi ",
-"@smartCoachGreeting": {
-  "description": "Greeting used by the smart coach"
-},
-"drawerTitle": "Previous Conversations",
-"noConversations":"No conversations found",
-"smartCoachHintTxt":"Ask anything...",
-"typingMsg":"Typing",
-"welcomeTitle":"How Can I Assist You Today ?",
-"welcomeBtn":"Get Started",
-
-
-
+  
   "food_Recommendation_title": "Food Recommendation",
   "@food_Recommendation_title": {
     "description": "Title for the food recommendation section"
@@ -764,8 +742,48 @@
       "new_password": "New Password",
       "confirm_new_password": "Confirm New Password",
       "please_confirm_password": "Please confirm your password",
-      "passwords_do_not_match": "Passwords do not match"
-
+      "passwords_do_not_match": "Passwords do not match",
+  "profile_title": "Profile",
+  "edit_profile": "Edit Profile",
+  "change_password": "Change Password",
+  "settings": "Settings",
+  "language": "Language",
+  "notification": "Notifications",
+  "privacy": "Privacy",
+  "help": "Help",
+  "about": "About",
+  "logout": "Logout",
+  "selectedLanguageValue": "Selected Language ({lang})",
+  "@selectedLanguageValue": {
+    "description": "User value of the Language",
+    "placeholders": {
+      "lang": {
+        "type": "String",
+        "description": "The value of the Language"
+      }
+    }
+  },
+  "logout_confirmation_title": "Logout Confirmation",
+  "logout_message_body": "Are you sure you want to logout from your account?",
+  "cancel": "Cancel",
+"smartCoachTitle": "Smart coach",
+"@smartCoachTitle": {
+  "description": "Title for the smart coach section"
+},
+"smartCoachAppBarDesc": "I am your smart coach",
+"@smartCoachAppBarDesc": {
+  "description": "App bar description for the smart coach"
+},
+"smartCoachGreeting": "Hi ",
+"@smartCoachGreeting": {
+  "description": "Greeting used by the smart coach"
+},
+"drawerTitle": "Previous Conversations",
+"noConversations":"No conversations found",
+"smartCoachHintTxt":"Ask anything...",
+"typingMsg":"Typing",
+"welcomeTitle":"How Can I Assist You Today ?",
+"welcomeBtn":"Get Started"
 }
 
 

@@ -764,61 +764,6 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
-
-  /// Title for the smart coach section
-  ///
-  /// In en, this message translates to:
-  /// **'Smart coach'**
-  String get smartCoachTitle;
-
-  /// App bar description for the smart coach
-  ///
-  /// In en, this message translates to:
-  /// **'I am your smart coach'**
-  String get smartCoachAppBarDesc;
-
-  /// Greeting used by the smart coach
-  ///
-  /// In en, this message translates to:
-  /// **'Hi '**
-  String get smartCoachGreeting;
-
-  /// No description provided for @drawerTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Previous Conversations'**
-  String get drawerTitle;
-
-  /// No description provided for @noConversations.
-  ///
-  /// In en, this message translates to:
-  /// **'No conversations found'**
-  String get noConversations;
-
-  /// No description provided for @smartCoachHintTxt.
-  ///
-  /// In en, this message translates to:
-  /// **'Ask anything...'**
-  String get smartCoachHintTxt;
-
-  /// No description provided for @typingMsg.
-  ///
-  /// In en, this message translates to:
-  /// **'Typing'**
-  String get typingMsg;
-
-  /// No description provided for @welcomeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'How Can I Assist You Today ?'**
-  String get welcomeTitle;
-
-  /// No description provided for @welcomeBtn.
-  ///
-  /// In en, this message translates to:
-  /// **'Get Started'**
-  String get welcomeBtn;
-
   /// Title for the food recommendation section
   ///
   /// In en, this message translates to:
@@ -1131,6 +1076,137 @@ abstract class AppLocalizations {
   /// **'Passwords do not match'**
   String get passwords_do_not_match;
 
+  /// No description provided for @profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile_title;
+
+  /// No description provided for @change_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get change_password;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @notification.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notification;
+
+  /// No description provided for @privacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get privacy;
+
+  /// No description provided for @help.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get help;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// User value of the Language
+  ///
+  /// In en, this message translates to:
+  /// **'Selected Language ({lang})'**
+  String selectedLanguageValue(String lang);
+
+  /// No description provided for @logout_confirmation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout Confirmation'**
+  String get logout_confirmation_title;
+
+  /// No description provided for @logout_message_body.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout from your account?'**
+  String get logout_message_body;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Title for the smart coach section
+  ///
+  /// In en, this message translates to:
+  /// **'Smart coach'**
+  String get smartCoachTitle;
+
+  /// App bar description for the smart coach
+  ///
+  /// In en, this message translates to:
+  /// **'I am your smart coach'**
+  String get smartCoachAppBarDesc;
+
+  /// Greeting used by the smart coach
+  ///
+  /// In en, this message translates to:
+  /// **'Hi '**
+  String get smartCoachGreeting;
+
+  /// No description provided for @drawerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Conversations'**
+  String get drawerTitle;
+
+  /// No description provided for @noConversations.
+  ///
+  /// In en, this message translates to:
+  /// **'No conversations found'**
+  String get noConversations;
+
+  /// No description provided for @smartCoachHintTxt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask anything...'**
+  String get smartCoachHintTxt;
+
+  /// No description provided for @typingMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Typing'**
+  String get typingMsg;
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How Can I Assist You Today ?'**
+  String get welcomeTitle;
+
+  /// No description provided for @welcomeBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get welcomeBtn;
 }
 
 class _AppLocalizationsDelegate

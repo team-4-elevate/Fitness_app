@@ -38,8 +38,7 @@ class _ChatDrawerState extends State<ChatDrawer> {
                 Text(
                   context.l10n.drawerTitle,
                   style: context.textTheme.titleLarge,
-                ),
-
+                ).expanded,
                 IconButton(
                   icon: const Icon(Icons.edit_square, color: AppColors.white),
                   onPressed: () {
@@ -57,15 +56,14 @@ class _ChatDrawerState extends State<ChatDrawer> {
 
                   return conversationsState.when(
                     initial: () => const SizedBox(),
-                    loading:
-                        () => const Center(child: CircularProgressIndicator()),
-                    error:
-                        (msg) => Center(
-                          child: Text(
-                            msg!,
-                            style: TextStyle(color: AppColors.error),
-                          ),
-                        ),
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
+                    error: (msg) => Center(
+                      child: Text(
+                        msg!,
+                        style: TextStyle(color: AppColors.error),
+                      ),
+                    ),
                     success: (conversations) {
                       if (conversations == null || conversations.isEmpty) {
                         return Center(

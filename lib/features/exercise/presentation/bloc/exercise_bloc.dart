@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../../core/app_manger/bloc_handler_mixin.dart';
-import '../../domain/entites/difficulty_level.dart';
 import '../../domain/entites/exercise_entity.dart';
 import '../../domain/use_cases/get_exercise_use_case.dart';
 import '../../domain/use_cases/get_levels_use_case.dart';
